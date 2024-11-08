@@ -30,10 +30,7 @@ struct CustomTabView: View {
             .frame(maxHeight: .infinity)
             
             ZStack {
-                Rectangle()
-                    .frame(height: 100)
-                    .background(.white)
-                    .shadow(radius: 10)
+                
                 
                 HStack {
                     CustomTabViewButton(
@@ -65,6 +62,11 @@ struct CustomTabView: View {
                 }
                 .frame(height: 100)
                 .background(.white)
+                .background(
+                    Rectangle()
+                        .background(.white)
+                        .shadow(radius: 10)
+                )
             }
             
         }
