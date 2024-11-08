@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  Gollaba
 //
 //  Created by 김견 on 11/8/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     var body: some View {
-        MainView()
+        Text("Home")
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }
