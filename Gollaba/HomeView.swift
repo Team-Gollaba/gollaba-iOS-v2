@@ -23,7 +23,6 @@ struct HomeView: View {
             .frame(height: 80)
             .background(Color.toolbarBackgroundColor)
         }
-        .padding()
     }
 }
 
