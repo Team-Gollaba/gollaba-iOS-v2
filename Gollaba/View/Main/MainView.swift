@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var tabIndex: Int = 0
+    @State var viewModel = MainViewModel()
     
     var body: some View {
-        VStack {
-            TitleView()
-            
-            CustomTabView()
-            
+        NavigationStack {
+            VStack {
+                TitleView(goToLogin: $viewModel.goToLogin)
+                
+                CustomTabView()
+                
+            }
+            .navigationDestination(isPresented: $viewModel.goToLogin) {
+                LoginView()
+            }
         }
     }
 }

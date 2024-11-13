@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TitleView: View {
+    @Binding var goToLogin: Bool
+    
     var body: some View {
         HStack {
             Image("AppIconImage")
@@ -21,7 +23,7 @@ struct TitleView: View {
             Spacer()
             
             Button {
-                
+                goToLogin = true
             } label: {
                 Text("로그인")
                     .font(.suit_variable16)
@@ -36,5 +38,5 @@ struct TitleView: View {
 }
 
 #Preview {
-    TitleView()
+    TitleView(goToLogin: .constant(false))
 }
