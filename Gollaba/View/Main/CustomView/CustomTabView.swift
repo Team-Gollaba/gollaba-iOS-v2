@@ -65,7 +65,7 @@ struct CustomTabView: View {
                 .background(
                     Rectangle()
                         .background(.white)
-                        .shadow(radius: 10)
+                        .shadow(radius: 5)
                 )
             }
             
