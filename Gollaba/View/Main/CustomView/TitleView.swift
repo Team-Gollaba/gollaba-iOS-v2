@@ -12,7 +12,7 @@ struct TitleView: View {
         HStack {
             Image("AppIconImage")
                 .resizable()
-                .frame(width: 60, height: 60)
+                .frame(width: 40, height: 40)
             
             Text("골라바")
                 .font(.yangjin30)
@@ -29,7 +29,7 @@ struct TitleView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 80)
+        .frame(height: 60)
         .padding(.horizontal)
         .background(Color.toolbarBackgroundColor)
     }
