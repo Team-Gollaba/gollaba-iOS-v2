@@ -15,6 +15,7 @@ struct HomeView: View {
                     
                 PollList(title: "🏆 인기 투표")
                 
+                AllPollList()
             }
         }
     }

@@ -15,13 +15,7 @@ struct PollContent: View {
     var body: some View {
         HStack {
             VStack (alignment: .leading) {
-                Text(state)
-                    .font(.suit_variable12)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 5)
-                    .foregroundStyle(Color.pollContentTitleFontColor)
-                    .background(Color.pollContentTitleBackgroundColor)
-                    .cornerRadius(3)
+                PollStateView(state: state)
                     .padding(.leading, 20)
                     .padding(.top, 20)
                     
