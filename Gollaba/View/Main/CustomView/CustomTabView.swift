@@ -38,7 +38,8 @@ struct CustomTabView: View {
                             selectedTab = .home
                         },
                         image: Image(systemName: "house.fill"),
-                        title: "홈"
+                        title: "홈",
+                        isSelected: selectedTab == .home
                     )
                     .tint(selectedTab == .home ? .black : .gray)
                     
@@ -47,7 +48,8 @@ struct CustomTabView: View {
                             selectedTab = .create
                         },
                         image: Image(systemName: "plus.circle.fill"),
-                        title: "새 투표"
+                        title: "새 투표",
+                        isSelected: selectedTab == .create
                     )
                     .tint(selectedTab == .create ? .black : .gray)
                     
@@ -56,7 +58,8 @@ struct CustomTabView: View {
                             selectedTab = .myPoll
                         },
                         image: Image(systemName: "folder.fill"),
-                        title: "My 투표"
+                        title: "My 투표",
+                        isSelected: selectedTab == .myPoll
                     )
                     .tint(selectedTab == .myPoll ? .black : .gray)
                 }
@@ -65,7 +68,7 @@ struct CustomTabView: View {
                 .background(
                     Rectangle()
                         .background(.white)
-                        .shadow(radius: 5)
+                        .shadow(color: .gray.opacity(0.3), radius: 3)
                 )
             }
             

@@ -11,6 +11,7 @@ struct CustomTabViewButton: View {
     var action: () -> Void
     var image: Image
     var title: String
+    var isSelected: Bool
     
     var body: some View {
         Button {
@@ -27,10 +28,11 @@ struct CustomTabViewButton: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .shadow(radius: 0)
+            .scaleEffect(isSelected ? 1.2 : 1.0)
         }
     }
 }
 
 #Preview {
-    CustomTabViewButton(action: {}, image: Image(systemName: "person"), title: "title")
+    CustomTabViewButton(action: {}, image: Image(systemName: "person"), title: "title", isSelected: true)
 }
