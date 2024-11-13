@@ -7,34 +7,35 @@
 
 import SwiftUI
 
-struct PopularPollList: View {
-    let title: String = "🏆 Top 10"
+struct PollList: View {
+    var title: String
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
                 .font(.suit_variable20)
-                .padding(.leading, 10)
+                .padding(.leading, 16)
                 .padding(.vertical, 5)
             
             
                 ScrollView(.horizontal) {
                     HStack {
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
-                        PopularPollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
+                        PollContent(state: "종료", title: "제목", info: "자ㅓㅇ보")
                     }
                 }
                 
             
         }
+        .padding(.bottom, 16)
     }
 }
 
 #Preview {
-    PopularPollList()
+    PollList(title: "Title")
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PopularPollContent: View {
+struct PollContent: View {
     var state: String
     var title: String
     var info: String
@@ -55,5 +55,5 @@ struct PopularPollContent: View {
 }
 
 #Preview {
-    PopularPollContent(state: "종료", title: "코카콜라 vs 펩시", info: "07월 30일 종료 4명 참여")
+    PollContent(state: "종료", title: "코카콜라 vs 펩시", info: "07월 30일 종료 4명 참여")
 }
