@@ -60,7 +60,7 @@ struct CustomTabView: View {
                     )
                     .tint(selectedTab == .myPoll ? .black : .gray)
                 }
-                .frame(height: 100)
+                .frame(height: 80)
                 .background(.white)
                 .background(
                     Rectangle()
@@ -70,7 +70,7 @@ struct CustomTabView: View {
             }
             
         }
-        .ignoresSafeArea()
+        //.ignoresSafeArea()
         
     }
 }
