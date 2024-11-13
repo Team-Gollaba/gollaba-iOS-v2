@@ -15,6 +15,7 @@ struct PopularPollList: View {
             Text(title)
                 .font(.suit_variable20)
                 .padding(.leading, 10)
+                .padding(.vertical, 5)
             
             
                 ScrollView(.horizontal) {
