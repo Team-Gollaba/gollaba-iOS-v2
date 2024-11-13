@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreatePollView: View {
     var body: some View {
+        
         Text("Create Poll")
     }
 }
