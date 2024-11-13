@@ -18,7 +18,7 @@ struct PollList: View {
                 .padding(.vertical, 5)
             
             
-                ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         PollContent(state: "종료", title: "제목", info: "정보")
                         PollContent(state: "종료", title: "제목", info: "정보")
