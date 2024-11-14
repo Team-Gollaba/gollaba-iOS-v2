@@ -35,7 +35,7 @@ struct PollContent: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(maxHeight: 180)
         }
-        .frame(width: 350)
+        .frame(width: 300)
         .background(.white)
         .cornerRadius(10)
         .background(
