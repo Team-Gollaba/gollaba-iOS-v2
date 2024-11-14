@@ -17,5 +17,6 @@ extension Font {
     static let suit_variable32: Font = .custom("SUIT-Variable", size: 32)
     static let suit_variable80: Font = .custom("SUIT-Variable", size: 80)
     
+    static let yangjin20: Font = .custom("YANGJIN", size: 20)
     static let yangjin30: Font = .custom("YANGJIN", size: 30)
 }

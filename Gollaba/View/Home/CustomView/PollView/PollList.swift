@@ -13,7 +13,7 @@ struct PollList: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
-                .font(.suit_variable20)
+                .font(.yangjin20)
                 .padding(.leading, 16)
                 .padding(.vertical, 5)
             
