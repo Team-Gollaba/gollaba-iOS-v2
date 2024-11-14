@@ -35,6 +35,12 @@ struct TitleView: View {
         .frame(height: 60)
         .padding(.horizontal)
         .background(Color.toolbarBackgroundColor)
+        .background(
+            Rectangle()
+                .background(Color.toolbarBackgroundColor)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+        )
     }
 }
 
