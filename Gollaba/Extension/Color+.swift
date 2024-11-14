@@ -14,4 +14,6 @@ extension Color {
     static let pollContentTitleFontColor = Color("PollContentTitleFontColor")
     static let pollContentTitleBackgroundColor = Color("PollContentTitleBackgroundColor")
     static let pollContentInfoFontColor = Color("PollContentInfoFontColor")
+    
+    static let oAuthLoginButtonBorderColor = Color("OAuthLoginButtonBorderColor")
 }

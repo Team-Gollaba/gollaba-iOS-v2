@@ -14,6 +14,7 @@ struct TitleView: View {
         HStack {
             Image("AppIconImage")
                 .resizable()
+                .scaledToFill()
                 .frame(width: 40, height: 40)
             
             Text("골라바")
