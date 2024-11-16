@@ -21,21 +21,22 @@ struct ChooseTwoOptionsView: View {
     var secondOptionImage: Image
     
     var body: some View {
-        HStack {
+        VStack {
             Button {
                 selectedOption = .first
             } label: {
                 HStack {
                     firstOptionImage
                         .resizable()
-                        
-                        .frame(width: 30, height: 30)
+                        .scaledToFill()
+                        .frame(width: 20, height: 20)
                     
                     Text(firstOptionText)
                         .font(.suit_variable20)
                         
                 }
-                .padding()
+                .padding(.horizontal, 4)
+                .padding(.vertical, 8)
                 .frame(maxWidth: .infinity)
                 .background(
                     Rectangle()
@@ -45,7 +46,7 @@ struct ChooseTwoOptionsView: View {
                         .cornerRadius(6)
                     )
             }
-            .padding(.trailing, 10)
+            
             
             Button {
                 selectedOption = .second
@@ -54,12 +55,13 @@ struct ChooseTwoOptionsView: View {
                     secondOptionImage
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 30, height: 30)
+                        .frame(width: 20, height: 20)
                     
                     Text(secondOptionText)
                         .font(.suit_variable20)
                 }
-                .padding()
+                .padding(.horizontal, 4)
+                .padding(.vertical, 8)
                 .frame(maxWidth: .infinity)
                 .background(
                     Rectangle()

@@ -23,11 +23,13 @@ struct OptionBoxView<Content: View>: View {
                 .foregroundStyle(.pollContentTitleFont)
             
             content
-                .padding()
+//                .frame(height: 24)
+                .padding(10)
                 .background(
                     RoundedRectangle(cornerRadius: 3)
                         .stroke(.black, lineWidth: 1)
                 )
+                
         }
         .padding(.bottom, 16)
     }
