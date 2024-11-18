@@ -54,9 +54,13 @@ struct CreatePollView: View {
                 CallendarOptionView()
             }
             
-            QuestionButton(action: {
+            QuestionButton {
                 isQuestionPresent = true
-            })
+            }
+            
+            EnrollPollButton {
+                
+            }
             
         }
         .padding(.horizontal)
