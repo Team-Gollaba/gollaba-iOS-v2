@@ -80,7 +80,7 @@ struct CreatePollView: View {
                     }
                     
                 }
-                .padding(.horizontal)
+                .padding()
                 .dialog(
                     isPresented: $isQuestionPresent,
                     title: "투표 만들기 도움말",
