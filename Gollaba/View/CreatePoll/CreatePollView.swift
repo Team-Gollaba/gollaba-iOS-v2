@@ -48,21 +48,15 @@ struct CreatePollView: View {
                 }
             }
             
-            HStack {
-                OptionBoxView(title: "투표 종료 기간") {
-                    CallendarOptionView()
-                }
-                
-                Button {
-                    
-                } label: {
-                    Image("QuestionIcon")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 20, height: 20)
-                        .padding()
-                }
+            
+            OptionBoxView(title: "투표 종료 기간") {
+                CallendarOptionView()
             }
+            
+            QuestionButton(action: {
+                
+            })
+            
         }
         .padding(.horizontal)
     }
