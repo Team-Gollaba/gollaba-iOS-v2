@@ -14,6 +14,7 @@ struct CreatePollView: View {
     @State var pollItemName: [String] = [
         "", "", "",
     ]
+    @State var isQuestionPresent: Bool = false
     
     var body: some View {
         VStack (spacing: 16) {
@@ -54,11 +55,30 @@ struct CreatePollView: View {
             }
             
             QuestionButton(action: {
-                
+                isQuestionPresent = true
             })
             
         }
         .padding(.horizontal)
+        .dialog(
+            isPresented: $isQuestionPresent,
+            title: "투표 만들기 도움말",
+            content: Text("기명투표")
+                .font(.suitBold16)
+            + Text("를 선택하여 로그인 된 사용자의 투표만 받을 수 있어요.")
+                .font(.suitVariable16)
+            + Text("\n\n복수투표")
+                .font(.suitBold16)
+            + Text("로 여러 선택지를 동시에 고르도록 할 수 있어요.")
+                .font(.suitVariable16)
+            + Text("\n\n마감일")
+                .font(.suitBold16)
+            + Text("을 설정해 투표 기간을 원하는 만큼 지정할 수 있어요.")
+                .font(.suitVariable16),
+            primaryButtonText: "확인",
+            onPrimaryButton: {}
+        )
+        
     }
 }
 
