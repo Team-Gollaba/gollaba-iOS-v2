@@ -6,30 +6,87 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4945A2A22CEB6ECC00FF05DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A2722CEB6ECC00FF05DC /* Preview Assets.xcassets */; };
+		4945A2A32CEB6ECC00FF05DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29A2CEB6ECC00FF05DC /* Assets.xcassets */; };
+		4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */; };
+		4945A2A62CEB6ECC00FF05DC /* SUIT-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29F2CEB6ECC00FF05DC /* SUIT-Variable.ttf */; };
+		4945A2A72CEB6ECC00FF05DC /* YANGJIN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */; };
+		4945A2A82CEB6ECC00FF05DC /* DialogViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */; };
+		4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A26E2CEB6ECC00FF05DC /* Color+.swift */; };
+		4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A26F2CEB6ECC00FF05DC /* Font+.swift */; };
+		4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */; };
+		4945A2AC2CEB6ECC00FF05DC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2742CEB6ECC00FF05DC /* CalendarView.swift */; };
+		4945A2AD2CEB6ECC00FF05DC /* CallendarOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2752CEB6ECC00FF05DC /* CallendarOptionView.swift */; };
+		4945A2AE2CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */; };
+		4945A2AF2CEB6ECC00FF05DC /* EnrollPollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */; };
+		4945A2B02CEB6ECC00FF05DC /* OptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */; };
+		4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2792CEB6ECC00FF05DC /* PollItemView.swift */; };
+		4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */; };
+		4945A2B32CEB6ECC00FF05DC /* ThreeByTwoGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27B2CEB6ECC00FF05DC /* ThreeByTwoGrid.swift */; };
+		4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */; };
+		4945A2B52CEB6ECC00FF05DC /* PollItemFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */; };
+		4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2802CEB6ECC00FF05DC /* PollChartView.swift */; };
+		4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2812CEB6ECC00FF05DC /* PollStateView.swift */; };
+		4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */; };
+		4945A2B92CEB6ECC00FF05DC /* AllPollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2842CEB6ECC00FF05DC /* AllPollList.swift */; };
+		4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2852CEB6ECC00FF05DC /* PollContent.swift */; };
+		4945A2BB2CEB6ECC00FF05DC /* PollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2862CEB6ECC00FF05DC /* PollList.swift */; };
+		4945A2BC2CEB6ECC00FF05DC /* SearchPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2882CEB6ECC00FF05DC /* SearchPollView.swift */; };
+		4945A2BD2CEB6ECC00FF05DC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A28A2CEB6ECC00FF05DC /* HomeView.swift */; };
+		4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A28C2CEB6ECC00FF05DC /* OAuthLoginButton.swift */; };
+		4945A2BF2CEB6ECC00FF05DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A28E2CEB6ECC00FF05DC /* LoginView.swift */; };
+		4945A2C02CEB6ECC00FF05DC /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2902CEB6ECC00FF05DC /* CustomTabView.swift */; };
+		4945A2C12CEB6ECC00FF05DC /* CustomTabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2912CEB6ECC00FF05DC /* CustomTabViewButton.swift */; };
+		4945A2C22CEB6ECC00FF05DC /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2922CEB6ECC00FF05DC /* TitleView.swift */; };
+		4945A2C32CEB6ECC00FF05DC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2942CEB6ECC00FF05DC /* MainView.swift */; };
+		4945A2C42CEB6ECC00FF05DC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2952CEB6ECC00FF05DC /* MainViewModel.swift */; };
+		4945A2C52CEB6ECC00FF05DC /* MyPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2972CEB6ECC00FF05DC /* MyPollView.swift */; };
+		4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29B2CEB6ECC00FF05DC /* ContentView.swift */; };
+		4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModifier.swift; sourceTree = "<group>"; };
+		4945A26E2CEB6ECC00FF05DC /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		4945A26F2CEB6ECC00FF05DC /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		4945A2722CEB6ECC00FF05DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4945A2742CEB6ECC00FF05DC /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		4945A2752CEB6ECC00FF05DC /* CallendarOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallendarOptionView.swift; sourceTree = "<group>"; };
+		4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTwoOptionsView.swift; sourceTree = "<group>"; };
+		4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollPollButton.swift; sourceTree = "<group>"; };
+		4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionBoxView.swift; sourceTree = "<group>"; };
+		4945A2792CEB6ECC00FF05DC /* PollItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollItemView.swift; sourceTree = "<group>"; };
+		4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
+		4945A27B2CEB6ECC00FF05DC /* ThreeByTwoGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGrid.swift; sourceTree = "<group>"; };
+		4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollView.swift; sourceTree = "<group>"; };
+		4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollItemFocus.swift; sourceTree = "<group>"; };
+		4945A2802CEB6ECC00FF05DC /* PollChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollChartView.swift; sourceTree = "<group>"; };
+		4945A2812CEB6ECC00FF05DC /* PollStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollStateView.swift; sourceTree = "<group>"; };
+		4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPollContent.swift; sourceTree = "<group>"; };
+		4945A2842CEB6ECC00FF05DC /* AllPollList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPollList.swift; sourceTree = "<group>"; };
+		4945A2852CEB6ECC00FF05DC /* PollContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContent.swift; sourceTree = "<group>"; };
+		4945A2862CEB6ECC00FF05DC /* PollList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollList.swift; sourceTree = "<group>"; };
+		4945A2882CEB6ECC00FF05DC /* SearchPollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPollView.swift; sourceTree = "<group>"; };
+		4945A28A2CEB6ECC00FF05DC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4945A28C2CEB6ECC00FF05DC /* OAuthLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginButton.swift; sourceTree = "<group>"; };
+		4945A28E2CEB6ECC00FF05DC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4945A2902CEB6ECC00FF05DC /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		4945A2912CEB6ECC00FF05DC /* CustomTabViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabViewButton.swift; sourceTree = "<group>"; };
+		4945A2922CEB6ECC00FF05DC /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		4945A2942CEB6ECC00FF05DC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4945A2952CEB6ECC00FF05DC /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		4945A2972CEB6ECC00FF05DC /* MyPollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPollView.swift; sourceTree = "<group>"; };
+		4945A29A2CEB6ECC00FF05DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4945A29B2CEB6ECC00FF05DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GollabaApp.swift; sourceTree = "<group>"; };
+		4945A29D2CEB6ECC00FF05DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.ttf"; sourceTree = "<group>"; };
+		4945A29F2CEB6ECC00FF05DC /* SUIT-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Variable.ttf"; sourceTree = "<group>"; };
+		4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YANGJIN.otf; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		494D16A42CDE2ECC0072C714 /* Exceptions for "Gollaba" folder in "Gollaba" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 49C5CF732CDE24D2001DD737 /* Gollaba */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		49C5CF762CDE24D2001DD737 /* Gollaba */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				494D16A42CDE2ECC0072C714 /* Exceptions for "Gollaba" folder in "Gollaba" target */,
-			);
-			path = Gollaba;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		49C5CF712CDE24D2001DD737 /* Frameworks */ = {
@@ -42,10 +99,175 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4945A26D2CEB6ECC00FF05DC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4945A2712CEB6ECC00FF05DC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4945A26E2CEB6ECC00FF05DC /* Color+.swift */,
+				4945A26F2CEB6ECC00FF05DC /* Font+.swift */,
+				4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4945A2732CEB6ECC00FF05DC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2722CEB6ECC00FF05DC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4945A27C2CEB6ECC00FF05DC /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2742CEB6ECC00FF05DC /* CalendarView.swift */,
+				4945A2752CEB6ECC00FF05DC /* CallendarOptionView.swift */,
+				4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */,
+				4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */,
+				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
+				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
+				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
+				4945A27B2CEB6ECC00FF05DC /* ThreeByTwoGrid.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		4945A27F2CEB6ECC00FF05DC /* CreatePoll */ = {
+			isa = PBXGroup;
+			children = (
+				4945A27C2CEB6ECC00FF05DC /* CustomView */,
+				4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */,
+				4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */,
+			);
+			path = CreatePoll;
+			sourceTree = "<group>";
+		};
+		4945A2822CEB6ECC00FF05DC /* ViewContent */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2802CEB6ECC00FF05DC /* PollChartView.swift */,
+				4945A2812CEB6ECC00FF05DC /* PollStateView.swift */,
+			);
+			path = ViewContent;
+			sourceTree = "<group>";
+		};
+		4945A2872CEB6ECC00FF05DC /* PollView */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2822CEB6ECC00FF05DC /* ViewContent */,
+				4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */,
+				4945A2842CEB6ECC00FF05DC /* AllPollList.swift */,
+				4945A2852CEB6ECC00FF05DC /* PollContent.swift */,
+				4945A2862CEB6ECC00FF05DC /* PollList.swift */,
+			);
+			path = PollView;
+			sourceTree = "<group>";
+		};
+		4945A2892CEB6ECC00FF05DC /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2872CEB6ECC00FF05DC /* PollView */,
+				4945A2882CEB6ECC00FF05DC /* SearchPollView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		4945A28B2CEB6ECC00FF05DC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2892CEB6ECC00FF05DC /* CustomView */,
+				4945A28A2CEB6ECC00FF05DC /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4945A28D2CEB6ECC00FF05DC /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				4945A28C2CEB6ECC00FF05DC /* OAuthLoginButton.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		4945A28F2CEB6ECC00FF05DC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4945A28D2CEB6ECC00FF05DC /* CustomView */,
+				4945A28E2CEB6ECC00FF05DC /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4945A2932CEB6ECC00FF05DC /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2902CEB6ECC00FF05DC /* CustomTabView.swift */,
+				4945A2912CEB6ECC00FF05DC /* CustomTabViewButton.swift */,
+				4945A2922CEB6ECC00FF05DC /* TitleView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		4945A2962CEB6ECC00FF05DC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2932CEB6ECC00FF05DC /* CustomView */,
+				4945A2942CEB6ECC00FF05DC /* MainView.swift */,
+				4945A2952CEB6ECC00FF05DC /* MainViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4945A2982CEB6ECC00FF05DC /* MyPoll */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2972CEB6ECC00FF05DC /* MyPollView.swift */,
+			);
+			path = MyPoll;
+			sourceTree = "<group>";
+		};
+		4945A2992CEB6ECC00FF05DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4945A27F2CEB6ECC00FF05DC /* CreatePoll */,
+				4945A28B2CEB6ECC00FF05DC /* Home */,
+				4945A28F2CEB6ECC00FF05DC /* Login */,
+				4945A2962CEB6ECC00FF05DC /* Main */,
+				4945A2982CEB6ECC00FF05DC /* MyPoll */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4945A2A12CEB6ECC00FF05DC /* Gollaba */ = {
+			isa = PBXGroup;
+			children = (
+				4945A26D2CEB6ECC00FF05DC /* Common */,
+				4945A2712CEB6ECC00FF05DC /* Extension */,
+				4945A2732CEB6ECC00FF05DC /* Preview Content */,
+				4945A2992CEB6ECC00FF05DC /* View */,
+				4945A29A2CEB6ECC00FF05DC /* Assets.xcassets */,
+				4945A29B2CEB6ECC00FF05DC /* ContentView.swift */,
+				4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */,
+				4945A29D2CEB6ECC00FF05DC /* Info.plist */,
+				4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */,
+				4945A29F2CEB6ECC00FF05DC /* SUIT-Variable.ttf */,
+				4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */,
+			);
+			path = Gollaba;
+			sourceTree = "<group>";
+		};
 		49C5CF6B2CDE24D2001DD737 = {
 			isa = PBXGroup;
 			children = (
-				49C5CF762CDE24D2001DD737 /* Gollaba */,
+				4945A2A12CEB6ECC00FF05DC /* Gollaba */,
 				49C5CF752CDE24D2001DD737 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,9 +294,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				49C5CF762CDE24D2001DD737 /* Gollaba */,
 			);
 			name = Gollaba;
 			packageProductDependencies = (
@@ -122,6 +341,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4945A2A22CEB6ECC00FF05DC /* Preview Assets.xcassets in Resources */,
+				4945A2A32CEB6ECC00FF05DC /* Assets.xcassets in Resources */,
+				4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */,
+				4945A2A62CEB6ECC00FF05DC /* SUIT-Variable.ttf in Resources */,
+				4945A2A72CEB6ECC00FF05DC /* YANGJIN.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +356,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4945A2A82CEB6ECC00FF05DC /* DialogViewModifier.swift in Sources */,
+				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
+				4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */,
+				4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */,
+				4945A2AC2CEB6ECC00FF05DC /* CalendarView.swift in Sources */,
+				4945A2AD2CEB6ECC00FF05DC /* CallendarOptionView.swift in Sources */,
+				4945A2AE2CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift in Sources */,
+				4945A2AF2CEB6ECC00FF05DC /* EnrollPollButton.swift in Sources */,
+				4945A2B02CEB6ECC00FF05DC /* OptionBoxView.swift in Sources */,
+				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,
+				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
+				4945A2B32CEB6ECC00FF05DC /* ThreeByTwoGrid.swift in Sources */,
+				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
+				4945A2B52CEB6ECC00FF05DC /* PollItemFocus.swift in Sources */,
+				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
+				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
+				4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */,
+				4945A2B92CEB6ECC00FF05DC /* AllPollList.swift in Sources */,
+				4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */,
+				4945A2BB2CEB6ECC00FF05DC /* PollList.swift in Sources */,
+				4945A2BC2CEB6ECC00FF05DC /* SearchPollView.swift in Sources */,
+				4945A2BD2CEB6ECC00FF05DC /* HomeView.swift in Sources */,
+				4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */,
+				4945A2BF2CEB6ECC00FF05DC /* LoginView.swift in Sources */,
+				4945A2C02CEB6ECC00FF05DC /* CustomTabView.swift in Sources */,
+				4945A2C12CEB6ECC00FF05DC /* CustomTabViewButton.swift in Sources */,
+				4945A2C22CEB6ECC00FF05DC /* TitleView.swift in Sources */,
+				4945A2C32CEB6ECC00FF05DC /* MainView.swift in Sources */,
+				4945A2C42CEB6ECC00FF05DC /* MainViewModel.swift in Sources */,
+				4945A2C52CEB6ECC00FF05DC /* MyPollView.swift in Sources */,
+				4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */,
+				4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

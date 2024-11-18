@@ -1,0 +1,24 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/AllPollContent.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "04월 03일 까지 · 조회수 4회",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "투표하기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 47
+        }
+      }
+    ]
+  },
+  "version": 1
+}

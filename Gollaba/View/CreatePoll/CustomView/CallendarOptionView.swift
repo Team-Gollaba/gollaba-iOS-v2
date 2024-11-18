@@ -8,28 +8,37 @@
 import SwiftUI
 
 struct CallendarOptionView: View {
-    var today: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
-        return formatter.string(from: Date())
-    }
+    @State private var showDatePicker: Bool = false
+    @Binding var selectedDate: Date
+    var action: () -> Void
     
     var body: some View {
-        HStack {
-            Image(systemName: "calendar")
-            
-            Text(today)
-                .font(.suitVariable16)
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .background(
-                    RoundedRectangle(cornerRadius: 4)
-                        .foregroundStyle(Color.calendar)
-                )
+        ZStack {
+            Button {
+                action()
+            } label: {
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(formattedDate(selectedDate))
+                        .font(.suitVariable16)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 4)
+                                .foregroundStyle(Color.calendar)
+                        )
+                }
+            }
         }
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.string(from: date)
     }
 }
 
 #Preview {
-    CallendarOptionView()
+    CallendarOptionView(selectedDate: .constant(Date()), action: {})
 }

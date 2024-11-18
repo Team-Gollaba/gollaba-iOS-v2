@@ -15,6 +15,9 @@ struct CreatePollView: View {
         "", "", "",
     ]
     @State var isQuestionPresent: Bool = false
+    @State var showDatePicker: Bool = false
+    @State var selectedDate: Date = Date()
+    
     @FocusState var titleFocus: Bool
     var pollItemFocus = PollItemFocus()
     
@@ -26,7 +29,6 @@ struct CreatePollView: View {
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                print("onTapGesture")
                                 pollItemFocus.isPollItemFocused = false
                                 pollItemFocus.isPollTitleFocused = false
                             }
@@ -68,7 +70,9 @@ struct CreatePollView: View {
                     
                     
                     OptionBoxView(title: "투표 종료 기간") {
-                        CallendarOptionView()
+                        CallendarOptionView(selectedDate: $selectedDate, action: {
+                            showDatePicker = true
+                        })
                     }
                     
                     QuestionButton {
@@ -93,6 +97,13 @@ struct CreatePollView: View {
                 }
                 .onChange(of: titleFocus) { oldValue, newValue in
                     pollItemFocus.isPollTitleFocused = newValue
+                }
+                
+                if showDatePicker {
+                    CalendarView(
+                        showDatePicker: $showDatePicker,
+                        selectedDate: $selectedDate
+                    )
                 }
             }
         }

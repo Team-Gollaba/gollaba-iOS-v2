@@ -1,0 +1,64 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CreatePollView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "투표의 제목을 입력해주세요.",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "기명투표",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "를 선택하여 로그인 된 사용자의 투표만 받을 수 있어요.",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 116
+        }
+      },
+      {
+        "comment": "",
+        "key": "\n\n복수투표",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 118
+        }
+      },
+      {
+        "comment": "",
+        "key": "로 여러 선택지를 동시에 고르도록 할 수 있어요.",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 120
+        }
+      },
+      {
+        "comment": "",
+        "key": "\n\n마감일",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "을 설정해 투표 기간을 원하는 만큼 지정할 수 있어요.",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 124
+        }
+      }
+    ]
+  },
+  "version": 1
+}

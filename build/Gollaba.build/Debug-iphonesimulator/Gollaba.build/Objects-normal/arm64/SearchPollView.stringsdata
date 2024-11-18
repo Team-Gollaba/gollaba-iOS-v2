@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/SearchPollView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "제목으로 투표를 검색하세요.",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 26
+        }
+      }
+    ]
+  },
+  "version": 1
+}

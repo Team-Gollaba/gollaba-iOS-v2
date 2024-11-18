@@ -1,0 +1,40 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/CalendarView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "과거 날짜는 선택할 수 없습니다.",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "투표 마감 날짜를 선택하세요.",
+        "location": {
+          "startingColumn": 17,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "완료",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "확인",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 63
+        }
+      }
+    ]
+  },
+  "version": 1
+}

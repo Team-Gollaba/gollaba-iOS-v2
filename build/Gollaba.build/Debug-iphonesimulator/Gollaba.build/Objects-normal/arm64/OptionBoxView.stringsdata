@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/OptionBoxView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "content",
+        "location": {
+          "startingColumn": 1,
+          "startingLine": 37
+        }
+      }
+    ]
+  },
+  "version": 1
+}

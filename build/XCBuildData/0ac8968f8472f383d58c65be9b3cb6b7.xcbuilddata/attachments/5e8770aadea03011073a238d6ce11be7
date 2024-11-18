@@ -1,0 +1,338 @@
+{
+  "" : {
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Gollaba-master.dia",
+    "emit-module-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Gollaba-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Gollaba-master-emit-module.dia",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Gollaba-master.swiftdeps"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/Common/DialogViewModifier.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/DialogViewModifier~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/ContentView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/Extension/Color+.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Color+~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/Extension/Font+.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/Font+~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/Extension/UINavigationController+.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/UINavigationController+~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/GollabaApp.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GollabaApp~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CreatePollView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CreatePollView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/CalendarView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CalendarView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/CallendarOptionView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/ChooseTwoOptionsView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/EnrollPollButton.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/OptionBoxView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OptionBoxView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/PollItemView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/QuestionButton.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/QuestionButton~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/ThreeByTwoGrid.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ThreeByTwoGrid~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/PollItemFocus.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/AllPollContent.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollContent~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/AllPollList.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/AllPollList~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/PollContent.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollContent~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/PollList.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollList~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/ViewContent/PollChartView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollChartView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/ViewContent/PollStateView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollStateView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/SearchPollView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/SearchPollView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/HomeView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/HomeView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Login/CustomView/OAuthLoginButton.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/OAuthLoginButton~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Login/LoginView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/CustomTabView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/CustomTabViewButton.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabViewButton~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/TitleView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/TitleView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/MainView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/MainViewModel.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MainViewModel~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/MyPoll/MyPollView.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/MyPollView~partial.swiftmodule"
+  },
+  "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

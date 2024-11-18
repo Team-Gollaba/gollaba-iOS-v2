@@ -1,0 +1,18 @@
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/PollItemFocus.swift":
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.d"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/PollItemFocus.swiftdeps"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Login/LoginView.swift":
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.swiftconstvalues"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.o"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.d"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/LoginView.dia"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/CustomTabView.swift":
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.dia"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CustomTabView.d"

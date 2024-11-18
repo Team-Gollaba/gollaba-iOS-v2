@@ -1,0 +1,18 @@
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/ChooseTwoOptionsView.swift":
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.o"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/ChooseTwoOptionsView.d"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/CallendarOptionView.swift":
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.d"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.dia"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.swiftconstvalues"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/CallendarOptionView.swiftdeps"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/EnrollPollButton.swift":
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.o"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.dia"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.swiftconstvalues"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.swiftdeps"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphonesimulator/Gollaba.build/Objects-normal/arm64/EnrollPollButton.d"

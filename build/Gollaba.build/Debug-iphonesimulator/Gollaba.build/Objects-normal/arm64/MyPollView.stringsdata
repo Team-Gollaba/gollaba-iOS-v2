@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/MyPoll/MyPollView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "My Poll",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 12
+        }
+      }
+    ]
+  },
+  "version": 1
+}

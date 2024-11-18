@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/EnrollPollButton.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "등록",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 17
+        }
+      }
+    ]
+  },
+  "version": 1
+}

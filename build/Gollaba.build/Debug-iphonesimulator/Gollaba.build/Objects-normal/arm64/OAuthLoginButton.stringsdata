@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Login/CustomView/OAuthLoginButton.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@ 계정으로 시작하기",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 26
+        }
+      }
+    ]
+  },
+  "version": 1
+}
