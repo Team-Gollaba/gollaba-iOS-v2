@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SUIT-Variable.ttf</string>
+		<string>SUIT-Bold.ttf</string>
 		<string>YANGJIN.otf</string>
 	</array>
 </dict>

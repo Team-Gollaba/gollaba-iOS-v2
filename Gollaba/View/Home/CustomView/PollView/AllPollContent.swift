@@ -15,7 +15,7 @@ struct AllPollContent: View {
         VStack (alignment: .leading) {
             HStack {
                 Text(title)
-                    .font(.suit_variable20)
+                    .font(.suitVariable20)
                 
                 Spacer()
                 
@@ -29,7 +29,7 @@ struct AllPollContent: View {
             
             HStack {
                 Text("04월 03일 까지 · 조회수 4회")
-                    .font(.suit_variable16)
+                    .font(.suitVariable16)
                     .foregroundStyle(.gray.opacity(0.7))
                 
                 Spacer()
@@ -45,7 +45,7 @@ struct AllPollContent: View {
                     
                 } label: {
                     Text("투표하기")
-                        .font(.suit_variable16)
+                        .font(.suitVariable16)
                         .foregroundStyle(.black)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 8)

@@ -44,7 +44,7 @@ struct LoginView: View {
             
             ToolbarItem(placement: .bottomBar) {
                 Text("© 2024 Team Gollaba All rights reserved.")
-                    .font(.suit_variable12)
+                    .font(.suitVariable12)
                     .foregroundStyle(.copyright)
             }
         }

@@ -27,7 +27,7 @@ struct TitleView: View {
                 goToLogin = true
             } label: {
                 Text("로그인")
-                    .font(.suit_variable16)
+                    .font(.suitVariable16)
                     .foregroundStyle(.black)
             }
         }

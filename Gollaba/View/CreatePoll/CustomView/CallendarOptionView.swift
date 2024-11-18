@@ -19,7 +19,7 @@ struct CallendarOptionView: View {
             Image(systemName: "calendar")
             
             Text(today)
-                .font(.suit_variable16)
+                .font(.suitVariable16)
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
                 .background(

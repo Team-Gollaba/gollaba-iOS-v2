@@ -32,7 +32,7 @@ struct ChooseTwoOptionsView: View {
                         .frame(width: 20, height: 20)
                     
                     Text(firstOptionText)
-                        .font(.suit_variable20)
+                        .font(.suitVariable20)
                         
                 }
                 .padding(.horizontal, 4)
@@ -58,7 +58,7 @@ struct ChooseTwoOptionsView: View {
                         .frame(width: 20, height: 20)
                     
                     Text(secondOptionText)
-                        .font(.suit_variable20)
+                        .font(.suitVariable20)
                 }
                 .padding(.horizontal, 4)
                 .padding(.vertical, 8)

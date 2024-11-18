@@ -24,7 +24,7 @@ struct OAuthLoginButton: View {
                 Spacer()
                 
                 Text("\(oAuthPath) 계정으로 시작하기")
-                    .font(.suit_variable20)
+                    .font(.suitVariable20)
                 
                 Spacer()
             }

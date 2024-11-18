@@ -24,7 +24,7 @@ struct CustomTabViewButton: View {
                     .frame(width: 20, height: 20)
                     .padding(.bottom, 4)
                 Text(title)
-                    .font(.suit_variable12)
+                    .font(.suitVariable12)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .shadow(radius: 0)

@@ -19,7 +19,7 @@ struct OptionBoxView<Content: View>: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text(title)
-                .font(.suit_variable12)
+                .font(.suitVariable12)
                 .foregroundStyle(.pollContentTitleFont)
             
             content
@@ -31,7 +31,6 @@ struct OptionBoxView<Content: View>: View {
                 )
                 
         }
-        .padding(.bottom, 16)
     }
 }
 

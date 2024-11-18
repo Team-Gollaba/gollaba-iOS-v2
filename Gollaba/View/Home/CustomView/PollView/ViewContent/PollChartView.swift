@@ -15,7 +15,7 @@ struct PollChartView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text(title)
-                .font(.suit_variable16)
+                .font(.suitVariable16)
             
             ZStack (alignment: .leading) {
                 Rectangle()

@@ -21,14 +21,14 @@ struct PollContent: View {
                     
                 
                 Text(title)
-                    .font(.suit_variable20)
+                    .font(.suitVariable20)
                     .padding(.leading, 20)
                     .padding(.top, 10)
                 
                 Spacer()
                 
                 Text(info)
-                    .font(.suit_variable16)
+                    .font(.suitVariable16)
                     .foregroundStyle(Color.pollContentInfoFontColor)
                     .padding(20)
             }

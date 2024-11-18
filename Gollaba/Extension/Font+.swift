@@ -9,13 +9,21 @@ import Foundation
 import SwiftUI
 
 extension Font {
-    static let suit_variable12: Font = .custom("SUIT-Variable", size: 12)
-    static let suit_variable16: Font = .custom("SUIT-Variable", size: 16)
-    static let suit_variable20: Font = .custom("SUIT-Variable", size: 20)
-    static let suit_variable24: Font = .custom("SUIT-Variable", size: 24)
-    static let suit_variable30: Font = .custom("SUIT-Variable", size: 30)
-    static let suit_variable32: Font = .custom("SUIT-Variable", size: 32)
-    static let suit_variable80: Font = .custom("SUIT-Variable", size: 80)
+    static let suitVariable12: Font = .custom("SUIT-Variable", size: 12)
+    static let suitVariable16: Font = .custom("SUIT-Variable", size: 16)
+    static let suitVariable20: Font = .custom("SUIT-Variable", size: 20)
+    static let suitVariable24: Font = .custom("SUIT-Variable", size: 24)
+    static let suitVariable30: Font = .custom("SUIT-Variable", size: 30)
+    static let suitVariable32: Font = .custom("SUIT-Variable", size: 32)
+    static let suitVariable80: Font = .custom("SUIT-Variable", size: 80)
+    
+    static let suitBold12: Font = .custom("SUIT-Bold", size: 12)
+    static let suitBold16: Font = .custom("SUIT-Bold", size: 16)
+    static let suitBold20: Font = .custom("SUIT-Bold", size: 20)
+    static let suitBold24: Font = .custom("SUIT-Bold", size: 24)
+    static let suitBold30: Font = .custom("SUIT-Bold", size: 30)
+    static let suitBold32: Font = .custom("SUIT-Bold", size: 32)
+    static let suitBold80: Font = .custom("SUIT-Bold", size: 80)
     
     static let yangjin20: Font = .custom("YANGJIN", size: 20)
     static let yangjin30: Font = .custom("YANGJIN", size: 30)

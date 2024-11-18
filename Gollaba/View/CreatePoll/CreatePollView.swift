@@ -11,15 +11,21 @@ struct CreatePollView: View {
     @State var text: String = ""
     @State var anonymousOption: Option = .first
     @State var countingOption: Option = .first
+    @State var pollItemName: [String] = [
+        "", "", "",
+    ]
     
     var body: some View {
-        VStack {
+        VStack (spacing: 16) {
             OptionBoxView(title: "투표 제목") {
                 TextField("투표의 제목을 입력해주세요.", text: $text)
-                    .font(.suit_variable16)
+                    .font(.suitVariable16)
             }
             
-            HStack (spacing: 40) {
+            ThreeByTwoGrid(pollItemName: $pollItemName)
+            
+            
+            HStack (spacing: 20) {
                 
                 OptionBoxView(title: "익명 여부") {
                     ChooseTwoOptionsView(
