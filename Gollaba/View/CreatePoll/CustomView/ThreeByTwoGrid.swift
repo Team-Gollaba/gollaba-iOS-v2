@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ThreeByTwoGrid: View {
     @Binding var pollItemName: [String]
+    
     let items = Array(1...6)
     
     let columns = [
@@ -34,6 +35,7 @@ struct ThreeByTwoGrid: View {
                 .padding(.horizontal, 4)
             }
         }
+        
     }
     
     func addItem() {

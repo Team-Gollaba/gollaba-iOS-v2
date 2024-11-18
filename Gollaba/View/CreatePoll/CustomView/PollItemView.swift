@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PollItemView: View {
     @Binding var pollItemName: String
+    @Environment(PollItemFocus.self) var pollItemFocus
+    @FocusState private var focus: Bool
     var isCreateModel: Bool
     var isShowDeleteButton: Bool
     
@@ -52,11 +54,21 @@ struct PollItemView: View {
                             Spacer()
                             
                             TextField("", text: $pollItemName)
+                                .focused($focus)
                                 .autocapitalization(.none)
                                 .textInputAutocapitalization(.never)
                                 .multilineTextAlignment(.center)
                                 .font(.suitBold20)
                                 .disabled(isCreateModel)
+                                .onChange(of: focus, { oldValue, newValue in
+                                    pollItemFocus.isPollItemFocused = newValue
+                                })
+                                .onChange(of: pollItemFocus.isPollItemFocused) { oldValue, newValue in
+                                    print("focus: \(newValue)")
+                                    if !newValue {
+                                        focus = newValue
+                                    }
+                                }
                             
                             Spacer()
                         }
@@ -73,6 +85,7 @@ struct PollItemView: View {
             .cornerRadius(10)
             .shadow(radius: 2)
             .blur(radius: isCreateModel ? 2 : 0)
+            
 
             
             if isCreateModel {
