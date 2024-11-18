@@ -23,7 +23,9 @@ struct ChooseTwoOptionsView: View {
     var body: some View {
         VStack {
             Button {
-                selectedOption = .first
+                withAnimation {
+                    selectedOption = .first
+                }
             } label: {
                 HStack {
                     firstOptionImage
@@ -49,7 +51,9 @@ struct ChooseTwoOptionsView: View {
             
             
             Button {
-                selectedOption = .second
+                withAnimation {
+                    selectedOption = .second
+                }
             } label: {
                 HStack {
                     secondOptionImage

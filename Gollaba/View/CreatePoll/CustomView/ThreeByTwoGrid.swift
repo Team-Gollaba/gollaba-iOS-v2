@@ -20,14 +20,16 @@ struct ThreeByTwoGrid: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(items.prefix(pollItemName.count), id: \.self) { item in
-//                PollItemView(pollItemName: $pollItemName[item - 1], isCreateModel: true, itemNumber: item)
+                //                PollItemView(pollItemName: $pollItemName[item - 1], isCreateModel: true, itemNumber: item)
                 PollItemView(
                     pollItemName: $pollItemName[item - 1],
                     isCreateModel: pollItemName.count == item,
                     isShowDeleteButton: pollItemName.count > 3 && pollItemName.count != item,
                     itemNumber: item,
                     onImageAttach: {},
-                    onAddPollItem: addItem,
+                    onAddPollItem: {
+                        addItem()
+                    },
                     onDeletePollItem: {
                         deleteItem(index: item - 1)
                     }
