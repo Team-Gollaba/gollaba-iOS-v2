@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PollList: View {
     var title: String
+    @Binding var goToPollDetail: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,13 +21,27 @@ struct PollList: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        PollContent(state: "종료", title: "제목", info: "정보")
-                        PollContent(state: "종료", title: "제목", info: "정보")
-                        PollContent(state: "종료", title: "제목", info: "정보")
-                        PollContent(state: "종료", title: "제목", info: "정보")
-                        PollContent(state: "종료", title: "제목", info: "정보")
-                        PollContent(state: "종료", title: "제목", info: "정보")
-                        PollContent(state: "종료", title: "제목", info: "정보")
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
+                        PollContent(state: "종료", title: "제목", info: "정보") {
+                            goToPollDetail = true
+                        }
                     }
                 }
                 
@@ -37,5 +52,5 @@ struct PollList: View {
 }
 
 #Preview {
-    PollList(title: "Title")
+    PollList(title: "Title", goToPollDetail: .constant(false))
 }

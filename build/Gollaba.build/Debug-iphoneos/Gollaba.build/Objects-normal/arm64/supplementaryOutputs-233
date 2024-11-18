@@ -1,0 +1,24 @@
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/Extension/UINavigationController+.swift":
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/UINavigationController+.swiftdeps"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/UINavigationController+.swiftconstvalues"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/UINavigationController+.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/UINavigationController+.o"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/UINavigationController+.d"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/CallendarOptionView.swift":
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CallendarOptionView.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CallendarOptionView.d"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CallendarOptionView.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CallendarOptionView.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CallendarOptionView.dia"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/Extension/Font+.swift":
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/Font+.dia"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/Font+.swiftconstvalues"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/Font+.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/Font+.swiftdeps"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/Font+.d"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/CreatePoll/CustomView/CalendarView.swift":
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CalendarView.swiftdeps"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CalendarView.d"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CalendarView.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CalendarView.o"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CalendarView.swiftconstvalues"

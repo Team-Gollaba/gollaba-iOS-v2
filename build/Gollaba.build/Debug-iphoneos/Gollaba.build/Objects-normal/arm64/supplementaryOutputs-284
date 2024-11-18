@@ -1,0 +1,18 @@
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/CustomTabView.swift":
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabView.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabView.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabView.dia"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabView.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabView.d"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/CustomTabViewButton.swift":
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.o"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.d"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/CustomTabViewButton.dia"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Main/CustomView/TitleView.swift":
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/TitleView.o"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/TitleView.swiftconstvalues"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/TitleView.swiftdeps"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/TitleView.dia"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/TitleView.d"

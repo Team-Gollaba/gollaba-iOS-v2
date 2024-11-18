@@ -1,0 +1,18 @@
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/ContentView.swift":
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/ContentView.swiftdeps"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/ContentView.d"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/ContentView.swiftconstvalues"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/ContentView.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/ContentView.o"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/GollabaApp.swift":
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GollabaApp.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GollabaApp.o"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GollabaApp.d"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GollabaApp.swiftconstvalues"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GollabaApp.swiftdeps"
+"/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/DerivedSources/GeneratedAssetSymbols.swift":
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.dia"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/GeneratedAssetSymbols.d"

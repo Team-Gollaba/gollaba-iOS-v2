@@ -1,0 +1,18 @@
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/AllPollContent.swift":
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollContent.swiftconstvalues"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollContent.dia"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollContent.d"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollContent.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollContent.swiftdeps"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/AllPollList.swift":
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollList.swiftdeps"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollList.o"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollList.swiftconstvalues"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollList.dia"
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/AllPollList.d"
+"/Users/kim_kyun/Desktop/Gollaba/Gollaba/View/Home/CustomView/PollView/ViewContent/PollStateView.swift":
+  dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/PollStateView.d"
+  const-values: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/PollStateView.swiftconstvalues"
+  diagnostics: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/PollStateView.dia"
+  object: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/PollStateView.o"
+  swift-dependencies: "/Users/kim_kyun/Desktop/Gollaba/build/Gollaba.build/Debug-iphoneos/Gollaba.build/Objects-normal/arm64/PollStateView.swiftdeps"

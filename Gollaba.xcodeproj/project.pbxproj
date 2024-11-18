@@ -44,6 +44,7 @@
 		4945A2C52CEB6ECC00FF05DC /* MyPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2972CEB6ECC00FF05DC /* MyPollView.swift */; };
 		4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29B2CEB6ECC00FF05DC /* ContentView.swift */; };
 		4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */; };
+		4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,8 +86,17 @@
 		4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Bold.ttf"; sourceTree = "<group>"; };
 		4945A29F2CEB6ECC00FF05DC /* SUIT-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Variable.ttf"; sourceTree = "<group>"; };
 		4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YANGJIN.otf; sourceTree = "<group>"; };
+		4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		4945A2CC2CEB741300FF05DC /* PollDetail */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PollDetail;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		49C5CF712CDE24D2001DD737 /* Frameworks */ = {
@@ -185,6 +195,8 @@
 			children = (
 				4945A2892CEB6ECC00FF05DC /* CustomView */,
 				4945A28A2CEB6ECC00FF05DC /* HomeView.swift */,
+				4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */,
+				4945A2CC2CEB741300FF05DC /* PollDetail */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -295,6 +307,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				4945A2CC2CEB741300FF05DC /* PollDetail */,
+			);
 			name = Gollaba;
 			packageProductDependencies = (
 			);
@@ -357,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4945A2A82CEB6ECC00FF05DC /* DialogViewModifier.swift in Sources */,
+				4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */,
 				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
 				4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */,
 				4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */,

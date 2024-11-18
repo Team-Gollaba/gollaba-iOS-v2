@@ -8,30 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var searchText: String = ""
-    @State var searchFocus: Bool = false
+    @State var viewModel = HomeViewModel()
     
     var body: some View {
-        ScrollView {
-            ZStack {
-                GeometryReader { geometry in
+        NavigationStack {
+            ScrollView {
+                ZStack {
+                    GeometryReader { geometry in
                         Color.clear
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                searchFocus = false
+                                viewModel.searchFocus = false
                             }
                     }
-                
-                VStack {
-                    SearchPollView(text: $searchText, searchFocus: $searchFocus)
                     
-                    PollList(title: "🗓️ 오늘의 투표")
-                    
-                    PollList(title: "🏆 인기 투표")
-                    
-                    AllPollList()
+                    VStack {
+                        SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus)
+                        
+                        PollList(title: "🗓️ 오늘의 투표", goToPollDetail: $viewModel.goToPollDetail)
+                        
+                        PollList(title: "🏆 인기 투표", goToPollDetail: $viewModel.goToPollDetail)
+                        
+                        AllPollList()
+                    }
                 }
+            }
+            .navigationDestination(isPresented: $viewModel.goToPollDetail) {
+                PollDetailView()
             }
         }
     }
