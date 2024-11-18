@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchPollView: View {
     @Binding var text: String
+    @Binding var searchFocus: Bool
+    @FocusState var focus: Bool
     
     var body: some View {
         HStack (spacing: 10) {
@@ -22,6 +24,14 @@ struct SearchPollView: View {
             }
             
             TextField("제목으로 투표를 검색하세요.", text: $text)
+                .font(.suitVariable16)
+                .focused($focus)
+                .onChange(of: searchFocus) { oldValue, newValue in
+                    focus = newValue
+                }
+                .onChange(of: focus) { oldValue, newValue in
+                    searchFocus = newValue
+                }
         }
         .padding()
         .background(
@@ -33,5 +43,5 @@ struct SearchPollView: View {
 }
 
 #Preview {
-    SearchPollView(text: .constant(""))
+    SearchPollView(text: .constant(""), searchFocus: .constant(true))
 }
