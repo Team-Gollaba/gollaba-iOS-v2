@@ -23,6 +23,7 @@ struct EnrollPollButton: View {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundStyle(.enrollButton)
                 )
+                .shadow(radius: 5)
         }
     }
 }
