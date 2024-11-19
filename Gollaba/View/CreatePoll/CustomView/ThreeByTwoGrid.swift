@@ -29,11 +29,9 @@ struct ThreeByTwoGrid: View {
                     onImageAttach: {},
                     onAddPollItem: {
                         addItem()
-                        print("pollItemName: \(pollItemName)")
                     },
                     onDeletePollItem: {
                         deleteItem(index: item - 1)
-                        print("pollItemName: \(pollItemName)")
                     }
                 )
                 .padding(.horizontal, 4)
