@@ -8,11 +8,56 @@
 import SwiftUI
 
 struct PollContentWebStyle: View {
+    var title: String
+    var endDate: Date
+    var state: String
+    var options: [String]
+    var action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            action()
+        } label: {
+            ZStack {
+                VStack (alignment: .leading) {
+                    Text(title)
+                        .font(.suitBold20)
+                    
+                    Text("\(formattedDate(endDate)). 마감")
+                        .font(.suitVariable16)
+                        .padding(.bottom, 12)
+                    
+                    PollContentOptionView(options: options)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.white)
+                        .shadow(radius: 5)
+                )
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        PollStateView(state: state)
+                    }
+                    Spacer()
+                }
+                .padding()
+            }
+            .padding(12)
+        }
+        .tint(.black)
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.string(from: date)
     }
 }
 
 #Preview {
-    PollContentWebStyle()
+    PollContentWebStyle(title: "title", endDate: Date(), state: "진행 중", options: ["코카콜라", "펩시"], action: {})
 }

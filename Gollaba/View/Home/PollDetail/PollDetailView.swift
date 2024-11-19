@@ -57,7 +57,7 @@ struct PollDetailView: View {
                         .font(.suitBold20)
                 }
                 
-                ThreeByTwoGridPollDetail(pollItemName: $pollItemName, selectedPoll: $selectedPoll)
+                PollDetailContentGridView(pollItemName: $pollItemName, selectedPoll: $selectedPoll)
                 
                 HStack {
                     Spacer()

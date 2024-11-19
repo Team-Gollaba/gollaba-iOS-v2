@@ -7,12 +7,29 @@
 
 import SwiftUI
 
-struct ThreeByTwoGridView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct ThreeByTwoGridView<Content: View>: View {
+    let itemsCount: Int
+        let columns: [GridItem]
+        let spacing: CGFloat
+        let content: (Int) -> Content
 
-#Preview {
-    ThreeByTwoGridView()
+        init(
+            itemsCount: Int,
+            columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())],
+            spacing: CGFloat = 16,
+            @ViewBuilder content: @escaping (Int) -> Content
+        ) {
+            self.itemsCount = itemsCount
+            self.columns = columns
+            self.spacing = spacing
+            self.content = content
+        }
+
+        var body: some View {
+            LazyVGrid(columns: columns, spacing: spacing) {
+                ForEach(0..<itemsCount, id: \.self) { index in
+                    content(index)
+                }
+            }
+        }
 }

@@ -21,26 +21,31 @@ struct PollList: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
-                        }
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
-                        }
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
-                        }
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
-                        }
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
-                        }
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
-                        }
-                        PollContent(state: "종료", title: "제목", info: "정보") {
-                            goToPollDetail = true
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+//                        PollContent(state: "종료", title: "제목", info: "정보") {
+//                            goToPollDetail = true
+//                        }
+                        ForEach(0..<10) { _ in
+                            PollContentWebStyle(title: "제목", endDate: Date(), state: "종료됨", options: ["코카콜라", "펩시"], action: {
+                                goToPollDetail = true
+                            })
                         }
                     }
                 }

@@ -12,11 +12,11 @@ struct PollStateView: View {
     
     var body: some View {
         Text(state)
-            .font(.suitVariable12)
-            .padding(.horizontal, 15)
-            .padding(.vertical, 5)
-            .foregroundStyle(Color.pollContentTitleFontColor)
-            .background(Color.pollContentTitleBackgroundColor)
+            .font(.suitVariable16)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .foregroundStyle(Color.white)
+            .background(Color.pollContentTitleFontColor)
             .cornerRadius(3)
     }
 }

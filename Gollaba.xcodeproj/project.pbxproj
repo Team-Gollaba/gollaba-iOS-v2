@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491A17142CEB85EF00C4666F /* Kingfisher */; };
+		491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */; };
+		491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17492CEC685C00C4666F /* PollContentOptionView.swift */; };
+		491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */; };
 		4945A2A22CEB6ECC00FF05DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A2722CEB6ECC00FF05DC /* Preview Assets.xcassets */; };
 		4945A2A32CEB6ECC00FF05DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29A2CEB6ECC00FF05DC /* Assets.xcassets */; };
 		4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */; };
@@ -24,7 +27,7 @@
 		4945A2B02CEB6ECC00FF05DC /* OptionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */; };
 		4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2792CEB6ECC00FF05DC /* PollItemView.swift */; };
 		4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */; };
-		4945A2B32CEB6ECC00FF05DC /* ThreeByTwoGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27B2CEB6ECC00FF05DC /* ThreeByTwoGrid.swift */; };
+		4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */; };
 		4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */; };
 		4945A2B52CEB6ECC00FF05DC /* PollItemFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */; };
 		4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2802CEB6ECC00FF05DC /* PollChartView.swift */; };
@@ -49,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentWebStyle.swift; sourceTree = "<group>"; };
+		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
+		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
 		4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModifier.swift; sourceTree = "<group>"; };
 		4945A26E2CEB6ECC00FF05DC /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4945A26F2CEB6ECC00FF05DC /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -61,7 +67,7 @@
 		4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionBoxView.swift; sourceTree = "<group>"; };
 		4945A2792CEB6ECC00FF05DC /* PollItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollItemView.swift; sourceTree = "<group>"; };
 		4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
-		4945A27B2CEB6ECC00FF05DC /* ThreeByTwoGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGrid.swift; sourceTree = "<group>"; };
+		4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollContentGridView.swift; sourceTree = "<group>"; };
 		4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollView.swift; sourceTree = "<group>"; };
 		4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollItemFocus.swift; sourceTree = "<group>"; };
 		4945A2802CEB6ECC00FF05DC /* PollChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollChartView.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 			children = (
 				4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */,
 				4945A2802CEB6ECC00FF05DC /* PollChartView.swift */,
+				491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -148,7 +155,7 @@
 				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
 				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
 				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
-				4945A27B2CEB6ECC00FF05DC /* ThreeByTwoGrid.swift */,
+				4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -178,6 +185,8 @@
 				4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */,
 				4945A2842CEB6ECC00FF05DC /* AllPollList.swift */,
 				4945A2852CEB6ECC00FF05DC /* PollContent.swift */,
+				491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */,
+				491A17492CEC685C00C4666F /* PollContentOptionView.swift */,
 				4945A2862CEB6ECC00FF05DC /* PollList.swift */,
 			);
 			path = PollView;
@@ -385,15 +394,17 @@
 				4945A2AC2CEB6ECC00FF05DC /* CalendarView.swift in Sources */,
 				4945A2AD2CEB6ECC00FF05DC /* CallendarOptionView.swift in Sources */,
 				4945A2AE2CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift in Sources */,
+				491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */,
 				4945A2AF2CEB6ECC00FF05DC /* EnrollPollButton.swift in Sources */,
 				4945A2B02CEB6ECC00FF05DC /* OptionBoxView.swift in Sources */,
 				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
-				4945A2B32CEB6ECC00FF05DC /* ThreeByTwoGrid.swift in Sources */,
+				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,
 				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
 				4945A2B52CEB6ECC00FF05DC /* PollItemFocus.swift in Sources */,
 				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
+				491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */,
 				4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */,
 				4945A2B92CEB6ECC00FF05DC /* AllPollList.swift in Sources */,
 				4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */,
@@ -403,6 +414,7 @@
 				4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */,
 				4945A2BF2CEB6ECC00FF05DC /* LoginView.swift in Sources */,
 				4945A2C02CEB6ECC00FF05DC /* CustomTabView.swift in Sources */,
+				491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */,
 				4945A2C12CEB6ECC00FF05DC /* CustomTabViewButton.swift in Sources */,
 				4945A2C22CEB6ECC00FF05DC /* TitleView.swift in Sources */,
 				4945A2C32CEB6ECC00FF05DC /* MainView.swift in Sources */,

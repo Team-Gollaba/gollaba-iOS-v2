@@ -30,7 +30,7 @@ struct HomeView: View {
                         
                         PollList(title: "🏆 인기 투표", goToPollDetail: $viewModel.goToPollDetail)
                         
-                        AllPollList()
+                        AllPollList(goToPollDetail: $viewModel.goToPollDetail)
                     }
                 }
             }

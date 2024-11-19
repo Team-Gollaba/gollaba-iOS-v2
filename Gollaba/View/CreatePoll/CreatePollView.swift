@@ -41,7 +41,7 @@ struct CreatePollView: View {
                             .focused($titleFocus)
                     }
                     
-                    ThreeByTwoGrid(pollItemName: $pollItemName)
+                    CreatePollContentGridView(pollItemName: $pollItemName)
                         .environment(pollItemFocus)
                     
                     
