@@ -7,16 +7,24 @@
 
 import SwiftUI
 
-struct AllPollList: View {
+struct VerticalPollList: View {
     @Binding var goToPollDetail: Bool
-    let title: String = "📝 전체 투표"
+    var icon: Image?
+    var title: String
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text(title)
-                .font(.yangjin20)
-                .padding(.leading, 16)
-                .padding(.vertical, 5)
+            HStack {
+                icon?
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                
+                Text(title)
+                    .font(.yangjin20)
+            }
+            .padding(.leading, 16)
+            .padding(.vertical, 5)
             
 //            AllPollContent(state: "진행 중", title: "투표1")
 //            AllPollContent(state: "진행 중", title: "투표2")
@@ -41,5 +49,5 @@ struct AllPollList: View {
 }
 
 #Preview {
-    AllPollList(goToPollDetail: .constant(false))
+    VerticalPollList(goToPollDetail: .constant(false), icon: Image(systemName: "square.and.arrow.up"), title: "📝 전체 투표")
 }

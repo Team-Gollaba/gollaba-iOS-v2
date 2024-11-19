@@ -26,11 +26,11 @@ struct HomeView: View {
                     VStack {
                         SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus)
                         
-                        PollList(title: "🗓️ 오늘의 투표", goToPollDetail: $viewModel.goToPollDetail)
+                        HorizontalPollList(title: "🗓️ 오늘의 투표", goToPollDetail: $viewModel.goToPollDetail)
                         
-                        PollList(title: "🏆 인기 투표", goToPollDetail: $viewModel.goToPollDetail)
+                        HorizontalPollList(title: "🏆 인기 투표", goToPollDetail: $viewModel.goToPollDetail)
                         
-                        AllPollList(goToPollDetail: $viewModel.goToPollDetail)
+                        VerticalPollList(goToPollDetail: $viewModel.goToPollDetail, title: "📝 전체 투표")
                     }
                 }
             }

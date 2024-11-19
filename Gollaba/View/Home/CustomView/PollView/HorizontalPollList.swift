@@ -7,16 +7,25 @@
 
 import SwiftUI
 
-struct PollList: View {
+struct HorizontalPollList: View {
+    var icon: Image?
     var title: String
     @Binding var goToPollDetail: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(title)
-                .font(.yangjin20)
-                .padding(.leading, 16)
-                .padding(.vertical, 5)
+            HStack {
+                icon?
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                
+                Text(title)
+                    .font(.yangjin20)
+                    
+            }
+            .padding(.leading, 16)
+            .padding(.vertical, 5)
             
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -57,5 +66,5 @@ struct PollList: View {
 }
 
 #Preview {
-    PollList(title: "Title", goToPollDetail: .constant(false))
+    HorizontalPollList(title: "Title", goToPollDetail: .constant(false))
 }
