@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct MyLikePollsCountView: View {
+    var countLikePolls: Int
+    var action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            action()
+        } label: {
+            HStack {
+                Image(systemName: "heart")
+                
+                Text("\(countLikePolls) liked votes")
+                    .font(.suitVariable16)
+            }
+            .foregroundStyle(.myPollLikedVotes)
+            .padding(.bottom, 20)
+        }
     }
 }
 
 #Preview {
-    MyLikePollsCountView()
+    MyLikePollsCountView(countLikePolls: 42, action: {})
 }

@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct ProfileImageView: View {
+    var image: Image
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        image
+            .resizable()
+            .scaledToFill()
+            .frame(width: 96, height: 96)
+            .clipShape(Circle())
+            .overlay(
+                Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
+            )
     }
 }
 
 #Preview {
-    ProfileImageView()
+    ProfileImageView(image: Image("cha_eun_woo"))
 }

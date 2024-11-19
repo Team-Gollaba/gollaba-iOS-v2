@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ProfileNameView: View {
+    var name: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(name)
+            .font(.suitBold24)
     }
 }
 
 #Preview {
-    ProfileNameView()
+    ProfileNameView(name: "Cha eun woo")
 }

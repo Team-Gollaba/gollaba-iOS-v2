@@ -11,6 +11,7 @@
 		491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */; };
 		491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17492CEC685C00C4666F /* PollContentOptionView.swift */; };
 		491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */; };
+		491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174D2CEC876400C4666F /* MyPollViewModel.swift */; };
 		4945A2A22CEB6ECC00FF05DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A2722CEB6ECC00FF05DC /* Preview Assets.xcassets */; };
 		4945A2A32CEB6ECC00FF05DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29A2CEB6ECC00FF05DC /* Assets.xcassets */; };
 		4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */; };
@@ -33,9 +34,9 @@
 		4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2802CEB6ECC00FF05DC /* PollChartView.swift */; };
 		4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2812CEB6ECC00FF05DC /* PollStateView.swift */; };
 		4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */; };
-		4945A2B92CEB6ECC00FF05DC /* AllPollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2842CEB6ECC00FF05DC /* AllPollList.swift */; };
+		4945A2B92CEB6ECC00FF05DC /* VerticalPollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2842CEB6ECC00FF05DC /* VerticalPollList.swift */; };
 		4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2852CEB6ECC00FF05DC /* PollContent.swift */; };
-		4945A2BB2CEB6ECC00FF05DC /* PollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2862CEB6ECC00FF05DC /* PollList.swift */; };
+		4945A2BB2CEB6ECC00FF05DC /* HorizontalPollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2862CEB6ECC00FF05DC /* HorizontalPollList.swift */; };
 		4945A2BC2CEB6ECC00FF05DC /* SearchPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2882CEB6ECC00FF05DC /* SearchPollView.swift */; };
 		4945A2BD2CEB6ECC00FF05DC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A28A2CEB6ECC00FF05DC /* HomeView.swift */; };
 		4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A28C2CEB6ECC00FF05DC /* OAuthLoginButton.swift */; };
@@ -55,6 +56,7 @@
 		491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentWebStyle.swift; sourceTree = "<group>"; };
 		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
+		491A174D2CEC876400C4666F /* MyPollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPollViewModel.swift; sourceTree = "<group>"; };
 		4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModifier.swift; sourceTree = "<group>"; };
 		4945A26E2CEB6ECC00FF05DC /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4945A26F2CEB6ECC00FF05DC /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
@@ -73,9 +75,9 @@
 		4945A2802CEB6ECC00FF05DC /* PollChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollChartView.swift; sourceTree = "<group>"; };
 		4945A2812CEB6ECC00FF05DC /* PollStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollStateView.swift; sourceTree = "<group>"; };
 		4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPollContent.swift; sourceTree = "<group>"; };
-		4945A2842CEB6ECC00FF05DC /* AllPollList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPollList.swift; sourceTree = "<group>"; };
+		4945A2842CEB6ECC00FF05DC /* VerticalPollList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalPollList.swift; sourceTree = "<group>"; };
 		4945A2852CEB6ECC00FF05DC /* PollContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContent.swift; sourceTree = "<group>"; };
-		4945A2862CEB6ECC00FF05DC /* PollList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollList.swift; sourceTree = "<group>"; };
+		4945A2862CEB6ECC00FF05DC /* HorizontalPollList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPollList.swift; sourceTree = "<group>"; };
 		4945A2882CEB6ECC00FF05DC /* SearchPollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPollView.swift; sourceTree = "<group>"; };
 		4945A28A2CEB6ECC00FF05DC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4945A28C2CEB6ECC00FF05DC /* OAuthLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthLoginButton.swift; sourceTree = "<group>"; };
@@ -98,6 +100,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		491A17512CEC8C2500C4666F /* CustomView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		4945A2CC2CEB741300FF05DC /* PollDetail */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PollDetail;
@@ -183,11 +190,11 @@
 			children = (
 				4945A2822CEB6ECC00FF05DC /* ViewContent */,
 				4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */,
-				4945A2842CEB6ECC00FF05DC /* AllPollList.swift */,
+				4945A2842CEB6ECC00FF05DC /* VerticalPollList.swift */,
 				4945A2852CEB6ECC00FF05DC /* PollContent.swift */,
 				491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */,
 				491A17492CEC685C00C4666F /* PollContentOptionView.swift */,
-				4945A2862CEB6ECC00FF05DC /* PollList.swift */,
+				4945A2862CEB6ECC00FF05DC /* HorizontalPollList.swift */,
 			);
 			path = PollView;
 			sourceTree = "<group>";
@@ -252,7 +259,9 @@
 		4945A2982CEB6ECC00FF05DC /* MyPoll */ = {
 			isa = PBXGroup;
 			children = (
+				491A17512CEC8C2500C4666F /* CustomView */,
 				4945A2972CEB6ECC00FF05DC /* MyPollView.swift */,
+				491A174D2CEC876400C4666F /* MyPollViewModel.swift */,
 			);
 			path = MyPoll;
 			sourceTree = "<group>";
@@ -319,6 +328,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				491A17512CEC8C2500C4666F /* CustomView */,
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
 			);
 			name = Gollaba;
@@ -406,9 +416,10 @@
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
 				491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */,
 				4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */,
-				4945A2B92CEB6ECC00FF05DC /* AllPollList.swift in Sources */,
+				4945A2B92CEB6ECC00FF05DC /* VerticalPollList.swift in Sources */,
 				4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */,
-				4945A2BB2CEB6ECC00FF05DC /* PollList.swift in Sources */,
+				4945A2BB2CEB6ECC00FF05DC /* HorizontalPollList.swift in Sources */,
+				491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */,
 				4945A2BC2CEB6ECC00FF05DC /* SearchPollView.swift in Sources */,
 				4945A2BD2CEB6ECC00FF05DC /* HomeView.swift in Sources */,
 				4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */,

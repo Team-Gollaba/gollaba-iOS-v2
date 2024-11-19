@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct LogoutButton: View {
+    var action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            action()
+        } label: {
+            HStack (spacing: 20) {
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                
+                Text("로그아웃")
+                    .font(.suitBold16)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.pollContentTitleFont)
+                    .shadow(radius: 5)
+            )
+        }
+        .tint(.white)
+        .padding(.horizontal)
     }
 }
 
 #Preview {
-    LogoutButton()
+    LogoutButton(action: {})
 }
