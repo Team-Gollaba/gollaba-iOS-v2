@@ -72,7 +72,9 @@ struct CreatePollView: View {
                     
                     OptionBoxView(title: "투표 종료 기간") {
                         CallendarOptionView(selectedDate: $selectedDate, action: {
-                            showDatePicker = true
+                            withAnimation {
+                                showDatePicker = true
+                            }
                         })
                     }
                     
