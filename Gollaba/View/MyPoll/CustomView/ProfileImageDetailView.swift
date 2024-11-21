@@ -26,7 +26,7 @@ struct ProfileImageDetailView: View {
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
-                            .tint(.black)
+                            .tint(.white)
                             .frame(width: 20, height: 20)
                             .padding()
                     }
@@ -36,6 +36,7 @@ struct ProfileImageDetailView: View {
                 Spacer()
             }
         }
+        .background(.black)
     }
 }
 
