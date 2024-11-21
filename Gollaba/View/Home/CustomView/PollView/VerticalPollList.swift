@@ -44,6 +44,10 @@ struct VerticalPollList: View {
                     goToPollDetail = true
                 })
             }
+            
+            ProgressView()
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding()
         }
     }
 }
