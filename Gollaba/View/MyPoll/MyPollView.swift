@@ -12,27 +12,38 @@ struct MyPollView: View {
     
     var body: some View {
         ScrollView {
-            VStack (spacing: 12) {
-                
-                ProfileImageView(image: Image("cha_eun_woo"))
-                
-                ProfileNameView(name: "Cha eunwoo")
-                
-                MyLikePollsCountView(countLikePolls: 42, action: {
+            ZStack {
+                VStack (spacing: 12) {
                     
-                })
-                
-                VerticalPollList(
-                    goToPollDetail: $viewModel.goToPollDetail,
-                    icon: Image(systemName: "person"),
-                    title: "내가 만든 투표"
-                )
-                
-                LogoutButton {
+                    ProfileImageView(image: Image("cha_eun_woo"))
+                        .onTapGesture {
+                            viewModel.isClickedProfileImage = true
+                            print("profile image tapped")
+                        }
                     
+                    ProfileNameView(name: "Cha eunwoo")
+                    
+                    MyLikePollsCountView(countLikePolls: 42, action: {
+                        
+                    })
+                    
+                    VerticalPollList(
+                        goToPollDetail: $viewModel.goToPollDetail,
+                        icon: Image(systemName: "person"),
+                        title: "내가 만든 투표"
+                    )
+                    
+                    LogoutButton {
+                        
+                    }
                 }
+                .padding(.vertical)
+                
+                
             }
-            .padding(.vertical)
+            .sheet(isPresented: $viewModel.isClickedProfileImage) {
+                ProfileImageDetailView(image: Image("cha_eun_woo"))
+            }
         }
         .navigationDestination(isPresented: $viewModel.goToPollDetail) {
             PollDetailView()
