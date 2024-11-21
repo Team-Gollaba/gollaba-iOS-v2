@@ -30,7 +30,7 @@
 		4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */; };
 		4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */; };
 		4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */; };
-		4945A2B52CEB6ECC00FF05DC /* PollItemFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */; };
+		4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A27E2CEB6ECC00FF05DC /* CreatePollViewModel.swift */; };
 		4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2802CEB6ECC00FF05DC /* PollChartView.swift */; };
 		4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2812CEB6ECC00FF05DC /* PollStateView.swift */; };
 		4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */; };
@@ -71,7 +71,7 @@
 		4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
 		4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollContentGridView.swift; sourceTree = "<group>"; };
 		4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollView.swift; sourceTree = "<group>"; };
-		4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollItemFocus.swift; sourceTree = "<group>"; };
+		4945A27E2CEB6ECC00FF05DC /* CreatePollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePollViewModel.swift; sourceTree = "<group>"; };
 		4945A2802CEB6ECC00FF05DC /* PollChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollChartView.swift; sourceTree = "<group>"; };
 		4945A2812CEB6ECC00FF05DC /* PollStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollStateView.swift; sourceTree = "<group>"; };
 		4945A2832CEB6ECC00FF05DC /* AllPollContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPollContent.swift; sourceTree = "<group>"; };
@@ -108,6 +108,11 @@
 		4945A2CC2CEB741300FF05DC /* PollDetail */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PollDetail;
+			sourceTree = "<group>";
+		};
+		49FEE24D2CEC95A6000991DB /* Manager */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -172,7 +177,7 @@
 			children = (
 				4945A27C2CEB6ECC00FF05DC /* CustomView */,
 				4945A27D2CEB6ECC00FF05DC /* CreatePollView.swift */,
-				4945A27E2CEB6ECC00FF05DC /* PollItemFocus.swift */,
+				4945A27E2CEB6ECC00FF05DC /* CreatePollViewModel.swift */,
 			);
 			path = CreatePoll;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 		4945A2A12CEB6ECC00FF05DC /* Gollaba */ = {
 			isa = PBXGroup;
 			children = (
+				49FEE24D2CEC95A6000991DB /* Manager */,
 				4945A26D2CEB6ECC00FF05DC /* Common */,
 				4945A2712CEB6ECC00FF05DC /* Extension */,
 				4945A2732CEB6ECC00FF05DC /* Preview Content */,
@@ -330,6 +336,7 @@
 			fileSystemSynchronizedGroups = (
 				491A17512CEC8C2500C4666F /* CustomView */,
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
+				49FEE24D2CEC95A6000991DB /* Manager */,
 			);
 			name = Gollaba;
 			packageProductDependencies = (
@@ -411,7 +418,7 @@
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
 				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,
 				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
-				4945A2B52CEB6ECC00FF05DC /* PollItemFocus.swift in Sources */,
+				4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */,
 				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
 				491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */,

@@ -13,7 +13,7 @@ struct PollContentOptionView: View {
     var body: some View {
         HStack (spacing: 4) {
             ZStack {
-                Image("AppIconImage")
+                Image("cocacola")
                     .resizable()
                     .scaledToFit()
                     
@@ -29,7 +29,7 @@ struct PollContentOptionView: View {
             }
             
             ZStack {
-                Image("AppIconImage")
+                Image("pepsi")
                     .resizable()
                     .scaledToFit()
                     

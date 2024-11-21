@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct PollItemView: View {
     @Binding var pollItemName: String
-    @Environment(PollItemFocus.self) var pollItemFocus
+    @Binding var selectedItem: [PhotosPickerItem?]
+    @Environment(CreatePollViewModel.self) var createPollViewModel
     @FocusState private var focus: Bool
     var isCreateModel: Bool
     var isShowDeleteButton: Bool
@@ -23,23 +25,62 @@ struct PollItemView: View {
     var body: some View {
         ZStack {
             VStack (spacing: 0) {
-                VStack {
-                    Text("이미지 첨부하기 +")
-                        .font(.suitBold12)
-                    
-                    Text("클릭 후 이미지를 첨부하세요.")
-                        .font(.suitVariable12)
-                        .multilineTextAlignment(.center)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 80)
-                .foregroundStyle(.white)
-                .background(
-                    Color.attach
+                
+                PhotosPicker(selection: Binding(
+                    get: { selectedItem[itemNumber - 1] },
+                    set: { newValue in
+                        selectedItem[itemNumber - 1] = newValue
+                        Task {
+                            await createPollViewModel.convertImage(item: newValue, index: itemNumber - 1)
+                        }
+                    }
                 )
-                .onTapGesture {
-                    onImageAttach()
+                                
+                ) {
+
+                    if let image = createPollViewModel.postImage[itemNumber - 1] { // self.postImage가 nil이 아니면, photosPicker로 사진을 장착한 후
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxHeight: 80)
+                            .clipped()
+                    } else { // 장착 전
+                        VStack {
+                            Text("이미지 첨부하기 +")
+                                .font(.suitBold12)
+                            
+                            Text("클릭 후 이미지를 첨부하세요.")
+                                .font(.suitVariable12)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 80)
+                        .foregroundStyle(.white)
+                        .background(
+                            Color.attach
+                        )
+                    }
                 }
+                
+                
+                
+//                VStack {
+//                    Text("이미지 첨부하기 +")
+//                        .font(.suitBold12)
+//                    
+//                    Text("클릭 후 이미지를 첨부하세요.")
+//                        .font(.suitVariable12)
+//                        .multilineTextAlignment(.center)
+//                }
+//                .frame(maxWidth: .infinity)
+//                .frame(height: 80)
+//                .foregroundStyle(.white)
+//                .background(
+//                    Color.attach
+//                )
+//                .onTapGesture {
+//                    onImageAttach()
+//                }
                 
                 
                 HStack {
@@ -61,9 +102,9 @@ struct PollItemView: View {
                                 .font(.suitBold20)
                                 .disabled(isCreateModel)
                                 .onChange(of: focus, { oldValue, newValue in
-                                    pollItemFocus.isPollItemFocused = newValue
+                                    createPollViewModel.isPollItemFocused = newValue
                                 })
-                                .onChange(of: pollItemFocus.isPollItemFocused) { oldValue, newValue in
+                                .onChange(of: createPollViewModel.isPollItemFocused) { oldValue, newValue in
                                     print("focus: \(newValue)")
                                     if !newValue {
                                         focus = newValue
@@ -89,6 +130,10 @@ struct PollItemView: View {
 
             
             if isCreateModel {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundStyle(.black.opacity(0.1))
+                    
+                
                 Button {
                     onAddPollItem()
                 } label: {
@@ -115,6 +160,8 @@ struct PollItemView: View {
                     HStack {
                         Button {
                             onDeletePollItem()
+                            createPollViewModel.postImage.remove(at: itemNumber - 1)
+                            createPollViewModel.postImage.append(nil)
                         } label: {
                             Image(systemName: "minus.circle")
                                 .resizable()
@@ -135,7 +182,7 @@ struct PollItemView: View {
         }
     }
 }
-
-#Preview {
-    PollItemView(pollItemName: .constant("pollItemName"), isCreateModel: true, isShowDeleteButton: true, itemNumber: 1, onImageAttach: {}, onAddPollItem: {}, onDeletePollItem: {})
-}
+//
+//#Preview {
+//    PollItemView(pollItemName: .constant("pollItemName"), selectedItem: .constant(PhotosPickerItem(itemIdentifier: "")), isCreateModel: true, isShowDeleteButton: true, itemNumber: 1, onImageAttach: {}, onAddPollItem: {}, onDeletePollItem: {})
+//}

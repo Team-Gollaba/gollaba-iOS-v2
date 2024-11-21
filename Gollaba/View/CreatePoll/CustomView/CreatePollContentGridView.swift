@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct CreatePollContentGridView: View {
     @Binding var pollItemName: [String]
+    @Binding var selectedItem: [PhotosPickerItem?]
 
         var body: some View {
             ThreeByTwoGridView(itemsCount: pollItemName.count) { index in
@@ -19,6 +21,7 @@ struct CreatePollContentGridView: View {
                     
                     PollItemView(
                         pollItemName: $pollItemName[index],
+                        selectedItem: $selectedItem,
                         isCreateModel: pollItemName.count == index + 1,
                         isShowDeleteButton: pollItemName.count > 3 && pollItemName.count != index + 1,
                         itemNumber: index + 1,
@@ -41,7 +44,7 @@ struct CreatePollContentGridView: View {
             pollItemName.remove(at: index)
         }
 }
-
-#Preview {
-    CreatePollContentGridView(pollItemName: .constant(["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]))
-}
+//
+//#Preview {
+//    CreatePollContentGridView(pollItemName: .constant(["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]), selectedItem: .constant(PhotosPickerItem(itemIdentifier: "")))
+//}

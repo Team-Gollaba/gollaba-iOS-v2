@@ -19,7 +19,7 @@ struct CreatePollView: View {
     @State var selectedDate: Date = Date()
     
     @FocusState var titleFocus: Bool
-    var pollItemFocus = PollItemFocus()
+    @State var viewModel = CreatePollViewModel()
     
     var body: some View {
         ScrollView {
@@ -29,8 +29,8 @@ struct CreatePollView: View {
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                pollItemFocus.isPollItemFocused = false
-                                pollItemFocus.isPollTitleFocused = false
+                                viewModel.isPollItemFocused = false
+                                viewModel.isPollTitleFocused = false
                             }
                     }
                 VStack (spacing: 16) {
@@ -41,8 +41,9 @@ struct CreatePollView: View {
                             .focused($titleFocus)
                     }
                     
-                    CreatePollContentGridView(pollItemName: $pollItemName)
-                        .environment(pollItemFocus)
+                    CreatePollContentGridView(pollItemName: $pollItemName, selectedItem: $viewModel.selectedItem)
+                        .environment(viewModel)
+                        
                     
                     
                     HStack (spacing: 20) {
@@ -92,11 +93,11 @@ struct CreatePollView: View {
                     primaryButtonText: "확인",
                     onPrimaryButton: {}
                 )
-                .onChange(of: pollItemFocus.isPollTitleFocused) { oldValue, newValue in
+                .onChange(of: viewModel.isPollTitleFocused) { oldValue, newValue in
                     titleFocus = newValue
                 }
                 .onChange(of: titleFocus) { oldValue, newValue in
-                    pollItemFocus.isPollTitleFocused = newValue
+                    viewModel.isPollTitleFocused = newValue
                 }
                 
                 if showDatePicker {
