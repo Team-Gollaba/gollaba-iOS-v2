@@ -19,6 +19,7 @@ struct ProfileImageView: View {
             .overlay(
                 Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
             )
+            .shadow(radius: 5)
     }
 }
 
