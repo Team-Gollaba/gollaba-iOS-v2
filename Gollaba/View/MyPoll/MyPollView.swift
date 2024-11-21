@@ -15,11 +15,9 @@ struct MyPollView: View {
             ZStack {
                 VStack (spacing: 12) {
                     
-                    ProfileImageView(image: Image("cha_eun_woo"))
-                        .onTapGesture {
-                            viewModel.isClickedProfileImage = true
-                            print("profile image tapped")
-                        }
+                    ProfileImageView(image: Image("cha_eun_woo")) {
+                        viewModel.isClickedProfileImage = true
+                    }
                     
                     ProfileNameView(name: "Cha eunwoo")
                     
