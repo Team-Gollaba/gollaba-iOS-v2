@@ -59,13 +59,9 @@ struct PollDetailView: View {
                 
                 PollDetailContentGridView(pollItemName: $pollItemName, selectedPoll: $selectedPoll)
                 
-                HStack {
-                    Spacer()
-                    
+                   
                     PollButton(pollbuttonState: $pollButtonState)
-                    
-                    Spacer()
-                }
+                 
                 
                 PollResultView()
                 

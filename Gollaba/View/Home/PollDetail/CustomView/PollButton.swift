@@ -63,8 +63,12 @@ struct PollButton: View {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(backgroundColor)
                     .stroke(strokeColor, lineWidth: 4)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(backgroundColor)
+                    )
+
             )
         }
         .tint(.white)
