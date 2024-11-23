@@ -17,7 +17,10 @@ struct QuestionButton: View {
             Image("QuestionIcon")
                 .resizable()
                 .scaledToFill()
-                .frame(width: 20, height: 20)
+                .frame(width: 32, height: 32)
+                .background(.white)
+                .clipShape(Circle())
+                .shadow(radius: 5)
         }
         .frame(maxWidth: .infinity, alignment: .trailing)
     }

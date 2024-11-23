@@ -23,9 +23,10 @@ struct CreatePollView: View {
     @State var viewModel = CreatePollViewModel()
     
     var body: some View {
-        ScrollView {
-            ZStack {
-                GeometryReader { geometry in
+        ZStack {
+            ScrollView {
+                ZStack {
+                    GeometryReader { geometry in
                         Color.clear
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .contentShape(Rectangle())
@@ -34,97 +35,104 @@ struct CreatePollView: View {
                                 viewModel.isPollTitleFocused = false
                             }
                     }
-                VStack (spacing: 16) {
-                    
-                    OptionBoxView(title: "투표 제목") {
-                        TextField("투표의 제목을 입력해주세요.", text: $text)
-                            .font(.suitVariable16)
-                            .focused($titleFocus)
-                    }
-                    
-                    CreatePollContentGridView(pollItemName: $pollItemName, selectedItem: $viewModel.selectedItem)
-                        .environment(viewModel)
+                    VStack (spacing: 16) {
                         
-                    
-                    
-                    HStack (spacing: 20) {
-                        
-                        OptionBoxView(title: "익명 여부") {
-                            ChooseTwoOptionsView(
-                                selectedOption: $anonymousOption,
-                                firstOptionText: "익명 투표",
-                                firstOptionImage: Image("AnonymousIcon"),
-                                secondOptionText: "기명 투표",
-                                secondOptionImage: Image("SignIcon")
-                            )
+                        OptionBoxView(title: "투표 제목") {
+                            TextField("투표의 제목을 입력해주세요.", text: $text)
+                                .font(.suitVariable16)
+                                .focused($titleFocus)
                         }
                         
-                        OptionBoxView(title: "투표 가능 옵션 개수") {
-                            ChooseTwoOptionsView(
-                                selectedOption: $countingOption,
-                                firstOptionText: "단일 투표",
-                                firstOptionImage: Image("OnlyPollIcon"),
-                                secondOptionText: "복수 투표",
-                                secondOptionImage: Image("PluralIcon")
-                            )
-                        }
-                    }
-                    
-                    
-                    OptionBoxView(title: "투표 종료 기간") {
-                        CallendarOptionView(selectedDate: $selectedDate, action: {
-                            withAnimation {
-                                showDatePicker = true
+                        CreatePollContentGridView(pollItemName: $pollItemName, selectedItem: $viewModel.selectedItem)
+                            .environment(viewModel)
+                        
+                        
+                        
+                        HStack (spacing: 20) {
+                            
+                            OptionBoxView(title: "익명 여부") {
+                                ChooseTwoOptionsView(
+                                    selectedOption: $anonymousOption,
+                                    firstOptionText: "익명 투표",
+                                    firstOptionImage: Image("AnonymousIcon"),
+                                    secondOptionText: "기명 투표",
+                                    secondOptionImage: Image("SignIcon")
+                                )
                             }
-                        })
-                    }
-                    
-                    OptionBoxView(title: "투표 종료 시간") {
-                        TimerOptionView(selectedDate: $selectedDate) {
-                            withAnimation {
-                                showTimePicker = true
+                            
+                            OptionBoxView(title: "투표 가능 옵션 개수") {
+                                ChooseTwoOptionsView(
+                                    selectedOption: $countingOption,
+                                    firstOptionText: "단일 투표",
+                                    firstOptionImage: Image("OnlyPollIcon"),
+                                    secondOptionText: "복수 투표",
+                                    secondOptionImage: Image("PluralIcon")
+                                )
                             }
                         }
-                    }
-                    
-                    QuestionButton {
-                        isQuestionPresent = true
-                    }
-                    
-                    EnrollPollButton {
+                        
+                        
+                        OptionBoxView(title: "투표 종료 기간") {
+                            CallendarOptionView(selectedDate: $selectedDate, action: {
+                                withAnimation {
+                                    showDatePicker = true
+                                }
+                            })
+                        }
+                        
+                        OptionBoxView(title: "투표 종료 시간") {
+                            TimerOptionView(selectedDate: $selectedDate) {
+                                withAnimation {
+                                    showTimePicker = true
+                                }
+                            }
+                        }
+                        
+                        EnrollPollButton {
+                            
+                        }
                         
                     }
+                    .padding()
+                    .dialog(
+                        isPresented: $isQuestionPresent,
+                        title: "투표 만들기 도움말",
+                        content: questionHelpContent,
+                        primaryButtonText: "확인",
+                        onPrimaryButton: {}
+                    )
+                    .onChange(of: viewModel.isPollTitleFocused) { oldValue, newValue in
+                        titleFocus = newValue
+                    }
+                    .onChange(of: titleFocus) { oldValue, newValue in
+                        viewModel.isPollTitleFocused = newValue
+                    }
                     
+                    if showDatePicker {
+                        CalendarView(
+                            showDatePicker: $showDatePicker,
+                            selectedDate: $selectedDate
+                        )
+                    }
+                    
+                    if showTimePicker {
+                        TimePickerView(
+                            showTimerPicker: $showTimePicker,
+                            selectedDate: $selectedDate,
+                            action: {}
+                        )
+                    }
+                    
+                }
+            }
+            
+            VStack {
+                Spacer()
+                
+                QuestionButton {
+                    isQuestionPresent = true
                 }
                 .padding()
-                .dialog(
-                    isPresented: $isQuestionPresent,
-                    title: "투표 만들기 도움말",
-                    content: questionHelpContent,
-                    primaryButtonText: "확인",
-                    onPrimaryButton: {}
-                )
-                .onChange(of: viewModel.isPollTitleFocused) { oldValue, newValue in
-                    titleFocus = newValue
-                }
-                .onChange(of: titleFocus) { oldValue, newValue in
-                    viewModel.isPollTitleFocused = newValue
-                }
-                
-                if showDatePicker {
-                    CalendarView(
-                        showDatePicker: $showDatePicker,
-                        selectedDate: $selectedDate
-                    )
-                }
-                
-                if showTimePicker {
-                    TimePickerView(
-                        showTimerPicker: $showTimePicker,
-                        selectedDate: $selectedDate,
-                        action: {}
-                    )
-                }
             }
         }
         
