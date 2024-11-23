@@ -55,6 +55,7 @@ struct HorizontalPollList: View {
                             PollContentWebStyle(title: "제목", endDate: Date(), state: "종료됨", options: ["코카콜라", "펩시"], action: {
                                 goToPollDetail = true
                             })
+                            .frame(width: 320)
                         }
                     }
                 }
