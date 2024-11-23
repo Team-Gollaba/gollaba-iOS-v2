@@ -39,10 +39,10 @@ struct MyPollView: View {
                         .padding(.horizontal)
                     
                     GoToMyPollListButton(
-                        icon: Image(systemName: "heart"),
+                        icon: Image(systemName: "heart.fill"),
                         title: "내가 좋아요한 투표",
                         action: {
-                            viewModel.pollListIcon = Image(systemName: "heart")
+                            viewModel.pollListIcon = Image(systemName: "heart.fill")
                             viewModel.pollListTitle = "내가 좋아요한 투표"
                             viewModel.goToPollList = true
                         }
