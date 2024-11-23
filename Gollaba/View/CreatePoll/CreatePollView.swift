@@ -16,6 +16,7 @@ struct CreatePollView: View {
     ]
     @State var isQuestionPresent: Bool = false
     @State var showDatePicker: Bool = false
+    @State var showTimePicker: Bool = false
     @State var selectedDate: Date = Date()
     
     @FocusState var titleFocus: Bool
@@ -78,6 +79,14 @@ struct CreatePollView: View {
                         })
                     }
                     
+                    OptionBoxView(title: "투표 종료 시간") {
+                        TimerOptionView(selectedDate: $selectedDate) {
+                            withAnimation {
+                                showTimePicker = true
+                            }
+                        }
+                    }
+                    
                     QuestionButton {
                         isQuestionPresent = true
                     }
@@ -106,6 +115,14 @@ struct CreatePollView: View {
                     CalendarView(
                         showDatePicker: $showDatePicker,
                         selectedDate: $selectedDate
+                    )
+                }
+                
+                if showTimePicker {
+                    TimePickerView(
+                        showTimerPicker: $showTimePicker,
+                        selectedDate: $selectedDate,
+                        action: {}
                     )
                 }
             }

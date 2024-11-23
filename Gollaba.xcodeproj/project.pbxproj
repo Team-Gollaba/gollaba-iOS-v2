@@ -50,6 +50,8 @@
 		4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29B2CEB6ECC00FF05DC /* ContentView.swift */; };
 		4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */; };
 		4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */; };
+		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
+		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +99,8 @@
 		4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YANGJIN.otf; sourceTree = "<group>"; };
 		4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -162,6 +166,8 @@
 			children = (
 				4945A2742CEB6ECC00FF05DC /* CalendarView.swift */,
 				4945A2752CEB6ECC00FF05DC /* CallendarOptionView.swift */,
+				49FEE25F2CF229AD000991DB /* TimerOptionView.swift */,
+				49FEE25D2CF22712000991DB /* TimePickerView.swift */,
 				4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */,
 				4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */,
 				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
@@ -426,10 +432,12 @@
 				4945A2B92CEB6ECC00FF05DC /* VerticalPollList.swift in Sources */,
 				4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */,
 				4945A2BB2CEB6ECC00FF05DC /* HorizontalPollList.swift in Sources */,
+				49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */,
 				491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */,
 				4945A2BC2CEB6ECC00FF05DC /* SearchPollView.swift in Sources */,
 				4945A2BD2CEB6ECC00FF05DC /* HomeView.swift in Sources */,
 				4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */,
+				49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */,
 				4945A2BF2CEB6ECC00FF05DC /* LoginView.swift in Sources */,
 				4945A2C02CEB6ECC00FF05DC /* CustomTabView.swift in Sources */,
 				491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */,
