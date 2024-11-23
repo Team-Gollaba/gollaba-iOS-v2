@@ -18,7 +18,7 @@ struct ProfileImageView: View {
             image
                 .resizable()
                 .scaledToFill()
-                .frame(width: 96, height: 96)
+                .frame(width: 160, height: 160)
                 .clipShape(Circle())
                 .overlay(
                     Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
