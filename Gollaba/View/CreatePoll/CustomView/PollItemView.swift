@@ -15,6 +15,7 @@ struct PollItemView: View {
     @FocusState private var focus: Bool
     var isCreateModel: Bool
     var isShowDeleteButton: Bool
+    @State var isShowImageDeleteButton: Bool = false
     
     var itemNumber: Int
     
@@ -38,12 +39,17 @@ struct PollItemView: View {
                                 
                 ) {
 
-                    if let image = createPollViewModel.postImage[itemNumber - 1] { // self.postImage가 nil이 아니면, photosPicker로 사진을 장착한 후
+                    if let image = createPollViewModel.postImage[itemNumber - 1] {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(maxHeight: 80)
+                            .frame(maxHeight: 120)
+                            .frame(minHeight: 120)
                             .clipped()
+                            .onAppear {
+                                isShowImageDeleteButton = true
+                            }
+                        
                     } else { // 장착 전
                         VStack {
                             Text("이미지 첨부하기 +")
@@ -54,11 +60,14 @@ struct PollItemView: View {
                                 .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity)
-                        .frame(height: 80)
+                        .frame(height: 120)
                         .foregroundStyle(.white)
                         .background(
                             Color.attach
                         )
+                        .onAppear {
+                            isShowImageDeleteButton = false
+                        }
                     }
                 }
                 
@@ -179,6 +188,32 @@ struct PollItemView: View {
                 .padding(-8)
             }
             
+            if isShowImageDeleteButton {
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            if createPollViewModel.postImage[itemNumber - 1] != nil {
+                                createPollViewModel.postImage[itemNumber - 1] = nil
+                            }
+                        } label: {
+                            Image(systemName: "trash")
+                                .resizable()
+                                .frame(width: 16, height: 16)
+                                .padding(4)
+                                .background(
+                                    Circle()
+                                        .fill(.white)
+                                )
+                        }
+                        .tint(.black)
+                        .padding(8)
+                    }
+                    
+                    Spacer()
+                }
+            }
         }
     }
 }

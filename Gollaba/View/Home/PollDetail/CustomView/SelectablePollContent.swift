@@ -20,7 +20,7 @@ struct SelectablePollContent: View {
                     Image(systemName: "photo.badge.plus")
                 }
                 .frame(maxWidth: .infinity)
-                .frame(height: 80)
+                .frame(height: 120)
                 .foregroundStyle(.white)
                 .background(
                     Color.attach

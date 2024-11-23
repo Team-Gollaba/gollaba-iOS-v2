@@ -15,7 +15,9 @@ struct PollContentOptionView: View {
             ZStack {
                 Image("cocacola")
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
+                    .frame(height: 120)
+                    .clipped()
                     
                 
                 Text(options[0])
@@ -31,7 +33,9 @@ struct PollContentOptionView: View {
             ZStack {
                 Image("pepsi")
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
+                    .frame(height: 120)
+                    .clipped() 
                     
                 
                 Text(options[1])
@@ -44,7 +48,7 @@ struct PollContentOptionView: View {
                     )
             }
         }
-        .frame(height: 120)
+        .frame(maxHeight: 120)
     }
 }
 
