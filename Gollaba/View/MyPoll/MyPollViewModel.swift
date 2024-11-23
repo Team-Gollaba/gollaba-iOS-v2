@@ -10,5 +10,9 @@ import SwiftUI
 @Observable
 class MyPollViewModel {
     var goToPollDetail: Bool = false
+    var goToPollList: Bool = false
     var isClickedProfileImage: Bool = false
+    
+    var pollListIcon: Image?
+    var pollListTitle: String?
 }

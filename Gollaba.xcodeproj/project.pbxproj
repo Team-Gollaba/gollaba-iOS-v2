@@ -119,6 +119,11 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		49FEE2652CF2474B000991DB /* LinkedView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LinkedView;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +275,7 @@
 		4945A2982CEB6ECC00FF05DC /* MyPoll */ = {
 			isa = PBXGroup;
 			children = (
+				49FEE2652CF2474B000991DB /* LinkedView */,
 				491A17512CEC8C2500C4666F /* CustomView */,
 				4945A2972CEB6ECC00FF05DC /* MyPollView.swift */,
 				491A174D2CEC876400C4666F /* MyPollViewModel.swift */,
@@ -343,6 +349,7 @@
 				491A17512CEC8C2500C4666F /* CustomView */,
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
+				49FEE2652CF2474B000991DB /* LinkedView */,
 			);
 			name = Gollaba;
 			packageProductDependencies = (

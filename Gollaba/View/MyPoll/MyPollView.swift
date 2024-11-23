@@ -21,19 +21,43 @@ struct MyPollView: View {
                     
                     ProfileNameView(name: "Cha eunwoo")
                     
-                    MyLikePollsCountView(countLikePolls: 42, action: {
-                        
-                    })
+//                    MyLikePollsCountView(countLikePolls: 42, action: {
+//                        
+//                    })
                     
-                    VerticalPollList(
-                        goToPollDetail: $viewModel.goToPollDetail,
+                    GoToMyPollListButton(
                         icon: Image(systemName: "person"),
-                        title: "내가 만든 투표"
+                        title: "내가 만든 투표",
+                        action: {
+                            viewModel.pollListIcon = Image(systemName: "person")
+                            viewModel.pollListTitle = "내가 만든 투표"
+                            viewModel.goToPollList = true
+                        }
                     )
+                    
+                    Divider()
+                        .padding(.horizontal)
+                    
+                    GoToMyPollListButton(
+                        icon: Image(systemName: "heart"),
+                        title: "내가 좋아요한 투표",
+                        action: {
+                            viewModel.pollListIcon = Image(systemName: "heart")
+                            viewModel.pollListTitle = "내가 좋아요한 투표"
+                            viewModel.goToPollList = true
+                        }
+                    )
+                    
+//                    VerticalPollList(
+//                        goToPollDetail: $viewModel.goToPollDetail,
+//                        icon: Image(systemName: "person"),
+//                        title: "내가 만든 투표"
+//                    )
                     
                     LogoutButton {
                         
                     }
+                    .padding(.top)
                 }
                 .padding(.vertical)
                 
@@ -45,6 +69,11 @@ struct MyPollView: View {
         }
         .navigationDestination(isPresented: $viewModel.goToPollDetail) {
             PollDetailView()
+        }
+        .navigationDestination(isPresented: $viewModel.goToPollList) {
+            if let icon = viewModel.pollListIcon, let title = viewModel.pollListTitle {
+                MyPollListView(icon: icon, title: title)
+            }
         }
     }
 }
