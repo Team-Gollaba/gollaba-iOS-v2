@@ -6,12 +6,27 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 @main
 struct GollabaApp: App {
+    init () {
+        let kakaoNativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
+        
+        KakaoSDK.initSDK(appKey: kakaoNativeAppKey as! String)
+        
+        print("kakao native app key: \(kakaoNativeAppKey)")
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onOpenURL(perform: { url in
+                    if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                        _ = AuthController.handleOpenUrl(url: url)
+                    }
+                })
                 .preferredColorScheme(.light)
         }
     }
