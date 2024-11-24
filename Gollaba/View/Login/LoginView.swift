@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
+    @State var kakaoAuthManager: KakaoAuthManager = KakaoAuthManager()
     
     var body: some View {
         VStack {
@@ -28,7 +29,9 @@ struct LoginView: View {
             OAuthLoginButton(
                 image: Image("KakaoIcon"),
                 oAuthPath: "카카오",
-                action: {}
+                action: {
+                    kakaoAuthManager.handleKakaoLogin()
+                }
             )
         }
         .navigationBarBackButtonHidden(true)
