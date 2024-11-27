@@ -12,7 +12,7 @@ import KakaoSDKUser
 @Observable
 class KakaoAuthManager {
     var isLoggedIn: Bool = false
-    var userName: String = ""
+    var userName: String = "유저"
     var userMail: String = ""
     var profileImageUrl: URL?
     
@@ -21,6 +21,9 @@ class KakaoAuthManager {
         Task {
             if await handleKakaoLogout() {
                 isLoggedIn = false
+                userName = "유저"
+                userMail = ""
+                profileImageUrl = nil
             }
         }
     }

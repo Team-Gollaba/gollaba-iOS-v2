@@ -16,15 +16,23 @@ struct ProfileImageView: View {
         Button {
             action()
         } label: {
-            image
-                .resizable()
-                .scaledToFill()
-                .frame(width: 160, height: 160)
-                .clipShape(Circle())
-                .overlay(
-                    Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
-                )
-                .shadow(radius: 5)
+            ZStack {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                    .clipShape(Circle())
+                
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 160, height: 160)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
+                    )
+                    .shadow(radius: 5)
+            }
         }
     }
 }
