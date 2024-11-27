@@ -65,6 +65,8 @@ struct PollDetailView: View {
                 
                 PollResultView()
                 
+                PollRankingView()
+                
             }
             .padding()
         }

@@ -22,8 +22,9 @@ struct PollResultView: View {
                 Spacer()
             }
 
-            PollChartView(title: "코카콜라 - 75.0%", allCount: 100, selectedCount: 75)
-            PollChartView(title: "펩시 - 25.0%", allCount: 100, selectedCount: 25)
+            PollChartView(title: "코카콜라 - 70.0%", allCount: 100, selectedCount: 70)
+            PollChartView(title: "펩시 - 20.0%", allCount: 100, selectedCount: 20)
+            PollChartView(title: "환타 - 10.0%", allCount: 100, selectedCount: 10)
         }
         .frame(maxWidth: .infinity)
         .padding(20)
