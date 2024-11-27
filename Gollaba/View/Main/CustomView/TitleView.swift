@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TitleView: View {
+    @Environment(KakaoAuthManager.self) var kakaoAuthManager
     @Binding var goToLogin: Bool
     
     var body: some View {
@@ -23,12 +24,18 @@ struct TitleView: View {
             
             Spacer()
             
-            Button {
-                goToLogin = true
-            } label: {
-                Text("로그인")
-                    .font(.suitVariable16)
-                    .foregroundStyle(.black)
+            if kakaoAuthManager.isLoggedIn {
+                if let profileImageUrl = kakaoAuthManager.profileImageUrl {
+                    TitleProfileView(imageUrl: profileImageUrl, nickName: kakaoAuthManager.userName)
+                }
+            } else {
+                Button {
+                    goToLogin = true
+                } label: {
+                    Text("로그인")
+                        .font(.suitVariable16)
+                        .foregroundStyle(.black)
+                }
             }
         }
         .frame(maxWidth: .infinity)

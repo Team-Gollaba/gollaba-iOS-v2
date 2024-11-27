@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
-    @State var kakaoAuthManager: KakaoAuthManager = KakaoAuthManager()
+    @Environment(KakaoAuthManager.self) var kakaoAuthManager
     
     var body: some View {
         VStack {
@@ -49,6 +49,11 @@ struct LoginView: View {
                 Text("© 2024 Team Gollaba All rights reserved.")
                     .font(.suitVariable12)
                     .foregroundStyle(.copyright)
+            }
+        }
+        .onChange(of: kakaoAuthManager.isLoggedIn) { _, newValue in
+            if newValue {
+                dismiss()
             }
         }
     }

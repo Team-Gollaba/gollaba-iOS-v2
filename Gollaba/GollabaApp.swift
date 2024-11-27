@@ -11,6 +11,8 @@ import KakaoSDKAuth
 
 @main
 struct GollabaApp: App {
+    private var kakaoAuthManager = KakaoAuthManager()
+    
     init () {
         let kakaoNativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
         
@@ -22,6 +24,7 @@ struct GollabaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(kakaoAuthManager)
                 .onOpenURL(perform: { url in
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {
                         _ = AuthController.handleOpenUrl(url: url)

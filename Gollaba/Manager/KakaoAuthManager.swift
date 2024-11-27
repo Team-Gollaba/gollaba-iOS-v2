@@ -12,6 +12,9 @@ import KakaoSDKUser
 @Observable
 class KakaoAuthManager {
     var isLoggedIn: Bool = false
+    var userName: String = ""
+    var userMail: String = ""
+    var profileImageUrl: URL?
     
     @MainActor
     func kakaoLogout() {
@@ -25,11 +28,31 @@ class KakaoAuthManager {
     func handleLoginWithKakaoTalkApp() async -> Bool {
         await withCheckedContinuation { continuation in
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                if let error = error {
+                if let error {
                     print(error)
                     continuation.resume(returning: false)
                 } else {
-                    print("loginWithKakaoTalk() success.")
+                    UserApi.shared.me {(me, error) in
+                        if let error {
+                            print(error)
+                        }
+                        
+                        guard let name = me?.kakaoAccount?.profile?.nickname else {
+                            return
+                        }
+                        
+                        guard let mail = me?.kakaoAccount?.email else {
+                            return
+                        }
+                        
+                        guard let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
+                            return
+                        }
+                        
+                        self.userName = name
+                        self.userMail = mail
+                        self.profileImageUrl = profileUrl
+                    }
                     
                     // 성공 시 동작 구현
                     _ = oauthToken
@@ -42,12 +65,11 @@ class KakaoAuthManager {
     func handleLoginWithKakaoAccount() async -> Bool {
         await withCheckedContinuation { continuation in
             UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                if let error = error {
+                if let error {
                     print(error)
                     continuation.resume(returning: false)
                 }
                 else {
-                    print("loginWithKakaoAccount() success.")
                     
                     // 성공 시 동작 구현
                     _ = oauthToken
@@ -75,7 +97,7 @@ class KakaoAuthManager {
         
         await withCheckedContinuation { continuation in
             UserApi.shared.logout {(error) in
-                if let error = error {
+                if let error {
                     print(error)
                     continuation.resume(returning: false)
                 } else {

@@ -56,6 +56,7 @@
 		49FEE26A2CF322D5000991DB /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2692CF322D5000991DB /* KakaoSDKCommon */; };
 		49FEE26C2CF322D5000991DB /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE26B2CF322D5000991DB /* KakaoSDKUser */; };
 		49FEE2702CF323EA000991DB /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 49FEE26F2CF323EA000991DB /* Config.xcconfig */; };
+		49FEE2952CF6E9FD000991DB /* TitleProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE2942CF6E9FD000991DB /* TitleProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		49FEE2942CF6E9FD000991DB /* TitleProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -266,6 +268,7 @@
 				4945A2902CEB6ECC00FF05DC /* CustomTabView.swift */,
 				4945A2912CEB6ECC00FF05DC /* CustomTabViewButton.swift */,
 				4945A2922CEB6ECC00FF05DC /* TitleView.swift */,
+				49FEE2942CF6E9FD000991DB /* TitleProfileView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */,
 				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
 				4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */,
+				49FEE2952CF6E9FD000991DB /* TitleProfileView.swift in Sources */,
 				4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */,
 				4945A2AC2CEB6ECC00FF05DC /* CalendarView.swift in Sources */,
 				4945A2AD2CEB6ECC00FF05DC /* CallendarOptionView.swift in Sources */,
