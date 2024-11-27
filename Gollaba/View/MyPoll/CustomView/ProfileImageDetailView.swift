@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileImageDetailView: View {
     @Environment(\.dismiss) var dismiss
-    var image: Image
+    var image: KFImage
     
     var body: some View {
         ZStack {
@@ -40,6 +41,6 @@ struct ProfileImageDetailView: View {
     }
 }
 
-#Preview {
-    ProfileImageDetailView(image: Image("profile"))
-}
+//#Preview {
+//    ProfileImageDetailView(image: Image("profile"))
+//}

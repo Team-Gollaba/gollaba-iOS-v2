@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileImageView: View {
-    var image: Image
+    var image: KFImage
     var action: () -> Void
     
     var body: some View {
@@ -28,6 +29,6 @@ struct ProfileImageView: View {
     }
 }
 
-#Preview {
-    ProfileImageView(image: Image("cha_eun_woo"), action: {})
-}
+//#Preview {
+//    ProfileImageView(image: KFImage("cha_eun_woo"), action: {})
+//}

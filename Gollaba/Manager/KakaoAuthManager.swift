@@ -48,7 +48,7 @@ class KakaoAuthManager {
                         guard let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
                             return
                         }
-                        
+                        print("kakao user: \(name), \(mail), \(profileUrl)")
                         self.userName = name
                         self.userMail = mail
                         self.profileImageUrl = profileUrl
