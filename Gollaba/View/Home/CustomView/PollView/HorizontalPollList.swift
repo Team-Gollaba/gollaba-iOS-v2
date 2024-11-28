@@ -10,6 +10,8 @@ import SwiftUI
 struct HorizontalPollList: View {
     var icon: Image?
     var title: String
+    var pollList: [PollItem]
+    
     @Binding var goToPollDetail: Bool
     
     var body: some View {
@@ -57,6 +59,13 @@ struct HorizontalPollList: View {
 //                            })
 //                            .frame(width: 320)
 //                        }
+                        
+                        ForEach(pollList, id: \.self) { poll in
+                            
+                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
+                                goToPollDetail = true
+                            })
+                        }
                     }
                 }
                 
@@ -64,8 +73,24 @@ struct HorizontalPollList: View {
         }
         .padding(.bottom, 16)
     }
+    
+    func setDate(_ dateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            return date
+        } else {
+            return Date()
+        }
+    }
+    
+    func getState(_ dateString: String) -> Bool {
+        let date = setDate(dateString)
+        return date > Date()
+    }
 }
 
 #Preview {
-    HorizontalPollList(title: "Title", goToPollDetail: .constant(false))
+    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false))
 }

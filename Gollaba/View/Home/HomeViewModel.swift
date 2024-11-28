@@ -15,11 +15,14 @@ class HomeViewModel {
     var requestAddPoll: Bool = false
     var isAllPollsEnd: Bool = false
     
-    var allPolls: PollData?
+    var allPolls: AllPollData?
+    var trendingPolls: [PollItem]?
     
     var allPollsPage: Int = 0
     let allPollsSize: Int = 10
     
+    //MARK: - API
+    //MARK: - All polls
     func getPolls() {
         Task {
             do {
@@ -40,6 +43,17 @@ class HomeViewModel {
                 requestAddPoll = false
                 
                 isAllPollsEnd = newPolls.items.isEmpty
+            } catch {
+                
+            }
+        }
+    }
+    
+    //MARK: - Trending polls
+    func getTrendingPolls() {
+        Task {
+            do {
+                trendingPolls = try await ApiManager.shared.getTrendingPolls()
             } catch {
                 
             }

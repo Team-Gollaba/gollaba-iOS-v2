@@ -49,8 +49,7 @@ class ApiManager {
         optionGroup: OptionGroup = .none,
         query: String? = nil,
         isActive: Bool? = nil
-    ) async throws -> PollData {
-        Logger.shared.log(String(describing: self), #function, "get polls")
+    ) async throws -> AllPollData {
         var queryItems: [String] = []
         
         if page != 0 {
@@ -82,13 +81,34 @@ class ApiManager {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
-                .responseDecodable(of: PollResponse.self) { response in
+                .responseDecodable(of: AllPollResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to get polls: \(value)")
                         continuation.resume(returning: value.data)
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get polls with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    func getTrendingPolls(limit: Int = 10) async throws -> [PollItem] {
+        let urlString = baseURL + "/v2/polls/trending?" + "limit=\(limit)"
+        let url = try getUrl(for: urlString)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: TrendingPollResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get trending polls: \(value)")
+                        continuation.resume(returning: value.data)
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get trending polls with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }
