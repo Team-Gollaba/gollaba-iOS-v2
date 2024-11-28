@@ -24,11 +24,12 @@ struct MyPollListView: View {
             }
             .frame(height: 0)
             
-            VerticalPollList(
-                goToPollDetail: $goToPollDetail,
-                icon: icon,
-                title: title
-            )
+//            VerticalPollList(
+//                goToPollDetail: $goToPollDetail,
+//                pollList: <#[PollItem]#>,
+//                icon: icon,
+//                title: title
+//            )
         }
         .coordinateSpace(name: "scroll")
         .navigationBarBackButtonHidden(true)

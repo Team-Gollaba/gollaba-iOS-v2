@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct PollStateView: View {
-    var state: String
+    var state: Bool
     
     var body: some View {
-        Text(state)
+        Text(state ? "진행 중" : "종료됨")
             .font(.suitVariable16)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .foregroundStyle(Color.white)
-            .background(Color.pollContentTitleFontColor)
+            .background(state ? Color.enrollButton : Color.pollContentTitleFontColor)
             .cornerRadius(3)
     }
 }
 
 #Preview {
-    PollStateView(state: "state")
+    PollStateView(state: true)
 }

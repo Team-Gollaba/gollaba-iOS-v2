@@ -23,19 +23,27 @@ struct HomeView: View {
                             }
                     }
                     
-                    VStack {
+                    LazyVStack {
                         SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus)
                         
                         HorizontalPollList(title: "🗓️ 오늘의 투표", goToPollDetail: $viewModel.goToPollDetail)
                         
                         HorizontalPollList(title: "🏆 인기 투표", goToPollDetail: $viewModel.goToPollDetail)
                         
-                        VerticalPollList(goToPollDetail: $viewModel.goToPollDetail, title: "📝 전체 투표")
+                        VerticalPollList(goToPollDetail: $viewModel.goToPollDetail, requestAddPoll: $viewModel.requestAddPoll, isEnd: $viewModel.isAllPollsEnd, pollList: viewModel.allPolls?.items ?? [], title: "📝 전체 투표")
+                            .onChange(of: viewModel.requestAddPoll) { _, newValue in
+                                if newValue {
+                                    viewModel.fetchPolls()
+                                }
+                            }
                     }
                 }
             }
             .navigationDestination(isPresented: $viewModel.goToPollDetail) {
                 PollDetailView()
+            }
+            .onAppear {
+                viewModel.getPolls()
             }
         }
     }

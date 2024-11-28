@@ -9,11 +9,15 @@ import SwiftUI
 
 struct VerticalPollList: View {
     @Binding var goToPollDetail: Bool
+    @Binding var requestAddPoll: Bool
+    @Binding var isEnd: Bool
+    
+    var pollList: [PollItem]
     var icon: Image?
     var title: String
     
     var body: some View {
-        VStack (alignment: .leading) {
+        LazyVStack (alignment: .leading) {
             HStack {
                 icon?
                     .resizable()
@@ -26,32 +30,45 @@ struct VerticalPollList: View {
             .padding(.leading, 16)
             .padding(.vertical, 5)
             
-//            AllPollContent(state: "진행 중", title: "투표1")
-//            AllPollContent(state: "진행 중", title: "투표2")
-//            AllPollContent(state: "진행 중", title: "투표3")
-//            AllPollContent(state: "진행 중", title: "투표4")
-//            AllPollContent(state: "진행 중", title: "투표5")
-//            AllPollContent(state: "진행 중", title: "투표6")
-//            AllPollContent(state: "진행 중", title: "투표7")
-//            AllPollContent(state: "진행 중", title: "투표8")
-//            AllPollContent(state: "진행 중", title: "투표9")
-//            AllPollContent(state: "진행 중", title: "투표10")
-//            AllPollContent(state: "진행 중", title: "투표11")
-//            AllPollContent(state: "진행 중", title: "투표12")
             
-            ForEach(0..<10) { _ in
-                PollContentWebStyle(title: "제목", endDate: Date(), state: "종료됨", options: ["코카콜라", "펩시"], action: {
+            ForEach(pollList, id: \.self) { poll in
+                
+                PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
                     goToPollDetail = true
                 })
             }
             
-            ProgressView()
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding()
+            if !isEnd {
+                ProgressView()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding()
+                    .onAppear {
+                        
+                        requestAddPoll = true
+                        print("progressview onappear")
+                        
+                    }
+            }
         }
+    }
+    
+    func setDate(_ dateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            return date
+        } else {
+            return Date()
+        }
+    }
+    
+    func getState(_ dateString: String) -> Bool {
+        let date = setDate(dateString)
+        return date > Date()
     }
 }
 
 #Preview {
-    VerticalPollList(goToPollDetail: .constant(false), icon: Image(systemName: "square.and.arrow.up"), title: "📝 전체 투표")
+    VerticalPollList(goToPollDetail: .constant(false), requestAddPoll: .constant(false), isEnd: .constant(false), pollList: [], icon: Image(systemName: "square.and.arrow.up"), title: "📝 전체 투표")
 }

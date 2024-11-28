@@ -19,9 +19,9 @@ struct PollContent: View {
         } label: {
             HStack {
                 VStack (alignment: .leading) {
-                    PollStateView(state: state)
-                        .padding(.leading, 20)
-                        .padding(.top, 20)
+//                    PollStateView(state: state)
+//                        .padding(.leading, 20)
+//                        .padding(.top, 20)
                         
                     
                     Text(title)

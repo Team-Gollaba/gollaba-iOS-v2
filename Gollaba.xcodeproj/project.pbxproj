@@ -17,7 +17,6 @@
 		4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */; };
 		4945A2A62CEB6ECC00FF05DC /* SUIT-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29F2CEB6ECC00FF05DC /* SUIT-Variable.ttf */; };
 		4945A2A72CEB6ECC00FF05DC /* YANGJIN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */; };
-		4945A2A82CEB6ECC00FF05DC /* DialogViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */; };
 		4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A26E2CEB6ECC00FF05DC /* Color+.swift */; };
 		4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A26F2CEB6ECC00FF05DC /* Font+.swift */; };
 		4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */; };
@@ -50,6 +49,7 @@
 		4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29B2CEB6ECC00FF05DC /* ContentView.swift */; };
 		4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */; };
 		4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */; };
+		497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -64,7 +64,6 @@
 		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
 		491A174D2CEC876400C4666F /* MyPollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPollViewModel.swift; sourceTree = "<group>"; };
-		4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewModifier.swift; sourceTree = "<group>"; };
 		4945A26E2CEB6ECC00FF05DC /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4945A26F2CEB6ECC00FF05DC /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		4945A29F2CEB6ECC00FF05DC /* SUIT-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SUIT-Variable.ttf"; sourceTree = "<group>"; };
 		4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YANGJIN.otf; sourceTree = "<group>"; };
 		4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionItemView.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
@@ -119,6 +119,16 @@
 		4945A2CC2CEB741300FF05DC /* PollDetail */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PollDetail;
+			sourceTree = "<group>";
+		};
+		495248372CF772E5005EAABD /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		497DDF9D2CF83526008A8534 /* Modifier */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Modifier;
 			sourceTree = "<group>";
 		};
 		49FEE24D2CEC95A6000991DB /* Manager */ = {
@@ -151,7 +161,6 @@
 		4945A26D2CEB6ECC00FF05DC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4945A26C2CEB6ECC00FF05DC /* DialogViewModifier.swift */,
 				4945A2802CEB6ECC00FF05DC /* PollChartView.swift */,
 				491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */,
 			);
@@ -220,6 +229,7 @@
 				4945A2852CEB6ECC00FF05DC /* PollContent.swift */,
 				491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */,
 				491A17492CEC685C00C4666F /* PollContentOptionView.swift */,
+				497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */,
 				4945A2862CEB6ECC00FF05DC /* HorizontalPollList.swift */,
 			);
 			path = PollView;
@@ -309,7 +319,9 @@
 		4945A2A12CEB6ECC00FF05DC /* Gollaba */ = {
 			isa = PBXGroup;
 			children = (
+				495248372CF772E5005EAABD /* Model */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
+				497DDF9D2CF83526008A8534 /* Modifier */,
 				4945A26D2CEB6ECC00FF05DC /* Common */,
 				4945A2712CEB6ECC00FF05DC /* Extension */,
 				4945A2732CEB6ECC00FF05DC /* Preview Content */,
@@ -360,6 +372,8 @@
 			fileSystemSynchronizedGroups = (
 				491A17512CEC8C2500C4666F /* CustomView */,
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
+				495248372CF772E5005EAABD /* Model */,
+				497DDF9D2CF83526008A8534 /* Modifier */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
 				49FEE2652CF2474B000991DB /* LinkedView */,
 			);
@@ -433,7 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4945A2A82CEB6ECC00FF05DC /* DialogViewModifier.swift in Sources */,
+				497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */,
 				4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */,
 				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
 				4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */,

@@ -19,7 +19,7 @@ struct AllPollContent: View {
                 
                 Spacer()
                 
-                PollStateView(state: state)
+//                PollStateView(state: state)
             }
             .padding(.top, 10)
             .padding(.bottom, 16)

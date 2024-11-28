@@ -10,8 +10,8 @@ import SwiftUI
 struct PollContentWebStyle: View {
     var title: String
     var endDate: Date
-    var state: String
-    var options: [String]
+    var state: Bool
+    var options: [PollOption]
     var action: () -> Void
     
     var body: some View {
@@ -59,5 +59,5 @@ struct PollContentWebStyle: View {
 }
 
 #Preview {
-    PollContentWebStyle(title: "title", endDate: Date(), state: "진행 중", options: ["코카콜라", "펩시"], action: {})
+    PollContentWebStyle(title: "title", endDate: Date(), state: true, options: [], action: {})
 }
