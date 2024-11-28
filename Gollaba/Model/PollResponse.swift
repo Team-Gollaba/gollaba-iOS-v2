@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrendingPollResponse: Codable {
+struct PollResponse: Codable {
     let status: String
     let message: String
     let serverDateTime: String

@@ -94,6 +94,7 @@ class ApiManager {
         }
     }
     
+    // 오늘의 투표
     func getTrendingPolls(limit: Int = 10) async throws -> [PollItem] {
         let urlString = baseURL + "/v2/polls/trending?" + "limit=\(limit)"
         let url = try getUrl(for: urlString)
@@ -101,7 +102,7 @@ class ApiManager {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
-                .responseDecodable(of: TrendingPollResponse.self) { response in
+                .responseDecodable(of: PollResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to get trending polls: \(value)")
@@ -115,6 +116,28 @@ class ApiManager {
         }
     }
     
+    // 인기 투표
+    func getTopPolls(limit: Int = 10) async throws -> [PollItem] {
+        let urlString = baseURL + "/v2/polls/top?" + "limit=\(limit)"
+        let url = try getUrl(for: urlString)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: PollResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get top polls: \(value)")
+                        continuation.resume(returning: value.data)
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get top polls with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+ 
     func getUrl(for path: String) throws -> URL {
         guard let url = URL(string: path) else {
             Logger.shared.log(String(describing: type(of: self)), #function, "Failed to create URL from path: \(path)")

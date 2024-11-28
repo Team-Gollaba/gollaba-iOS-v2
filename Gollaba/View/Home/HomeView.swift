@@ -28,7 +28,7 @@ struct HomeView: View {
                         
                         HorizontalPollList(title: "🗓️ 오늘의 투표", pollList: viewModel.trendingPolls ?? [], goToPollDetail: $viewModel.goToPollDetail)
                         
-//                        HorizontalPollList(title: "🏆 인기 투표", goToPollDetail: $viewModel.goToPollDetail, pollList: <#[AllPollItem]#>)
+                        HorizontalPollList(title: "🏆 인기 투표", pollList: viewModel.topPolls ?? [], goToPollDetail: $viewModel.goToPollDetail)
                         
                         VerticalPollList(goToPollDetail: $viewModel.goToPollDetail, requestAddPoll: $viewModel.requestAddPoll, isEnd: $viewModel.isAllPollsEnd, pollList: viewModel.allPolls?.items ?? [], title: "📝 전체 투표")
                             .onChange(of: viewModel.requestAddPoll) { _, newValue in
@@ -45,6 +45,7 @@ struct HomeView: View {
             .onAppear {
                 viewModel.getPolls()
                 viewModel.getTrendingPolls()
+                viewModel.getTopPolls()
             }
         }
     }

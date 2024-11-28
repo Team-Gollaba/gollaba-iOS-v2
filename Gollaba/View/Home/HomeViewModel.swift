@@ -17,6 +17,7 @@ class HomeViewModel {
     
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
+    var topPolls: [PollItem]?
     
     var allPollsPage: Int = 0
     let allPollsSize: Int = 10
@@ -54,6 +55,17 @@ class HomeViewModel {
         Task {
             do {
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
+            } catch {
+                
+            }
+        }
+    }
+    
+    //MARK: - Top polls
+    func getTopPolls() {
+        Task {
+            do {
+                topPolls = try await ApiManager.shared.getTopPolls()
             } catch {
                 
             }
