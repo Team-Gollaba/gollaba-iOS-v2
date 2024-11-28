@@ -13,6 +13,7 @@ struct HorizontalPollList: View {
     var pollList: [PollItem]
     
     @Binding var goToPollDetail: Bool
+    @Binding var isEnd: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,36 +30,14 @@ struct HorizontalPollList: View {
             .padding(.leading, 16)
             .padding(.vertical, 5)
             
+            if !isEnd {
+                ProgressView()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding()
+            }
             
             ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        PollContent(state: "종료", title: "제목", info: "정보") {
-//                            goToPollDetail = true
-//                        }
-//                        ForEach(0..<10) { _ in
-//                            PollContentWebStyle(title: "제목", endDate: Date(), state: "종료됨", options: ["코카콜라", "펩시"], action: {
-//                                goToPollDetail = true
-//                            })
-//                            .frame(width: 320)
-//                        }
                         
                         ForEach(pollList, id: \.self) { poll in
                             
@@ -92,5 +71,5 @@ struct HorizontalPollList: View {
 }
 
 #Preview {
-    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false))
+    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false), isEnd: .constant(true))
 }

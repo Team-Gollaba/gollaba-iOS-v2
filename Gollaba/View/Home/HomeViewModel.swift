@@ -10,10 +10,14 @@ import SwiftUI
 @Observable
 class HomeViewModel {
     var searchText: String = ""
+    
     var searchFocus: Bool = false
     var goToPollDetail: Bool = false
     var requestAddPoll: Bool = false
+    
     var isAllPollsEnd: Bool = false
+    var isTrendingPollsEnd: Bool = false
+    var isTopPollsEnd: Bool = false
     
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
@@ -55,6 +59,8 @@ class HomeViewModel {
         Task {
             do {
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
+                
+                isTrendingPollsEnd = true
             } catch {
                 
             }
@@ -66,6 +72,8 @@ class HomeViewModel {
         Task {
             do {
                 topPolls = try await ApiManager.shared.getTopPolls()
+                
+                isTopPollsEnd = true
             } catch {
                 
             }
