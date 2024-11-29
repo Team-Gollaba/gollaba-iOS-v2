@@ -33,9 +33,9 @@ struct OptionSelectButton: View {
                     .frame(width: 16, height: 16)
                     .foregroundStyle(.enrollButton)
             } else {
-                Rectangle()
+                RoundedRectangle(cornerRadius: 2)
                     .stroke(Color.enrollButton, lineWidth: 2)
-                    .frame(width: 16, height: 16)
+                    .frame(width: 14, height: 14)
             }
         }
     }
