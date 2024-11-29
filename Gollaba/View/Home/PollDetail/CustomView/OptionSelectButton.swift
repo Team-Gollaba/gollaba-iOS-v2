@@ -27,13 +27,13 @@ struct OptionSelectButton: View {
                 }
         } else if responseType == .multiple {
             if isSelected {
-                Image(systemName: "checkmark.circle.fill")
+                Image(systemName: "checkmark.square.fill")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 16, height: 16)
                     .foregroundStyle(.enrollButton)
             } else {
-                Circle()
+                Rectangle()
                     .stroke(Color.enrollButton, lineWidth: 2)
                     .frame(width: 16, height: 16)
             }

@@ -54,25 +54,6 @@ struct PollDetailView: View {
                 }
                 
                 PollTypeView(pollType: PollType(rawValue: poll.pollType) ?? PollType.none, responseType: ResponseType(rawValue: poll.responseType) ?? ResponseType.none)
-//                HStack {
-//                    Image(poll.pollType == PollType.anonymous.rawValue ? "AnonymousIcon" : "SignIcon")
-//                        .resizable()
-//                        .frame(width: 28, height: 28)
-//                        .scaledToFill()
-//                    
-//                    Text(poll.pollType == PollType.anonymous.rawValue ? "익명 투표" : "기명 투표")
-//                        .font(.suitBold20)
-//                }
-//                
-//                HStack {
-//                    Image(poll.responseType == ResponseType.single.rawValue ? "OnlyPollIcon" : "PluralIcon")
-//                        .resizable()
-//                        .frame(width: 28, height: 28)
-//                        .scaledToFill()
-//                    
-//                    Text(poll.responseType == ResponseType.single.rawValue ? "단일 투표" : "복수 투표")
-//                        .font(.suitBold20)
-//                }
                 
                 if poll.responseType == ResponseType.single.rawValue {
                     PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)

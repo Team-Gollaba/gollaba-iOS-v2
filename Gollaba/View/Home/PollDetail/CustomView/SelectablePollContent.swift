@@ -45,7 +45,7 @@ struct SelectablePollContent: View {
                             
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 24)
+                        .padding(.leading, 12)
                         
                         Text(pollOption.description)
                             .font(.suitBold16)
