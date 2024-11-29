@@ -9,59 +9,68 @@ import SwiftUI
 
 struct PollDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @State var pollItemName: [String] = ["코카콜라", "펩시", "펩시 제로", "환타", "맥주", "소주"]
-    @State var selectedPoll: Int? = nil
-    @State var pollButtonState: PollButtonState = .normal
+    @State var poll: PollItem
+    @State var viewModel: PollDetailViewModel
+    
+    init(poll: PollItem) {
+        self._poll = State(wrappedValue: poll)
+        self._viewModel = State(wrappedValue: PollDetailViewModel(poll: poll))
+    }
     
     var body: some View {
         ScrollView {
             VStack (alignment: .leading, spacing: 28) {
                 
-                VStack {
+                VStack (alignment: .leading) {
                     HStack (spacing: 12) {
                         Image(systemName: "arrowtriangle.forward.fill")
                             .resizable()
                             .foregroundStyle(.enrollButton)
                             .frame(width: 16, height: 28)
-                            .padding(.leading, -10)
                         
-                        Text("코카콜라 vs 펩시")
+                        Text(poll.title)
                             .font(.suitBold32)
-                            
+                        
                     }
+                    .padding(.leading, 4)
                     
                     
                     
                     HStack {
                         Image(systemName: "person.circle.fill")
                         
-                        Text("홍길동 · 2022. 7. 30. 마감")
+                        Text("\(poll.creatorName) · \(formattedDate(poll.endAt)) 마감")
                             .font(.suitVariable16)
+                        
+                        Spacer()
                         
                         Image(systemName: "eye")
                             .padding(.leading, 12)
                         
-                        Text("4")
+                        Text("\(poll.readCount)")
                             .font(.suitVariable16)
                     }
                     
                 }
                 
                 HStack {
-                    Image("AnonymousIcon")
+                    Image(poll.pollType == PollType.ANONYMOUS.rawValue ? "AnonymousIcon" : "SignIcon")
                         .resizable()
                         .frame(width: 28, height: 28)
                         .scaledToFill()
                     
-                    Text("익명 투표")
+                    Text(poll.pollType == PollType.ANONYMOUS.rawValue ? "익명 투표" : "기명 투표")
                         .font(.suitBold20)
                 }
                 
-                PollDetailContentGridView(pollItemName: $pollItemName, selectedPoll: $selectedPoll)
+                if poll.responseType == ResponseType.single.rawValue {
+                    PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)
+                } else if poll.responseType == ResponseType.multiple.rawValue {
+                    PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll)
+                }
                 
-                   
-                    PollButton(pollbuttonState: $pollButtonState)
-                 
+                PollButton(pollbuttonState: $viewModel.pollButtonState)
+                
                 
                 PollResultView()
                 
@@ -81,9 +90,15 @@ struct PollDetailView: View {
                 }
             }
         }
+        
+    }
+    
+    private func formattedDate(_ date: String) -> String {
+        print("forforfor date: \(date)")
+        return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
     }
 }
-
-#Preview {
-    PollDetailView()
-}
+//
+//#Preview {
+//    PollDetailView(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "poll", endAt: "", readCount: 1, totalVotingCount: 2, items: []))
+//}

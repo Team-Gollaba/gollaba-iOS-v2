@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PollContentOptionView: View {
     var options: [PollOption]
+    var isHorizontal: Bool = false
     @State var isOpen: Bool = false
     
     var body: some View {
@@ -18,7 +19,7 @@ struct PollContentOptionView: View {
                 PollContentOptionItemView(imageUrl: option.imageUrl, title: option.description)
             }
             
-            if options.count > 2 {
+            if !isHorizontal && options.count > 2 {
                 Button {
                     withAnimation {
                         isOpen.toggle()

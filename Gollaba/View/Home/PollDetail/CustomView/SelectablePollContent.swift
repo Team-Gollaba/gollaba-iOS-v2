@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
+
 
 struct SelectablePollContent: View {
+    var pollOption: PollOption
+    
+    var responseType: ResponseType
     var isSelected: Bool
-    var title: String
+
     
     var action: () -> Void
     
@@ -17,7 +22,14 @@ struct SelectablePollContent: View {
         ZStack {
             VStack (spacing: 0) {
                 VStack {
-                    Image(systemName: "photo.badge.plus")
+                    if let imageUrl = pollOption.imageUrl {
+                        KFImage(URL(string: imageUrl))
+                            .resizable()
+                            .scaledToFill()
+                            .clipped()
+                    } else {
+                        Image(systemName: "photo.badge.plus")
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 120)
@@ -29,13 +41,13 @@ struct SelectablePollContent: View {
                 
                 HStack {
                     ZStack {
-                        RadioButton(isSelected: isSelected) {
+                        OptionSelectButton(isSelected: isSelected, responseType: responseType) {
                             
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 24)
                         
-                        Text(title)
+                        Text(pollOption.description)
                             .font(.suitBold16)
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
@@ -59,5 +71,5 @@ struct SelectablePollContent: View {
 }
 
 #Preview {
-    SelectablePollContent(isSelected: true, title: "title", action: {})
+    SelectablePollContent(pollOption: PollOption(id: 1, description: "des", imageUrl: nil, votingCount: 1), responseType: .multiple, isSelected: true, action: {})
 }

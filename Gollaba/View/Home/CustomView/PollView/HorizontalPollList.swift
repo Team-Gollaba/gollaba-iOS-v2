@@ -41,10 +41,13 @@ struct HorizontalPollList: View {
                         
                         ForEach(pollList, id: \.self) { poll in
                             
-                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
-                                goToPollDetail = true
-                            })
-                            .frame(width: UIScreen.main.bounds.width - 60)
+                            PollContentWebStyle(poll: poll, isHorizontal: true)
+                                .frame(width: UIScreen.main.bounds.width - 60)
+//                            
+//                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
+//                                goToPollDetail = true
+//                            })
+//                            .frame(width: UIScreen.main.bounds.width - 60)
                         }
                     }
                 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct VerticalPollList: View {
-    @Binding var goToPollDetail: Bool
     @Binding var requestAddPoll: Bool
     @Binding var isEnd: Bool
     
@@ -33,9 +32,7 @@ struct VerticalPollList: View {
             
             ForEach(pollList, id: \.self) { poll in
                 
-                PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
-                    goToPollDetail = true
-                })
+                PollContentWebStyle(poll: poll)
             }
             
             if !isEnd {
@@ -45,30 +42,13 @@ struct VerticalPollList: View {
                     .onAppear {
                         
                         requestAddPoll = true
-                        print("progressview onappear")
                         
                     }
             }
         }
     }
-    
-    func setDate(_ dateString: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
-        if let date = dateFormatter.date(from: dateString) {
-            return date
-        } else {
-            return Date()
-        }
-    }
-    
-    func getState(_ dateString: String) -> Bool {
-        let date = setDate(dateString)
-        return date > Date()
-    }
 }
 
 #Preview {
-    VerticalPollList(goToPollDetail: .constant(false), requestAddPoll: .constant(false), isEnd: .constant(false), pollList: [], icon: Image(systemName: "square.and.arrow.up"), title: "📝 전체 투표")
+    VerticalPollList(requestAddPoll: .constant(false), isEnd: .constant(false), pollList: [], title: "title")
 }

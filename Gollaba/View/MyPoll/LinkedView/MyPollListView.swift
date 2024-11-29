@@ -45,9 +45,9 @@ struct MyPollListView: View {
         }
         .navigationTitle(showNavigationTitle ? title : "")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(isPresented: $goToPollDetail) {
-            PollDetailView()
-        }
+//        .navigationDestination(isPresented: $goToPollDetail) {
+//            PollDetailView()
+//        }
     }
 }
 

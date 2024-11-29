@@ -64,9 +64,9 @@ struct MyPollView: View {
         .sheet(isPresented: $viewModel.isClickedProfileImage) {
             ProfileImageDetailView(image: KFImage(kakaoAuthManager.profileImageUrl))
         }
-        .navigationDestination(isPresented: $viewModel.goToPollDetail) {
-            PollDetailView()
-        }
+//        .navigationDestination(isPresented: $viewModel.goToPollDetail) {
+//            PollDetailView()
+//        }
         .navigationDestination(isPresented: $viewModel.goToPollList) {
             if let icon = viewModel.pollListIcon, let title = viewModel.pollListTitle {
                 MyPollListView(icon: icon, title: title)

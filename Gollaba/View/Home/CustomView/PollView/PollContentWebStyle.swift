@@ -8,26 +8,23 @@
 import SwiftUI
 
 struct PollContentWebStyle: View {
-    var title: String
-    var endDate: Date
-    var state: Bool
-    var options: [PollOption]
-    var action: () -> Void
+    var poll: PollItem
+    var isHorizontal: Bool = false
     
     var body: some View {
-        Button {
-            action()
+        NavigationLink {
+            PollDetailView(poll: poll)
         } label: {
             ZStack {
                 VStack (alignment: .leading) {
-                    Text(title)
+                    Text(poll.title)
                         .font(.suitBold20)
                     
-                    Text("\(formattedDate(endDate)). 마감")
+                    Text("\(formattedDate(poll.endAt)). 마감")
                         .font(.suitVariable16)
                         .padding(.bottom, 12)
                     
-                    PollContentOptionView(options: options)
+                    PollContentOptionView(options: poll.items, isHorizontal: isHorizontal)
                 }
                 .padding()
                 .background(
@@ -40,7 +37,7 @@ struct PollContentWebStyle: View {
                     HStack {
                         Spacer()
                         
-                        PollStateView(state: state)
+                        PollStateView(state: getState(poll.endAt))
                     }
                     Spacer()
                 }
@@ -51,13 +48,27 @@ struct PollContentWebStyle: View {
         .tint(.black)
     }
     
-    private func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
-        return formatter.string(from: date)
+    private func formattedDate(_ date: String) -> String {
+        return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
+    }
+    
+    func setDate(_ dateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            return date
+        } else {
+            return Date()
+        }
+    }
+    
+    func getState(_ dateString: String) -> Bool {
+        let date = setDate(dateString)
+        return date > Date()
     }
 }
 
 #Preview {
-    PollContentWebStyle(title: "title", endDate: Date(), state: true, options: [], action: {})
+    PollContentWebStyle(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []))
 }

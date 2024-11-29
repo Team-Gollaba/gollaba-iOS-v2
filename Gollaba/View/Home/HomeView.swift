@@ -30,7 +30,7 @@ struct HomeView: View {
                         
                         HorizontalPollList(title: "🏆 인기 투표", pollList: viewModel.topPolls ?? [], goToPollDetail: $viewModel.goToPollDetail, isEnd: $viewModel.isTopPollsEnd)
                         
-                        VerticalPollList(goToPollDetail: $viewModel.goToPollDetail, requestAddPoll: $viewModel.requestAddPoll, isEnd: $viewModel.isAllPollsEnd, pollList: viewModel.allPolls?.items ?? [], title: "📝 전체 투표")
+                        VerticalPollList(requestAddPoll: $viewModel.requestAddPoll, isEnd: $viewModel.isAllPollsEnd, pollList: viewModel.allPolls?.items ?? [], title: "📝 전체 투표")
                             .onChange(of: viewModel.requestAddPoll) { _, newValue in
                                 if newValue {
                                     viewModel.fetchPolls()
@@ -39,9 +39,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: $viewModel.goToPollDetail) {
-                PollDetailView()
-            }
+            
             .onAppear {
                 viewModel.getPolls()
                 viewModel.getTrendingPolls()

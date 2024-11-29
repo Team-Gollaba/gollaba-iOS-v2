@@ -24,6 +24,12 @@ enum SortedBy: String {
     case none
 }
 
+enum ResponseType: String {
+    case single = "SINGLE"
+    case multiple = "MULTIPLE"
+    case none
+}
+
 enum PollType: String {
     case named = "NAMED"
     case ANONYMOUS = "ANONYMOUS"
