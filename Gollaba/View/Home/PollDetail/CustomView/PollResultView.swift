@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PollResultView: View {
+    var totalVotingCount: Int
+    var pollOptions: [PollOption]
+    
     var body: some View {
         VStack (spacing: 10) {
             HStack (spacing: 12) {
@@ -21,10 +24,10 @@ struct PollResultView: View {
                 
                 Spacer()
             }
-
-            PollChartView(title: "코카콜라 - 70.0%", allCount: 100, selectedCount: 70)
-            PollChartView(title: "펩시 - 20.0%", allCount: 100, selectedCount: 20)
-            PollChartView(title: "환타 - 10.0%", allCount: 100, selectedCount: 10)
+            
+            ForEach(pollOptions, id: \.self) { pollOption in
+                PollChartView(title: "\(pollOption.description) - \(getPercentage(pollOption.votingCount, totalVotingCount))", allCount: totalVotingCount, selectedCount: pollOption.votingCount)
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(20)
@@ -33,8 +36,12 @@ struct PollResultView: View {
                 .fill(Color.pollResult)
         )
     }
+    
+    private func getPercentage(_ count: Int, _ total: Int) -> String {
+        String(format: "%.1f%%", Double(count) / Double(total) * 100)
+    }
 }
 
 #Preview {
-    PollResultView()
+    PollResultView(totalVotingCount: 10, pollOptions: [])
 }
