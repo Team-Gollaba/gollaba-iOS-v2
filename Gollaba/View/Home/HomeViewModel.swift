@@ -29,6 +29,8 @@ class HomeViewModel {
     //MARK: - API
     //MARK: - All polls
     func getPolls() {
+        if let allPolls, !allPolls.items.isEmpty { return }
+        
         Task {
             do {
                 allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
@@ -40,6 +42,8 @@ class HomeViewModel {
     }
     
     func fetchPolls() {
+        if isAllPollsEnd { return }
+        
         Task {
             do {
                 let newPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
@@ -56,6 +60,8 @@ class HomeViewModel {
     
     //MARK: - Trending polls
     func getTrendingPolls() {
+        if isTrendingPollsEnd { return }
+        
         Task {
             do {
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
@@ -69,6 +75,8 @@ class HomeViewModel {
     
     //MARK: - Top polls
     func getTopPolls() {
+        if isTopPollsEnd { return }
+        
         Task {
             do {
                 topPolls = try await ApiManager.shared.getTopPolls()
