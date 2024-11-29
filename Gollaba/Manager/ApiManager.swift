@@ -32,7 +32,7 @@ enum ResponseType: String {
 
 enum PollType: String {
     case named = "NAMED"
-    case ANONYMOUS = "ANONYMOUS"
+    case anonymous = "ANONYMOUS"
     case none
 }
 
