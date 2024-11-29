@@ -44,6 +44,7 @@ struct HorizontalPollList: View {
                             PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
                                 goToPollDetail = true
                             })
+                            .frame(width: UIScreen.main.bounds.width - 60)
                         }
                     }
                 }
