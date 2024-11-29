@@ -12,11 +12,12 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                TitleView(goToLogin: $viewModel.goToLogin)
+            ZStack (alignment: .top) {
                 
                 CustomTabView()
+                    .padding(.top, 60)
                 
+                TitleView(goToLogin: $viewModel.goToLogin)
             }
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()
