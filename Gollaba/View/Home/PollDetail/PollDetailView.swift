@@ -82,11 +82,12 @@ struct PollDetailView: View {
                 }
             }
         }
-        
+        .onDisappear {
+            viewModel.deleteOption()
+        }
     }
     
     private func formattedDate(_ date: String) -> String {
-        print("forforfor date: \(date)")
         return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
     }
 }

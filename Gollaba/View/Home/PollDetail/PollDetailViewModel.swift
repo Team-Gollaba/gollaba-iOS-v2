@@ -18,4 +18,9 @@ class PollDetailViewModel {
         self.poll = poll
         selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
     }
+    
+    func deleteOption() {
+        selectedSinglePoll = nil
+        selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+    }
 }
