@@ -39,7 +39,7 @@ struct PollDetailView: View {
                     HStack {
                         Image(systemName: "person.circle.fill")
                         
-                        Text("\(poll.creatorName) · \(formattedDate(poll.endAt)) 마감")
+                        Text("\(poll.creatorName) · \(formattedDate(poll.endAt)). 마감")
                             .font(.suitVariable16)
                         
                         Spacer()
