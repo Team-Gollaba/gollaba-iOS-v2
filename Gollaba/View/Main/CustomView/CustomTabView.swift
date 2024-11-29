@@ -19,6 +19,8 @@ struct CustomTabView: View {
     var createPollView = CreatePollView()
     var myPollView = MyPollView()
     
+    let tabBarHeight: CGFloat = 80
+    
     var body: some View {
         ZStack (alignment: .bottom) {
             TabView(selection: $selectedTab) {
@@ -34,7 +36,7 @@ struct CustomTabView: View {
                     .tag(SelectedTab.myPoll)
                     .ignoresSafeArea()
             }
-            .padding(.bottom, 80)
+            .padding(.bottom, tabBarHeight)
             .tabViewStyle(.page(indexDisplayMode: .never))
             
             HStack {
@@ -68,7 +70,7 @@ struct CustomTabView: View {
                 )
                 .tint(selectedTab == .myPoll ? .black : .gray)
             }
-            .frame(height: 80)
+            .frame(height: tabBarHeight)
             .background(.white)
             .background(
                 Rectangle()

@@ -10,6 +10,7 @@ import SwiftUI
 struct TitleView: View {
     @Environment(KakaoAuthManager.self) var kakaoAuthManager
     @Binding var goToLogin: Bool
+    var height: CGFloat
     
     var body: some View {
         HStack {
@@ -39,7 +40,7 @@ struct TitleView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 60)
+        .frame(height: height)
         .padding(.horizontal)
         .background(Color.toolbarBackgroundColor)
         .background(
@@ -52,5 +53,5 @@ struct TitleView: View {
 }
 
 #Preview {
-    TitleView(goToLogin: .constant(false))
+    TitleView(goToLogin: .constant(false), height: 60)
 }

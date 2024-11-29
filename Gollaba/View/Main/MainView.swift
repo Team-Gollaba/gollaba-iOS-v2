@@ -10,14 +10,17 @@ import SwiftUI
 struct MainView: View {
     @State var viewModel = MainViewModel()
     
+    let titleViewHeight: CGFloat = 60
+    
     var body: some View {
         NavigationStack {
             ZStack (alignment: .top) {
                 
                 CustomTabView()
-                    .padding(.top, 60)
+                    .padding(.top, titleViewHeight)
                 
-                TitleView(goToLogin: $viewModel.goToLogin)
+                TitleView(goToLogin: $viewModel.goToLogin, height: titleViewHeight)
+                    
             }
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()
