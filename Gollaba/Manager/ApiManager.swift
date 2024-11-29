@@ -47,6 +47,8 @@ class ApiManager {
     
     let headers: HTTPHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     
+    //MARK: - polls
+    // 전체 투표
     func getPolls(
         page: Int = 0,
         size: Int = 10,
@@ -138,6 +140,27 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get top polls with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    //MARK: - user
+    func readPoll(_ pollHashId: String) async throws {
+        let urlString = baseURL + "/v2/polls/\(pollHashId)/read"
+        let url = try getUrl(for: urlString)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to read poll: \(value)")
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to read poll with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }

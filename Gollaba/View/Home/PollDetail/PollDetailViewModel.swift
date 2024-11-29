@@ -46,4 +46,15 @@ class PollDetailViewModel {
         let date = setDate(dateString)
         return date > Date()
     }
+    
+    //MARK: - API
+    func readPoll() {
+        Task {
+            do {
+                try await ApiManager.shared.readPoll(poll.id)
+            } catch {
+                
+            }
+        }
+    }
 }

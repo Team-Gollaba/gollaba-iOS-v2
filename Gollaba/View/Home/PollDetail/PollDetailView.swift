@@ -83,6 +83,9 @@ struct PollDetailView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.readPoll()
+        }
         .onDisappear {
             viewModel.deleteOption()
         }
