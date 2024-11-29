@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct PollRankingView: View {
-    var pollList: [Int] = Array(1...3)
+    var pollList: [Int] = Array(0...2)
     var crownImageList: [Image] = [
         Image("1st"),
         Image("2nd"),
         Image("3rd"),
     ]
-    var nameList: [String] = ["코카콜라", "펩시", "환타"]
-    var ratioList: [String] = ["70.0%", "20.0%", "10.0%"]
+    var totalVotingCount: Int
+    var pollOptions: [PollOption]
+    var sortedPollOptions: [PollOption] {
+        pollOptions.sorted { $0.votingCount > $1.votingCount }
+    }
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -35,30 +38,42 @@ struct PollRankingView: View {
             
             VStack {
                 ForEach(pollList, id: \.self) { poll in
-                    HStack {
-                        crownImageList[poll - 1]
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                        
-                        Text(nameList[poll - 1])
-                            .font(.suitVariable16)
-                        
-                        Spacer()
-                        
-                        Text(ratioList[poll - 1])
-                            .font(.suitVariable16)
+                    if poll >= sortedPollOptions.count {
+                        EmptyView()
+                    } else {
+                        HStack {
+                            crownImageList[poll]
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                            
+                            Text(sortedPollOptions[poll].description)
+                                .font(.suitVariable16)
+                            
+                            Spacer()
+                            
+                            Text(getPercentage(sortedPollOptions[poll].votingCount, totalVotingCount))
+                                .font(.suitVariable16)
+                        }
                     }
                 }
             }
         }
         .padding(24)
         .background(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: 8)
                 .foregroundStyle(.toolbarBackground)
         )
+    }
+    
+    private func getPercentage(_ count: Int, _ total: Int) -> String {
+        if total == 0 {
+            return "0.0%"
+        } else {
+            return String(format: "%.1f%%", Double(count) / Double(total) * 100)
+        }
     }
 }
 
 #Preview {
-    PollRankingView()
+    PollRankingView(totalVotingCount: 5, pollOptions: [])
 }

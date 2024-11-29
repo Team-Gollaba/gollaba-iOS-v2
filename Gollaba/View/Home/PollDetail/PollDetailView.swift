@@ -67,7 +67,7 @@ struct PollDetailView: View {
                 
                 PollResultView(totalVotingCount: poll.totalVotingCount, pollOptions: poll.items)
                 
-                PollRankingView()
+                PollRankingView(totalVotingCount: poll.totalVotingCount, pollOptions: poll.items)
                 
             }
             .padding()
