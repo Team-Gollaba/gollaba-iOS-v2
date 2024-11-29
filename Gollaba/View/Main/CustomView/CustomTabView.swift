@@ -15,16 +15,19 @@ enum SelectedTab: Hashable {
 
 struct CustomTabView: View {
     @State private var selectedTab: SelectedTab = .home
+    var homeView = HomeView()
+    var createPollView = CreatePollView()
+    var myPollView = MyPollView()
     
     var body: some View {
         VStack {
             ZStack {
                 if selectedTab == .home {
-                    HomeView()
+                    homeView
                 } else if selectedTab == .create {
-                    CreatePollView()
+                    createPollView
                 } else if selectedTab == .myPoll {
-                    MyPollView()
+                    myPollView
                 }
             }
             .frame(maxHeight: .infinity)
