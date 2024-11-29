@@ -22,9 +22,11 @@ struct PollChartView: View {
                     .foregroundStyle(.gray.opacity(0.3))
                 
                 GeometryReader { geometry in
-                    Rectangle()
-                        .frame(width: geometry.size.width * CGFloat(selectedCount) / CGFloat(allCount))
-                        .foregroundStyle(.green)
+                    if allCount > 0 {
+                        Rectangle()
+                            .frame(width: geometry.size.width * CGFloat(selectedCount) / CGFloat(allCount))
+                            .foregroundStyle(.green)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
