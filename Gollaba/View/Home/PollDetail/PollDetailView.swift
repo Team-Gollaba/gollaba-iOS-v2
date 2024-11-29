@@ -55,7 +55,7 @@ struct PollDetailView: View {
                 
                 PollTypeView(pollType: PollType(rawValue: poll.pollType) ?? PollType.none, responseType: ResponseType(rawValue: poll.responseType) ?? ResponseType.none)
                 
-                if getState(poll.endAt) {
+                if viewModel.isValidPoll {
                     if poll.responseType == ResponseType.single.rawValue {
                         PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)
                     } else if poll.responseType == ResponseType.multiple.rawValue {
@@ -91,22 +91,6 @@ struct PollDetailView: View {
     
     private func formattedDate(_ date: String) -> String {
         return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
-    }
-    
-    private func setDate(_ dateString: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
-        if let date = dateFormatter.date(from: dateString) {
-            return date
-        } else {
-            return Date()
-        }
-    }
-    
-    private func getState(_ dateString: String) -> Bool {
-        let date = setDate(dateString)
-        return date > Date()
     }
 }
 //
