@@ -26,8 +26,7 @@ struct CustomTabViewButton: View {
                 Text(title)
                     .font(.suitVariable12)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .shadow(radius: 0)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .scaleEffect(isSelected ? 1.2 : 1.0)
         }
     }

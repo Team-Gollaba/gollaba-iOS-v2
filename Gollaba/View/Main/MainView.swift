@@ -12,6 +12,10 @@ struct MainView: View {
     
     let titleViewHeight: CGFloat = 60
     
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack (alignment: .top) {
@@ -20,7 +24,7 @@ struct MainView: View {
                     .padding(.top, titleViewHeight)
                 
                 TitleView(goToLogin: $viewModel.goToLogin, height: titleViewHeight)
-                    
+                
             }
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()

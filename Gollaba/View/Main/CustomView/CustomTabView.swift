@@ -26,18 +26,17 @@ struct CustomTabView: View {
             TabView(selection: $selectedTab) {
                 HomeView()
                     .tag(SelectedTab.home)
-                    .ignoresSafeArea()
                 
                 CreatePollView()
                     .tag(SelectedTab.create)
-                    .ignoresSafeArea()
+                    
                 
                 MyPollView()
                     .tag(SelectedTab.myPoll)
-                    .ignoresSafeArea()
+                    
             }
             .padding(.bottom, tabBarHeight)
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            
             
             HStack {
                 CustomTabViewButton(
@@ -78,65 +77,6 @@ struct CustomTabView: View {
                     .shadow(color: .gray.opacity(0.3), radius: 3)
             )
         }
-        
-        //        VStack {
-        //            ZStack {
-        //                if selectedTab == .home {
-        //                    homeView
-        //                } else if selectedTab == .create {
-        //                    createPollView
-        //                } else if selectedTab == .myPoll {
-        //                    myPollView
-        //                }
-        //            }
-        //            .frame(maxHeight: .infinity)
-        //
-        //            ZStack {
-        //
-        //
-        //                HStack {
-        //                    CustomTabViewButton(
-        //                        action: {
-        //                            selectedTab = .home
-        //                        },
-        //                        image: Image(systemName: "house.fill"),
-        //                        title: "홈",
-        //                        isSelected: selectedTab == .home
-        //                    )
-        //                    .tint(selectedTab == .home ? .black : .gray)
-        //
-        //                    CustomTabViewButton(
-        //                        action: {
-        //                            selectedTab = .create
-        //                        },
-        //                        image: Image(systemName: "plus.circle.fill"),
-        //                        title: "새 투표",
-        //                        isSelected: selectedTab == .create
-        //                    )
-        //                    .tint(selectedTab == .create ? .black : .gray)
-        //
-        //                    CustomTabViewButton(
-        //                        action: {
-        //                            selectedTab = .myPoll
-        //                        },
-        //                        image: Image(systemName: "folder.fill"),
-        //                        title: "My 투표",
-        //                        isSelected: selectedTab == .myPoll
-        //                    )
-        //                    .tint(selectedTab == .myPoll ? .black : .gray)
-        //                }
-        //                .frame(height: 80)
-        //                .background(.white)
-        //                .background(
-        //                    Rectangle()
-        //                        .background(.white)
-        //                        .shadow(color: .gray.opacity(0.3), radius: 3)
-        //                )
-        //            }
-        //
-        //        }
-        //.ignoresSafeArea()
-        
     }
 }
 
