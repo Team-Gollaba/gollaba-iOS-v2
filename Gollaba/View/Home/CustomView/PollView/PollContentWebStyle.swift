@@ -13,7 +13,7 @@ struct PollContentWebStyle: View {
     
     var body: some View {
         NavigationLink {
-            PollDetailView(poll: poll)
+            PollDetailView(id: poll.id)
         } label: {
             ZStack {
                 VStack (alignment: .leading) {

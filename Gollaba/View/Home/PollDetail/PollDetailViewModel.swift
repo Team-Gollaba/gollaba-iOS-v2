@@ -9,26 +9,38 @@ import SwiftUI
 
 @Observable
 class PollDetailViewModel {
-    var poll: PollItem
+    var id: String
+    var poll: PollItem?
     var selectedSinglePoll: Int? = nil
     var selectedMultiplePoll: [Bool] = []
     var pollButtonState: PollButtonState = .normal
 
     var isValidPoll: Bool {
         get {
-            getState(poll.endAt)
+            if let poll {
+                getState(poll.endAt)
+            } else {
+                false
+            }
         }
     }
     
-    init(poll: PollItem) {
-        self.poll = poll
-        selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
-        pollButtonState = isValidPoll ? .normal : .ended
+    init(id: String) {
+        self.id = id
     }
+    
+//    init(poll: PollItem) {
+//        self.poll = poll
+//        selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+//        pollButtonState = isValidPoll ? .normal : .ended
+//    }
     
     func deleteOption() {
         selectedSinglePoll = nil
-        selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+        
+        if let poll {
+            selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+        }
     }
     
     private func setDate(_ dateString: String) -> Date {
@@ -48,10 +60,29 @@ class PollDetailViewModel {
     }
     
     //MARK: - API
+    func getPoll() {
+        Task {
+            do {
+                poll = try await ApiManager.shared.getPoll(id)
+                
+                if let poll {
+                    selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+                    pollButtonState = isValidPoll ? .normal : .ended
+                }
+            } catch {
+                
+            }
+        }
+    }
+    
     func readPoll() {
         Task {
             do {
-                try await ApiManager.shared.readPoll(poll.id)
+                if let poll {
+                    try await ApiManager.shared.readPoll(poll.id)
+                } else {
+                    
+                }
             } catch {
                 
             }

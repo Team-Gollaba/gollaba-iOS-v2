@@ -9,13 +9,14 @@ import SwiftUI
 
 struct PollDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @State var poll: PollItem
+    var id: String
     @State var viewModel: PollDetailViewModel
     
-    init(poll: PollItem) {
-        self._poll = State(wrappedValue: poll)
-        self._viewModel = State(wrappedValue: PollDetailViewModel(poll: poll))
+    init(id: String) {
+        self.id = id
+        self._viewModel = State(wrappedValue: PollDetailViewModel(id: id))
     }
+    
     
     var body: some View {
         ScrollView {
@@ -28,7 +29,7 @@ struct PollDetailView: View {
                             .foregroundStyle(.enrollButton)
                             .frame(width: 16, height: 28)
                         
-                        Text(poll.title)
+                        Text(viewModel.poll?.title ?? "")
                             .font(.suitBold32)
                         
                     }
@@ -39,7 +40,7 @@ struct PollDetailView: View {
                     HStack {
                         Image(systemName: "person.circle.fill")
                         
-                        Text("\(poll.creatorName) · \(formattedDate(poll.endAt)). 마감")
+                        Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
                             .font(.suitVariable16)
                         
                         Spacer()
@@ -47,15 +48,15 @@ struct PollDetailView: View {
                         Image(systemName: "eye")
                             .padding(.leading, 12)
                         
-                        Text("\(poll.readCount)")
+                        Text("\(viewModel.poll?.readCount ?? -1)")
                             .font(.suitVariable16)
                     }
                     
                 }
                 
-                PollTypeView(pollType: PollType(rawValue: poll.pollType) ?? PollType.none, responseType: ResponseType(rawValue: poll.responseType) ?? ResponseType.none)
+                PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
                 
-                if viewModel.isValidPoll {
+                if let poll = viewModel.poll, viewModel.isValidPoll {
                     if poll.responseType == ResponseType.single.rawValue {
                         PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)
                     } else if poll.responseType == ResponseType.multiple.rawValue {
@@ -65,9 +66,9 @@ struct PollDetailView: View {
                 
                 PollButton(pollbuttonState: $viewModel.pollButtonState)
                 
-                PollResultView(totalVotingCount: poll.totalVotingCount, pollOptions: poll.items)
+                PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
                 
-                PollRankingView(totalVotingCount: poll.totalVotingCount, pollOptions: poll.items)
+                PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
                 
             }
             .padding()
@@ -84,6 +85,7 @@ struct PollDetailView: View {
             }
         }
         .onAppear {
+            viewModel.getPoll()
             viewModel.readPoll()
         }
         .onDisappear {

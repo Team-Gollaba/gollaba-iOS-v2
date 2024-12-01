@@ -110,7 +110,7 @@ class ApiManager {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
-                .responseDecodable(of: PollResponse.self) { response in
+                .responseDecodable(of: PollListResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to get trending polls: \(value)")
@@ -132,7 +132,7 @@ class ApiManager {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
-                .responseDecodable(of: PollResponse.self) { response in
+                .responseDecodable(of: PollListResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to get top polls: \(value)")
@@ -146,7 +146,30 @@ class ApiManager {
         }
     }
     
+    // 투표 상세 조회
+    func getPoll(_ pollHashId: String) async throws -> PollItem {
+        let urlString = baseURL + "/v2/polls/\(pollHashId)"
+        let url = try getUrl(for: urlString)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: PollResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get poll: \(value)")
+                        continuation.resume(returning: value.data)
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get poll with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     //MARK: - user
+    // 투표 읽어서 조회수 증가
     func readPoll(_ pollHashId: String) async throws {
         let urlString = baseURL + "/v2/polls/\(pollHashId)/read"
         let url = try getUrl(for: urlString)
