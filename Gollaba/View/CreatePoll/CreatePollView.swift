@@ -109,13 +109,6 @@ struct CreatePollView: View {
                         
                     }
                     .padding()
-                    .dialog(
-                        isPresented: $isQuestionPresent,
-                        title: "투표 만들기 도움말",
-                        content: questionHelpContent,
-                        primaryButtonText: "확인",
-                        onPrimaryButton: {}
-                    )
                     .onChange(of: viewModel.isPollTitleFocused) { _, newValue in
                         titleFocus = newValue
                     }
@@ -146,6 +139,13 @@ struct CreatePollView: View {
                     
                 }
             }
+            .dialog(
+                isPresented: $isQuestionPresent,
+                title: "투표 만들기 도움말",
+                content: questionHelpContent,
+                primaryButtonText: "확인",
+                onPrimaryButton: {}
+            )
             
             VStack {
                 Spacer()
