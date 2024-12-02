@@ -16,12 +16,36 @@ class HomeViewModel {
     var requestAddPoll: Bool = false
     
     var isAllPollsEnd: Bool = false
-    var isTrendingPollsEnd: Bool = false
-    var isTopPollsEnd: Bool = false
+    var isTrendingLoading: Bool = false
+    var isTopLoading: Bool = false
     
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
     var topPolls: [PollItem]?
+    
+    var tempPolls: [PollItem] = Array(
+        repeating: PollItem(
+            id: "1",
+            title: "title title title",
+            creatorName: "creatorName",
+            responseType: "responseType",
+            pollType: "pollType",
+            endAt: "2024. 11. 22",
+            readCount: 0,
+            totalVotingCount: 0,
+            items: Array(
+                repeating: PollOption(
+                    id: 0,
+                    description: "description",
+                    imageUrl: "",
+                    votingCount: 1
+                ),
+                count: 2
+            )
+        ),
+        count: 10
+    )
+
     
     var allPollsPage: Int = 0
     let allPollsSize: Int = 10
@@ -60,31 +84,30 @@ class HomeViewModel {
     
     //MARK: - Trending polls
     func getTrendingPolls() {
-        if isTrendingPollsEnd { return }
-        
+        isTrendingLoading = true
         Task {
             do {
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
                 
-                isTrendingPollsEnd = true
             } catch {
                 
             }
         }
+        isTrendingLoading = false || trendingPolls?.isEmpty ?? true
     }
     
     //MARK: - Top polls
     func getTopPolls() {
-        if isTopPollsEnd { return }
+        isTopLoading = true
         
         Task {
             do {
                 topPolls = try await ApiManager.shared.getTopPolls()
                 
-                isTopPollsEnd = true
             } catch {
                 
             }
         }
+        isTopLoading = false || topPolls?.isEmpty ?? true
     }
 }

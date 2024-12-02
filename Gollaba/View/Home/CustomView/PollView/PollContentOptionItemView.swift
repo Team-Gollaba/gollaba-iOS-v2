@@ -16,6 +16,9 @@ struct PollContentOptionItemView: View {
         ZStack {
             if let imageUrl {
                 KFImage(URL(string: imageUrl))
+                    .placeholder {
+                        ShimmerView()
+                    }
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: UIScreen.main.bounds.width / 2 - 32)

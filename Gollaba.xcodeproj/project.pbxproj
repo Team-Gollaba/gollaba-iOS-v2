@@ -50,6 +50,8 @@
 		4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A29C2CEB6ECC00FF05DC /* GollabaApp.swift */; };
 		4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */; };
 		497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */; };
+		497DDFBB2CFC1FA8008A8534 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */; };
+		497DDFBD2CFC2036008A8534 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBC2CFC2036008A8534 /* ShimmerView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -103,6 +105,8 @@
 		4945A2A02CEB6ECC00FF05DC /* YANGJIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = YANGJIN.otf; sourceTree = "<group>"; };
 		4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionItemView.swift; sourceTree = "<group>"; };
+		497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
+		497DDFBC2CFC2036008A8534 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			children = (
 				4945A2802CEB6ECC00FF05DC /* PollChartView.swift */,
 				491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */,
+				497DDFBC2CFC2036008A8534 /* ShimmerView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				4945A26E2CEB6ECC00FF05DC /* Color+.swift */,
 				4945A26F2CEB6ECC00FF05DC /* Font+.swift */,
 				4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */,
+				497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -484,7 +490,9 @@
 				4945A2C22CEB6ECC00FF05DC /* TitleView.swift in Sources */,
 				4945A2C32CEB6ECC00FF05DC /* MainView.swift in Sources */,
 				4945A2C42CEB6ECC00FF05DC /* MainViewModel.swift in Sources */,
+				497DDFBD2CFC2036008A8534 /* ShimmerView.swift in Sources */,
 				4945A2C52CEB6ECC00FF05DC /* MyPollView.swift in Sources */,
+				497DDFBB2CFC1FA8008A8534 /* View+Shimmer.swift in Sources */,
 				4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */,
 				4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */,
 			);

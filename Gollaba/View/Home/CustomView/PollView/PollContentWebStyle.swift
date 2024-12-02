@@ -10,21 +10,40 @@ import SwiftUI
 struct PollContentWebStyle: View {
     var poll: PollItem
     var isHorizontal: Bool = false
+    var isLoading: Bool = false
     
     var body: some View {
         NavigationLink {
             PollDetailView(id: poll.id)
         } label: {
             ZStack {
-                VStack (alignment: .leading) {
+                VStack (alignment: .leading, spacing: 4) {
                     Text(poll.title)
                         .font(.suitBold20)
+                        .overlay(
+                            isLoading ? .white : .clear
+                        )
+                        .overlay(
+                            isLoading ? ShimmerView() : nil
+                        )
                     
                     Text("\(formattedDate(poll.endAt)). 마감")
                         .font(.suitVariable16)
+                        .overlay(
+                            isLoading ? .white : .clear
+                        )
+                        .overlay(
+                            isLoading ? ShimmerView() : nil
+                        )
                         .padding(.bottom, 12)
                     
                     PollContentOptionView(options: poll.items, isHorizontal: isHorizontal)
+                        .overlay(
+                            isLoading ? .white : .clear
+                        )
+                        .overlay(
+                            isLoading ? ShimmerView() : nil
+                        )
                 }
                 .padding()
                 .background(
@@ -38,6 +57,12 @@ struct PollContentWebStyle: View {
                         Spacer()
                         
                         PollStateView(state: getState(poll.endAt))
+                            .overlay(
+                                isLoading ? .white : .clear
+                            )
+                            .overlay(
+                                isLoading ? ShimmerView() : nil
+                            )
                     }
                     Spacer()
                 }

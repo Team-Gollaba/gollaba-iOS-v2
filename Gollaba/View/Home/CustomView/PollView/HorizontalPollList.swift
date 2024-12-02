@@ -13,7 +13,7 @@ struct HorizontalPollList: View {
     var pollList: [PollItem]
     
     @Binding var goToPollDetail: Bool
-    @Binding var isEnd: Bool
+    @Binding var isLoading: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,18 +30,12 @@ struct HorizontalPollList: View {
             .padding(.leading, 16)
             .padding(.vertical, 5)
             
-            if !isEnd {
-                ProgressView()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
-            }
-            
             ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         
                         ForEach(pollList, id: \.self) { poll in
                             
-                            PollContentWebStyle(poll: poll, isHorizontal: true)
+                            PollContentWebStyle(poll: poll, isHorizontal: true, isLoading: isLoading)
                                 .frame(width: UIScreen.main.bounds.width - 60)
 //                            
 //                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
@@ -75,5 +69,5 @@ struct HorizontalPollList: View {
 }
 
 #Preview {
-    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false), isEnd: .constant(true))
+    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false), isLoading: .constant(true))
 }

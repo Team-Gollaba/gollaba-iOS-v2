@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct VerticalPollList: View {
+
+    var title: String
+    var pollList: [PollItem]
+    
     @Binding var requestAddPoll: Bool
     @Binding var isEnd: Bool
-    
-    var pollList: [PollItem]
     var icon: Image?
-    var title: String
     
     var body: some View {
         LazyVStack (alignment: .leading) {
@@ -50,5 +51,5 @@ struct VerticalPollList: View {
 }
 
 #Preview {
-    VerticalPollList(requestAddPoll: .constant(false), isEnd: .constant(false), pollList: [], title: "title")
+    VerticalPollList(title: "title", pollList: [], requestAddPoll: .constant(false), isEnd: .constant(false))
 }
