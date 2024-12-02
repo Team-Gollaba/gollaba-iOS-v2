@@ -11,6 +11,7 @@ import PhotosUI
 @Observable
 class CreatePollViewModel {
     var isPollItemFocused: Bool = false
+    var isPollCreatorNameFocused: Bool = false
     var isPollTitleFocused: Bool = false
     
     var selectedItem: [PhotosPickerItem?] = Array(repeating: nil, count: 6)

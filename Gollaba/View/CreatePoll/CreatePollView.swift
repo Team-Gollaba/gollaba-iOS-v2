@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CreatePollView: View {
-    @State var text: String = ""
+    @State var titleText: String = ""
+    @State var creatorNameText: String = ""
     @State var anonymousOption: Option = .first
     @State var countingOption: Option = .first
     @State var pollItemName: [String] = [
@@ -19,7 +20,8 @@ struct CreatePollView: View {
     @State var showTimePicker: Bool = false
     @State var selectedDate: Date = Date()
     
-    @FocusState var titleFocus: Bool
+    @State var creatorNameFocus: Bool = true
+    @State var titleFocus: Bool = false
     @State var viewModel = CreatePollViewModel()
     
     var body: some View {
@@ -33,14 +35,27 @@ struct CreatePollView: View {
                             .onTapGesture {
                                 viewModel.isPollItemFocused = false
                                 viewModel.isPollTitleFocused = false
+                                viewModel.isPollCreatorNameFocused = false
                             }
                     }
                     VStack (spacing: 16) {
                         
+                        OptionBoxView(title: "투표 작성자") {
+                            
+                            ClearableTextFieldView(
+                                placeholder: "투표 작성자 이름을 입력해주세요.",
+                                editText: $creatorNameText,
+                                isFocused: $creatorNameFocus
+                                )
+                        }
+                        
                         OptionBoxView(title: "투표 제목") {
-                            TextField("투표의 제목을 입력해주세요.", text: $text)
-                                .font(.suitVariable16)
-                                .focused($titleFocus)
+                            
+                            ClearableTextFieldView(
+                                placeholder: "투표의 제목을 입력해주세요.",
+                                editText: $titleText,
+                                isFocused: $titleFocus
+                            )
                         }
                         
                         CreatePollContentGridView(pollItemName: $pollItemName, selectedItem: $viewModel.selectedItem)
@@ -101,11 +116,17 @@ struct CreatePollView: View {
                         primaryButtonText: "확인",
                         onPrimaryButton: {}
                     )
-                    .onChange(of: viewModel.isPollTitleFocused) { oldValue, newValue in
+                    .onChange(of: viewModel.isPollTitleFocused) { _, newValue in
                         titleFocus = newValue
                     }
-                    .onChange(of: titleFocus) { oldValue, newValue in
+                    .onChange(of: titleFocus) { _, newValue in
                         viewModel.isPollTitleFocused = newValue
+                    }
+                    .onChange(of: viewModel.isPollCreatorNameFocused) { _, newValue in
+                        creatorNameFocus = newValue
+                    }
+                    .onChange(of: creatorNameFocus) { _, newValue in
+                        viewModel.isPollCreatorNameFocused = newValue
                     }
                     
                     if showDatePicker {

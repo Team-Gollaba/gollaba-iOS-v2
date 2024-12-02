@@ -52,6 +52,7 @@
 		497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */; };
 		497DDFBB2CFC1FA8008A8534 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */; };
 		497DDFBD2CFC2036008A8534 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBC2CFC2036008A8534 /* ShimmerView.swift */; };
+		497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -107,6 +108,7 @@
 		497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionItemView.swift; sourceTree = "<group>"; };
 		497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
 		497DDFBC2CFC2036008A8534 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
+		497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableTextFieldView.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
 				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
 				4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */,
+				497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 			files = (
 				497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */,
 				4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */,
+				497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */,
 				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
 				4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */,
 				49FEE2952CF6E9FD000991DB /* TitleProfileView.swift in Sources */,
