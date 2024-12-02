@@ -175,7 +175,7 @@ class ApiManager {
         let url = try getUrl(for: urlString)
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, encoding: URLEncoding.default, headers: headers)
+            AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -205,7 +205,7 @@ class ApiManager {
         }
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: param, encoding: URLEncoding.default, headers: headers)
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
