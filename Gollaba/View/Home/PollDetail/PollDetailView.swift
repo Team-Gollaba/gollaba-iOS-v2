@@ -64,7 +64,9 @@ struct PollDetailView: View {
                     }
                 }
                 
-                PollButton(pollbuttonState: $viewModel.pollButtonState)
+                PollButton(pollbuttonState: $viewModel.pollButtonState) {
+                    viewModel.voting()
+                }
                 
                 PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
                 

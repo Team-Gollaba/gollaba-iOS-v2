@@ -14,7 +14,7 @@ class PollDetailViewModel {
     var selectedSinglePoll: Int? = nil
     var selectedMultiplePoll: [Bool] = []
     var pollButtonState: PollButtonState = .normal
-
+    
     var isValidPoll: Bool {
         get {
             if let poll {
@@ -30,11 +30,11 @@ class PollDetailViewModel {
         self.id = id
     }
     
-//    init(poll: PollItem) {
-//        self.poll = poll
-//        selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
-//        pollButtonState = isValidPoll ? .normal : .ended
-//    }
+    //    init(poll: PollItem) {
+    //        self.poll = poll
+    //        selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+    //        pollButtonState = isValidPoll ? .normal : .ended
+    //    }
     
     func deleteOption() {
         selectedSinglePoll = nil
@@ -104,6 +104,34 @@ class PollDetailViewModel {
             } catch {
                 
             }
+        }
+    }
+    
+    func voting() {
+        var pollItemIds: [Int] = []
+        let voterName = "temp voter"
+    
+        if let poll {
+            if poll.responseType == ResponseType.single.rawValue, let selectedPollItemIndex = selectedSinglePoll {
+                pollItemIds.append(poll.items[selectedPollItemIndex - 1].id)
+            } else if poll.responseType == ResponseType.multiple.rawValue {
+                for (index, selectedPollItemId) in selectedMultiplePoll.enumerated() {
+                    if selectedPollItemId {
+                        pollItemIds.append(poll.items[index].id)
+                    }
+                }
+            }
+            
+            Task {
+                do {
+                    try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll.pollType == PollType.named.rawValue ? voterName : nil)
+                    
+                } catch {
+                    
+                }
+            }
+        } else {
+            
         }
     }
 }

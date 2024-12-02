@@ -44,9 +44,11 @@ struct PollButton: View {
         }
     }
     
+    var action: () -> Void
+    
     var body: some View {
         Button {
-            pollbuttonState = .completed
+            action()
         } label: {
             HStack {
                 Image("PollIcon")
@@ -77,5 +79,5 @@ struct PollButton: View {
 }
 
 #Preview {
-    PollButton(pollbuttonState: .constant(.ended))
+    PollButton(pollbuttonState: .constant(.ended), action: {})
 }
