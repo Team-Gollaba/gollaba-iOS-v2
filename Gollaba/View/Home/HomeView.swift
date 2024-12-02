@@ -50,7 +50,7 @@ struct HomeView: View {
                                 viewModel.fetchPolls()
                             }
                         }
-                            
+                        
                     }
                 }
             }

@@ -86,7 +86,8 @@ struct PollDetailView: View {
         }
         .onAppear {
             viewModel.getPoll()
-            viewModel.readPoll()
+//            viewModel.readPoll()
+//            viewModel.votingCheck()
         }
         .onDisappear {
             viewModel.deleteOption()

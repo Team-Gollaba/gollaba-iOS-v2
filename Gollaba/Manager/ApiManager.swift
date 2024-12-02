@@ -147,7 +147,7 @@ class ApiManager {
     }
     
     // 투표 상세 조회
-    func getPoll(_ pollHashId: String) async throws -> PollItem {
+    func getPoll(pollHashId: String) async throws -> PollItem {
         let urlString = baseURL + "/v2/polls/\(pollHashId)"
         let url = try getUrl(for: urlString)
         
@@ -170,7 +170,7 @@ class ApiManager {
     
     //MARK: - user
     // 투표 읽어서 조회수 증가
-    func readPoll(_ pollHashId: String) async throws {
+    func readPoll(pollHashId: String) async throws {
         let urlString = baseURL + "/v2/polls/\(pollHashId)/read"
         let url = try getUrl(for: urlString)
         
@@ -189,7 +189,64 @@ class ApiManager {
                 }
         }
     }
- 
+    
+    //MARK: - voting
+    // 투표 참여
+    func voting(pollHashId: String, pollItemIds: [Int], voterName: String?) async throws {
+        let urlString = baseURL + "/v2/voting"
+        let url = try getUrl(for: urlString)
+        var param: [String: Any] = [
+            "pollHashId": pollHashId,
+            "pollItemIds": pollItemIds
+        ]
+        
+        if let voterName { // 기명 투표
+            param["voterName"] = voterName
+        }
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to voting: \(value)")
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to voting with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    // 투표 참여 여부 확인
+    func votingCheck(pollHashId: String) async throws -> Bool {
+        let urlString = baseURL + "/v2/voting/check"
+        let url = try getUrl(for: urlString)
+        let param: [String: Any] = [
+            "pollHashId": pollHashId
+        ]
+        
+        print("pollHashId: \(pollHashId)")
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to voting check: \(value)")
+                        continuation.resume(returning: (value.data != nil))
+                        
+                        case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to voting check: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     func getUrl(for path: String) throws -> URL {
         guard let url = URL(string: path) else {
             Logger.shared.log(String(describing: type(of: self)), #function, "Failed to create URL from path: \(path)")

@@ -24,6 +24,7 @@ class PollDetailViewModel {
             }
         }
     }
+    var isVoted: Bool = false
     
     init(id: String) {
         self.id = id
@@ -63,11 +64,14 @@ class PollDetailViewModel {
     func getPoll() {
         Task {
             do {
-                poll = try await ApiManager.shared.getPoll(id)
+                poll = try await ApiManager.shared.getPoll(pollHashId: id)
                 
                 if let poll {
                     selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
                     pollButtonState = isValidPoll ? .normal : .ended
+                    
+                    readPoll()
+                    votingCheck()
                 }
             } catch {
                 
@@ -79,7 +83,21 @@ class PollDetailViewModel {
         Task {
             do {
                 if let poll {
-                    try await ApiManager.shared.readPoll(poll.id)
+                    try await ApiManager.shared.readPoll(pollHashId: poll.id)
+                } else {
+                    
+                }
+            } catch {
+                
+            }
+        }
+    }
+    
+    func votingCheck() {
+        Task {
+            do {
+                if let poll {
+                    isVoted = try await ApiManager.shared.votingCheck(pollHashId: poll.id)
                 } else {
                     
                 }
