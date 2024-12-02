@@ -13,6 +13,7 @@ struct PollContentWebStyle: View {
     var isLoading: Bool = false
     
     var body: some View {
+        
         NavigationLink {
             PollDetailView(id: poll.id)
         } label: {
@@ -71,6 +72,7 @@ struct PollContentWebStyle: View {
             .padding(12)
         }
         .tint(.black)
+        .disabled(isLoading)
     }
     
     private func formattedDate(_ date: String) -> String {
