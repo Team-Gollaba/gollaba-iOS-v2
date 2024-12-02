@@ -53,10 +53,11 @@ class HomeViewModel {
     //MARK: - API
     //MARK: - All polls
     func getPolls() {
-        if let allPolls, !allPolls.items.isEmpty { return }
+//        if let allPolls, !allPolls.items.isEmpty { return }
         
         Task {
             do {
+                allPollsPage = 0
                 allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
                 allPollsPage += 1
             } catch {

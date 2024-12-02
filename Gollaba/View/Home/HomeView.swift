@@ -54,7 +54,11 @@ struct HomeView: View {
                     }
                 }
             }
-            
+            .refreshable {
+                viewModel.getPolls()
+                viewModel.getTrendingPolls()
+                viewModel.getTopPolls()
+            }
             .onAppear {
                 viewModel.getPolls()
                 viewModel.getTrendingPolls()
