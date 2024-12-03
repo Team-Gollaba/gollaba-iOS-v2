@@ -15,16 +15,14 @@ enum SelectedTab: Hashable {
 
 struct CustomTabView: View {
     @State private var selectedTab: SelectedTab = .home
-    var homeView = HomeView()
-    var createPollView = CreatePollView()
-    var myPollView = MyPollView()
+    @State private var isScrollToTop: Bool = false
     
     let tabBarHeight: CGFloat = 80
     
     var body: some View {
         ZStack (alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                HomeView()
+                HomeView(scrollToTopTrigger: $isScrollToTop)
                     .tag(SelectedTab.home)
                 
                 CreatePollView()
@@ -41,6 +39,9 @@ struct CustomTabView: View {
             HStack {
                 CustomTabViewButton(
                     action: {
+                        if selectedTab == .home {
+                            isScrollToTop = true
+                        }
                         selectedTab = .home
                     },
                     image: Image(systemName: "house.fill"),
