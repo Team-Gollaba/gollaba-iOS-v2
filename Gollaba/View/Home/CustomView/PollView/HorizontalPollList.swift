@@ -47,7 +47,9 @@ struct HorizontalPollList: View {
             .onChange(of: isScrollToLeading) { _, newValue in
                 if newValue {
                     isScrollToLeading = false
-                    position.scrollTo(id: pollList.first?.id)
+                    withAnimation {
+                        position.scrollTo(id: pollList.first?.id)
+                    }
                 }
             }
             
