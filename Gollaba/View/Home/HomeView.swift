@@ -29,15 +29,16 @@ struct HomeView: View {
                             HorizontalPollList(
                                 title: "🗓️ 오늘의 투표",
                                 pollList: (viewModel.trendingPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.trendingPolls!,
+                                isScrollToLeading: $viewModel.isScrollToTop,
                                 goToPollDetail: $viewModel.goToPollDetail
                             )
-                            
-                      
+                        
                         
                        
                             HorizontalPollList(
                                 title: "🏆 인기 투표",
                                 pollList: (viewModel.topPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.topPolls!,
+                                isScrollToLeading: $viewModel.isScrollToTop,
                                 goToPollDetail: $viewModel.goToPollDetail
                             )
                             

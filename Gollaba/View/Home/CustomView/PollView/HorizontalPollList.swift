@@ -12,7 +12,10 @@ struct HorizontalPollList: View {
     var title: String
     var pollList: [PollItem]
     
+    @Binding var isScrollToLeading: Bool
+    
     @Binding var goToPollDetail: Bool
+    @State var position = ScrollPosition(edge: .leading)
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,26 +27,29 @@ struct HorizontalPollList: View {
                 
                 Text(title)
                     .font(.yangjin20)
-                    
+                
             }
             .padding(.leading, 16)
             .padding(.vertical, 5)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
+                HStack {
+                    
+                    ForEach(pollList, id: \.self) { poll in
                         
-                        ForEach(pollList, id: \.self) { poll in
-                            
-                            PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
-//
-//                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
-//                                goToPollDetail = true
-//                            })
-//                            .frame(width: UIScreen.main.bounds.width - 60)
-                        }
+                        PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
+                            .id(poll.id)
+                        
                     }
                 }
-                
+            }
+            .scrollPosition($position)
+            .onChange(of: isScrollToLeading) { _, newValue in
+                if newValue {
+                    isScrollToLeading = false
+                    position.scrollTo(id: pollList.first?.id)
+                }
+            }
             
         }
         .padding(.bottom, 16)
@@ -67,5 +73,5 @@ struct HorizontalPollList: View {
 }
 
 #Preview {
-    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false))
+    HorizontalPollList(title: "Title", pollList: [], isScrollToLeading: .constant(false), goToPollDetail: .constant(false))
 }

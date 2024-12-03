@@ -64,6 +64,7 @@ class HomeViewModel {
         } catch {
             
         }
+        isScrollToTop = true
     }
     
     //MARK: - API
@@ -78,7 +79,7 @@ class HomeViewModel {
                 allPolls?.items.removeAll()
                 allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
                 allPollsPage += 1
-                print("loadEveryPolls allPolls: \(allPolls?.items.count ?? 0)")
+    
             } catch {
                 
             }
@@ -111,7 +112,6 @@ class HomeViewModel {
             do {
                 trendingPolls?.removeAll()
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
-                print("loadEveryPolls trendingPolls: \(trendingPolls?.count ?? 0)")
             } catch {
                 
             }
@@ -129,8 +129,6 @@ class HomeViewModel {
                 topPolls = try await ApiManager.shared.getTopPolls()
                 
                 
-                
-                print("loadEveryPolls topPolls: \(topPolls?.count ?? 0)")
             } catch {
 
             }
