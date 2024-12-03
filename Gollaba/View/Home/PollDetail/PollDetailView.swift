@@ -35,8 +35,6 @@ struct PollDetailView: View {
                     }
                     .padding(.leading, 4)
                     
-                    
-                    
                     HStack {
                         Image(systemName: "person.circle.fill")
                         

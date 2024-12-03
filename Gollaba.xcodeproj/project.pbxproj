@@ -137,6 +137,11 @@
 			path = Modifier;
 			sourceTree = "<group>";
 		};
+		497DDFDD2CFDF258008A8534 /* SignUp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		49FEE24D2CEC95A6000991DB /* Manager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Manager;
@@ -316,11 +321,12 @@
 		4945A2992CEB6ECC00FF05DC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4945A27F2CEB6ECC00FF05DC /* CreatePoll */,
-				4945A28B2CEB6ECC00FF05DC /* Home */,
-				4945A28F2CEB6ECC00FF05DC /* Login */,
 				4945A2962CEB6ECC00FF05DC /* Main */,
+				4945A28B2CEB6ECC00FF05DC /* Home */,
+				4945A27F2CEB6ECC00FF05DC /* CreatePoll */,
 				4945A2982CEB6ECC00FF05DC /* MyPoll */,
+				4945A28F2CEB6ECC00FF05DC /* Login */,
+				497DDFDD2CFDF258008A8534 /* SignUp */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
 				495248372CF772E5005EAABD /* Model */,
 				497DDF9D2CF83526008A8534 /* Modifier */,
+				497DDFDD2CFDF258008A8534 /* SignUp */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
 				49FEE2652CF2474B000991DB /* LinkedView */,
 			);

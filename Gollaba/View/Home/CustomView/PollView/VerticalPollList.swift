@@ -33,7 +33,7 @@ struct VerticalPollList: View {
             
             ForEach(pollList, id: \.self) { poll in
                 
-                PollContentWebStyle(poll: poll)
+                PollContentWebStyle(poll: poll, isLoading: false)
             }
             
             if !isEnd {

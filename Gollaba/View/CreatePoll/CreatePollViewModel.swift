@@ -1,5 +1,5 @@
 //
-//  PollItemFocus.swift
+//  CreatePollViewModel.swift
 //  Gollaba
 //
 //  Created by 김견 on 11/18/24.
@@ -22,7 +22,5 @@ class CreatePollViewModel {
         guard let imageSelection = await ImageManager.convertImage(item: item) else { return }
         self.postImage[index] = imageSelection.image
         self.uiImage = imageSelection.uiImage
-        
-        print("postImage: \(self.postImage)")
     }
 }

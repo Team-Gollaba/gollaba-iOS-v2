@@ -13,11 +13,6 @@ struct ImageSelection {
     let uiImage: UIImage
 }
 
-enum ImagePath {
-    case post
-    case profile
-}
-
 class ImageManager {
     
     static func convertImage(item: PhotosPickerItem?) async -> ImageSelection? {

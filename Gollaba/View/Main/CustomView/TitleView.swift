@@ -20,7 +20,7 @@ struct TitleView: View {
                 .frame(width: 40, height: 40)
             
             Text("골라바")
-                .font(.yangjin30)
+                .font(.yangjin32)
                 .underline(color: .mainTitleFontColor)
             
             Spacer()

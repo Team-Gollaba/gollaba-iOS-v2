@@ -12,27 +12,42 @@ struct LoginView: View {
     @Environment(KakaoAuthManager.self) var kakaoAuthManager
     
     var body: some View {
-        VStack {
-            Image("AppIconImage")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 150, height: 150)
-                .padding(.bottom, 50)
+        ZStack {
+            VStack {
+                Image("AppIconImage")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 150, height: 150)
+                    .padding(.bottom, 50)
+                
+                
+                OAuthLoginButton(
+                    image: Image("NaverIcon"),
+                    oAuthPath: "네이버",
+                    action: {}
+                )
+                
+                OAuthLoginButton(
+                    image: Image("KakaoIcon"),
+                    oAuthPath: "카카오",
+                    action: {
+                        kakaoAuthManager.handleKakaoLogin()
+                    }
+                )
+            }
             
-            
-            OAuthLoginButton(
-                image: Image("NaverIcon"),
-                oAuthPath: "네이버",
-                action: {}
-            )
-            
-            OAuthLoginButton(
-                image: Image("KakaoIcon"),
-                oAuthPath: "카카오",
-                action: {
-                    kakaoAuthManager.handleKakaoLogin()
+            VStack {
+                HStack {
+                    Spacer()
+                    
+                    NavigationLink {
+                        SignUpView()
+                    } label: {
+                        Text("회원가입")
+                    }
                 }
-            )
+                Spacer()
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
