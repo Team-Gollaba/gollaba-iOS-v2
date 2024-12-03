@@ -73,7 +73,7 @@ struct PollContentWebStyle: View {
             }
             .padding(12)
         }
-        .frame(width: contentWidth)
+        .frame(width: min(contentWidth, UIScreen.main.bounds.width))
         .tint(.black)
         .disabled(isLoading)
     }
