@@ -12,8 +12,6 @@ struct PollContentWebStyle: View {
     var isHorizontal: Bool = false
     let contentWidth: CGFloat
     
-    @State var isLoading: Bool
-    
     var body: some View {
         
         NavigationLink {
@@ -24,28 +22,28 @@ struct PollContentWebStyle: View {
                     Text(poll.title)
                         .font(.suitBold20)
                         .overlay(
-                            isLoading ? .white : .clear
+                            poll.id == "-1" ? .white : .clear
                         )
                         .overlay(
-                            isLoading ? ShimmerView() : nil
+                            poll.id == "-1" ? ShimmerView() : nil
                         )
                     
                     Text("\(formattedDate(poll.endAt)). 마감")
                         .font(.suitVariable16)
                         .overlay(
-                            isLoading ? .white : .clear
+                            poll.id == "-1" ? .white : .clear
                         )
                         .overlay(
-                            isLoading ? ShimmerView() : nil
+                            poll.id == "-1" ? ShimmerView() : nil
                         )
                         .padding(.bottom, 12)
                     
                     PollContentOptionView(options: poll.items, isHorizontal: isHorizontal, parentWidth: contentWidth)
                         .overlay(
-                            isLoading ? .white : .clear
+                            poll.id == "-1" ? .white : .clear
                         )
                         .overlay(
-                            isLoading ? ShimmerView() : nil
+                            poll.id == "-1" ? ShimmerView() : nil
                         )
                 }
                 .padding()
@@ -61,10 +59,10 @@ struct PollContentWebStyle: View {
                         
                         PollStateView(state: getState(poll.endAt))
                             .overlay(
-                                isLoading ? .white : .clear
+                                poll.id == "-1" ? .white : .clear
                             )
                             .overlay(
-                                isLoading ? ShimmerView() : nil
+                                poll.id == "-1" ? ShimmerView() : nil
                             )
                     }
                     Spacer()
@@ -75,7 +73,7 @@ struct PollContentWebStyle: View {
         }
         .frame(width: min(contentWidth, UIScreen.main.bounds.width))
         .tint(.black)
-        .disabled(isLoading)
+        .disabled(poll.id == "-1")
     }
     
     private func formattedDate(_ date: String) -> String {
@@ -100,5 +98,5 @@ struct PollContentWebStyle: View {
 }
 
 #Preview {
-    PollContentWebStyle(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity, isLoading: false)
+    PollContentWebStyle(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity)
 }

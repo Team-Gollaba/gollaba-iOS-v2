@@ -23,29 +23,31 @@ struct HomeView: View {
                             }
                     }
                     
-                    LazyVStack {
+                    VStack {
                         SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus)
                         
-                        HorizontalPollList(
-                            title: "🗓️ 오늘의 투표",
-                            pollList: (viewModel.trendingPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.trendingPolls!,
-                            goToPollDetail: $viewModel.goToPollDetail,
-                            isLoading: $viewModel.isTrendingLoading
-                        )
+                            HorizontalPollList(
+                                title: "🗓️ 오늘의 투표",
+                                pollList: (viewModel.trendingPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.trendingPolls!,
+                                goToPollDetail: $viewModel.goToPollDetail
+                            )
+                            
+                      
                         
-                        HorizontalPollList(
-                            title: "🏆 인기 투표",
-                            pollList: (viewModel.topPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.topPolls!,
-                            goToPollDetail: $viewModel.goToPollDetail,
-                            isLoading: $viewModel.isTopLoading
-                        )
+                       
+                            HorizontalPollList(
+                                title: "🏆 인기 투표",
+                                pollList: (viewModel.topPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.topPolls!,
+                                goToPollDetail: $viewModel.goToPollDetail
+                            )
+                            
+                       
                         
                         VerticalPollList(
                             title: "📝 전체 투표",
                             pollList: (viewModel.allPolls?.items.isEmpty ?? true) ? viewModel.tempPolls : viewModel.allPolls!.items,
                             requestAddPoll: $viewModel.requestAddPoll,
-                            isEnd: $viewModel.isAllPollsEnd,
-                            isLoading: $viewModel.isAllPollsLoading
+                            isEnd: $viewModel.isAllPollsEnd
                         )
                         .onChange(of: viewModel.requestAddPoll) { _, newValue in
                             if newValue {
@@ -56,11 +58,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .refreshable {
-                viewModel.getPolls()
-                viewModel.getTrendingPolls()
-                viewModel.getTopPolls()
-            }
+            .refreshable(action: viewModel.loadEveryPolls)
             .onAppear {
                 viewModel.getPolls()
                 viewModel.getTrendingPolls()

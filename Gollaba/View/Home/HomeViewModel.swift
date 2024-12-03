@@ -17,9 +17,7 @@ class HomeViewModel {
     
     var isAllPollsEnd: Bool = false
     
-    var isAllPollsLoading: Bool = true
-    var isTrendingLoading: Bool = true
-    var isTopLoading: Bool = true
+    var isScrollToTop: Bool = false
     
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
@@ -27,18 +25,18 @@ class HomeViewModel {
     
     var tempPolls: [PollItem] = Array(
         repeating: PollItem(
-            id: "1",
+            id: "-1",
             title: "title title title",
             creatorName: "creatorName",
             responseType: "responseType",
             pollType: "pollType",
-            endAt: "2024. 11. 22",
+            endAt: "2024. 22. 22.",
             readCount: 0,
             totalVotingCount: 0,
             items: Array(
                 repeating: PollOption(
                     id: 0,
-                    description: "description",
+                    description: "",
                     imageUrl: "",
                     votingCount: 1
                 ),
@@ -47,26 +45,44 @@ class HomeViewModel {
         ),
         count: 10
     )
-
+    
     
     var allPollsPage: Int = 0
     let allPollsSize: Int = 10
     
+    @Sendable func loadEveryPolls() async {
+        
+        do {
+            let allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
+            let trendingPolls = try await ApiManager.shared.getTrendingPolls()
+            let topPolls = try await ApiManager.shared.getTopPolls()
+            try await Task.sleep(nanoseconds: 1000_000_000)
+            
+            self.allPolls = allPolls
+            self.trendingPolls = trendingPolls
+            self.topPolls = topPolls
+        } catch {
+            
+        }
+    }
+    
     //MARK: - API
     //MARK: - All polls
     func getPolls() {
-//        if let allPolls, !allPolls.items.isEmpty { return }
-        isAllPollsLoading = true
+        if let allPolls, !allPolls.items.isEmpty { return }
+    
         Task {
             do {
                 
                 allPollsPage = 0
+                allPolls?.items.removeAll()
                 allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
                 allPollsPage += 1
+                print("loadEveryPolls allPolls: \(allPolls?.items.count ?? 0)")
             } catch {
                 
             }
-            isAllPollsLoading = false
+            
         }
     }
     
@@ -89,30 +105,36 @@ class HomeViewModel {
     
     //MARK: - Trending polls
     func getTrendingPolls() {
-        isTrendingLoading = true
+        if let trendingPolls, !trendingPolls.isEmpty { return }
+        
         Task {
             do {
+                trendingPolls?.removeAll()
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
+                print("loadEveryPolls trendingPolls: \(trendingPolls?.count ?? 0)")
             } catch {
                 
             }
-            isTrendingLoading = false
+         
         }
     }
     
     //MARK: - Top polls
     func getTopPolls() {
-        isTopLoading = true
+        if let topPolls, !topPolls.isEmpty { return }
         
         Task {
             do {
-
+                topPolls?.removeAll()
                 topPolls = try await ApiManager.shared.getTopPolls()
                 
-            } catch {
                 
+                
+                print("loadEveryPolls topPolls: \(topPolls?.count ?? 0)")
+            } catch {
+
             }
-            isTopLoading = false
+            
         }
     }
 }

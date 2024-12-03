@@ -13,7 +13,6 @@ struct HorizontalPollList: View {
     var pollList: [PollItem]
     
     @Binding var goToPollDetail: Bool
-    @Binding var isLoading: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,8 +34,8 @@ struct HorizontalPollList: View {
                         
                         ForEach(pollList, id: \.self) { poll in
                             
-                            PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60, isLoading: isLoading)
-//                            
+                            PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
+//
 //                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
 //                                goToPollDetail = true
 //                            })
@@ -68,5 +67,5 @@ struct HorizontalPollList: View {
 }
 
 #Preview {
-    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false), isLoading: .constant(true))
+    HorizontalPollList(title: "Title", pollList: [], goToPollDetail: .constant(false))
 }
