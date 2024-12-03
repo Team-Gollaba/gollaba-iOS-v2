@@ -35,8 +35,7 @@ struct HorizontalPollList: View {
                         
                         ForEach(pollList, id: \.self) { poll in
                             
-                            PollContentWebStyle(poll: poll, isHorizontal: true, isLoading: isLoading)
-                                .frame(width: UIScreen.main.bounds.width - 60)
+                            PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60, isLoading: isLoading)
 //                            
 //                            PollContentWebStyle(title: poll.title, endDate: setDate(poll.endAt), state: getState(poll.endAt), options: poll.items, action: {
 //                                goToPollDetail = true

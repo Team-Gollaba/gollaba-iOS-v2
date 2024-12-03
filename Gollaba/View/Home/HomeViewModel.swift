@@ -16,8 +16,10 @@ class HomeViewModel {
     var requestAddPoll: Bool = false
     
     var isAllPollsEnd: Bool = false
-    var isTrendingLoading: Bool = false
-    var isTopLoading: Bool = false
+    
+    var isAllPollsLoading: Bool = true
+    var isTrendingLoading: Bool = true
+    var isTopLoading: Bool = true
     
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
@@ -54,15 +56,17 @@ class HomeViewModel {
     //MARK: - All polls
     func getPolls() {
 //        if let allPolls, !allPolls.items.isEmpty { return }
-        
+        isAllPollsLoading = true
         Task {
             do {
+                
                 allPollsPage = 0
                 allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
                 allPollsPage += 1
             } catch {
                 
             }
+            isAllPollsLoading = false
         }
     }
     
@@ -89,12 +93,11 @@ class HomeViewModel {
         Task {
             do {
                 trendingPolls = try await ApiManager.shared.getTrendingPolls()
-                
             } catch {
                 
             }
+            isTrendingLoading = false
         }
-        isTrendingLoading = false || trendingPolls?.isEmpty ?? true
     }
     
     //MARK: - Top polls
@@ -103,12 +106,13 @@ class HomeViewModel {
         
         Task {
             do {
+
                 topPolls = try await ApiManager.shared.getTopPolls()
                 
             } catch {
                 
             }
+            isTopLoading = false
         }
-        isTopLoading = false || topPolls?.isEmpty ?? true
     }
 }

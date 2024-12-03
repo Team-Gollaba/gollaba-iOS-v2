@@ -11,6 +11,7 @@ import Kingfisher
 struct PollContentOptionItemView: View {
     var imageUrl: String?
     var title: String
+    let parentWidth: CGFloat
     
     var body: some View {
         ZStack {
@@ -21,7 +22,7 @@ struct PollContentOptionItemView: View {
                     }
                     .resizable()
                     .scaledToFill()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 2 - 32)
+                    .frame(maxWidth: parentWidth / 2 - 32)
                     .frame(height: 120)
                     .clipped()
             }
@@ -40,5 +41,5 @@ struct PollContentOptionItemView: View {
 }
 
 #Preview {
-    PollContentOptionItemView(title: "title")
+    PollContentOptionItemView(title: "title", parentWidth: .infinity)
 }

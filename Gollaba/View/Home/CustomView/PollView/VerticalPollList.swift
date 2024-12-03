@@ -14,6 +14,7 @@ struct VerticalPollList: View {
     
     @Binding var requestAddPoll: Bool
     @Binding var isEnd: Bool
+    @Binding var isLoading: Bool
     var icon: Image?
     
     var body: some View {
@@ -33,7 +34,7 @@ struct VerticalPollList: View {
             
             ForEach(pollList, id: \.self) { poll in
                 
-                PollContentWebStyle(poll: poll, isLoading: false)
+                PollContentWebStyle(poll: poll, contentWidth: .infinity, isLoading: isLoading)
             }
             
             if !isEnd {
@@ -51,5 +52,5 @@ struct VerticalPollList: View {
 }
 
 #Preview {
-    VerticalPollList(title: "title", pollList: [], requestAddPoll: .constant(false), isEnd: .constant(false))
+    VerticalPollList(title: "title", pollList: [], requestAddPoll: .constant(false), isEnd: .constant(false), isLoading: .constant(true))
 }

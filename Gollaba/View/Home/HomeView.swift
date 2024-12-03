@@ -37,13 +37,15 @@ struct HomeView: View {
                             title: "🏆 인기 투표",
                             pollList: (viewModel.topPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.topPolls!,
                             goToPollDetail: $viewModel.goToPollDetail,
-                            isLoading: $viewModel.isTopLoading)
+                            isLoading: $viewModel.isTopLoading
+                        )
                         
                         VerticalPollList(
                             title: "📝 전체 투표",
                             pollList: (viewModel.allPolls?.items.isEmpty ?? true) ? viewModel.tempPolls : viewModel.allPolls!.items,
                             requestAddPoll: $viewModel.requestAddPoll,
-                            isEnd: $viewModel.isAllPollsEnd
+                            isEnd: $viewModel.isAllPollsEnd,
+                            isLoading: $viewModel.isAllPollsLoading
                         )
                         .onChange(of: viewModel.requestAddPoll) { _, newValue in
                             if newValue {

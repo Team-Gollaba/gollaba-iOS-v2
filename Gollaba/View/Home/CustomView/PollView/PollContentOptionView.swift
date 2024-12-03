@@ -10,13 +10,14 @@ import SwiftUI
 struct PollContentOptionView: View {
     var options: [PollOption]
     var isHorizontal: Bool = false
+    let parentWidth: CGFloat
     @State var isOpen: Bool = false
     
     var body: some View {
         VStack {
             ThreeByTwoGridView(itemsCount: isOpen ? options.count : options.count > 2 ? 2 : options.count) { index in
                 let option = options[index]
-                PollContentOptionItemView(imageUrl: option.imageUrl, title: option.description)
+                PollContentOptionItemView(imageUrl: option.imageUrl, title: option.description, parentWidth: parentWidth)
             }
             
             if !isHorizontal && options.count > 2 {
@@ -80,6 +81,6 @@ struct PollContentOptionView: View {
 }
 
 #Preview {
-    PollContentOptionView(options: [])
+    PollContentOptionView(options: [], parentWidth: .infinity)
 }
 

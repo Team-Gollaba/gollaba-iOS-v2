@@ -10,7 +10,9 @@ import SwiftUI
 struct PollContentWebStyle: View {
     var poll: PollItem
     var isHorizontal: Bool = false
-    var isLoading: Bool
+    let contentWidth: CGFloat
+    
+    @State var isLoading: Bool
     
     var body: some View {
         
@@ -38,7 +40,7 @@ struct PollContentWebStyle: View {
                         )
                         .padding(.bottom, 12)
                     
-                    PollContentOptionView(options: poll.items, isHorizontal: isHorizontal)
+                    PollContentOptionView(options: poll.items, isHorizontal: isHorizontal, parentWidth: contentWidth)
                         .overlay(
                             isLoading ? .white : .clear
                         )
@@ -71,6 +73,7 @@ struct PollContentWebStyle: View {
             }
             .padding(12)
         }
+        .frame(width: contentWidth)
         .tint(.black)
         .disabled(isLoading)
     }
@@ -97,5 +100,5 @@ struct PollContentWebStyle: View {
 }
 
 #Preview {
-    PollContentWebStyle(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), isLoading: true)
+    PollContentWebStyle(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity, isLoading: false)
 }
