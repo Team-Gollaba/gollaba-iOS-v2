@@ -31,6 +31,7 @@ struct SelectablePollContent: View {
                         Image(systemName: "photo.badge.plus")
                     }
                 }
+                .frame(maxWidth: .infinity)
                 .frame(height: 120)
                 .foregroundStyle(.white)
                 .background(
@@ -57,7 +58,7 @@ struct SelectablePollContent: View {
                     isSelected ? Color.selectedPoll : Color.toolbarBackground
                 )
             }
-            .frame(maxWidth: UIScreen.main.bounds.width / 2 - 24)
+            .frame(width: UIScreen.main.bounds.width / 2 - 24)
             .background(
                 Color.white
             )

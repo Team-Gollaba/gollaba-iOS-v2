@@ -129,6 +129,7 @@ struct PollItemView: View {
                     Color.toolbarBackground
                 )
             }
+            .frame(width: UIScreen.main.bounds.width / 2 - 24)
             .background(
                 Color.white
             )
