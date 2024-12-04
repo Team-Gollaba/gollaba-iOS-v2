@@ -5,7 +5,7 @@
 //  Created by 김견 on 11/28/24.
 //
 
-import Foundation
+import SwiftUI
 
 struct PollItem: Codable, Hashable {
     let id: String
@@ -24,4 +24,9 @@ struct PollOption: Codable, Hashable {
     let description: String
     let imageUrl: String?
     let votingCount: Int
+}
+
+struct PollOptionForParameter {
+    let description: String
+    let image: UIImage?
 }

@@ -8,20 +8,6 @@
 import SwiftUI
 
 struct CreatePollView: View {
-    @State var titleText: String = ""
-    @State var creatorNameText: String = ""
-    @State var anonymousOption: Option = .first
-    @State var countingOption: Option = .first
-    @State var pollItemName: [String] = [
-        "", "", "",
-    ]
-    @State var isQuestionPresent: Bool = false
-    @State var showDatePicker: Bool = false
-    @State var showTimePicker: Bool = false
-    @State var selectedDate: Date = Date()
-    
-    @State var creatorNameFocus: Bool = true
-    @State var titleFocus: Bool = false
     @State var viewModel = CreatePollViewModel()
     
     var body: some View {
@@ -44,8 +30,8 @@ struct CreatePollView: View {
                             
                             ClearableTextFieldView(
                                 placeholder: "투표 작성자 이름을 입력해주세요.",
-                                editText: $creatorNameText,
-                                isFocused: $creatorNameFocus
+                                editText: $viewModel.creatorNameText,
+                                isFocused: $viewModel.creatorNameFocus
                                 )
                         }
                         
@@ -53,12 +39,12 @@ struct CreatePollView: View {
                             
                             ClearableTextFieldView(
                                 placeholder: "투표의 제목을 입력해주세요.",
-                                editText: $titleText,
-                                isFocused: $titleFocus
+                                editText: $viewModel.titleText,
+                                isFocused: $viewModel.titleFocus
                             )
                         }
                         
-                        CreatePollContentGridView(pollItemName: $pollItemName, selectedItem: $viewModel.selectedItem)
+                        CreatePollContentGridView(pollItemName: $viewModel.pollItemName, selectedItem: $viewModel.selectedItem)
                             .environment(viewModel)
                         
                         
@@ -67,7 +53,7 @@ struct CreatePollView: View {
                             
                             OptionBoxView(title: "익명 여부") {
                                 ChooseTwoOptionsView(
-                                    selectedOption: $anonymousOption,
+                                    selectedOption: $viewModel.anonymousOption,
                                     firstOptionText: "익명 투표",
                                     firstOptionImage: Image("AnonymousIcon"),
                                     secondOptionText: "기명 투표",
@@ -77,7 +63,7 @@ struct CreatePollView: View {
                             
                             OptionBoxView(title: "투표 가능 옵션 개수") {
                                 ChooseTwoOptionsView(
-                                    selectedOption: $countingOption,
+                                    selectedOption: $viewModel.countingOption,
                                     firstOptionText: "단일 투표",
                                     firstOptionImage: Image("OnlyPollIcon"),
                                     secondOptionText: "복수 투표",
@@ -88,51 +74,51 @@ struct CreatePollView: View {
                         
                         
                         OptionBoxView(title: "투표 종료 기간") {
-                            CallendarOptionView(selectedDate: $selectedDate, action: {
+                            CallendarOptionView(selectedDate: $viewModel.selectedDate, action: {
                                 withAnimation {
-                                    showDatePicker = true
+                                    viewModel.showDatePicker = true
                                 }
                             })
                         }
                         
                         OptionBoxView(title: "투표 종료 시간") {
-                            TimerOptionView(selectedDate: $selectedDate) {
+                            TimerOptionView(selectedDate: $viewModel.selectedDate) {
                                 withAnimation {
-                                    showTimePicker = true
+                                    viewModel.showTimePicker = true
                                 }
                             }
                         }
                         
                         EnrollPollButton {
-                            
+                            viewModel.createPoll()
                         }
                         
                     }
                     .padding()
                     .onChange(of: viewModel.isPollTitleFocused) { _, newValue in
-                        titleFocus = newValue
+                        viewModel.titleFocus = newValue
                     }
-                    .onChange(of: titleFocus) { _, newValue in
+                    .onChange(of: viewModel.titleFocus) { _, newValue in
                         viewModel.isPollTitleFocused = newValue
                     }
                     .onChange(of: viewModel.isPollCreatorNameFocused) { _, newValue in
-                        creatorNameFocus = newValue
+                        viewModel.creatorNameFocus = newValue
                     }
-                    .onChange(of: creatorNameFocus) { _, newValue in
+                    .onChange(of: viewModel.creatorNameFocus) { _, newValue in
                         viewModel.isPollCreatorNameFocused = newValue
                     }
                     
-                    if showDatePicker {
+                    if viewModel.showDatePicker {
                         CalendarView(
-                            showDatePicker: $showDatePicker,
-                            selectedDate: $selectedDate
+                            showDatePicker: $viewModel.showDatePicker,
+                            selectedDate: $viewModel.selectedDate
                         )
                     }
                     
-                    if showTimePicker {
+                    if viewModel.showTimePicker {
                         TimePickerView(
-                            showTimerPicker: $showTimePicker,
-                            selectedDate: $selectedDate,
+                            showTimerPicker: $viewModel.showTimePicker,
+                            selectedDate: $viewModel.selectedDate,
                             action: {}
                         )
                     }
@@ -140,7 +126,7 @@ struct CreatePollView: View {
                 }
             }
             .dialog(
-                isPresented: $isQuestionPresent,
+                isPresented: $viewModel.isQuestionPresent,
                 title: "투표 만들기 도움말",
                 content: questionHelpContent,
                 primaryButtonText: "확인",
@@ -151,7 +137,7 @@ struct CreatePollView: View {
                 Spacer()
                 
                 QuestionButton {
-                    isQuestionPresent = true
+                    viewModel.isQuestionPresent = true
                 }
                 .padding()
             }

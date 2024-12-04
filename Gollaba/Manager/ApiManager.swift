@@ -102,6 +102,72 @@ class ApiManager {
         }
     }
     
+    // 투표 생성
+    func createPoll(title: String, creatorName: String, responseType: String, pollType: String, endAt: Date, items: [PollOptionForParameter]) async throws -> String {
+        let urlString = baseURL + "/v2/polls"
+        let url = try getUrl(for: urlString)
+        let headers: HTTPHeaders = ["Content-Type": "multipart/form-data", "Accept": "application/json"]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let endAtString = dateFormatter.string(from: endAt)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(Data(title.utf8), withName: "title")
+                multipartFormData.append(Data(creatorName.utf8), withName: "creatorName")
+                multipartFormData.append(Data(responseType.utf8), withName: "responseType")
+                multipartFormData.append(Data(pollType.utf8), withName: "pollType")
+                multipartFormData.append(Data(endAtString.utf8), withName: "endAt")
+                
+//                let itemsArray: [[String: Any]] = items.map { item in
+//                    var jsonObject: [String: Any] = ["description": item.description]
+//                    
+//                    if let imageData = item.image?.jpegData(compressionQuality: 0.5) {
+//                        jsonObject["image"] = imageData.base64EncodedString()
+//                    } else {
+//                        jsonObject["image"] = nil
+//                    }
+//                    return jsonObject
+//                }
+//
+//                
+//                if let itemsData = try? JSONSerialization.data(withJSONObject: itemsArray, options: []) {
+//                    multipartFormData.append(itemsData, withName: "items", mimeType: "application/json")
+//                }
+                
+                for (index, item) in items.enumerated() {
+                    let descriptionField = "items[\(index)].description"
+                    multipartFormData.append(Data(item.description.utf8), withName: descriptionField)
+                    
+                    if let imageData = item.image?.jpegData(compressionQuality: 0.1) {
+                        let imageField = "items[\(index)].image"
+                        multipartFormData.append(imageData, withName: imageField, fileName: "image\(index + 1).jpg", mimeType: "image/jpeg")
+                    }
+                }
+            }, to: url, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: DefaultResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    Logger.shared.log(String(describing: self), #function, "Success to create poll: \(value)")
+                    
+                    switch value.data {
+                    case .boolValue:
+                        break
+                    case .createPollResponseData(let data):
+                        continuation.resume(returning: data.id)
+                    default:
+                        break
+                    }
+                case .failure(let error):
+                    Logger.shared.log(String(describing: self), #function, "Failed to create poll with error: \(error)", .error)
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
     // 오늘의 투표
     func getTrendingPolls(limit: Int = 10) async throws -> [PollItem] {
         let urlString = baseURL + "/v2/polls/trending?" + "limit=\(limit)"
