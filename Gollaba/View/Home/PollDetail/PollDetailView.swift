@@ -63,7 +63,9 @@ struct PollDetailView: View {
                 }
                 
                 PollButton(pollbuttonState: $viewModel.pollButtonState) {
-                    viewModel.voting()
+                    Task {
+                        await viewModel.voting()
+                    }
                 }
                 
                 PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
@@ -84,13 +86,36 @@ struct PollDetailView: View {
                 }
             }
         }
+        .dialog(
+            isPresented: $viewModel.showAlreadyVotedAlert,
+            title: "투표하기",
+            content: Text("이미 투표하셨습니다. 로그인 유저만 투표 항목을 변경할 수 있습니다."),
+            primaryButtonText: "확인",
+            onPrimaryButton: {}
+        )
+        .dialog(
+            isPresented: $viewModel.showNotVotedAlert,
+            title: "투표하기",
+            content: Text("투표 항목을 선택해주세요."),
+            primaryButtonText: "확인",
+            onPrimaryButton: {}
+        )
         .onAppear {
-            viewModel.getPoll()
-//            viewModel.readPoll()
-//            viewModel.votingCheck()
+            Task {
+                await viewModel.getPoll()
+                await viewModel.readPoll()
+                await viewModel.votingCheck()
+            }
         }
         .onDisappear {
             viewModel.deleteOption()
+        }
+        .onChange(of: viewModel.isVoted) { oldValue, newValue in
+            if newValue {
+                Task {
+                    await viewModel.getPoll()
+                }
+            }
         }
     }
     

@@ -28,7 +28,12 @@ public struct DialogViewModifier: ViewModifier {
                                 .foregroundStyle(.black)
                                 .padding(.bottom, 30)
                             
-                            self.content
+                            if let content = self.content {
+                                content
+                                    .font(.suitVariable16)
+                                    .foregroundStyle(.black)
+                            }
+                            
                             
                             HStack {
                                 Spacer()

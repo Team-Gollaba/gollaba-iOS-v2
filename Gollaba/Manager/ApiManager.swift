@@ -18,6 +18,10 @@ enum ApiError: Error {
     case invalidResponseStatusCode
 }
 
+enum VotingError: Error {
+    case alreadyVoted
+}
+
 enum SortedBy: String {
     case createdAt = "createdAt"
     case endAt = "endAt"
@@ -120,21 +124,21 @@ class ApiManager {
                 multipartFormData.append(Data(pollType.utf8), withName: "pollType")
                 multipartFormData.append(Data(endAtString.utf8), withName: "endAt")
                 
-//                let itemsArray: [[String: Any]] = items.map { item in
-//                    var jsonObject: [String: Any] = ["description": item.description]
-//                    
-//                    if let imageData = item.image?.jpegData(compressionQuality: 0.5) {
-//                        jsonObject["image"] = imageData.base64EncodedString()
-//                    } else {
-//                        jsonObject["image"] = nil
-//                    }
-//                    return jsonObject
-//                }
-//
-//                
-//                if let itemsData = try? JSONSerialization.data(withJSONObject: itemsArray, options: []) {
-//                    multipartFormData.append(itemsData, withName: "items", mimeType: "application/json")
-//                }
+                //                let itemsArray: [[String: Any]] = items.map { item in
+                //                    var jsonObject: [String: Any] = ["description": item.description]
+                //
+                //                    if let imageData = item.image?.jpegData(compressionQuality: 0.5) {
+                //                        jsonObject["image"] = imageData.base64EncodedString()
+                //                    } else {
+                //                        jsonObject["image"] = nil
+                //                    }
+                //                    return jsonObject
+                //                }
+                //
+                //
+                //                if let itemsData = try? JSONSerialization.data(withJSONObject: itemsArray, options: []) {
+                //                    multipartFormData.append(itemsData, withName: "items", mimeType: "application/json")
+                //                }
                 
                 for (index, item) in items.enumerated() {
                     let descriptionField = "items[\(index)].description"
@@ -247,7 +251,7 @@ class ApiManager {
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to read poll: \(value)")
-                        
+                        continuation.resume()
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to read poll with error: \(error)", .error)
                         continuation.resume(throwing: error)
@@ -277,8 +281,18 @@ class ApiManager {
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to voting: \(value)")
+                        continuation.resume()
                         
                     case .failure(let error):
+                        if let data = response.data, let serverError = try? JSONDecoder().decode(DefaultResponse.self, from: data) {
+                            Logger.shared.log(String(describing: self), #function, "Server error: \(serverError.message)", .error)
+                            
+                            if serverError.message == "이미 투표하셨습니다." {
+                                continuation.resume(throwing: VotingError.alreadyVoted)
+                                return
+                            }
+                        }
+                        
                         Logger.shared.log(String(describing: self), #function, "Failed to voting with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
@@ -303,9 +317,17 @@ class ApiManager {
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to voting check: \(value)")
-                        continuation.resume(returning: (value.data != nil))
                         
-                        case .failure(let error):
+                        switch value.data {
+                        case .boolValue(let data):
+                            continuation.resume(returning: data)
+                        case .createPollResponseData:
+                            break
+                        default:
+                            break
+                        }
+                        
+                    case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to voting check: \(error)", .error)
                         continuation.resume(throwing: error)
                     }

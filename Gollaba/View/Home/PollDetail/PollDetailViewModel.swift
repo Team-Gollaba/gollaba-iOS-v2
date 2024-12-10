@@ -15,6 +15,9 @@ class PollDetailViewModel {
     var selectedMultiplePoll: [Bool] = []
     var pollButtonState: PollButtonState = .normal
     
+    var showAlreadyVotedAlert: Bool = false
+    var showNotVotedAlert: Bool = false
+    
     var isValidPoll: Bool {
         get {
             if let poll {
@@ -24,7 +27,11 @@ class PollDetailViewModel {
             }
         }
     }
-    var isVoted: Bool = false
+    var isVoted: Bool = false {
+        didSet {
+            print("isVoted: \(isVoted)")
+        }
+    }
     
     init(id: String) {
         self.id = id
@@ -61,56 +68,61 @@ class PollDetailViewModel {
     }
     
     //MARK: - API
-    func getPoll() {
-        Task {
-            do {
-                poll = try await ApiManager.shared.getPoll(pollHashId: id)
+    func getPoll() async {
+        
+        do {
+            self.poll = try await ApiManager.shared.getPoll(pollHashId: id)
+            
+            if let poll {
+                selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+                pollButtonState = isValidPoll ? .normal : .ended
                 
-                if let poll {
-                    selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
-                    pollButtonState = isValidPoll ? .normal : .ended
-                    
-                    readPoll()
-                    votingCheck()
-                }
-            } catch {
-                
+            } else {
+                Logger.shared.log(String(describing: self), #function, "poll not found", .error)
             }
+        } catch {
+            
         }
+        
     }
     
-    func readPoll() {
-        Task {
-            do {
-                if let poll {
-                    try await ApiManager.shared.readPoll(pollHashId: poll.id)
-                } else {
-                    
-                }
-            } catch {
-                
+    func readPoll() async {
+        
+        do {
+            if let poll {
+                try await ApiManager.shared.readPoll(pollHashId: poll.id)
+            } else {
+                Logger.shared.log(String(describing: self), #function, "poll not found", .error)
             }
+        } catch {
+            
         }
+        
     }
     
-    func votingCheck() {
-        Task {
-            do {
-                if let poll {
-                    isVoted = try await ApiManager.shared.votingCheck(pollHashId: poll.id)
-                } else {
-                    
-                }
-            } catch {
-                
+    func votingCheck() async {
+        
+        do {
+            if let poll {
+                isVoted = try await ApiManager.shared.votingCheck(pollHashId: poll.id)
+            } else {
+                Logger.shared.log(String(describing: self), #function, "poll not found", .error)
             }
+        } catch {
+            
         }
+        
     }
     
-    func voting() {
+    func voting() async {
+        if isVoted {
+            self.showAlreadyVotedAlert = true
+            return
+        }
+        
         var pollItemIds: [Int] = []
         let voterName = "temp voter"
-    
+        
         if let poll {
             if poll.responseType == ResponseType.single.rawValue, let selectedPollItemIndex = selectedSinglePoll {
                 pollItemIds.append(poll.items[selectedPollItemIndex - 1].id)
@@ -122,14 +134,21 @@ class PollDetailViewModel {
                 }
             }
             
-            Task {
-                do {
-                    try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll.pollType == PollType.named.rawValue ? voterName : nil)
-                    
-                } catch {
-                    
+            if pollItemIds.isEmpty {
+                self.showNotVotedAlert = true
+                return
+            }
+            
+            do {
+                try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll.pollType == PollType.named.rawValue ? voterName : nil)
+                
+                self.isVoted = true
+            } catch {
+                if let votingError = error as? VotingError, votingError == VotingError.alreadyVoted {
+                    self.showAlreadyVotedAlert = true
                 }
             }
+            
         } else {
             
         }
