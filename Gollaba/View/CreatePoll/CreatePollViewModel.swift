@@ -74,6 +74,18 @@ class CreatePollViewModel {
                 endAt: selectedDate,
                 items: pollOptionForParameters
             )
+            
+            self.creatorNameText = ""
+            self.titleText = ""
+            self.postImage = Array(repeating: nil, count: 6)
+            self.pollItemName = [
+                "", "", "",
+            ]
+            self.anonymousOption = .first
+            self.countingOption = .first
+            self.selectedDate = Date().addingTimeInterval(60 * 60)
+            self.alertMessage = "투표가 생성되었습니다."
+            self.showAlert = true
         } catch {
             
         }
