@@ -65,6 +65,7 @@ struct SelectablePollContent: View {
             .cornerRadius(10)
             .shadow(radius: 2)
         }
+        .contentShape(Rectangle())
         .onTapGesture {
             action()
         }
