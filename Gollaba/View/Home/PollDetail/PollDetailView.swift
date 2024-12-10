@@ -117,6 +117,7 @@ struct PollDetailView: View {
                 }
             }
         }
+        .refreshable(action: viewModel.loadPoll)
     }
     
     private func formattedDate(_ date: String) -> String {

@@ -107,6 +107,16 @@ class PollDetailViewModel {
         
     }
     
+    @Sendable func loadPoll() async {
+        do {
+            try await Task.sleep(nanoseconds: 1000_000_000)
+            await getPoll()
+            await votingCheck()
+        } catch {
+            
+        }
+    }
+    
     func voting() async {
         if isVoted {
             self.showAlreadyVotedAlert = true
