@@ -27,11 +27,7 @@ class PollDetailViewModel {
             }
         }
     }
-    var isVoted: Bool = false {
-        didSet {
-            print("isVoted: \(isVoted)")
-        }
-    }
+    var isVoted: Bool = false
     
     init(id: String) {
         self.id = id

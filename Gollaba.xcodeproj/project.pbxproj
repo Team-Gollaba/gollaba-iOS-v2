@@ -12,6 +12,7 @@
 		491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17492CEC685C00C4666F /* PollContentOptionView.swift */; };
 		491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */; };
 		491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174D2CEC876400C4666F /* MyPollViewModel.swift */; };
+		492ABF0D2D0886FB0051380C /* ScaleOnPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */; };
 		4945A2A22CEB6ECC00FF05DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A2722CEB6ECC00FF05DC /* Preview Assets.xcassets */; };
 		4945A2A32CEB6ECC00FF05DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29A2CEB6ECC00FF05DC /* Assets.xcassets */; };
 		4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4945A29E2CEB6ECC00FF05DC /* SUIT-Bold.ttf */; };
@@ -67,6 +68,7 @@
 		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
 		491A174D2CEC876400C4666F /* MyPollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPollViewModel.swift; sourceTree = "<group>"; };
+		492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleOnPressStyle.swift; sourceTree = "<group>"; };
 		4945A26E2CEB6ECC00FF05DC /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4945A26F2CEB6ECC00FF05DC /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
 		4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				4945A2802CEB6ECC00FF05DC /* PollChartView.swift */,
 				491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */,
 				497DDFBC2CFC2036008A8534 /* ShimmerView.swift */,
+				492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				4945A2BF2CEB6ECC00FF05DC /* LoginView.swift in Sources */,
 				4945A2C02CEB6ECC00FF05DC /* CustomTabView.swift in Sources */,
 				491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */,
+				492ABF0D2D0886FB0051380C /* ScaleOnPressStyle.swift in Sources */,
 				4945A2C12CEB6ECC00FF05DC /* CustomTabViewButton.swift in Sources */,
 				4945A2C22CEB6ECC00FF05DC /* TitleView.swift in Sources */,
 				4945A2C32CEB6ECC00FF05DC /* MainView.swift in Sources */,

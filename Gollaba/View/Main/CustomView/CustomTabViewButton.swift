@@ -14,21 +14,19 @@ struct CustomTabViewButton: View {
     var isSelected: Bool
     
     var body: some View {
-        Button {
-            action()
-        } label: {
+        Button(action: action) {
             VStack {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 20, height: 20)
-                    .padding(.bottom, 4)
+                    
                 Text(title)
-                    .font(.suitVariable12)
+                    .font(isSelected ? .suitBold12 : .suitVariable12)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .scaleEffect(isSelected ? 1.2 : 1.0)
         }
+        .buttonStyle(ScaleOnPressStyle(isSelected: isSelected))
     }
 }
 

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Font {
+    static let suitVariable8: Font = .custom("SUIT-Variable", size: 8)
     static let suitVariable12: Font = .custom("SUIT-Variable", size: 12)
     static let suitVariable16: Font = .custom("SUIT-Variable", size: 16)
     static let suitVariable20: Font = .custom("SUIT-Variable", size: 20)

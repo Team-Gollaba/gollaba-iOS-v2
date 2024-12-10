@@ -17,10 +17,10 @@ struct TitleView: View {
             Image("AppIconImage")
                 .resizable()
                 .scaledToFill()
-                .frame(width: 40, height: 40)
+                .frame(width: 28, height: 28)
             
             Text("골라바")
-                .font(.yangjin32)
+                .font(.yangjin20)
                 .underline(color: .mainTitleFontColor)
             
             Spacer()

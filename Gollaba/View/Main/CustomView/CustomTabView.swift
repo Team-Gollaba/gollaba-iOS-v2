@@ -17,7 +17,7 @@ struct CustomTabView: View {
     @State private var selectedTab: SelectedTab = .home
     @State private var isScrollToTop: Bool = false
     
-    let tabBarHeight: CGFloat = 80
+    let tabBarHeight: CGFloat = 60
     
     var body: some View {
         ZStack (alignment: .bottom) {
@@ -44,7 +44,7 @@ struct CustomTabView: View {
                         }
                         selectedTab = .home
                     },
-                    image: Image(systemName: "house.fill"),
+                    image: Image(systemName: selectedTab == .home ?  "house.fill" : "house"),
                     title: "홈",
                     isSelected: selectedTab == .home
                 )
@@ -54,7 +54,7 @@ struct CustomTabView: View {
                     action: {
                         selectedTab = .create
                     },
-                    image: Image(systemName: "plus.circle.fill"),
+                    image: Image(systemName: selectedTab == .create ? "plus.circle.fill" : "plus.circle"),
                     title: "새 투표",
                     isSelected: selectedTab == .create
                 )
@@ -64,7 +64,7 @@ struct CustomTabView: View {
                     action: {
                         selectedTab = .myPoll
                     },
-                    image: Image(systemName: "folder.fill"),
+                    image: Image(systemName: selectedTab == .myPoll ? "person.circle.fill" : "person.circle"),
                     title: "My 투표",
                     isSelected: selectedTab == .myPoll
                 )
