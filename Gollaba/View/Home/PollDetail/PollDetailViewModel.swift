@@ -71,7 +71,7 @@ class PollDetailViewModel {
     func getPoll() async {
         
         do {
-            self.poll = try await ApiManager.shared.getPoll(pollHashId: id)
+            self.poll = try await ApiManager.shared.getPoll(pollHashId: self.id)
             
             if let poll {
                 selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
@@ -89,11 +89,8 @@ class PollDetailViewModel {
     func readPoll() async {
         
         do {
-            if let poll {
-                try await ApiManager.shared.readPoll(pollHashId: poll.id)
-            } else {
-                Logger.shared.log(String(describing: self), #function, "poll not found", .error)
-            }
+            try await ApiManager.shared.readPoll(pollHashId: self.id)
+            
         } catch {
             
         }

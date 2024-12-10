@@ -102,8 +102,8 @@ struct PollDetailView: View {
         )
         .onAppear {
             Task {
-                await viewModel.getPoll()
                 await viewModel.readPoll()
+                await viewModel.getPoll()
                 await viewModel.votingCheck()
             }
         }
