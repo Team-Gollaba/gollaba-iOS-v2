@@ -53,9 +53,11 @@ class HomeViewModel {
     @Sendable func loadEveryPolls() async {
         
         do {
+            allPollsPage = 0
             let allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
             let trendingPolls = try await ApiManager.shared.getTrendingPolls()
             let topPolls = try await ApiManager.shared.getTopPolls()
+            allPollsPage += 1
             try await Task.sleep(nanoseconds: 1000_000_000)
             
             self.allPolls = allPolls
@@ -74,9 +76,6 @@ class HomeViewModel {
     
         Task {
             do {
-                
-                allPollsPage = 0
-                allPolls?.items.removeAll()
                 allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
                 allPollsPage += 1
     
