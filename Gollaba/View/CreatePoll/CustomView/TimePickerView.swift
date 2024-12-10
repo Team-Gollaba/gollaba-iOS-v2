@@ -39,7 +39,10 @@ struct TimePickerView: View {
                 .labelsHidden()
                 
                 Button {
-                    if selectedDate < Date() {
+                    let currentDate = Date()
+                    let thirtyMinutesLater = currentDate.addingTimeInterval(30 * 60)
+                    
+                    if selectedDate < thirtyMinutesLater {
                         showAlert = true
                     } else {
                         showTimerPicker = false
@@ -63,7 +66,7 @@ struct TimePickerView: View {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.white)
         )
-        .alert("과거 시간은 선택할 수 없습니다.", isPresented: $showAlert) {
+        .alert("투표 시작 날짜는 30분 이후로 설정해주세요.", isPresented: $showAlert) {
             Button("확인", role: .cancel) {}
         }
     }

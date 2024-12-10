@@ -90,7 +90,11 @@ struct CreatePollView: View {
                         }
                         
                         EnrollPollButton {
-                            viewModel.createPoll()
+                            if viewModel.isValidForCreatePoll() {
+                                Task {
+                                    await viewModel.createPoll()
+                                }
+                            }
                         }
                         
                     }
@@ -129,6 +133,13 @@ struct CreatePollView: View {
                 isPresented: $viewModel.isQuestionPresent,
                 title: "투표 만들기 도움말",
                 content: questionHelpContent,
+                primaryButtonText: "확인",
+                onPrimaryButton: {}
+            )
+            .dialog(
+                isPresented: $viewModel.showAlert,
+                title: "투표 만들기",
+                content: Text(viewModel.alertMessage),
                 primaryButtonText: "확인",
                 onPrimaryButton: {}
             )
