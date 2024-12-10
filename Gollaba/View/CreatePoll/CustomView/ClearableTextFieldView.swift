@@ -16,6 +16,8 @@ struct ClearableTextFieldView: View {
     var body: some View {
         HStack {
             TextField(placeholder, text: $editText)
+                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
                 .focused($isTextFieldFocused)
                 .font(.suitVariable16)
                 .onChange(of: isFocused) { _, newValue in
