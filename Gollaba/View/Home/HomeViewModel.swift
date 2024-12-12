@@ -50,25 +50,6 @@ class HomeViewModel {
     var allPollsPage: Int = 0
     let allPollsSize: Int = 10
     
-    @Sendable func loadEveryPolls() async {
-        
-        do {
-            allPollsPage = 0
-            let allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
-            let trendingPolls = try await ApiManager.shared.getTrendingPolls()
-            let topPolls = try await ApiManager.shared.getTopPolls()
-            allPollsPage += 1
-            try await Task.sleep(nanoseconds: 1000_000_000)
-            
-            self.allPolls = allPolls
-            self.trendingPolls = trendingPolls
-            self.topPolls = topPolls
-        } catch {
-            
-        }
-        isScrollToTop = true
-    }
-    
     //MARK: - API
     //MARK: - All polls
     func getPolls() {
@@ -133,5 +114,37 @@ class HomeViewModel {
             }
             
         }
+    }
+    
+    @Sendable func loadEveryPolls() async {
+        
+        do {
+            allPollsPage = 0
+            let allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
+            let trendingPolls = try await ApiManager.shared.getTrendingPolls()
+            let topPolls = try await ApiManager.shared.getTopPolls()
+            allPollsPage += 1
+            try await Task.sleep(nanoseconds: 1000_000_000)
+            
+            self.allPolls = allPolls
+            self.trendingPolls = trendingPolls
+            self.topPolls = topPolls
+        } catch {
+            
+        }
+        isScrollToTop = true
+    }
+    
+    //MARK: - Not API
+    func searchPolls() {
+        
+    }
+    
+    func isValidSearchText() -> Bool {
+        if searchText.isEmpty {
+            return false
+        }
+        
+        return true
     }
 }

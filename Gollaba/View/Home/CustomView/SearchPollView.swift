@@ -11,6 +11,7 @@ struct SearchPollView: View {
     @Binding var text: String
     @Binding var searchFocus: Bool
     @FocusState var focus: Bool
+    var action: () -> Void
     
     var body: some View {
         HStack (spacing: 10) {
@@ -28,15 +29,16 @@ struct SearchPollView: View {
                 }
             
             Button {
-                
+                action()
             } label: {
                 Image("Search")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 24, height: 24)
+                    .frame(width: 20, height: 20)
             }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.vertical, 12)
         .background(
             RoundedRectangle(cornerRadius: 5)
                 .strokeBorder(.searchBorder, lineWidth: 1)
@@ -46,5 +48,5 @@ struct SearchPollView: View {
 }
 
 #Preview {
-    SearchPollView(text: .constant(""), searchFocus: .constant(true))
+    SearchPollView(text: .constant(""), searchFocus: .constant(true), action: {})
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct HomeView: View {
     @State var viewModel = HomeViewModel()
@@ -30,7 +31,9 @@ struct HomeView: View {
                                 .frame(height: 0)
                                 .id("Top")
                             
-                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus)
+                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
+                                
+                            }
                             
                             HorizontalPollList(
                                 title: "🗓️ 오늘의 투표",
