@@ -16,6 +16,7 @@ struct HorizontalPollList: View {
     
     @Binding var goToPollDetail: Bool
     @State var position = ScrollPosition(edge: .leading)
+    @State var isOpen: Bool = true
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -28,27 +29,43 @@ struct HorizontalPollList: View {
                 Text(title)
                     .font(.yangjin20)
                 
+                Spacer()
+                
+                Button {
+                    withAnimation(.spring) {
+                        isOpen.toggle()
+                    }
+                } label: {
+                    Image(systemName: isOpen ? "chevron.up" : "chevron.down")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .tint(.black)
+                
             }
-            .padding(.leading, 16)
+            .padding(.horizontal, 16)
             .padding(.vertical, 5)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    
-                    ForEach(pollList, id: \.self) { poll in
+            if isOpen {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
                         
-                        PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
-                            .id(poll.id)
-                        
+                        ForEach(pollList, id: \.self) { poll in
+                            
+                            PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
+                                .id(poll.id)
+                            
+                        }
                     }
                 }
-            }
-            .scrollPosition($position)
-            .onChange(of: isScrollToLeading) { _, newValue in
-                if newValue {
-                    isScrollToLeading = false
-                    withAnimation {
-                        position.scrollTo(id: pollList.first?.id)
+                .scrollPosition($position)
+                .onChange(of: isScrollToLeading) { _, newValue in
+                    if newValue {
+                        isScrollToLeading = false
+                        withAnimation {
+                            position.scrollTo(id: pollList.first?.id)
+                        }
                     }
                 }
             }
