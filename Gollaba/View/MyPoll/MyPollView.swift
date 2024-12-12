@@ -15,6 +15,7 @@ struct MyPollView: View {
     var body: some View {
         
         VStack {
+            Spacer()
             
             ProfileImageView(image: KFImage(kakaoAuthManager.profileImageUrl)) {
                 viewModel.isClickedProfileImage = true
@@ -22,10 +23,6 @@ struct MyPollView: View {
             
             ProfileNameView(name: kakaoAuthManager.userName, email: kakaoAuthManager.userMail)
                 .padding(.bottom, 16)
-            
-            //                    MyLikePollsCountView(countLikePolls: 42, action: {
-            //
-            //                    })
             
             
             GoToMyPollListButton(
