@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct VerticalPollList: View {
-
-    var title: String
+    
+    var title: String?
     var pollList: [PollItem]
     
     @Binding var requestAddPoll: Bool
@@ -18,25 +18,28 @@ struct VerticalPollList: View {
     
     var body: some View {
         LazyVStack (alignment: .leading) {
-            HStack {
-                icon?
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                
-                Text(title)
-                    .font(.yangjin20)
+            if let title {
+                HStack {
+                    icon?
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                    
+                    
+                    Text(title)
+                        .font(.yangjin20)
+                    
+                }
+                .padding(.leading, 16)
+                .padding(.vertical, 5)
             }
-            .padding(.leading, 16)
-            .padding(.vertical, 5)
-            
             
             ForEach(pollList, id: \.self) { poll in
                 
                 PollContentWebStyle(poll: poll, contentWidth: UIScreen.main.bounds.width)
             }
             
-            if !isEnd {
+            if !isEnd && !pollList.isEmpty {
                 ProgressView()
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
