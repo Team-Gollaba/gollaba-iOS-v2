@@ -14,16 +14,10 @@ struct SearchPollView: View {
     
     var body: some View {
         HStack (spacing: 10) {
-            Button {
-                
-            } label: {
-                Image("Search")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 24, height: 24)
-            }
             
             TextField("제목으로 투표를 검색하세요.", text: $text)
+                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
                 .font(.suitVariable16)
                 .focused($focus)
                 .onChange(of: searchFocus) { oldValue, newValue in
@@ -32,6 +26,15 @@ struct SearchPollView: View {
                 .onChange(of: focus) { oldValue, newValue in
                     searchFocus = newValue
                 }
+            
+            Button {
+                
+            } label: {
+                Image("Search")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 24, height: 24)
+            }
         }
         .padding()
         .background(
