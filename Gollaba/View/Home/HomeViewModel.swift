@@ -19,6 +19,8 @@ class HomeViewModel {
     
     var isScrollToTop: Bool = false
     
+    var showSearchErrorToast: Bool = false
+    
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
     var topPolls: [PollItem]?
@@ -142,6 +144,8 @@ class HomeViewModel {
     
     func isValidSearchText() -> Bool {
         if searchText.isEmpty {
+            self.showSearchErrorToast = true
+            
             return false
         }
         
