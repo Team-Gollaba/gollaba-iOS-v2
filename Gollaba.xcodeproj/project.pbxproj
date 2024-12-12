@@ -54,6 +54,8 @@
 		497DDFBB2CFC1FA8008A8534 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */; };
 		497DDFBD2CFC2036008A8534 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBC2CFC2036008A8534 /* ShimmerView.swift */; };
 		497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */; };
+		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
+		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -113,6 +115,8 @@
 		497DDFBC2CFC2036008A8534 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableTextFieldView.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
+		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				4945A28A2CEB6ECC00FF05DC /* HomeView.swift */,
 				4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */,
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
+				49C8A6772D0B060F0030D648 /* SearchResultList */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -377,6 +382,15 @@
 				49C5CF742CDE24D2001DD737 /* Gollaba.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		49C8A6772D0B060F0030D648 /* SearchResultList */ = {
+			isa = PBXGroup;
+			children = (
+				49C8A6752D0B06090030D648 /* SearchResultListView.swift */,
+				49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */,
+			);
+			path = SearchResultList;
 			sourceTree = "<group>";
 		};
 		4A5C00A7197583F18C551A39 /* Pods */ = {
@@ -542,11 +556,13 @@
 				49FEE2952CF6E9FD000991DB /* TitleProfileView.swift in Sources */,
 				4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */,
 				4945A2AC2CEB6ECC00FF05DC /* CalendarView.swift in Sources */,
+				49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */,
 				4945A2AD2CEB6ECC00FF05DC /* CallendarOptionView.swift in Sources */,
 				4945A2AE2CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift in Sources */,
 				491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */,
 				4945A2AF2CEB6ECC00FF05DC /* EnrollPollButton.swift in Sources */,
 				4945A2B02CEB6ECC00FF05DC /* OptionBoxView.swift in Sources */,
+				49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */,
 				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
 				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,

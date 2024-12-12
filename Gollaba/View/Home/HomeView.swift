@@ -33,7 +33,7 @@ struct HomeView: View {
                             
                             SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
                                 if viewModel.isValidSearchText() {
-                                    
+                                    viewModel.goToSearchResult = true
                                 }
                             }
                             
@@ -85,6 +85,9 @@ struct HomeView: View {
                     viewModel.getTopPolls()
                 }
             }
+        }
+        .navigationDestination(isPresented: $viewModel.goToSearchResult) {
+            SearchResultListView(title: viewModel.searchText)
         }
         .toast(
             isPresenting: $viewModel.showSearchErrorToast) {

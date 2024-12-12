@@ -29,6 +29,14 @@ struct SearchPollView: View {
                 }
             
             Button {
+                text = ""
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundStyle(.gray)
+            }
+            .opacity(text.isEmpty ? 0 : 1)
+            
+            Button {
                 action()
             } label: {
                 Image("Search")

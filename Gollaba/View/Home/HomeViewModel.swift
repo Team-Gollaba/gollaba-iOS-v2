@@ -20,6 +20,7 @@ class HomeViewModel {
     var isScrollToTop: Bool = false
     
     var showSearchErrorToast: Bool = false
+    var goToSearchResult: Bool = false
     
     var allPolls: AllPollData?
     var trendingPolls: [PollItem]?
