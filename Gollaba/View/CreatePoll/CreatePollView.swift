@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreatePollView: View {
     @State var viewModel = CreatePollViewModel()
+    @Binding var moveToHome: Bool
     
     var body: some View {
         ZStack {
@@ -141,7 +142,11 @@ struct CreatePollView: View {
                 title: "투표 만들기",
                 content: Text(viewModel.alertMessage),
                 primaryButtonText: "확인",
-                onPrimaryButton: {}
+                onPrimaryButton: {
+                    if viewModel.isCompletedCreatePoll {
+                        moveToHome = true
+                    }
+                }
             )
             
             VStack {
@@ -173,5 +178,5 @@ struct CreatePollView: View {
 }
 
 #Preview {
-    CreatePollView()
+    CreatePollView(moveToHome: .constant(false))
 }

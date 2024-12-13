@@ -46,6 +46,7 @@ class CreatePollViewModel {
     var postImage: [Image?] = Array(repeating: nil, count: 6)
     var uiImage: [UIImage?] = Array(repeating: nil, count: 6)
     
+    var isCompletedCreatePoll: Bool = false
     var showAlert: Bool = false
     var alertMessage: String = ""
     
@@ -85,6 +86,7 @@ class CreatePollViewModel {
             self.countingOption = .first
             self.selectedDate = Date().addingTimeInterval(60 * 60)
             self.alertMessage = "투표가 생성되었습니다."
+            self.isCompletedCreatePoll = true
             self.showAlert = true
         } catch {
             
