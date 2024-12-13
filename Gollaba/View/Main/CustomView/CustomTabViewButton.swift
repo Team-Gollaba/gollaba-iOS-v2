@@ -14,13 +14,17 @@ struct CustomTabViewButton: View {
     var isSelected: Bool
     
     var body: some View {
-        Button(action: action) {
+        Button {
+            action()
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        
+        } label: {
             VStack {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 20, height: 20)
-                    
+                
                 Text(title)
                     .font(isSelected ? .suitBold12 : .suitVariable12)
             }
