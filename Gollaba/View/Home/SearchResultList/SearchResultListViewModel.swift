@@ -10,7 +10,7 @@ import SwiftUI
 @Observable
 class SearchResultListViewModel {
     let query: String
-    var page: Int = 0
+    var page: Int = 1
     let pageSize: Int = 10
     
     var searchResultPollData: AllPollData?

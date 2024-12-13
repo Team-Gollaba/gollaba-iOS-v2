@@ -50,7 +50,7 @@ class HomeViewModel {
     )
     
     
-    var allPollsPage: Int = 0
+    var allPollsPage: Int = 1
     let allPollsSize: Int = 10
     
     //MARK: - API
@@ -122,7 +122,7 @@ class HomeViewModel {
     @Sendable func loadEveryPolls() async {
         
         do {
-            allPollsPage = 0
+            allPollsPage = 1
             let allPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
             let trendingPolls = try await ApiManager.shared.getTrendingPolls()
             let topPolls = try await ApiManager.shared.getTopPolls()
