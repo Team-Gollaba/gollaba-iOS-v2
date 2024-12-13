@@ -17,7 +17,7 @@ struct VerticalPollList: View {
     var icon: Image?
     
     var body: some View {
-        LazyVStack (alignment: .leading) {
+        VStack (alignment: .leading) {
             if let title {
                 HStack {
                     icon?

@@ -26,6 +26,7 @@ extension Font {
     static let suitBold32: Font = .custom("SUIT-Bold", size: 32)
     static let suitBold80: Font = .custom("SUIT-Bold", size: 80)
     
+    static let yangjin16: Font = .custom("YANGJIN", size: 16)
     static let yangjin20: Font = .custom("YANGJIN", size: 20)
     static let yangjin32: Font = .custom("YANGJIN", size: 32)
     static let yangjin36: Font = .custom("YANGJIN", size: 36)

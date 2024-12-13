@@ -20,13 +20,13 @@ struct ProfileImageView: View {
                 Image(systemName: "person.circle.fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 160, height: 160)
+                    .frame(width: 100, height: 100)
                     .clipShape(Circle())
                 
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 160, height: 160)
+                    .frame(width: 100, height: 100)
                     .clipShape(Circle())
                     .overlay(
                         Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
@@ -34,6 +34,7 @@ struct ProfileImageView: View {
                     .shadow(radius: 5)
             }
         }
+        .padding(.bottom)
     }
 }
 

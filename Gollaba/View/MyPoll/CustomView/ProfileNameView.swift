@@ -19,7 +19,7 @@ struct ProfileNameView: View {
                 if isEditing {
                     
                     TextField("새 닉네임 *", text: $newName)
-                        .font(.suitBold24)
+                        .font(.suitBold20)
                         .frame(height: 40)
                         .overlay(
                             Rectangle()
@@ -53,7 +53,7 @@ struct ProfileNameView: View {
                     
                 } else {
                     Text(name)
-                        .font(.suitBold24)
+                        .font(.suitBold20)
                     
                     Button {
                         withAnimation {
