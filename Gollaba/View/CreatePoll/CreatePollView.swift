@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CreatePollView: View {
     @State var viewModel = CreatePollViewModel()
-    @Binding var moveToHome: Bool
     
     var body: some View {
         ZStack {
@@ -144,7 +143,7 @@ struct CreatePollView: View {
                 primaryButtonText: "확인",
                 onPrimaryButton: {
                     if viewModel.isCompletedCreatePoll {
-                        moveToHome = true
+                        viewModel.goToPollDetail = true
                     }
                 }
             )
@@ -157,6 +156,9 @@ struct CreatePollView: View {
                 }
                 .padding()
             }
+        }
+        .navigationDestination(isPresented: $viewModel.goToPollDetail) {
+            PollDetailView(id: viewModel.pollHashId)
         }
         
     }
@@ -178,5 +180,5 @@ struct CreatePollView: View {
 }
 
 #Preview {
-    CreatePollView(moveToHome: .constant(false))
+    CreatePollView()
 }

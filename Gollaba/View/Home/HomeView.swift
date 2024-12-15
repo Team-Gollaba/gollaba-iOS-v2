@@ -11,7 +11,6 @@ import AlertToast
 struct HomeView: View {
     @State var viewModel = HomeViewModel()
     @Binding var scrollToTopTrigger: Bool
-    @Binding var movedToHome: Bool
     
     var body: some View {
         NavigationStack {
@@ -85,13 +84,7 @@ struct HomeView: View {
                     viewModel.getTrendingPolls()
                     viewModel.getTopPolls()
                 }
-                .onChange(of: movedToHome) { _, newValue in
-                    if newValue {
-                        Task {
-                            await viewModel.loadEveryPolls()
-                        }
-                    }
-                }
+                
             }
         }
         .navigationDestination(isPresented: $viewModel.goToSearchResult) {
@@ -105,5 +98,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(scrollToTopTrigger: .constant(false), movedToHome: .constant(false))
+    HomeView(scrollToTopTrigger: .constant(false))
 }

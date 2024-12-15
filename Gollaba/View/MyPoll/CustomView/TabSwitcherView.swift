@@ -19,47 +19,51 @@ struct TabSwitcherView: View {
     let tabs: [TabSwitcherItem]
     
     var body: some View {
-        VStack {
-            HStack {
-                ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
-                    Button {
-                        withAnimation {
-                            selectedTab = index
-                        }
-                    } label: {
-                        VStack (alignment: .center) {
-                            HStack {
-                                tab.icon
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 16, height: 16)
-                                    .foregroundStyle(tab.iconColor ?? .black)
-                                
-                                Text(tab.title)
-                                    .font(.yangjin16)
+        GeometryReader { geometry in
+            VStack (spacing: 0) {
+                HStack (alignment: .center) {
+                    ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
+                        Button {
+//                            withAnimation {
+                                selectedTab = index
+//                            }
+                        } label: {
+                            VStack (alignment: .center) {
+                                HStack {
+//                                    tab.icon
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(width: 16, height: 16)
+//                                        .foregroundStyle(tab.iconColor ?? .black)
+                                    
+                                    Text(tab.title)
+                                        .font(.yangjin16)
+                                }
                             }
-                            
-                            Rectangle()
-                                .fill(selectedTab == index ? .enrollButton : .clear)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 2)
-                                .animation(.easeInOut, value: selectedTab)
+                            .frame(maxWidth: .infinity)
                         }
+                        .tint(.black)
                     }
-                    .tint(.black)
                 }
-            }
-            .padding(.horizontal)
-            
-            TabView(selection: $selectedTab) {
-                ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
-                    tab.view
-                        .tag(index)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                .padding(.horizontal)
+                
+                Rectangle()
+                    .fill(.enrollButton)
+                    .frame(width: geometry.size.width / CGFloat(tabs.count) - 100, height: 4)
+                    .offset(x: geometry.size.width * (CGFloat(selectedTab) - CGFloat(tabs.count - 1) / 2) / CGFloat(tabs.count))
+                    .animation(.bouncy, value: selectedTab)
+                    .padding(.top, 12)
+                
+                TabView(selection: $selectedTab) {
+                    ForEach(Array(tabs.enumerated()), id: \.offset) { index, tab in
+                        tab.view
+                            .tag(index)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .animation(.easeInOut, value: selectedTab)
             }
-//            .tabViewStyle(.page)
-//            .animation(.easeInOut, value: selectedTab)
         }
     }
 }

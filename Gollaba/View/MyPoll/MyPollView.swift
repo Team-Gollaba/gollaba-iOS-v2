@@ -28,9 +28,18 @@ struct MyPollView: View {
             
             TabSwitcherView(tabs: [
                 TabSwitcherItem(icon: Image(systemName: "person"), title: "내가 만든 투표", view: AnyView(
-                    ScrollView {
-                        VerticalPollList(pollList: viewModel.madeByMePollList, requestAddPoll: $viewModel.madeByMePollRequestAdd, isEnd: $viewModel.madeByMePollIsEnd)
-                    }
+                    GeometryReader { proxy in
+                            ScrollView {
+                                VStack {
+                                    VerticalPollList(
+                                        pollList: viewModel.madeByMePollList,
+                                        requestAddPoll: $viewModel.madeByMePollRequestAdd,
+                                        isEnd: $viewModel.madeByMePollIsEnd
+                                    )
+                                }
+                                .frame(minHeight: proxy.size.height)
+                            }
+                        }
                 )),
                 TabSwitcherItem(icon: Image(systemName: "heart.fill"), iconColor: .red, title: "내가 좋아요한 투표", view: AnyView(
                     Text("내가 좋아요한 투표")
