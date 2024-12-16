@@ -31,11 +31,11 @@ struct HomeView: View {
                                 .frame(height: 0)
                                 .id("Top")
                             
-                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
-                                if viewModel.isValidSearchText() {
-                                    viewModel.goToSearchResult = true
-                                }
-                            }
+//                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
+//                                if viewModel.isValidSearchText() {
+//                                    viewModel.goToSearchResult = true
+//                                }
+//                            }
                             
                             HorizontalPollList(
                                 title: "🗓️ 오늘의 투표",
@@ -76,6 +76,7 @@ struct HomeView: View {
                                 }
                             }
                         }
+                        .padding(.vertical)
                     }
                 }
                 .refreshable(action: viewModel.loadEveryPolls)
