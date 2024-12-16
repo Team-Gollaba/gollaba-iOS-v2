@@ -17,37 +17,53 @@ struct VerticalPollList: View {
     var icon: Image?
     
     var body: some View {
-        VStack (alignment: .leading) {
-            if let title {
-                HStack {
-                    icon?
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                    
-                    
-                    Text(title)
-                        .font(.yangjin20)
-                    
-                }
-                .padding(.leading, 16)
-                .padding(.vertical, 5)
-            }
-            
-            ForEach(pollList, id: \.self) { poll in
-                
-                PollContentWebStyle(poll: poll, contentWidth: UIScreen.main.bounds.width)
-            }
-            
-            if !isEnd && !pollList.isEmpty {
-                ProgressView()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
-                    .onAppear {
+        ScrollViewReader { proxy in
+            VStack (alignment: .leading) {
+                if let title {
+                    HStack {
+                        icon?
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
                         
-                        requestAddPoll = true
+                        
+                        Text(title)
+                            .font(.yangjin20)
                         
                     }
+                    .padding(.leading, 16)
+                    .padding(.vertical, 5)
+                }
+                
+                ForEach(pollList, id: \.self) { poll in
+                    
+                    PollContentWebStyle(poll: poll, contentWidth: UIScreen.main.bounds.width)
+                }
+                
+                Color.clear
+                    .frame(height: 0)
+                    .id("Bottom")
+                    .background(
+                        GeometryReader { geometry in
+                            Color.clear
+                                .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
+                                    if newValue < UIScreen.main.bounds.height + 200 && !isEnd {
+                                        requestAddPoll = true
+                                    }
+                                }
+                        }
+                    )
+                
+                //            if !isEnd && !pollList.isEmpty {
+                //                ProgressView()
+                //                    .frame(maxWidth: .infinity, alignment: .center)
+                //                    .padding()
+                //                    .onAppear {
+                //
+                //                        requestAddPoll = true
+                //
+                //                    }
+                //            }
             }
         }
     }

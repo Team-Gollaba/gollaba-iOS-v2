@@ -50,7 +50,11 @@ class HomeViewModel {
     )
     
     
-    var allPollsPage: Int = 1
+    var allPollsPage: Int = 1 {
+        didSet {
+            print("allPollsPage: \(allPollsPage)")
+        }
+    }
     let allPollsSize: Int = 10
     
     //MARK: - API
@@ -72,7 +76,7 @@ class HomeViewModel {
     
     func fetchPolls() {
         if isAllPollsEnd { return }
-        
+        print("fetchPolls")
         Task {
             do {
                 let newPolls = try await ApiManager.shared.getPolls(page: allPollsPage, size: allPollsSize)
