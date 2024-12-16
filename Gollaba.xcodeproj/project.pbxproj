@@ -57,6 +57,7 @@
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
+		49C8A69F2D10527C0030D648 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A69E2D10527C0030D648 /* SearchView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -119,6 +120,7 @@
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
 		49C8A6982D1012D00030D648 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		49C8A69E2D10527C0030D648 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			children = (
 				4945A2962CEB6ECC00FF05DC /* Main */,
 				4945A28B2CEB6ECC00FF05DC /* Home */,
+				49C8A6A02D1052890030D648 /* Search */,
 				4945A27F2CEB6ECC00FF05DC /* CreatePoll */,
 				4945A2982CEB6ECC00FF05DC /* MyPoll */,
 				4945A28F2CEB6ECC00FF05DC /* Login */,
@@ -394,6 +397,14 @@
 				49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */,
 			);
 			path = SearchResultList;
+			sourceTree = "<group>";
+		};
+		49C8A6A02D1052890030D648 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				49C8A69E2D10527C0030D648 /* SearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		4A5C00A7197583F18C551A39 /* Pods */ = {
@@ -564,6 +575,7 @@
 				4945A2AE2CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift in Sources */,
 				491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */,
 				4945A2AF2CEB6ECC00FF05DC /* EnrollPollButton.swift in Sources */,
+				49C8A69F2D10527C0030D648 /* SearchView.swift in Sources */,
 				4945A2B02CEB6ECC00FF05DC /* OptionBoxView.swift in Sources */,
 				49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */,
 				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,

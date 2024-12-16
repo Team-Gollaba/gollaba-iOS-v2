@@ -9,6 +9,7 @@ import SwiftUI
 
 enum SelectedTab: Hashable {
     case home
+    case search
     case create
     case myPoll
 }
@@ -25,9 +26,11 @@ struct CustomTabView: View {
                 HomeView(scrollToTopTrigger: $isScrollToTop)
                     .tag(SelectedTab.home)
                 
+                SearchView()
+                    .tag(SelectedTab.search)
+                
                 CreatePollView()
                     .tag(SelectedTab.create)
-                    
                 
                 MyPollView()
                     .tag(SelectedTab.myPoll)
@@ -49,6 +52,16 @@ struct CustomTabView: View {
                     isSelected: selectedTab == .home
                 )
                 .tint(selectedTab == .home ? .black : .gray)
+                
+                CustomTabViewButton(
+                    action: {
+                        selectedTab = .search
+                    },
+                    image: Image(systemName: selectedTab == .search ?  "magnifyingglass.circle.fill" : "magnifyingglass.circle"),
+                    title: "검색",
+                    isSelected: selectedTab == .search
+                )
+                .tint(selectedTab == .search ? .black : .gray)
                 
                 CustomTabViewButton(
                     action: {
