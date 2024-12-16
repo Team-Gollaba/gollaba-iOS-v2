@@ -20,6 +20,7 @@ struct MyPollView: View {
             }
             
             ProfileNameView(name: kakaoAuthManager.userName, email: kakaoAuthManager.userMail)
+                .padding(.bottom, 12)
                 
             
 //            LogoutButton {
