@@ -13,7 +13,7 @@ struct TitleView: View {
     var height: CGFloat
     
     var body: some View {
-        HStack {
+        HStack (alignment: .center) {
             Image("AppIconImage")
                 .resizable()
                 .scaledToFill()

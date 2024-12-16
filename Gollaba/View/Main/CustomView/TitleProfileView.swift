@@ -23,7 +23,8 @@ struct TitleProfileView: View {
                 .font(.suitBold16)
                 .foregroundStyle(.white)
         }
-        .padding(8)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
         .background(
             RoundedRectangle(cornerRadius: 30)
                 .foregroundStyle(Color.calendar)

@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     @State var viewModel = MainViewModel()
     
-    let titleViewHeight: CGFloat = 40
+    let titleViewHeight: CGFloat = 48
     
     init() {
         UITabBar.appearance().isHidden = true
