@@ -47,7 +47,8 @@ struct VerticalPollList: View {
                         GeometryReader { geometry in
                             Color.clear
                                 .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
-                                    if newValue < UIScreen.main.bounds.height + 200 && !isEnd {
+                                    print("newValue: \(newValue), UIScreen.main.bounds.height: \(UIScreen.main.bounds.height)")
+                                    if newValue < UIScreen.main.bounds.height + 100 && !isEnd {
                                         requestAddPoll = true
                                     }
                                 }

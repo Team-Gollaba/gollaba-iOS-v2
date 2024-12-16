@@ -25,24 +25,30 @@ enum VotingError: Error {
 enum SortedBy: String {
     case createdAt = "createdAt"
     case endAt = "endAt"
-    case none
+    case none = ""
 }
 
 enum ResponseType: String {
     case single = "SINGLE"
     case multiple = "MULTIPLE"
-    case none
+    case none = ""
 }
 
 enum PollType: String {
     case named = "NAMED"
     case anonymous = "ANONYMOUS"
-    case none
+    case none = ""
 }
 
 enum OptionGroup: String {
     case title = "TITLE"
-    case none
+    case none = ""
+}
+
+enum IsActive: String {
+    case active = "ACTIVE"
+    case inactive = "INACTIVE"
+    case none = ""
 }
 
 enum ProviderType: String {
@@ -51,7 +57,7 @@ enum ProviderType: String {
     case apple = "APPLE"
     case naver = "NAVER"
     case github = "GITHUB"
-    case none
+    case none = ""
 }
 
 class ApiManager {
@@ -69,7 +75,7 @@ class ApiManager {
         pollType: PollType = .none,
         optionGroup: OptionGroup = .none,
         query: String? = nil,
-        isActive: Bool? = nil
+        isActive: IsActive = .none
     ) async throws -> AllPollData {
         var queryItems: [String] = []
         
@@ -91,8 +97,8 @@ class ApiManager {
         if let query = query, !query.isEmpty {
             queryItems.append("query=\(query)")
         }
-        if let isActive = isActive {
-            queryItems.append("isActive=\(isActive)")
+        if isActive != .none {
+            queryItems.append("isActive=\(isActive.rawValue)")
         }
         
         let queryString = queryItems.joined(separator: "&")

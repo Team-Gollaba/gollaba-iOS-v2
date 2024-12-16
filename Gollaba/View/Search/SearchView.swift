@@ -26,21 +26,52 @@ struct SearchView: View {
                 HStack (spacing: 12) {
                     SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
                         if viewModel.isValidSearchText() {
-                            
+                            Task {
+                                await viewModel.getPolls()
+                            }
                         }
                     }
                     
-                    SearchFilterView(isFilterOpen: $viewModel.isFilterOpen)
+                    SearchFilterButton(isFilterOpen: $viewModel.isFilterOpen)
                         .padding(.leading, -12)
+                }
+                
+                if let items = viewModel.searchResultPollData?.items {
+                    ScrollView {
+                        
+                        VerticalPollList(
+                            pollList: items,
+                            requestAddPoll: $viewModel.requestAddPoll,
+                            isEnd: $viewModel.isEnd
+                        )
+                        .onChange(of: viewModel.requestAddPoll) { _, newValue in
+                            
+                            if newValue && viewModel.page != 1 {
+                                Task {
+                                    await viewModel.fetchMoreResult()
+                                }
+                            }
+                        }
+                        
+                    }
                 }
                 
                 Spacer()
             }
-            .toast(
-                isPresenting: $viewModel.showSearchErrorToast) {
-                    AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
-                }
+            
+            if viewModel.isFilterOpen {
+                SearchFilterView(
+                    isFilterOpen: $viewModel.isFilterOpen,
+                    madeDateFilter: $viewModel.madeDateFilter,
+                    pollTypeFilter: $viewModel.pollTypeFilter,
+                    isActiveFilter: $viewModel.isActiveFilter
+                )
+            }
         }
+        .toast(
+            isPresenting: $viewModel.showSearchErrorToast) {
+                AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
+            }
     }
 }
 

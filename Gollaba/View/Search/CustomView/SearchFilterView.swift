@@ -9,21 +9,88 @@ import SwiftUI
 
 struct SearchFilterView: View {
     @Binding var isFilterOpen: Bool
+    @Binding var madeDateFilter: [Bool]
+    @Binding var pollTypeFilter: [Bool]
+    @Binding var isActiveFilter: [Bool]
     
     var body: some View {
-        Button {
-            isFilterOpen = true
-        } label: {
-            Image(systemName: "line.3.horizontal.decrease")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 20, height: 20)
+        Color.gray
+            .edgesIgnoringSafeArea(.all)
+            .opacity(0.5)
+            .onTapGesture {
+                isFilterOpen = false
+                initFilter()
+            }
+        
+        VStack (spacing: 20) {
+            HStack {
+                Text("투표 검색 필터")
+                    .font(.yangjin20)
+                
+                Image(systemName: "line.3.horizontal.decrease")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            SearchFilterContentView(
+                title: "생성 날짜",
+                firstOption: "오래된순",
+                secondOption: "최신순",
+                selected: $madeDateFilter
+            )
+            
+            SearchFilterContentView(
+                title: "기명/익명",
+                firstOption: "기명",
+                secondOption: "익명",
+                selected: $pollTypeFilter
+            )
+            
+            SearchFilterContentView(
+                title: "진행/종료",
+                firstOption: "진행중",
+                secondOption: "종료",
+                selected: $isActiveFilter
+            )
+            
+            HStack (spacing: 20) {
+                Button {
+                    isFilterOpen = false
+                    initFilter()
+                } label: {
+                    Text("취소")
+                        .font(.suitBold16)
+                        .foregroundStyle(.red)
+                }
+                
+                Button {
+                    isFilterOpen = false
+                } label: {
+                    Text("적용")
+                        .font(.suitBold16)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .tint(.black)
-        .padding(.trailing)
+        .padding()
+        .frame(width: UIScreen.main.bounds.width - 40)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white)
+                .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 0)
+                
+        )
+    }
+    
+    func initFilter() {
+        madeDateFilter = [true, false, false]
+        pollTypeFilter = [true, false, false]
+        isActiveFilter = [true, false, false]
     }
 }
 
 #Preview {
-    SearchFilterView(isFilterOpen: .constant(false))
+    SearchFilterView(isFilterOpen: .constant(true), madeDateFilter: .constant([]), pollTypeFilter: .constant([]), isActiveFilter: .constant([]))
 }

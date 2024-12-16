@@ -59,7 +59,9 @@
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
 		49C8A69F2D10527C0030D648 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A69E2D10527C0030D648 /* SearchView.swift */; };
 		49C8A6A22D1052F70030D648 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6A12D1052F70030D648 /* SearchViewModel.swift */; };
-		49C8A6A52D1054630030D648 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6A42D1054630030D648 /* SearchFilterView.swift */; };
+		49C8A6A52D1054630030D648 /* SearchFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6A42D1054630030D648 /* SearchFilterButton.swift */; };
+		49C8A6A92D1056D70030D648 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6A82D1056D70030D648 /* SearchFilterView.swift */; };
+		49C8A6AB2D1057620030D648 /* SearchFilterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -124,7 +126,9 @@
 		49C8A6982D1012D00030D648 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		49C8A69E2D10527C0030D648 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		49C8A6A12D1052F70030D648 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		49C8A6A42D1054630030D648 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
+		49C8A6A42D1054630030D648 /* SearchFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterButton.swift; sourceTree = "<group>"; };
+		49C8A6A82D1056D70030D648 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
+		49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterContentView.swift; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -416,7 +420,9 @@
 			isa = PBXGroup;
 			children = (
 				4945A2882CEB6ECC00FF05DC /* SearchPollView.swift */,
-				49C8A6A42D1054630030D648 /* SearchFilterView.swift */,
+				49C8A6A42D1054630030D648 /* SearchFilterButton.swift */,
+				49C8A6A82D1056D70030D648 /* SearchFilterView.swift */,
+				49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -582,7 +588,7 @@
 				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
 				4945A2AA2CEB6ECC00FF05DC /* Font+.swift in Sources */,
 				49FEE2952CF6E9FD000991DB /* TitleProfileView.swift in Sources */,
-				49C8A6A52D1054630030D648 /* SearchFilterView.swift in Sources */,
+				49C8A6A52D1054630030D648 /* SearchFilterButton.swift in Sources */,
 				4945A2AB2CEB6ECC00FF05DC /* UINavigationController+.swift in Sources */,
 				4945A2AC2CEB6ECC00FF05DC /* CalendarView.swift in Sources */,
 				49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */,
@@ -596,11 +602,13 @@
 				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
 				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,
+				49C8A6A92D1056D70030D648 /* SearchFilterView.swift in Sources */,
 				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
 				49C8A6A22D1052F70030D648 /* SearchViewModel.swift in Sources */,
 				4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */,
 				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
+				49C8A6AB2D1057620030D648 /* SearchFilterContentView.swift in Sources */,
 				491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */,
 				4945A2B82CEB6ECC00FF05DC /* AllPollContent.swift in Sources */,
 				4945A2B92CEB6ECC00FF05DC /* VerticalPollList.swift in Sources */,
