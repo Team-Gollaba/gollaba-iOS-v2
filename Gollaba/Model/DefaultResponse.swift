@@ -10,6 +10,7 @@ import Foundation
 enum DataType: Codable {
     case boolValue(Bool)
     case createPollResponseData(CreatePollResponseData)
+    case loginResponseData(LoginResponseData)
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -18,7 +19,10 @@ enum DataType: Codable {
             self = .boolValue(boolValue)
         } else if let createPollResponseData = try? container.decode(CreatePollResponseData.self) {
             self = .createPollResponseData(createPollResponseData)
-        } else {
+        } else if let loginResponseData = try? container.decode(LoginResponseData.self) {
+            self = .loginResponseData(loginResponseData)
+        }
+        else {
             throw DecodingError.typeMismatch(DataType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Expected Bool value"))
         }
     }
@@ -33,4 +37,8 @@ struct DefaultResponse: Codable {
 
 struct CreatePollResponseData: Codable {
     let id: String
+}
+
+struct LoginResponseData: Codable {
+    let accessToken: String
 }

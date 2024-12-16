@@ -56,6 +56,7 @@
 		497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
+		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -117,6 +118,7 @@
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
+		49C8A6982D1012D00030D648 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			children = (
 				4945A28D2CEB6ECC00FF05DC /* CustomView */,
 				4945A28E2CEB6ECC00FF05DC /* LoginView.swift */,
+				49C8A6982D1012D00030D648 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */,
 				4945A2BF2CEB6ECC00FF05DC /* LoginView.swift in Sources */,
 				4945A2C02CEB6ECC00FF05DC /* CustomTabView.swift in Sources */,
+				49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */,
 				491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */,
 				492ABF0D2D0886FB0051380C /* ScaleOnPressStyle.swift in Sources */,
 				4945A2C12CEB6ECC00FF05DC /* CustomTabViewButton.swift in Sources */,

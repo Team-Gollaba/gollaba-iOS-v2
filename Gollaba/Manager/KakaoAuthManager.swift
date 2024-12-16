@@ -15,6 +15,7 @@ class KakaoAuthManager {
     var userName: String = "유저"
     var userMail: String = ""
     var profileImageUrl: URL?
+    var accessToken: String?
     
     @MainActor
     func kakaoLogout() {
@@ -59,6 +60,7 @@ class KakaoAuthManager {
                     
                     // 성공 시 동작 구현
                     _ = oauthToken
+                    self.accessToken = oauthToken?.accessToken
                     continuation.resume(returning: true)
                 }
             }
@@ -83,17 +85,17 @@ class KakaoAuthManager {
     }
     
     @MainActor
-    func handleKakaoLogin() {
-        Task {
-            // 카카오톡 실행 가능 여부 확인 - 설치 되어있을 경우
-            if (UserApi.isKakaoTalkLoginAvailable()) {
-                // 카카오 앱을 통해 로그인
-                isLoggedIn = await handleLoginWithKakaoTalkApp()
-            } else { // 설치 안 되어있을 때
-                // 카카오 웹뷰를 통해 로그인
-                isLoggedIn = await handleLoginWithKakaoAccount()
-            }
+    func handleKakaoLogin() async {
+        
+        // 카카오톡 실행 가능 여부 확인 - 설치 되어있을 경우
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            // 카카오 앱을 통해 로그인
+            isLoggedIn = await handleLoginWithKakaoTalkApp()
+        } else { // 설치 안 되어있을 때
+            // 카카오 웹뷰를 통해 로그인
+            isLoggedIn = await handleLoginWithKakaoAccount()
         }
+        
     }
     
     func handleKakaoLogout() async -> Bool {

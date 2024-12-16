@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(KakaoAuthManager.self) var kakaoAuthManager
+    @State var viewModel = LoginViewModel()
     
     var body: some View {
         ZStack {
@@ -31,7 +32,12 @@ struct LoginView: View {
                     image: Image("KakaoIcon"),
                     oAuthPath: "카카오",
                     action: {
-                        kakaoAuthManager.handleKakaoLogin()
+                        Task {
+                            await kakaoAuthManager.handleKakaoLogin()
+                            if let accessToken = kakaoAuthManager.accessToken {
+                                await viewModel.login(providerToken: accessToken, providerType: .kakao)
+                            }
+                        }
                     }
                 )
             }

@@ -45,6 +45,15 @@ enum OptionGroup: String {
     case none
 }
 
+enum ProviderType: String {
+    case kakao = "KAKAO"
+    case google = "GOOGLE"
+    case apple = "APPLE"
+    case naver = "NAVER"
+    case github = "GITHUB"
+    case none
+}
+
 class ApiManager {
     static let shared = ApiManager()
     let baseURL: String = "https://api.gollaba.app"
@@ -157,8 +166,6 @@ class ApiManager {
                     Logger.shared.log(String(describing: self), #function, "Success to create poll: \(value)")
                     
                     switch value.data {
-                    case .boolValue:
-                        break
                     case .createPollResponseData(let data):
                         continuation.resume(returning: data.id)
                     default:
@@ -307,9 +314,7 @@ class ApiManager {
         let param: [String: Any] = [
             "pollHashId": pollHashId
         ]
-        
-        print("pollHashId: \(pollHashId)")
-        
+                
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -321,14 +326,45 @@ class ApiManager {
                         switch value.data {
                         case .boolValue(let data):
                             continuation.resume(returning: data)
-                        case .createPollResponseData:
-                            break
                         default:
                             break
                         }
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to voting check: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    //MARK: - auth
+    func loginByProviderToken(providerToken: String, providerType: ProviderType) async throws -> String {
+        let providerTypeString = providerType.rawValue
+        let urlString = baseURL + "/v2/auth/login/by-provider-token"
+        let url = try getUrl(for: urlString)
+        let param: [String: Any] = [
+            "providerToken": providerToken,
+            "providerType": providerTypeString
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to login by provider token: \(value)")
+                        
+                        switch value.data {
+                        case .loginResponseData(let data):
+                            continuation.resume(returning: data.accessToken)
+                        default:
+                            break
+                        }
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to login by provider token: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }
