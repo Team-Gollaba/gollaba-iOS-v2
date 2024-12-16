@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PollDetailView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(KakaoAuthManager.self) var kakaoAuthManager
     var id: String
     @State var viewModel: PollDetailViewModel
     
@@ -54,7 +55,20 @@ struct PollDetailView: View {
                 
                 PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
                 
-                if let poll = viewModel.poll, viewModel.isValidPoll {
+                if viewModel.poll?.pollType == PollType.named.rawValue && !kakaoAuthManager.isLoggedIn {
+                    ClearableTextFieldView(
+                        placeholder: "기명 투표를 위해 닉네임을 입력해주세요.",
+                        editText: $viewModel.inputNameText,
+                        isFocused: $viewModel.inputNameFocused
+                    )
+                    .padding(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 3)
+                            .stroke(.black, lineWidth: 1)
+                    )
+                }
+                
+                if let poll = viewModel.poll, viewModel.isValidDatePoll {
                     if poll.responseType == ResponseType.single.rawValue {
                         PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)
                     } else if poll.responseType == ResponseType.multiple.rawValue {
@@ -63,8 +77,10 @@ struct PollDetailView: View {
                 }
                 
                 PollButton(pollbuttonState: $viewModel.pollButtonState) {
-                    Task {
-                        await viewModel.voting()
+                    if viewModel.isCompletedVoting() {
+                        Task {
+                            await viewModel.voting()
+                        }
                     }
                 }
                 
@@ -94,9 +110,9 @@ struct PollDetailView: View {
             onPrimaryButton: {}
         )
         .dialog(
-            isPresented: $viewModel.showNotVotedAlert,
+            isPresented: $viewModel.inValidVoteAlert,
             title: "투표하기",
-            content: Text("투표 항목을 선택해주세요."),
+            content: Text(viewModel.inValidVoteAlertContent),
             primaryButtonText: "확인",
             onPrimaryButton: {}
         )

@@ -189,6 +189,7 @@
 				491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */,
 				497DDFBC2CFC2036008A8534 /* ShimmerView.swift */,
 				492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */,
+				497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -225,7 +226,6 @@
 				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
 				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
 				4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */,
-				497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";

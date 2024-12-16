@@ -15,10 +15,15 @@ class PollDetailViewModel {
     var selectedMultiplePoll: [Bool] = []
     var pollButtonState: PollButtonState = .normal
     
-    var showAlreadyVotedAlert: Bool = false
-    var showNotVotedAlert: Bool = false
+    var inputNameText: String = ""
+    var inputNameFocused: Bool = false
     
-    var isValidPoll: Bool {
+    var showAlreadyVotedAlert: Bool = false
+    
+    var inValidVoteAlert: Bool = false
+    var inValidVoteAlertContent: String = ""
+    
+    var isValidDatePoll: Bool {
         get {
             if let poll {
                 getState(poll.endAt)
@@ -71,7 +76,7 @@ class PollDetailViewModel {
             
             if let poll {
                 selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
-                pollButtonState = isValidPoll ? .normal : .ended
+                pollButtonState = isValidDatePoll ? .normal : .ended
                 
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
@@ -118,11 +123,6 @@ class PollDetailViewModel {
     }
     
     func voting() async {
-        if isVoted {
-            self.showAlreadyVotedAlert = true
-            return
-        }
-        
         var pollItemIds: [Int] = []
         let voterName = "temp voter"
         
@@ -137,11 +137,6 @@ class PollDetailViewModel {
                 }
             }
             
-            if pollItemIds.isEmpty {
-                self.showNotVotedAlert = true
-                return
-            }
-            
             do {
                 try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll.pollType == PollType.named.rawValue ? voterName : nil)
                 
@@ -154,6 +149,39 @@ class PollDetailViewModel {
             
         } else {
             
+        }
+    }
+    
+    func isCompletedVoting() -> Bool {
+        if isVoted {
+            self.showAlreadyVotedAlert = true
+            return false
+        }
+        
+        if let poll {
+            if poll.pollType == PollType.named.rawValue && inputNameText.isEmpty {
+                self.inValidVoteAlertContent = "닉네임을 입력해주세요."
+                self.inValidVoteAlert = true
+                
+                return false
+            } else if poll.responseType == ResponseType.single.rawValue && selectedSinglePoll == nil {
+                self.inValidVoteAlertContent = "투표를 선택해주세요."
+                self.inValidVoteAlert = true
+                
+                return false
+            } else if poll.responseType == ResponseType.multiple.rawValue && selectedMultiplePoll.isEmpty {
+                self.inValidVoteAlertContent = "투표를 선택해주세요. (최소 1개)"
+                self.inValidVoteAlert = true
+                
+                return false
+            } else {
+                return true
+            }
+        } else {
+            self.inValidVoteAlertContent = "데이터 오류입니다."
+            self.inValidVoteAlert = true
+            
+            return false
         }
     }
 }
