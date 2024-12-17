@@ -23,7 +23,7 @@ struct SearchFilterView: View {
                 initFilter()
             }
         
-        VStack (spacing: 20) {
+        VStack (alignment: .leading, spacing: 20) {
             HStack {
                 Text("투표 검색 필터")
                     .font(.yangjin20)
