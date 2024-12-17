@@ -108,7 +108,7 @@ struct PollItemView: View {
                                 .autocapitalization(.none)
                                 .textInputAutocapitalization(.never)
                                 .multilineTextAlignment(.center)
-                                .font(.suitBold20)
+                                .font(.suitBold16)
                                 .disabled(isCreateModel)
                                 .onChange(of: focus, { oldValue, newValue in
                                     createPollViewModel.isPollItemFocused = newValue
