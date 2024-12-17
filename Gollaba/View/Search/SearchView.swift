@@ -25,6 +25,7 @@ struct SearchView: View {
             VStack {
                 HStack (spacing: 12) {
                     SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
+                        viewModel.searchFocus = false
                         if viewModel.isValidSearchText() {
                             Task {
                                 await viewModel.getPolls()
