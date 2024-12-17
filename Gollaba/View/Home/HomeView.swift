@@ -10,7 +10,10 @@ import AlertToast
 
 struct HomeView: View {
     @State var viewModel = HomeViewModel()
+    @State private var dragStartLocation: CGFloat = 0.0
+    @State private var dragEndLocation: CGFloat = 0.0
     @Binding var scrollToTopTrigger: Bool
+    @Binding var isHideTapBar: Bool
     
     var body: some View {
         NavigationStack {
@@ -31,11 +34,11 @@ struct HomeView: View {
                                 .frame(height: 0)
                                 .id("Top")
                             
-//                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
-//                                if viewModel.isValidSearchText() {
-//                                    viewModel.goToSearchResult = true
-//                                }
-//                            }
+                            //                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
+                            //                                if viewModel.isValidSearchText() {
+                            //                                    viewModel.goToSearchResult = true
+                            //                                }
+                            //                            }
                             
                             HorizontalPollList(
                                 title: "🗓️ 오늘의 투표",
@@ -85,7 +88,7 @@ struct HomeView: View {
                     viewModel.getTrendingPolls()
                     viewModel.getTopPolls()
                 }
-                
+                .dragToHide(isHide: $isHideTapBar)
             }
         }
         .navigationDestination(isPresented: $viewModel.goToSearchResult) {
@@ -99,5 +102,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(scrollToTopTrigger: .constant(false))
+    HomeView(scrollToTopTrigger: .constant(false), isHideTapBar: .constant(false))
 }

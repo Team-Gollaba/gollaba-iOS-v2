@@ -38,13 +38,7 @@ struct SearchFilterView: View {
                 SortingView(sortedBy: $sortedBy)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            
-//            SearchFilterContentView(
-//                title: "생성 날짜",
-//                firstOption: "오래된순",
-//                secondOption: "최신순",
-//                selected: $madeDateFilter
-//            )
+        
             
             SearchFilterContentView(
                 title: "기명/익명",

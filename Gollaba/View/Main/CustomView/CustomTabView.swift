@@ -17,13 +17,15 @@ enum SelectedTab: Hashable {
 struct CustomTabView: View {
     @State private var selectedTab: SelectedTab = .home
     @State private var isScrollToTop: Bool = false
+    @State private var isHideTabBar: Bool = false
     
     let tabBarHeight: CGFloat = 60
+    @State var safeAreaBottom: CGFloat = 0
     
     var body: some View {
         ZStack (alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                HomeView(scrollToTopTrigger: $isScrollToTop)
+                HomeView(scrollToTopTrigger: $isScrollToTop, isHideTapBar: $isHideTabBar)
                     .tag(SelectedTab.home)
                 
                 SearchView()
@@ -34,9 +36,10 @@ struct CustomTabView: View {
                 
                 MyPollView()
                     .tag(SelectedTab.myPoll)
-                    
+                
             }
-            .padding(.bottom, tabBarHeight)
+            .padding(.bottom, isHideTabBar ? 0 : tabBarHeight)
+            .animation(.easeInOut(duration: 0.3), value: isHideTabBar)
             
             
             HStack {
@@ -90,8 +93,23 @@ struct CustomTabView: View {
                     .background(.white)
                     .shadow(color: .gray.opacity(0.3), radius: 3)
             )
+            .offset(y: isHideTabBar ? tabBarHeight + safeAreaBottom : 0)
+            .animation(.easeInOut(duration: 0.3), value: isHideTabBar)
         }
+        .onAppear {
+                    safeAreaBottom = getSafeAreaInsets()?.bottom ?? 0
+                }
     }
+    
+    private func getSafeAreaInsets() -> UIEdgeInsets? {
+            guard let window = UIApplication.shared.connectedScenes
+                .compactMap({ $0 as? UIWindowScene })
+                .first?.windows
+                .first else {
+                return nil
+            }
+            return window.safeAreaInsets
+        }
 }
 
 #Preview {
