@@ -22,6 +22,7 @@ struct MainView: View {
                 
                 CustomTabView()
                     .padding(.top, titleViewHeight)
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
                 
                 TitleView(goToLogin: $viewModel.goToLogin, height: titleViewHeight)
                 
