@@ -34,6 +34,7 @@ struct SearchPollView: View {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundStyle(.gray)
             }
+            .contentShape(Rectangle())
             .opacity(text.isEmpty ? 0 : 1)
             
             Button {
@@ -44,6 +45,7 @@ struct SearchPollView: View {
                     .scaledToFill()
                     .frame(width: 20, height: 20)
             }
+            .contentShape(Rectangle())
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
