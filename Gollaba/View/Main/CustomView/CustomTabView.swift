@@ -28,7 +28,7 @@ struct CustomTabView: View {
                 HomeView(scrollToTopTrigger: $isScrollToTop, isHideTapBar: $isHideTabBar)
                     .tag(SelectedTab.home)
                 
-                SearchView()
+                SearchView(isHideTabBar: $isHideTabBar)
                     .tag(SelectedTab.search)
                 
                 CreatePollView()

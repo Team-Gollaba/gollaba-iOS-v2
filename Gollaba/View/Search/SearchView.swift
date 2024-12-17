@@ -10,6 +10,7 @@ import AlertToast
 
 struct SearchView: View {
     @State var viewModel = SearchViewModel()
+    @Binding var isHideTabBar: Bool
     
     var body: some View {
         ZStack {
@@ -61,6 +62,7 @@ struct SearchView: View {
                             }
                         }
                     }
+                    .dragToHide(isHide: $isHideTabBar)
                 } else {
                     Spacer()
                 }
@@ -90,5 +92,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    SearchView(isHideTabBar: .constant(false))
 }
