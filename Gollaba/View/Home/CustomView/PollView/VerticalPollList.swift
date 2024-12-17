@@ -18,7 +18,7 @@ struct VerticalPollList: View {
     
     var body: some View {
         ScrollViewReader { proxy in
-            VStack (alignment: .leading) {
+            LazyVStack (alignment: .leading) {
                 if let title {
                     HStack {
                         icon?
