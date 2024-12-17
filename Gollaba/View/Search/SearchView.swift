@@ -39,32 +39,45 @@ struct SearchView: View {
                 if let items = viewModel.searchResultPollData?.items {
                     ScrollView {
                         
-                        VerticalPollList(
-                            pollList: items,
-                            requestAddPoll: $viewModel.requestAddPoll,
-                            isEnd: $viewModel.isEnd
-                        )
-                        .onChange(of: viewModel.requestAddPoll) { _, newValue in
-                            
-                            if newValue && viewModel.page != 1 {
-                                Task {
-                                    await viewModel.fetchMoreResult()
+                        if items.isEmpty {
+                            VStack {
+                                Text("검색 결과가 없습니다.")
+                                    .font(.suitBold24)
+                            }
+                        } else {
+                            VerticalPollList(
+                                pollList: items,
+                                requestAddPoll: $viewModel.requestAddPoll,
+                                isEnd: $viewModel.isEnd
+                            )
+                            .onChange(of: viewModel.requestAddPoll) { _, newValue in
+                                
+                                if newValue && viewModel.page != 0 {
+                                    Task {
+                                        await viewModel.fetchMoreResult()
+                                    }
                                 }
                             }
                         }
-                        
                     }
+                } else {
+                    Spacer()
                 }
-                
-                Spacer()
             }
             
             if viewModel.isFilterOpen {
                 SearchFilterView(
                     isFilterOpen: $viewModel.isFilterOpen,
-                    madeDateFilter: $viewModel.madeDateFilter,
+                    sortedBy: $viewModel.sortedBy,
                     pollTypeFilter: $viewModel.pollTypeFilter,
-                    isActiveFilter: $viewModel.isActiveFilter
+                    isActiveFilter: $viewModel.isActiveFilter,
+                    applyAction: {
+                        if viewModel.isValidSearchText() {
+                            Task {
+                                await viewModel.getPolls()
+                            }
+                        }
+                    }
                 )
             }
         }

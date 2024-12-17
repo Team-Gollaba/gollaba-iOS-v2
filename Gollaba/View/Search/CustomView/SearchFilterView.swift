@@ -9,9 +9,10 @@ import SwiftUI
 
 struct SearchFilterView: View {
     @Binding var isFilterOpen: Bool
-    @Binding var madeDateFilter: [Bool]
+    @Binding var sortedBy: SortedBy
     @Binding var pollTypeFilter: [Bool]
     @Binding var isActiveFilter: [Bool]
+    var applyAction: () -> Void
     
     var body: some View {
         Color.gray
@@ -31,15 +32,19 @@ struct SearchFilterView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 20, height: 20)
+                
+                Spacer()
+                
+                SortingView(sortedBy: $sortedBy)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            SearchFilterContentView(
-                title: "생성 날짜",
-                firstOption: "오래된순",
-                secondOption: "최신순",
-                selected: $madeDateFilter
-            )
+//            SearchFilterContentView(
+//                title: "생성 날짜",
+//                firstOption: "오래된순",
+//                secondOption: "최신순",
+//                selected: $madeDateFilter
+//            )
             
             SearchFilterContentView(
                 title: "기명/익명",
@@ -67,6 +72,7 @@ struct SearchFilterView: View {
                 
                 Button {
                     isFilterOpen = false
+                    applyAction()
                 } label: {
                     Text("적용")
                         .font(.suitBold16)
@@ -85,12 +91,12 @@ struct SearchFilterView: View {
     }
     
     func initFilter() {
-        madeDateFilter = [true, false, false]
+//        madeDateFilter = [true, false, false]
         pollTypeFilter = [true, false, false]
         isActiveFilter = [true, false, false]
     }
 }
 
 #Preview {
-    SearchFilterView(isFilterOpen: .constant(true), madeDateFilter: .constant([]), pollTypeFilter: .constant([]), isActiveFilter: .constant([]))
+    SearchFilterView(isFilterOpen: .constant(true), sortedBy: .constant(.createdAt), pollTypeFilter: .constant([]), isActiveFilter: .constant([]), applyAction: {})
 }

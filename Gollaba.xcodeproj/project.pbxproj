@@ -62,6 +62,7 @@
 		49C8A6A52D1054630030D648 /* SearchFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6A42D1054630030D648 /* SearchFilterButton.swift */; };
 		49C8A6A92D1056D70030D648 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6A82D1056D70030D648 /* SearchFilterView.swift */; };
 		49C8A6AB2D1057620030D648 /* SearchFilterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */; };
+		49C8A6AD2D11539F0030D648 /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6AC2D11539F0030D648 /* SortingView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -129,6 +130,7 @@
 		49C8A6A42D1054630030D648 /* SearchFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterButton.swift; sourceTree = "<group>"; };
 		49C8A6A82D1056D70030D648 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
 		49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterContentView.swift; sourceTree = "<group>"; };
+		49C8A6AC2D11539F0030D648 /* SortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingView.swift; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				49C8A6A42D1054630030D648 /* SearchFilterButton.swift */,
 				49C8A6A82D1056D70030D648 /* SearchFilterView.swift */,
 				49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */,
+				49C8A6AC2D11539F0030D648 /* SortingView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
 				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,
 				49C8A6A92D1056D70030D648 /* SearchFilterView.swift in Sources */,
+				49C8A6AD2D11539F0030D648 /* SortingView.swift in Sources */,
 				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
 				49C8A6A22D1052F70030D648 /* SearchViewModel.swift in Sources */,
 				4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */,
