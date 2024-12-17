@@ -10,31 +10,46 @@ import SwiftUI
 struct PollResultView: View {
     var totalVotingCount: Int
     var pollOptions: [PollOption]
+    var isHide: Bool
     
     var body: some View {
-        VStack (spacing: 10) {
-            HStack (spacing: 12) {
-                Image(systemName: "arrowtriangle.forward.fill")
-                    .resizable()
-                    .foregroundStyle(.enrollButton)
-                    .frame(width: 12, height: 24)
+        ZStack {
+            VStack (spacing: 10) {
+                HStack (spacing: 12) {
+                    Image(systemName: "arrowtriangle.forward.fill")
+                        .resizable()
+                        .foregroundStyle(.enrollButton)
+                        .frame(width: 12, height: 24)
+                    
+                    Text("투표 결과")
+                        .font(.suitBold24)
+                    
+                    Spacer()
+                }
                 
-                Text("투표 결과")
-                    .font(.suitBold24)
-                
-                Spacer()
+                ForEach(pollOptions, id: \.self) { pollOption in
+                    PollChartView(title: "\(pollOption.description) - \(getPercentage(pollOption.votingCount, totalVotingCount))", allCount: totalVotingCount, selectedCount: pollOption.votingCount)
+                }
             }
+            .frame(maxWidth: .infinity)
+            .padding(20)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.pollResult)
+            )
+            .blur(radius: isHide ? 8 : 0)
             
-            ForEach(pollOptions, id: \.self) { pollOption in
-                PollChartView(title: "\(pollOption.description) - \(getPercentage(pollOption.votingCount, totalVotingCount))", allCount: totalVotingCount, selectedCount: pollOption.votingCount)
+            if isHide {
+                Text("투표에 참여하고 결과를 확인해보세요!")
+                    .font(.suitBold20)
+                    .foregroundStyle(.pollButton)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(.toolbarBackground)
+                    )
             }
         }
-        .frame(maxWidth: .infinity)
-        .padding(20)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.pollResult)
-        )
     }
     
     private func getPercentage(_ count: Int, _ total: Int) -> String {
@@ -47,5 +62,5 @@ struct PollResultView: View {
 }
 
 #Preview {
-    PollResultView(totalVotingCount: 10, pollOptions: [])
+    PollResultView(totalVotingCount: 10, pollOptions: [], isHide: true)
 }

@@ -84,9 +84,11 @@ struct PollDetailView: View {
                     }
                 }
                 
-                PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
+                PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [], isHide: !viewModel.isVoted && viewModel.isValidDatePoll)
                 
-                PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
+                if viewModel.isVoted || !viewModel.isValidDatePoll {
+                    PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
+                }
                 
             }
             .padding()
