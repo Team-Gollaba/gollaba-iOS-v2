@@ -19,6 +19,7 @@ struct SearchFilterButton: View {
                 .scaledToFit()
                 .frame(width: 20, height: 20)
         }
+        .contentShape(Rectangle())
         .tint(.black)
         .padding(.trailing)
     }
