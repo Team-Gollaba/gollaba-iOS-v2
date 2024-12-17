@@ -35,7 +35,7 @@ struct SearchFilterContentView: View {
                     Text(options[index])
                         .font(.suitVariable12)
                 }
-                .frame(width: 80, alignment: .leading)
+                .frame(width: 68, alignment: .leading)
                 .contentShape(Rectangle())
                 .onTapGesture {
                     selectOption(index: index)
