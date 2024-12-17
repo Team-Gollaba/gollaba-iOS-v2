@@ -27,6 +27,8 @@ struct SearchPollView: View {
                 .onChange(of: focus) { oldValue, newValue in
                     searchFocus = newValue
                 }
+                .onSubmit(action)
+                .submitLabel(.search)
             
             Button {
                 text = ""
