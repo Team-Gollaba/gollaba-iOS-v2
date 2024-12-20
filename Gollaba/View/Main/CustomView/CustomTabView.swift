@@ -31,15 +31,15 @@ struct CustomTabView: View {
                 SearchView(isHideTabBar: $isHideTabBar)
                     .tag(SelectedTab.search)
                 
-                CreatePollView()
+                CreatePollView(isHideTabBar: $isHideTabBar)
                     .tag(SelectedTab.create)
                 
-                MyPollView()
+                MyPollView(isHideTabBar: $isHideTabBar)
                     .tag(SelectedTab.myPoll)
                 
             }
 //            .padding(.bottom, tabBarHeight)
-//            .padding(.bottom, isHideTabBar ? 0 : tabBarHeight)
+            .padding(.bottom, isHideTabBar ? 0 : tabBarHeight)
 //            .animation(.easeInOut(duration: 0.3), value: isHideTabBar)
             
             

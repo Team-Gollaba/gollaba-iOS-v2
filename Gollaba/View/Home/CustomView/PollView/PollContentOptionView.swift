@@ -21,19 +21,12 @@ struct PollContentOptionView: View {
             }
             
             if !isHorizontal && options.count > 2 {
-                Button {
-                    withAnimation {
-                        isOpen.toggle()
-                    }
-                } label: {
-                    Image(systemName: isOpen ? "chevron.up" : "chevron.down")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
+                HStack {
+                    Spacer()
+                    
+                    OpenAndCloseButton(isOpen: $isOpen)
+                        .padding(.top, 12)
                 }
-                .tint(.black)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.top, 12)
             }
         }
     

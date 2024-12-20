@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreatePollView: View {
     @State var viewModel = CreatePollViewModel()
+    @Binding var isHideTabBar: Bool
     
     var body: some View {
         ZStack {
@@ -129,6 +130,7 @@ struct CreatePollView: View {
                     
                 }
             }
+            .dragToHide(isHide: $isHideTabBar)
             .dialog(
                 isPresented: $viewModel.isQuestionPresent,
                 title: "투표 만들기 도움말",
@@ -180,5 +182,5 @@ struct CreatePollView: View {
 }
 
 #Preview {
-    CreatePollView()
+    CreatePollView(isHideTabBar: .constant(false))
 }
