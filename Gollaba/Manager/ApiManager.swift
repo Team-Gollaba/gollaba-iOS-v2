@@ -115,7 +115,7 @@ class ApiManager {
         if isActive != .none {
             queryItems.append("isActive=\(isActive.boolValue)")
         }
-        
+        	
         let queryString = queryItems.joined(separator: "&")
         let urlString = baseURL + "/v2/polls?" + queryString
         let url = try getUrl(for: urlString)

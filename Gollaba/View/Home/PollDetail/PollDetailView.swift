@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PollDetailView: View {
     @Environment(\.dismiss) var dismiss
@@ -37,7 +38,17 @@ struct PollDetailView: View {
                     .padding(.leading, 4)
                     
                     HStack {
-                        Image(systemName: "person.circle.fill")
+                        if let creatorProfileUrl = viewModel.poll?.creatorProfileUrl {
+                            KFImage(URL(string: creatorProfileUrl))
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+                        } else {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+                        }
                         
                         Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
                             .font(.suitVariable16)

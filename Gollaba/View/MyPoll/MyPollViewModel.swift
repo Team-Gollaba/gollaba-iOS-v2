@@ -23,7 +23,7 @@ class MyPollViewModel {
     
     init() {
         for i in 1...10 {
-            madeByMePollList.append(PollItem(id: "\(i)", title: "title \(i)", creatorName: "creator \(i)", responseType: "response \(i)", pollType: "pollType \(i)", endAt: "2024.12.12", readCount: 1, totalVotingCount: 8, items: [
+            madeByMePollList.append(PollItem(id: "\(i)", title: "title \(i)", creatorName: "creator \(i)", creatorProfileUrl: "", responseType: "response \(i)", pollType: "pollType \(i)", endAt: "2024.12.12", readCount: 1, totalVotingCount: 8, items: [
                 PollOption(id: 1, description: "desc", imageUrl: nil, votingCount: 2),
                 PollOption(id: 2, description: "desc", imageUrl: nil, votingCount: 6)
             ]))

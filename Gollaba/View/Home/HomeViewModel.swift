@@ -31,6 +31,7 @@ class HomeViewModel {
             id: "-1",
             title: "title title title",
             creatorName: "creatorName",
+            creatorProfileUrl: "",
             responseType: "responseType",
             pollType: "pollType",
             endAt: "2024. 22. 22.",

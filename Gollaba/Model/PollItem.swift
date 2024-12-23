@@ -11,6 +11,7 @@ struct PollItem: Codable, Hashable {
     let id: String
     let title: String
     let creatorName: String
+    let creatorProfileUrl: String?
     let responseType: String
     let pollType: String
     let endAt: String
