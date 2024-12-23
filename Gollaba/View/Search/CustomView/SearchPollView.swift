@@ -55,7 +55,7 @@ struct SearchPollView: View {
             RoundedRectangle(cornerRadius: 5)
                 .strokeBorder(.searchBorder, lineWidth: 1)
         )
-        .padding()
+//        .padding()
     }
 }
 

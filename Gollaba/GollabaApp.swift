@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import KakaoSDKCommon
 import KakaoSDKAuth
 
@@ -24,6 +25,7 @@ struct GollabaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [SearchKeyword.self])
                 .environment(kakaoAuthManager)
                 .onOpenURL(perform: { url in
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {

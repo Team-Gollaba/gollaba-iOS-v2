@@ -63,6 +63,8 @@
 		49C8A6AB2D1057620030D648 /* SearchFilterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */; };
 		49C8A6AD2D11539F0030D648 /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6AC2D11539F0030D648 /* SortingView.swift */; };
 		49C8A6B12D11CCCD0030D648 /* OpenAndCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */; };
+		49C8A6D92D157B590030D648 /* RecentSearchKeywordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6D82D157B590030D648 /* RecentSearchKeywordView.swift */; };
+		49C8A6DB2D1937B80030D648 /* GoToSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6DA2D1937B80030D648 /* GoToSearchView.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -131,6 +133,8 @@
 		49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterContentView.swift; sourceTree = "<group>"; };
 		49C8A6AC2D11539F0030D648 /* SortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingView.swift; sourceTree = "<group>"; };
 		49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAndCloseButton.swift; sourceTree = "<group>"; };
+		49C8A6D82D157B590030D648 /* RecentSearchKeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeywordView.swift; sourceTree = "<group>"; };
+		49C8A6DA2D1937B80030D648 /* GoToSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToSearchView.swift; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -164,6 +168,11 @@
 		497DDFDD2CFDF258008A8534 /* SignUp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		49C8A6D62D1569460030D648 /* Entity */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		49FEE24D2CEC95A6000991DB /* Manager */ = {
@@ -271,6 +280,7 @@
 				491A17492CEC685C00C4666F /* PollContentOptionView.swift */,
 				497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */,
 				4945A2862CEB6ECC00FF05DC /* HorizontalPollList.swift */,
+				49C8A6DA2D1937B80030D648 /* GoToSearchView.swift */,
 			);
 			path = PollView;
 			sourceTree = "<group>";
@@ -290,7 +300,6 @@
 				4945A28A2CEB6ECC00FF05DC /* HomeView.swift */,
 				4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */,
 				4945A2CC2CEB741300FF05DC /* PollDetail */,
-				49C8A6772D0B060F0030D648 /* SearchResultList */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -362,6 +371,7 @@
 		4945A2A12CEB6ECC00FF05DC /* Gollaba */ = {
 			isa = PBXGroup;
 			children = (
+				49C8A6D62D1569460030D648 /* Entity */,
 				495248372CF772E5005EAABD /* Model */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
 				497DDF9D2CF83526008A8534 /* Modifier */,
@@ -414,6 +424,7 @@
 				49C8A6A32D10530A0030D648 /* CustomView */,
 				49C8A69E2D10527C0030D648 /* SearchView.swift */,
 				49C8A6A12D1052F70030D648 /* SearchViewModel.swift */,
+				49C8A6772D0B060F0030D648 /* SearchResultList */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -426,6 +437,7 @@
 				49C8A6A82D1056D70030D648 /* SearchFilterView.swift */,
 				49C8A6AA2D1057620030D648 /* SearchFilterContentView.swift */,
 				49C8A6AC2D11539F0030D648 /* SortingView.swift */,
+				49C8A6D82D157B590030D648 /* RecentSearchKeywordView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -470,6 +482,7 @@
 				495248372CF772E5005EAABD /* Model */,
 				497DDF9D2CF83526008A8534 /* Modifier */,
 				497DDFDD2CFDF258008A8534 /* SignUp */,
+				49C8A6D62D1569460030D648 /* Entity */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
 				49FEE2652CF2474B000991DB /* LinkedView */,
 			);
@@ -605,8 +618,10 @@
 				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
 				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,
+				49C8A6D92D157B590030D648 /* RecentSearchKeywordView.swift in Sources */,
 				49C8A6A92D1056D70030D648 /* SearchFilterView.swift in Sources */,
 				49C8A6AD2D11539F0030D648 /* SortingView.swift in Sources */,
+				49C8A6DB2D1937B80030D648 /* GoToSearchView.swift in Sources */,
 				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
 				49C8A6A22D1052F70030D648 /* SearchViewModel.swift in Sources */,
 				4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */,

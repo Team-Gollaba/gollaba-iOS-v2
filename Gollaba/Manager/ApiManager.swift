@@ -45,10 +45,25 @@ enum OptionGroup: String {
     case none = ""
 }
 
-enum IsActive: String {
-    case active = "ACTIVE"
-    case inactive = "INACTIVE"
-    case none = ""
+enum IsActive {
+    case active
+    case inactive
+    case none
+
+    var boolValue: Bool {
+        switch self {
+        case .active:
+            return true
+        case .inactive:
+            return false
+        case .none:
+            return false
+        }
+    }
+
+    init(boolValue: Bool) {
+        self = boolValue ? .active : .inactive
+    }
 }
 
 enum ProviderType: String {
@@ -98,12 +113,14 @@ class ApiManager {
             queryItems.append("query=\(query)")
         }
         if isActive != .none {
-            queryItems.append("isActive=\(isActive.rawValue)")
+            queryItems.append("isActive=\(isActive.boolValue)")
         }
         
         let queryString = queryItems.joined(separator: "&")
         let urlString = baseURL + "/v2/polls?" + queryString
         let url = try getUrl(for: urlString)
+        
+        print("urlString: \(urlString)")
         
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)

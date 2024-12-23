@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var dragEndLocation: CGFloat = 0.0
     @Binding var scrollToTopTrigger: Bool
     @Binding var isHideTapBar: Bool
+    @Binding var goToSearch: Bool
     
     var body: some View {
         NavigationStack {
@@ -34,6 +35,9 @@ struct HomeView: View {
                                 .frame(height: 0)
                                 .id("Top")
                             
+                            GoToSearchView {
+                                goToSearch = true
+                            }
                             //                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
                             //                                if viewModel.isValidSearchText() {
                             //                                    viewModel.goToSearchResult = true
@@ -92,7 +96,7 @@ struct HomeView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.goToSearchResult) {
-            SearchResultListView(title: viewModel.searchText)
+            SearchResultListView(searchText: viewModel.searchText)
         }
         .toast(
             isPresenting: $viewModel.showSearchErrorToast) {
@@ -102,5 +106,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(scrollToTopTrigger: .constant(false), isHideTapBar: .constant(false))
+    HomeView(scrollToTopTrigger: .constant(false), isHideTapBar: .constant(false), goToSearch: .constant(false))
 }

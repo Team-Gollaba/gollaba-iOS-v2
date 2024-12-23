@@ -19,13 +19,15 @@ struct CustomTabView: View {
     @State private var isScrollToTop: Bool = false
     @State private var isHideTabBar: Bool = false
     
+    @State private var goToSearch: Bool = false
+    
     let tabBarHeight: CGFloat = 60
     @State var safeAreaBottom: CGFloat = 0
     
     var body: some View {
         ZStack (alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                HomeView(scrollToTopTrigger: $isScrollToTop, isHideTapBar: $isHideTabBar)
+                HomeView(scrollToTopTrigger: $isScrollToTop, isHideTapBar: $isHideTabBar, goToSearch: $goToSearch)
                     .tag(SelectedTab.home)
                 
                 SearchView(isHideTabBar: $isHideTabBar)
@@ -101,6 +103,12 @@ struct CustomTabView: View {
             if safeAreaBottom == 0 {
                 print("safeAreaBottom: \(safeAreaBottom)")
                 safeAreaBottom = getSafeAreaInsets()?.bottom ?? 0
+            }
+        }
+        .onChange(of: goToSearch) { _, newValue in
+            if newValue {
+                selectedTab = .search
+                goToSearch = false
             }
         }
     }
