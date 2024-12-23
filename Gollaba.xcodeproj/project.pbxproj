@@ -212,6 +212,7 @@
 				492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */,
 				497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */,
 				49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */,
+				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -244,7 +245,6 @@
 				49FEE25D2CF22712000991DB /* TimePickerView.swift */,
 				4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */,
 				4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */,
-				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
 				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
 				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
 				4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */,

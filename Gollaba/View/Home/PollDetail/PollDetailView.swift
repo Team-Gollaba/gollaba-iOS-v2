@@ -56,16 +56,22 @@ struct PollDetailView: View {
                 PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
                 
                 if viewModel.poll?.pollType == PollType.named.rawValue && !kakaoAuthManager.isLoggedIn {
-                    ClearableTextFieldView(
-                        placeholder: "기명 투표를 위해 닉네임을 입력해주세요.",
-                        editText: $viewModel.inputNameText,
-                        isFocused: $viewModel.inputNameFocused
-                    )
-                    .padding(12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 3)
-                            .stroke(.black, lineWidth: 1)
-                    )
+                    VStack (alignment: .leading, spacing: 4) {
+                        Text("닉네임 (변경 하려면 입력하세요.)")
+                            .font(.suitVariable12)
+                            .foregroundStyle(.pollContentTitleFont)
+                        
+                        ClearableTextFieldView(
+                            placeholder: "기명 투표를 위해 닉네임을 입력해주세요.",
+                            editText: $viewModel.inputNameText,
+                            isFocused: $viewModel.inputNameFocused
+                        )
+                        .padding(12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 3)
+                                .stroke(.black, lineWidth: 1)
+                        )
+                    }
                 }
                 
                 if let poll = viewModel.poll, viewModel.isValidDatePoll {
@@ -124,6 +130,7 @@ struct PollDetailView: View {
                 await viewModel.getPoll()
                 await viewModel.votingCheck()
             }
+            viewModel.inputNameText = viewModel.getRandomNickName()
         }
         .onDisappear {
             viewModel.deleteOption()
@@ -135,6 +142,11 @@ struct PollDetailView: View {
                 }
             }
         }
+        .onChange(of: viewModel.inputNameFocused, { _, newValue in
+            if newValue {
+                viewModel.inputNameText = ""
+            }
+        })
         .refreshable(action: viewModel.loadPoll)
     }
     

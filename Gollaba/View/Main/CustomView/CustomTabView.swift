@@ -21,7 +21,7 @@ struct CustomTabView: View {
     
     @State private var goToSearch: Bool = false
     
-    let tabBarHeight: CGFloat = 60
+    let tabBarHeight: CGFloat = 48
     @State var safeAreaBottom: CGFloat = 0
     
     var body: some View {
