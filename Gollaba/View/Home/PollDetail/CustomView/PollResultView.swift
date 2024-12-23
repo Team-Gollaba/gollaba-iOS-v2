@@ -40,14 +40,27 @@ struct PollResultView: View {
             .blur(radius: isHide ? 8 : 0)
             
             if isHide {
-                Text("투표에 참여하고 결과를 확인해보세요!")
-                    .font(.suitBold20)
-                    .foregroundStyle(.pollButton)
+                VStack {
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .foregroundColor(.blue)
+                            .frame(width: 50, height: 50)
+                            .padding(.bottom, 10)
+                        
+                        Text("투표에 참여하고\n결과를 확인해보세요!")
+                            .font(.suitBold20)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.black)
+                            .padding(.horizontal)
+                        
+                    }
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.toolbarBackground)
+//                            .stroke(.enrollButton, lineWidth: 1)
                     )
+                    .padding()
             }
         }
     }
