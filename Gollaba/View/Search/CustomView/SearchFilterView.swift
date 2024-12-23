@@ -14,6 +14,10 @@ struct SearchFilterView: View {
     @Binding var isActiveFilter: [Bool]
     var applyAction: () -> Void
     
+    @State var originSortedBy: SortedBy = .createdAt
+    @State var originPollTypeFilter: [Bool] = []
+    @State var originActiveFilter: [Bool] = []
+    
     var body: some View {
         Color.gray
             .edgesIgnoringSafeArea(.all)
@@ -38,7 +42,7 @@ struct SearchFilterView: View {
                 SortingView(sortedBy: $sortedBy)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-        
+            
             
             SearchFilterContentView(
                 title: "기명/익명",
@@ -80,14 +84,19 @@ struct SearchFilterView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
                 .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 0)
-                
+            
         )
+        .onAppear {
+            originSortedBy = sortedBy
+            originPollTypeFilter = pollTypeFilter
+            originActiveFilter = isActiveFilter
+        }
     }
     
     func initFilter() {
-//        madeDateFilter = [true, false, false]
-        pollTypeFilter = [true, false, false]
-        isActiveFilter = [true, false, false]
+        sortedBy = originSortedBy
+        pollTypeFilter = originPollTypeFilter
+        isActiveFilter = originActiveFilter
     }
 }
 
