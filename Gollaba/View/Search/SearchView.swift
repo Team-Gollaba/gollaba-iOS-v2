@@ -114,11 +114,12 @@ struct SearchView: View {
         }
         .onAppear {
             viewModel.recentKeywords = recentKeywords
+            viewModel.searchFocus = false
             viewModel.searchFocus = true
         }
         .onDisappear {
             viewModel.searchText = ""
-            viewModel.searchFocus = false
+            
         }
         .navigationDestination(isPresented: $viewModel.goToSearchResult, destination: {
             SearchResultListView(searchText: viewModel.searchText)
