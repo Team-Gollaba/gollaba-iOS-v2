@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PollContentWebStyle: View {
     var poll: PollItem
@@ -19,6 +20,24 @@ struct PollContentWebStyle: View {
         } label: {
             ZStack {
                 VStack (alignment: .leading, spacing: 4) {
+                    HStack {
+//                        if let profileImageUrl = poll.creatorProfileUrl {
+//                            KFImage(URL(string: profileImageUrl))
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 20, height: 20)
+//                        } else {
+//                            Image(systemName: "person.circle.fill")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 20, height: 20)
+//                        }
+//                        
+//                        Text(poll.creatorName)
+//                            .font(.suitBold20)
+//                        
+                        
+                    }
                     Text(poll.title)
                         .font(.suitBold20)
                         .overlay(
@@ -30,6 +49,7 @@ struct PollContentWebStyle: View {
                     
                     Text("\(formattedDate(poll.endAt)). 마감")
                         .font(.suitVariable16)
+                        .foregroundStyle(.myPollLikedVotes)
                         .overlay(
                             poll.id == "-1" ? .white : .clear
                         )

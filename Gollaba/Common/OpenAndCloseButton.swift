@@ -12,9 +12,9 @@ struct OpenAndCloseButton: View {
     
     var body: some View {
         Button {
-            withAnimation {
+//            withAnimation {
                 isOpen.toggle()
-            }
+//            }
         } label: {
             Image(systemName: isOpen ? "chevron.up" : "chevron.down")
                 .resizable()

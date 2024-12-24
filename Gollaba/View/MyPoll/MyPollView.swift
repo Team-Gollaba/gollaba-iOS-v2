@@ -13,6 +13,22 @@ struct MyPollView: View {
     @State var viewModel = MyPollViewModel()
     @Binding var isHideTabBar: Bool
     
+    struct MadeByMeTabHeightPreferenceKey: PreferenceKey {
+        static var defaultValue: CGFloat = 0
+        
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = max(value, nextValue()) // 여러 값 중 최대값을 사용
+        }
+    }
+    
+    struct LikeTabHeightPreferenceKey: PreferenceKey {
+        static var defaultValue: CGFloat = 0
+        
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = max(value, nextValue()) // 여러 값 중 최대값을 사용
+        }
+    }
+    
     var body: some View {
         
         ScrollView {
@@ -29,27 +45,86 @@ struct MyPollView: View {
                 //                viewModel.isClickedLogoutButton = true
                 //            }
                 
-                TabSwitcherView(tabs: [
-                    TabSwitcherItem(icon: Image(systemName: "person"), title: "내가 만든 투표", itemCount: viewModel.madeByMePollList.count, view: AnyView(
-                        GeometryReader { proxy in
-                            
-                            VStack (spacing: 0) {
-                                
-                                ForEach(viewModel.madeByMePollList, id: \.self) { poll in
-                                    
-                                    PollMadeByMeView(poll: poll)
-                                    
-                                }
-                            }
-                            
-                            
-                            .dragToHide(isHide: $isHideTabBar)
+                HStack {
+                    Button {
+                        viewModel.selectedTab = .madeByMe
+                    } label: {
+                        Text("내가 만든 투표")
+                            .font(.yangjin16)
+                    }
+                    .tint(.black)
+                    .frame(maxWidth: .infinity)
+                    
+                    Button {
+                        viewModel.selectedTab = .like
+                    } label: {
+                        Text("내가 좋아하는 투표")
+                            .font(.yangjin16)
+                    }
+                    .tint(.black)
+                    .frame(maxWidth: .infinity)
+                }
+                
+                Rectangle()
+                    .fill(.enrollButton)
+                    .frame(width: UIScreen.main.bounds.width / 2 - 100, height: 4)
+                    .offset(x: UIScreen.main.bounds.width / 2 * (CGFloat(viewModel.selectedTab.rawValue) - (1 / 2)))
+                    .animation(.bouncy, value: viewModel.selectedTab)
+                
+                TabView (selection: $viewModel.selectedTab) {
+                    PollMadeByMeListView(pollMadeByMeList: viewModel.madeByMePollList)
+                        .tag(MyPollSelectedTab.madeByMe)
+                        .background(GeometryReader { proxy in
+                            Color.clear
+                                .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                        })
+                    
+                    Text("내가 좋아하는 투표")
+                        .frame(height: 400)
+                        .tag(MyPollSelectedTab.like)
+                        .background(GeometryReader { proxy in
+                            Color.clear
+                                .preference(key: LikeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                        })
+                }
+                .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용
+                .onPreferenceChange(MadeByMeTabHeightPreferenceKey.self) { value in
+                    viewModel.madeByMeTabHeight = value // 각 탭의 높이를 저장
+                    viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
+                }
+                .onPreferenceChange(LikeTabHeightPreferenceKey.self) { value in
+                    viewModel.likeTabHeight = value // 각 탭의 높이를 저장
+                    viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
+                }
+                .onChange(of: viewModel.selectedTab) {
+                    DispatchQueue.main.async {
+                        withTransaction(Transaction(animation: nil)) {
+                            viewModel.updateCurrentTabHeight()
                         }
-                    )),
-                    TabSwitcherItem(icon: Image(systemName: "heart.fill"), iconColor: .red, title: "내가 좋아요한 투표", itemCount: 1, view: AnyView(
-                        Text("내가 좋아요한 투표")
-                    ))
-                ])
+                    }
+                }
+                
+                //                TabSwitcherView(tabs: [
+                //                    TabSwitcherItem(icon: Image(systemName: "person"), title: "내가 만든 투표", itemCount: viewModel.madeByMePollList.count, view: AnyView(
+                //                        GeometryReader { proxy in
+                //
+                //                            VStack (spacing: 0) {
+                //
+                //                                ForEach(viewModel.madeByMePollList, id: \.self) { poll in
+                //
+                //                                    PollMadeByMeView(poll: poll)
+                //
+                //                                }
+                //                            }
+                //
+                //
+                //                            .dragToHide(isHide: $isHideTabBar)
+                //                        }
+                //                    )),
+                //                    TabSwitcherItem(icon: Image(systemName: "heart.fill"), iconColor: .red, title: "내가 좋아요한 투표", itemCount: 1, view: AnyView(
+                //                        Text("내가 좋아요한 투표")
+                //                    ))
+                //                ])
                 
                 //            GoToMyPollListButton(
                 //                icon: Image(systemName: "person"),
@@ -60,10 +135,10 @@ struct MyPollView: View {
                 //                    viewModel.goToPollList = true
                 //                }
                 //            )
-                //            
+                //
                 //            Divider()
                 //                .padding(.horizontal)
-                //            
+                //
                 //            GoToMyPollListButton(
                 //                icon: Image(systemName: "heart.fill"),
                 //                title: "내가 좋아요한 투표",
@@ -75,7 +150,7 @@ struct MyPollView: View {
                 //            )
                 
                 //            Spacer()
-                //            
+                //
                 //            if kakaoAuthManager.isLoggedIn {
                 //                LogoutButton {
                 //                    viewModel.isClickedLogoutButton = true
@@ -107,6 +182,7 @@ struct MyPollView: View {
                 }
             )
         }
+        
     }
 }
 

@@ -26,61 +26,62 @@ struct SearchView: View {
                     }
             }
             
-            VStack {
-                HStack (spacing: 12) {
-                    SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
-                        
-                        if viewModel.isValidSearchText() {
-                            viewModel.saveKeyword(viewModel.searchText, context: context)
-                            viewModel.goToSearchResult = true
-//                            Task {
-//                                await viewModel.getPolls()
-//                                
-//                            }
-                        }
-                    }
-                    .padding()
-                    
-//                    SearchFilterButton(isFilterOpen: $viewModel.isFilterOpen)
-//                        .padding(.leading, -12)
-                }
-                
-                ZStack {
-                    if let items = viewModel.searchResultPollData?.items {
-                        ScrollView {
+            ScrollView {
+                VStack {
+                    HStack (spacing: 12) {
+                        SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
                             
-                            if items.isEmpty {
-                                VStack {
-                                    Text("검색 결과가 없습니다.")
-                                        .font(.suitBold24)
-                                }
-                            } else {
-                                VerticalPollList(
-                                    pollList: items,
-                                    requestAddPoll: $viewModel.requestAddPoll,
-                                    isEnd: $viewModel.isEnd
-                                )
-                                .onChange(of: viewModel.requestAddPoll) { _, newValue in
-                                    
-//                                    if newValue && viewModel.page != 0 {
-//                                        Task {
-//                                            await viewModel.fetchMoreResult()
-//                                        }
-//                                    }
-                                }
+                            if viewModel.isValidSearchText() {
+                                viewModel.saveKeyword(viewModel.searchText, context: context)
+                                viewModel.goToSearchResult = true
+                                //                            Task {
+                                //                                await viewModel.getPolls()
+                                //                                
+                                //                            }
                             }
                         }
-                        .dragToHide(isHide: $isHideTabBar)
-                    } else {
-                        Spacer()
+                        .padding()
+                        
+                        //                    SearchFilterButton(isFilterOpen: $viewModel.isFilterOpen)
+                        //                        .padding(.leading, -12)
                     }
                     
-                   
+                    ZStack {
+                        if let items = viewModel.searchResultPollData?.items {
+                            ScrollView {
+                                
+                                if items.isEmpty {
+                                    VStack {
+                                        Text("검색 결과가 없습니다.")
+                                            .font(.suitBold24)
+                                    }
+                                } else {
+                                    VerticalPollList(
+                                        pollList: items,
+                                        requestAddPoll: $viewModel.requestAddPoll,
+                                        isEnd: $viewModel.isEnd
+                                    )
+                                    .onChange(of: viewModel.requestAddPoll) { _, newValue in
+                                        
+                                        //                                    if newValue && viewModel.page != 0 {
+                                        //                                        Task {
+                                        //                                            await viewModel.fetchMoreResult()
+                                        //                                        }
+                                        //                                    }
+                                    }
+                                }
+                            }
+                            
+                        } else {
+                            Spacer()
+                        }
+                        
+                        
                         VStack {
                             VStack (alignment: .leading) {
                                 Text("최근 검색어")
                                     .font(.yangjin20)
-                                    
+                                
                                 
                                 ScrollView (.horizontal, showsIndicators: false) {
                                     HStack (spacing: 20) {
@@ -93,8 +94,8 @@ struct SearchView: View {
                                                     viewModel.goToSearchResult = true
                                                 },
                                                 deleteAction: {
-                                                viewModel.deleteKeyword(keyword.keyword, context: context)
-                                            })
+                                                    viewModel.deleteKeyword(keyword.keyword, context: context)
+                                                })
                                         }
                                     }
                                     .padding(4)
@@ -105,10 +106,12 @@ struct SearchView: View {
                             
                             Spacer()
                         }
-                    
+                        
+                    }
+                    Spacer()
                 }
-                Spacer()
             }
+            .dragToHide(isHide: $isHideTabBar)
             
             
         }

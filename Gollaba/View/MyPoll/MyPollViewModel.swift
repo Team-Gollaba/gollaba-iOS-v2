@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum MyPollSelectedTab: Int {
+    case madeByMe = 0
+    case like = 1
+}
+
 @Observable
 class MyPollViewModel {
     var goToPollDetail: Bool = false
@@ -21,6 +26,12 @@ class MyPollViewModel {
     var madeByMePollRequestAdd: Bool = false
     var madeByMePollIsEnd: Bool = false
     
+    var selectedTab: MyPollSelectedTab = .madeByMe
+    var madeByMeTabHeight: CGFloat = 0
+    var likeTabHeight: CGFloat = 0
+    var currentTabHeight: CGFloat = 400
+    
+    
     init() {
         for i in 1...10 {
             madeByMePollList.append(PollItem(id: "\(i)", title: "title \(i)", creatorName: "creator \(i)", creatorProfileUrl: "", responseType: "response \(i)", pollType: "pollType \(i)", endAt: "2024.12.12", readCount: 1, totalVotingCount: 8, items: [
@@ -29,4 +40,13 @@ class MyPollViewModel {
             ]))
         }
     }
+    
+    func updateCurrentTabHeight() {
+            switch selectedTab {
+            case .madeByMe:
+                currentTabHeight = madeByMeTabHeight
+            case .like:
+                currentTabHeight = likeTabHeight
+            }
+        }
 }
