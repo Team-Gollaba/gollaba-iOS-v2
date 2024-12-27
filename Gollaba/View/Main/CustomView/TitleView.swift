@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TitleView: View {
-    @Environment(KakaoAuthManager.self) var kakaoAuthManager
+    @Environment(AuthManager.self) var authManager
     @Binding var goToLogin: Bool
     var height: CGFloat
     
@@ -25,9 +25,9 @@ struct TitleView: View {
             
             Spacer()
             
-            if kakaoAuthManager.isLoggedIn {
-                if let profileImageUrl = kakaoAuthManager.profileImageUrl {
-                    TitleProfileView(imageUrl: profileImageUrl, nickName: kakaoAuthManager.userName)
+            if authManager.isLoggedIn {
+                if let profileImageUrl = authManager.kakaoAuthManager.profileImageUrl {
+                    TitleProfileView(imageUrl: profileImageUrl, nickName: authManager.kakaoAuthManager.userName)
                 }
             } else {
                 Button {

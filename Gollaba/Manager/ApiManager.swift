@@ -18,6 +18,10 @@ enum ApiError: Error {
     case invalidResponseStatusCode
 }
 
+enum AuthError: String, Error {
+    case notSignUp = "NOT_SIGN_UP"
+}
+
 enum VotingError: Error {
     case alreadyVoted
 }
@@ -49,7 +53,7 @@ enum IsActive {
     case active
     case inactive
     case none
-
+    
     var boolValue: Bool {
         switch self {
         case .active:
@@ -60,7 +64,7 @@ enum IsActive {
             return false
         }
     }
-
+    
     init(boolValue: Bool) {
         self = boolValue ? .active : .inactive
     }
@@ -115,7 +119,7 @@ class ApiManager {
         if isActive != .none {
             queryItems.append("isActive=\(isActive.boolValue)")
         }
-        	
+        
         let queryString = queryItems.joined(separator: "&")
         let urlString = baseURL + "/v2/polls?" + queryString
         let url = try getUrl(for: urlString)
@@ -268,7 +272,46 @@ class ApiManager {
         }
     }
     
-    //MARK: - user
+    //MARK: - users
+    // 회원가입
+    func signUp(email: String, name: String, profileImageUrl: String? = nil, providerType: ProviderType, providerAccessToken: String) async throws -> String {
+        let urlString = baseURL + "/v2/users/signup"
+        let url = try getUrl(for: urlString)
+        
+        var param: [String: Any] = [
+            "email": email,
+            "name": name,
+            "providerType": providerType.rawValue,
+            "providerAccessToken": providerAccessToken
+        ]
+        
+        if let profileImageUrl {
+            param["profileImageUrl"] = profileImageUrl
+        }
+                
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to sign up: \(value)")
+                        
+                        switch value.data {
+                        case .loginResponseData(let data):
+                            continuation.resume(returning: data.accessToken)
+                        default:
+                            break
+                        }
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to sign up with error: \(error)", .error)
+                        continuation.resume(with: .failure(error))
+                    }
+                }
+        }
+    }
+    
     // 투표 읽어서 조회수 증가
     func readPoll(pollHashId: String) async throws {
         let urlString = baseURL + "/v2/polls/\(pollHashId)/read"
@@ -315,7 +358,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         if let data = response.data, let serverError = try? JSONDecoder().decode(DefaultResponse.self, from: data) {
-                            Logger.shared.log(String(describing: self), #function, "Server error: \(serverError.message)", .error)
+                            Logger.shared.log(String(describing: self), #function, "Server error: \(serverError.status)", .error)
                             
                             if serverError.message == "이미 투표하셨습니다." {
                                 continuation.resume(throwing: VotingError.alreadyVoted)
@@ -337,7 +380,7 @@ class ApiManager {
         let param: [String: Any] = [
             "pollHashId": pollHashId
         ]
-                
+        
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -387,10 +430,62 @@ class ApiManager {
                         }
                         
                     case .failure(let error):
+                        if let data = response.data, let serverError = try? JSONDecoder().decode(DefaultResponse.self, from: data) {
+                            Logger.shared.log(String(describing: self), #function, "Server error: \(serverError.status)", .error)
+                            
+                            if serverError.status == AuthError.notSignUp.rawValue {
+                                continuation.resume(throwing: AuthError.notSignUp)
+                                return
+                            }
+                        }
                         Logger.shared.log(String(describing: self), #function, "Failed to login by provider token: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }
+        }
+    }
+    
+    //MARK: - Image
+    func uploadImage(images: [UIImage]) async throws -> [String] {
+        let urlString = baseURL + "/v2/image/upload"
+        let url = try getUrl(for: urlString)
+        let headers: HTTPHeaders = ["Content-Type": "multipart/form-data", "Accept": "application/json"]
+        let filePath: String = "profile-images/"
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.upload(
+                multipartFormData: { multipartFormData in
+                    multipartFormData.append(Data(filePath.utf8), withName: "filePath")
+                    
+                    images.enumerated().forEach { index, image in
+                        if let imageData = image.jpegData(compressionQuality: 0.1) {
+                            multipartFormData.append(
+                                imageData,
+                                withName: "files",
+                                fileName: "image\(index).jpeg",
+                                mimeType: "image/jpeg"
+                            )
+                        }
+                    }
+                }, to: url, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: DefaultResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    Logger.shared.log(String(describing: self), #function, "Success to upload image: \(value)")
+                    
+                    switch value.data {
+                    case .uploadImageResponseData(let data):
+                        continuation.resume(returning: data)
+                        
+                    default:
+                        break
+                    }
+                case .failure(let error):
+                    Logger.shared.log(String(describing: self), #function, "Failed to upload image with error: \(error)", .error)
+                    continuation.resume(throwing: error)
+                }
+            }
         }
     }
     

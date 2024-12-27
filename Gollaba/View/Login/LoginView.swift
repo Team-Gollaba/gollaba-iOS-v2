@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(KakaoAuthManager.self) var kakaoAuthManager
+    @Environment(AuthManager.self) var authManager
     @State var viewModel = LoginViewModel()
     
     var body: some View {
@@ -33,10 +33,7 @@ struct LoginView: View {
                     oAuthPath: "카카오",
                     action: {
                         Task {
-                            await kakaoAuthManager.handleKakaoLogin()
-                            if let accessToken = kakaoAuthManager.accessToken {
-                                await viewModel.login(providerToken: accessToken, providerType: .kakao)
-                            }
+                            await authManager.kakaoAuthManager.handleKakaoLogin()
                         }
                     }
                 )
@@ -46,11 +43,11 @@ struct LoginView: View {
                 HStack {
                     Spacer()
                     
-                    NavigationLink {
-                        SignUpView()
-                    } label: {
-                        Text("회원가입")
-                    }
+//                    NavigationLink {
+//                        SignUpView(accessToken: <#String#>, email: <#String#>, providerType: <#ProviderType#>)
+//                    } label: {
+//                        Text("회원가입")
+//                    }
                 }
                 Spacer()
             }
@@ -72,10 +69,28 @@ struct LoginView: View {
                     .foregroundStyle(.copyright)
             }
         }
-        .onChange(of: kakaoAuthManager.isLoggedIn) { _, newValue in
-            if newValue {
+        .onAppear {
+            if let jwtToken = authManager.jwtToken, jwtToken != "" {
                 dismiss()
             }
+        }
+        .onChange(of: authManager.kakaoAuthManager.isLoggedIn) { _, newValue in
+            Task {
+                if let accessToken = authManager.kakaoAuthManager.accessToken {
+                    authManager.jwtToken = await viewModel.login(providerToken: accessToken, providerType: .kakao)
+                    viewModel.accessToken = accessToken
+                    viewModel.email = authManager.kakaoAuthManager.userMail
+                    viewModel.providerType = .kakao
+                    if !viewModel.isNotSignUp && newValue {
+                        dismiss()
+                    } else {
+                        viewModel.goToSignUp = true
+                    }
+                }
+            }
+        }
+        .navigationDestination(isPresented: $viewModel.goToSignUp) {
+            SignUpView(accessToken: viewModel.accessToken, email: viewModel.email, providerType: viewModel.providerType)
         }
     }
 }

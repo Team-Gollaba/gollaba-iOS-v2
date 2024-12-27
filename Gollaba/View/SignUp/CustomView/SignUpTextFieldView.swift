@@ -16,6 +16,8 @@ struct SignUpTextFieldView: View {
     var body: some View {
         VStack {
             TextField(placeholder, text: $text)
+                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
                 .focused($focus)
                 .font(.suitVariable20)
                 .onChange(of: isFocused) { _, newValue in

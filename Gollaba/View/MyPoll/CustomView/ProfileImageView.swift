@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileImageView: View {
-    var image: KFImage
+    var image: KFImage?
     var action: () -> Void
     
     var body: some View {
@@ -23,7 +23,7 @@ struct ProfileImageView: View {
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
                 
-                image
+                image?
                     .resizable()
                     .scaledToFill()
                     .frame(width: 100, height: 100)

@@ -10,12 +10,20 @@ import SwiftUI
 @Observable
 class LoginViewModel {
     var accessToken: String = ""
+    var email: String = ""
+    var providerType: ProviderType = .apple
+    var isNotSignUp: Bool = false
+    var goToSignUp: Bool = false
     
-    func login(providerToken: String, providerType: ProviderType) async {
+    func login(providerToken: String, providerType: ProviderType) async -> String {
         do {
-            accessToken = try await ApiManager.shared.loginByProviderToken(providerToken: providerToken, providerType: providerType)
+            let jwtToken = try await ApiManager.shared.loginByProviderToken(providerToken: providerToken, providerType: providerType)
+            return jwtToken
         } catch {
-            
+            if let authError = error as? AuthError, authError == .notSignUp {
+                isNotSignUp = true
+            }
         }
+        return ""
     }
 }

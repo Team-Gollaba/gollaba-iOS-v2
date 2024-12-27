@@ -10,7 +10,7 @@ import Kingfisher
 
 struct PollDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(KakaoAuthManager.self) var kakaoAuthManager
+    @Environment(AuthManager.self) var authManager
     var id: String
     @State var viewModel: PollDetailViewModel
     
@@ -66,7 +66,7 @@ struct PollDetailView: View {
                 
                 PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
                 
-                if viewModel.poll?.pollType == PollType.named.rawValue && !kakaoAuthManager.isLoggedIn {
+                if viewModel.poll?.pollType == PollType.named.rawValue && !authManager.isLoggedIn {
                     VStack (alignment: .leading, spacing: 4) {
                         Text("닉네임 (변경 하려면 입력하세요.)")
                             .font(.suitVariable12)

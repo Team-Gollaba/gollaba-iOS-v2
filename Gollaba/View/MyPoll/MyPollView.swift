@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct MyPollView: View {
-    @Environment(KakaoAuthManager.self) var kakaoAuthManager
+    @Environment(AuthManager.self) var authManager
     @State var viewModel = MyPollViewModel()
     @Binding var isHideTabBar: Bool
     
@@ -33,11 +33,11 @@ struct MyPollView: View {
         
         ScrollView {
             VStack (spacing: 0) {
-                ProfileImageView(image: KFImage(kakaoAuthManager.profileImageUrl)) {
+                ProfileImageView(image: authManager.isLoggedIn ? KFImage(authManager.kakaoAuthManager.profileImageUrl) : nil) {
                     viewModel.isClickedProfileImage = true
                 }
                 
-                ProfileNameView(name: kakaoAuthManager.userName, email: kakaoAuthManager.userMail)
+                ProfileNameView(name: authManager.isLoggedIn ? authManager.kakaoAuthManager.userName : "유저", email: authManager.isLoggedIn ? authManager.kakaoAuthManager.userMail : "")
                     .padding(.bottom, 12)
                 
                 
@@ -161,7 +161,7 @@ struct MyPollView: View {
             .ignoresSafeArea(.all)
             .padding(.top)
             .sheet(isPresented: $viewModel.isClickedProfileImage) {
-                ProfileImageDetailView(image: KFImage(kakaoAuthManager.profileImageUrl))
+                ProfileImageDetailView(image: KFImage(authManager.kakaoAuthManager.profileImageUrl))
             }
             //        .navigationDestination(isPresented: $viewModel.goToPollDetail) {
             //            PollDetailView()
@@ -178,7 +178,7 @@ struct MyPollView: View {
                 primaryButtonText: "확인",
                 secondaryButtonText: "취소",
                 onPrimaryButton: {
-                    kakaoAuthManager.kakaoLogout()
+                    authManager.kakaoAuthManager.kakaoLogout()
                 }
             )
         }
