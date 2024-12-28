@@ -16,6 +16,7 @@ enum MyPollSelectedTab: Int {
 class MyPollViewModel {
     var goToPollDetail: Bool = false
     var goToPollList: Bool = false
+    var goToLogin: Bool = false
     var isClickedProfileImage: Bool = false
     var isClickedLogoutButton: Bool = false
     

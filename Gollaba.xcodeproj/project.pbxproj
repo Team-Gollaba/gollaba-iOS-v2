@@ -65,6 +65,7 @@
 		49C8A6B12D11CCCD0030D648 /* OpenAndCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */; };
 		49C8A6D92D157B590030D648 /* RecentSearchKeywordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6D82D157B590030D648 /* RecentSearchKeywordView.swift */; };
 		49C8A6DB2D1937B80030D648 /* GoToSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6DA2D1937B80030D648 /* GoToSearchView.swift */; };
+		49C8A6E52D2064120030D648 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6E42D2064120030D648 /* String+.swift */; };
 		49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25D2CF22712000991DB /* TimePickerView.swift */; };
 		49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FEE25F2CF229AD000991DB /* TimerOptionView.swift */; };
 		49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE2672CF322D5000991DB /* KakaoSDKAuth */; };
@@ -135,6 +136,7 @@
 		49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAndCloseButton.swift; sourceTree = "<group>"; };
 		49C8A6D82D157B590030D648 /* RecentSearchKeywordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchKeywordView.swift; sourceTree = "<group>"; };
 		49C8A6DA2D1937B80030D648 /* GoToSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToSearchView.swift; sourceTree = "<group>"; };
+		49C8A6E42D2064120030D648 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		49FEE25D2CF22712000991DB /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		49FEE25F2CF229AD000991DB /* TimerOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				4945A26F2CEB6ECC00FF05DC /* Font+.swift */,
 				4945A2702CEB6ECC00FF05DC /* UINavigationController+.swift */,
 				497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */,
+				49C8A6E42D2064120030D648 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				49C8A6DB2D1937B80030D648 /* GoToSearchView.swift in Sources */,
 				4945A2B42CEB6ECC00FF05DC /* CreatePollView.swift in Sources */,
 				49C8A6A22D1052F70030D648 /* SearchViewModel.swift in Sources */,
+				49C8A6E52D2064120030D648 /* String+.swift in Sources */,
 				4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */,
 				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,

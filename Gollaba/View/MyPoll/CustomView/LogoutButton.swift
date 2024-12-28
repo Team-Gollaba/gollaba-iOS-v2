@@ -23,7 +23,7 @@ struct LogoutButton: View {
                 Text("로그아웃")
                     .font(.suitBold12)
             }
-            .frame(maxWidth: 100)
+            .frame(maxWidth: .infinity)
             .frame(height: 36)
             .background(
                 RoundedRectangle(cornerRadius: 8)
@@ -32,7 +32,7 @@ struct LogoutButton: View {
             )
         }
         .tint(.white)
-        .padding(.bottom)
+        .padding(24)
     }
 }
 

@@ -11,11 +11,7 @@ import SwiftUI
 class AuthManager {
     var isLoggedIn: Bool {
         get {
-            if let jwtToken {
-                return true
-            } else {
-                return false
-            }
+            jwtToken != nil
         }
     }
     var jwtToken: String?
