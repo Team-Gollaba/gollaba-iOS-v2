@@ -33,23 +33,10 @@ struct LoginView: View {
                     oAuthPath: "카카오",
                     action: {
                         Task {
-                            await authManager.kakaoAuthManager.handleKakaoLogin()
+                            await viewModel.kakaoLogin()
                         }
                     }
                 )
-            }
-            
-            VStack {
-                HStack {
-                    Spacer()
-                    
-//                    NavigationLink {
-//                        SignUpView(accessToken: <#String#>, email: <#String#>, providerType: <#ProviderType#>)
-//                    } label: {
-//                        Text("회원가입")
-//                    }
-                }
-                Spacer()
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -70,6 +57,7 @@ struct LoginView: View {
             }
         }
         .onAppear {
+            viewModel.authManager = authManager
             if let jwtToken = authManager.jwtToken, jwtToken != "" {
                 dismiss()
             }

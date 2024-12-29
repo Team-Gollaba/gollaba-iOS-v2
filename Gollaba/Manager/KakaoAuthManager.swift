@@ -9,6 +9,15 @@ import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
 
+enum KakaoLoginError: Error {
+    case invalidResponse
+    case invalidAccessToken
+}
+
+enum KakaoLogoutError: Error {
+    case invalidResponse
+}
+
 @Observable
 class KakaoAuthManager {
     var isLoggedIn: Bool = false
@@ -18,7 +27,7 @@ class KakaoAuthManager {
     var accessToken: String?
     
     @MainActor
-    func handleKakaoLogin() async {
+    func handleKakaoLogin() async throws {
         
         // 카카오톡 실행 가능 여부 확인 - 설치 되어있을 경우
         if (UserApi.isKakaoTalkLoginAvailable()) {
@@ -29,18 +38,25 @@ class KakaoAuthManager {
             isLoggedIn = await handleLoginWithKakaoAccount()
         }
         
+        if !isLoggedIn {
+            throw KakaoLoginError.invalidResponse
+        }
     }
     
     @MainActor
-    func kakaoLogout() {
-        Task {
-            if await handleKakaoLogout() {
-                isLoggedIn = false
-                userName = "유저"
-                userMail = ""
-                profileImageUrl = nil
-            }
+    func kakaoLogout() async -> Bool {
+        
+        if await handleKakaoLogout() {
+            isLoggedIn = false
+            userName = "유저"
+            userMail = ""
+            profileImageUrl = nil
+            
+            return true
+        } else {
+            return false
         }
+        
     }
     
     @MainActor
@@ -48,12 +64,12 @@ class KakaoAuthManager {
         await withCheckedContinuation { continuation in
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error {
-                    print(error)
+                    Logger.shared.log(String(describing: self), #function, "Failed to login with KakaoTalk with error: \(error)", .error)
                     continuation.resume(returning: false)
                 } else {
                     UserApi.shared.me {(me, error) in
                         if let error {
-                            print(error)
+                            Logger.shared.log(String(describing: self), #function, "Failed to get user information with error: \(error)", .error)
                         }
                         
                         guard let name = me?.kakaoAccount?.profile?.nickname else {
@@ -67,7 +83,6 @@ class KakaoAuthManager {
                         guard let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
                             return
                         }
-                        print("kakao user: \(name), \(mail), \(profileUrl)")
                         self.userName = name
                         self.userMail = mail
                         self.profileImageUrl = profileUrl
@@ -86,10 +101,9 @@ class KakaoAuthManager {
         await withCheckedContinuation { continuation in
             UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error {
-                    print(error)
+                    Logger.shared.log(String(describing: self), #function, "Failed to login with KakaoAccount with error: \(error)", .error)
                     continuation.resume(returning: false)
-                }
-                else {
+                } else {
                     
                     // 성공 시 동작 구현
                     _ = oauthToken
@@ -98,7 +112,7 @@ class KakaoAuthManager {
             }
         }
     }
-   
+    
     
     func handleKakaoLogout() async -> Bool {
         

@@ -239,13 +239,17 @@ struct MyPollView: View {
                     primaryButtonText: "확인",
                     secondaryButtonText: "취소",
                     onPrimaryButton: {
-                        authManager.kakaoAuthManager.kakaoLogout()
+                        Task {
+                            await viewModel.kakaoLogout()
+                        }
                     }
                 )
             
             
         }
-        
+        .onAppear {
+            viewModel.authManager = authManager
+        }
     }
 }
 

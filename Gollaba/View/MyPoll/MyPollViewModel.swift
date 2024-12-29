@@ -32,6 +32,7 @@ class MyPollViewModel {
     var likeTabHeight: CGFloat = 0
     var currentTabHeight: CGFloat = 400
     
+    var authManager: AuthManager?
     
     init() {
         for i in 1...10 {
@@ -50,4 +51,17 @@ class MyPollViewModel {
                 currentTabHeight = likeTabHeight
             }
         }
+    
+    func kakaoLogout() async {
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is nil")
+            return
+        }
+        
+        do {
+            try await authManager.kakaoLogout()
+        } catch {
+            
+        }
+    }
 }
