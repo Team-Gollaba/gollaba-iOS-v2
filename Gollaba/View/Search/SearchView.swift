@@ -16,105 +16,97 @@ struct SearchView: View {
     @Binding var isHideTabBar: Bool
     
     var body: some View {
-        ZStack {
-            GeometryReader { geometry in
-                Color.clear
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        viewModel.searchFocus = false
+        
+        ScrollView {
+            VStack {
+                HStack (spacing: 12) {
+                    SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
+                        
+                        if viewModel.isValidSearchText() {
+                            viewModel.saveKeyword(viewModel.searchText, context: context)
+                            viewModel.goToSearchResult = true
+                            //                            Task {
+                            //                                await viewModel.getPolls()
+                            //
+                            //                            }
+                        }
                     }
-            }
-            
-            ScrollView {
-                VStack {
-                    HStack (spacing: 12) {
-                        SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
+                    .padding()
+                    
+                    //                    SearchFilterButton(isFilterOpen: $viewModel.isFilterOpen)
+                    //                        .padding(.leading, -12)
+                }
+                
+                ZStack {
+                    if let items = viewModel.searchResultPollData?.items {
+                        ScrollView {
                             
-                            if viewModel.isValidSearchText() {
-                                viewModel.saveKeyword(viewModel.searchText, context: context)
-                                viewModel.goToSearchResult = true
-                                //                            Task {
-                                //                                await viewModel.getPolls()
-                                //                                
-                                //                            }
+                            if items.isEmpty {
+                                VStack {
+                                    Text("검색 결과가 없습니다.")
+                                        .font(.suitBold24)
+                                }
+                            } else {
+                                VerticalPollList(
+                                    pollList: items,
+                                    requestAddPoll: $viewModel.requestAddPoll,
+                                    isEnd: $viewModel.isEnd
+                                )
+                                .onChange(of: viewModel.requestAddPoll) { _, newValue in
+                                    
+                                    //                                    if newValue && viewModel.page != 0 {
+                                    //                                        Task {
+                                    //                                            await viewModel.fetchMoreResult()
+                                    //                                        }
+                                    //                                    }
+                                }
+                            }
+                        }
+                        
+                    } else {
+                        Spacer()
+                    }
+                    
+                    
+                    VStack {
+                        VStack (alignment: .leading) {
+                            Text("최근 검색어")
+                                .font(.yangjin20)
+                            
+                            
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack (spacing: 20) {
+                                    ForEach(recentKeywords) { keyword in
+                                        RecentSearchKeywordView(
+                                            keyword: keyword.keyword,
+                                            tapAction: {
+                                                viewModel.searchText = keyword.keyword
+                                                viewModel.saveKeyword(viewModel.searchText, context: context)
+                                                viewModel.goToSearchResult = true
+                                            },
+                                            deleteAction: {
+                                                viewModel.deleteKeyword(keyword.keyword, context: context)
+                                            })
+                                    }
+                                }
+                                .padding(4)
                             }
                         }
                         .padding()
+                        .background(.white)
                         
-                        //                    SearchFilterButton(isFilterOpen: $viewModel.isFilterOpen)
-                        //                        .padding(.leading, -12)
+                        Spacer()
                     }
                     
-                    ZStack {
-                        if let items = viewModel.searchResultPollData?.items {
-                            ScrollView {
-                                
-                                if items.isEmpty {
-                                    VStack {
-                                        Text("검색 결과가 없습니다.")
-                                            .font(.suitBold24)
-                                    }
-                                } else {
-                                    VerticalPollList(
-                                        pollList: items,
-                                        requestAddPoll: $viewModel.requestAddPoll,
-                                        isEnd: $viewModel.isEnd
-                                    )
-                                    .onChange(of: viewModel.requestAddPoll) { _, newValue in
-                                        
-                                        //                                    if newValue && viewModel.page != 0 {
-                                        //                                        Task {
-                                        //                                            await viewModel.fetchMoreResult()
-                                        //                                        }
-                                        //                                    }
-                                    }
-                                }
-                            }
-                            
-                        } else {
-                            Spacer()
-                        }
-                        
-                        
-                        VStack {
-                            VStack (alignment: .leading) {
-                                Text("최근 검색어")
-                                    .font(.yangjin20)
-                                
-                                
-                                ScrollView (.horizontal, showsIndicators: false) {
-                                    HStack (spacing: 20) {
-                                        ForEach(recentKeywords) { keyword in
-                                            RecentSearchKeywordView(
-                                                keyword: keyword.keyword,
-                                                tapAction: {
-                                                    viewModel.searchText = keyword.keyword
-                                                    viewModel.saveKeyword(viewModel.searchText, context: context)
-                                                    viewModel.goToSearchResult = true
-                                                },
-                                                deleteAction: {
-                                                    viewModel.deleteKeyword(keyword.keyword, context: context)
-                                                })
-                                        }
-                                    }
-                                    .padding(4)
-                                }
-                            }
-                            .padding()
-                            .background(.white)
-                            
-                            Spacer()
-                        }
-                        
-                    }
-                    Spacer()
                 }
+                Spacer()
             }
-            .dragToHide(isHide: $isHideTabBar)
-            
-            
         }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            viewModel.searchFocus = false
+        }
+        .dragToHide(isHide: $isHideTabBar)
         .onAppear {
             viewModel.recentKeywords = recentKeywords
             viewModel.searchFocus = false
