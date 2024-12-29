@@ -21,10 +21,10 @@ struct LogoutButton: View {
                     .frame(width: 12, height: 12)
                 
                 Text("로그아웃")
-                    .font(.suitBold12)
+                    .font(.suitBold16)
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 36)
+            .padding()
             .background(
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.pollContentTitleFont)
