@@ -25,19 +25,39 @@ struct TitleView: View {
             
             Spacer()
             
-            if authManager.isLoggedIn {
-                if let profileImageUrl = authManager.kakaoAuthManager.profileImageUrl {
-                    TitleProfileView(imageUrl: profileImageUrl, nickName: authManager.kakaoAuthManager.userName)
-                }
-            } else {
-                Button {
-                    goToLogin = true
-                } label: {
-                    Text("로그인")
-                        .font(.suitVariable16)
-                        .foregroundStyle(.black)
-                }
+            Button {
+                
+            } label: {
+                Image(systemName: "bell")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
             }
+            .tint(.signUpButtonEnd)
+            .padding(.trailing, 8)
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "gearshape")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+            }
+            .tint(.signUpButtonEnd)
+//            if authManager.isLoggedIn {
+//                if let profileImageUrl = authManager.kakaoAuthManager.profileImageUrl {
+//                    TitleProfileView(imageUrl: profileImageUrl, nickName: authManager.kakaoAuthManager.userName)
+//                }
+//            } else {
+//                Button {
+//                    goToLogin = true
+//                } label: {
+//                    Text("로그인")
+//                        .font(.suitVariable16)
+//                        .foregroundStyle(.black)
+//                }
+//            }
         }
         .frame(maxWidth: .infinity)
         .frame(height: height)
