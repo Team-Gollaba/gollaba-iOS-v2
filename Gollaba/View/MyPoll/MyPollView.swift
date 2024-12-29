@@ -35,7 +35,7 @@ struct MyPollView: View {
                 ScrollView {
                     if authManager.isLoggedIn {
                         VStack (spacing: 0) {
-                            ProfileImageView(image: authManager.isLoggedIn ? KFImage(authManager.kakaoAuthManager.profileImageUrl) : nil) {
+                            ProfileImageView(image: authManager.isLoggedIn ? KFImage(authManager.profileImageUrl) : nil) {
                                 viewModel.isClickedProfileImage = true
                             }
                             

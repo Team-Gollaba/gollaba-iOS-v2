@@ -15,12 +15,26 @@ class AuthManager {
         }
     }
     var jwtToken: String?
+    var providerType: ProviderType = .none
+    
+    var profileImageUrl: URL? {
+        get {
+            switch providerType {
+            case .kakao:
+                return kakaoAuthManager.profileImageUrl
+                
+            default:
+                return nil
+            }
+        }
+    }
     
     let kakaoAuthManager: KakaoAuthManager = KakaoAuthManager()
     
     func kakaoLogin() async throws {
         do {
             try await kakaoAuthManager.handleKakaoLogin()
+            providerType = .kakao
         } catch {
             throw error
         }
@@ -29,6 +43,7 @@ class AuthManager {
     func kakaoLogout() async throws {
         if await kakaoAuthManager.kakaoLogout() {
             jwtToken = nil
+            providerType = .none
         } else {
             throw KakaoLogoutError.invalidResponse
         }
