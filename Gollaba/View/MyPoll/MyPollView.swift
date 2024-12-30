@@ -48,6 +48,13 @@ struct MyPollView: View {
                         
                         ProfileNameView(name: $viewModel.userName, email: viewModel.userData?.email ?? "")
                             .padding(.bottom, 24)
+                            .onChange(of: viewModel.userName) { oldValue, newValue in
+                                if oldValue != "" {
+                                    Task {
+                                        await viewModel.updateUserName()
+                                    }
+                                }
+                            }
                         
                         
                         HStack {

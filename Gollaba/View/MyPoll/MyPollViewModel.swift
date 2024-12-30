@@ -85,4 +85,22 @@ class MyPollViewModel {
             
         }
     }
+    
+    func updateUserName() async {
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
+            return
+        }
+        
+        guard let jwtToken = authManager.jwtToken else {
+            Logger.shared.log(String(describing: self), #function, "jwtToken is nil", .error)
+            return
+        }
+        
+        do {
+            try await ApiManager.shared.updateUserName(jwtToken: jwtToken, name: userName)
+        } catch {
+            
+        }
+    }
 }

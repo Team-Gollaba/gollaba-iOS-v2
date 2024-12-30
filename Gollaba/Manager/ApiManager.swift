@@ -273,6 +273,36 @@ class ApiManager {
     }
     
     //MARK: - users
+    // 유저 이름 수정
+    func updateUserName(jwtToken: String, name: String) async throws {
+        let urlString = baseURL + "/v2/users"
+        let url = try getUrl(for: urlString)
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        let param: [String: Any] = [
+            "name": name
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to update user name: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to update user name with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+        
     
     // 유저 본인 조회
     func getUserMe(jwtToken: String) async throws -> UserData {
