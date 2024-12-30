@@ -17,11 +17,14 @@ public struct DialogViewModifier: ViewModifier {
     var onPrimaryButton: () -> Void
     var onSecondaryButton: (() -> Void)?
     
+    @State private var scale: CGFloat = 0.8
+    @State private var opacity: Double = 0.0
+    
     public func body(content: Content) -> some View {
         content
             .overlay(
                 Group {
-                    if isPresented {
+                    if isPresented || opacity > 0.0 {
                         VStack(alignment: .leading) {
                             Text(title)
                                 .font(.suitBold24)
@@ -34,15 +37,20 @@ public struct DialogViewModifier: ViewModifier {
                                     .foregroundStyle(.black)
                             }
                             
-                            
                             HStack {
                                 Spacer()
                                 
                                 // Secondary Button
                                 if let secondaryText = secondaryButtonText {
                                     Button {
-                                        onSecondaryButton?()
-                                        isPresented = false
+                                        withAnimation {
+                                            opacity = 0.0
+                                            scale = 0.8
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                            isPresented = false
+                                            onSecondaryButton?()
+                                        }
                                     } label: {
                                         Text(secondaryText)
                                             .font(.suitVariable16)
@@ -53,8 +61,14 @@ public struct DialogViewModifier: ViewModifier {
                                 
                                 // Primary Button
                                 Button {
-                                    onPrimaryButton()
-                                    isPresented = false
+                                    withAnimation {
+                                        opacity = 0.0
+                                        scale = 0.8
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        isPresented = false
+                                        onPrimaryButton()
+                                    }
                                 } label: {
                                     Text(primaryButtonText)
                                         .font(.suitVariable16)
@@ -70,16 +84,32 @@ public struct DialogViewModifier: ViewModifier {
                                 .foregroundColor(.white)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
-                                        .stroke(.black, lineWidth: 1) 
+                                        .stroke(.black, lineWidth: 1)
                                 )
                                 .shadow(radius: 5)
-                                
                         )
+                        .scaleEffect(scale)
+                        .opacity(opacity)
+                        .onAppear {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0)) {
+                                scale = 1.0
+                                opacity = 1.0
+                            }
+                        }
+                        .onChange(of: isPresented) { _, newValue in
+                            if !newValue {
+                                withAnimation {
+                                    opacity = 0.0
+                                    scale = 0.8
+                                }
+                            }
+                        }
                     }
                 }
             )
     }
 }
+
 
 public extension View {
     func dialog(isPresented: Binding<Bool>, title: String, content: Text? = nil, primaryButtonText: String, secondaryButtonText: String? = nil, onPrimaryButton: @escaping () -> Void, onSecondaryButton: (() -> Void)? = nil) -> some View {
