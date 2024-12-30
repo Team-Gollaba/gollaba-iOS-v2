@@ -53,6 +53,9 @@
 		497DDFBB2CFC1FA8008A8534 /* View+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */; };
 		497DDFBD2CFC2036008A8534 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBC2CFC2036008A8534 /* ShimmerView.swift */; };
 		497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */; };
+		49AA4DB62D225BDE0068102F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49AA4DB52D225BDE0068102F /* GoogleService-Info.plist */; };
+		49AA4DB92D225C520068102F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 49AA4DB82D225C520068102F /* FirebaseAnalytics */; };
+		49AA4DBB2D225C520068102F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 49AA4DBA2D225C520068102F /* FirebaseMessaging */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
@@ -123,6 +126,7 @@
 		497DDFBA2CFC1FA8008A8534 /* View+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shimmer.swift"; sourceTree = "<group>"; };
 		497DDFBC2CFC2036008A8534 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableTextFieldView.swift; sourceTree = "<group>"; };
+		49AA4DB52D225BDE0068102F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 			files = (
 				49FEE26C2CF322D5000991DB /* KakaoSDKUser in Frameworks */,
 				491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */,
+				49AA4DBB2D225C520068102F /* FirebaseMessaging in Frameworks */,
+				49AA4DB92D225C520068102F /* FirebaseAnalytics in Frameworks */,
 				49FEE26A2CF322D5000991DB /* KakaoSDKCommon in Frameworks */,
 				49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */,
 				CEDA9DE9718C1056720DA3A8 /* Pods_Gollaba.framework in Frameworks */,
@@ -374,6 +380,7 @@
 		4945A2A12CEB6ECC00FF05DC /* Gollaba */ = {
 			isa = PBXGroup;
 			children = (
+				49AA4DB52D225BDE0068102F /* GoogleService-Info.plist */,
 				49C8A6D62D1569460030D648 /* Entity */,
 				495248372CF772E5005EAABD /* Model */,
 				49FEE24D2CEC95A6000991DB /* Manager */,
@@ -495,6 +502,8 @@
 				49FEE2672CF322D5000991DB /* KakaoSDKAuth */,
 				49FEE2692CF322D5000991DB /* KakaoSDKCommon */,
 				49FEE26B2CF322D5000991DB /* KakaoSDKUser */,
+				49AA4DB82D225C520068102F /* FirebaseAnalytics */,
+				49AA4DBA2D225C520068102F /* FirebaseMessaging */,
 			);
 			productName = Gollaba;
 			productReference = 49C5CF742CDE24D2001DD737 /* Gollaba.app */;
@@ -527,6 +536,7 @@
 			packageReferences = (
 				491A17132CEB85EF00C4666F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				49FEE2662CF322D5000991DB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 49C5CF752CDE24D2001DD737 /* Products */;
@@ -546,6 +556,7 @@
 				4945A2A22CEB6ECC00FF05DC /* Preview Assets.xcassets in Resources */,
 				4945A2A32CEB6ECC00FF05DC /* Assets.xcassets in Resources */,
 				4945A2A52CEB6ECC00FF05DC /* SUIT-Bold.ttf in Resources */,
+				49AA4DB62D225BDE0068102F /* GoogleService-Info.plist in Resources */,
 				4945A2A62CEB6ECC00FF05DC /* SUIT-Variable.ttf in Resources */,
 				49FEE2702CF323EA000991DB /* Config.xcconfig in Resources */,
 				4945A2A72CEB6ECC00FF05DC /* YANGJIN.otf in Resources */,
@@ -880,6 +891,14 @@
 				minimumVersion = 8.1.0;
 			};
 		};
+		49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
 		49FEE2662CF322D5000991DB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -895,6 +914,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 491A17132CEB85EF00C4666F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		49AA4DB82D225C520068102F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		49AA4DBA2D225C520068102F /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		49FEE2672CF322D5000991DB /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;
