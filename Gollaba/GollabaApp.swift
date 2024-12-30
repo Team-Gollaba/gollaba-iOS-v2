@@ -38,6 +38,9 @@ struct GollabaApp: App {
                     }
                 })
                 .preferredColorScheme(.light)
+                .onAppear {
+                    ApiManager.shared.setAuthManager(authManager)
+                }
         }
     }
 }

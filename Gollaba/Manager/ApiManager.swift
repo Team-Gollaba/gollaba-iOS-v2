@@ -85,6 +85,12 @@ class ApiManager {
     
     let headers: HTTPHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     
+    var authManager: AuthManager?
+    
+    func setAuthManager(_ authManager: AuthManager) {
+        self.authManager = authManager
+    }
+    
     //MARK: - polls
     // 전체 투표
     func getPolls(

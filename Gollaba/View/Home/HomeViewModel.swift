@@ -51,11 +51,7 @@ class HomeViewModel {
     )
     
     
-    var allPollsPage: Int = 1 {
-        didSet {
-            print("allPollsPage: \(allPollsPage)")
-        }
-    }
+    var allPollsPage: Int = 0
     let allPollsSize: Int = 10
     
     //MARK: - API
