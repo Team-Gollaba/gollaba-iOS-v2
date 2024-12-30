@@ -15,27 +15,33 @@ struct PollMadeByMeListView: View {
     
     var body: some View {
         ScrollViewReader { proxy in
-            VStack {
-                ForEach(pollMadeByMeList, id: \.self) { poll in
+            VStack (alignment: .leading) {
+                if !pollMadeByMeList.isEmpty {
+                    ForEach(pollMadeByMeList, id: \.self) { poll in
+                        
+                        PollMadeByMeView(poll: poll)
+                        
+                    }
                     
-                    PollMadeByMeView(poll: poll)
-                    
-                }
-                
-                Color.clear
-                    .frame(height: 0)
-                    .id("Bottom")
-                    .background(
-                        GeometryReader { geometry in
-                            Color.clear
-                                .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
-                                    if newValue < UIScreen.main.bounds.height + 100 && !isEnd {
-                                        requestAddPoll = true
+                    Color.clear
+                        .frame(height: 0)
+                        .id("Bottom")
+                        .background(
+                            GeometryReader { geometry in
+                                Color.clear
+                                    .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
+                                        if newValue < UIScreen.main.bounds.height + 100 && !isEnd {
+                                            requestAddPoll = true
+                                        }
                                     }
-                                }
-                        }
-                    )
+                            }
+                        )
+                } else {
+                    Text("만든 투표가 없습니다.\n투표를 만들어 주세요!")
+                        .font(.suitBold24)
+                }
             }
+            .frame(minHeight: 300)
         }
     }
 }

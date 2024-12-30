@@ -84,12 +84,13 @@ struct MyPollView: View {
                             .animation(.bouncy, value: viewModel.selectedTab)
                         
                         TabView (selection: $viewModel.selectedTab) {
-                            PollMadeByMeListView(pollMadeByMeList: viewModel.madeByMePollList, requestAddPoll: $viewModel.madeByMePollRequestAdd, isEnd: $viewModel.madeByMePollIsEnd)
-                                .tag(MyPollSelectedTab.madeByMe)
-                                .background(GeometryReader { proxy in
-                                    Color.clear
-                                        .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
-                                })
+                                PollMadeByMeListView(pollMadeByMeList: viewModel.madeByMePollList, requestAddPoll: $viewModel.madeByMePollRequestAdd, isEnd: $viewModel.madeByMePollIsEnd)
+                                    .tag(MyPollSelectedTab.madeByMe)
+                                    .background(GeometryReader { proxy in
+                                        Color.clear
+                                            .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                                    })
+                            
                             
                             Text("내가 좋아하는 투표")
                                 .frame(height: 400)
