@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileNameView: View {
     @State var isEditing: Bool = false
     @State var newName: String = ""
-    @State var name: String
+    @Binding var name: String
     var email: String
     
     var body: some View {
@@ -81,5 +81,5 @@ struct ProfileNameView: View {
 }
 
 #Preview {
-    ProfileNameView(name: "name", email: "email")
+    ProfileNameView(name: .constant("name"), email: "email")
 }

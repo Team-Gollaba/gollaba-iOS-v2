@@ -273,6 +273,40 @@ class ApiManager {
     }
     
     //MARK: - users
+    
+    // 유저 본인 조회
+    func getUserMe(jwtToken: String) async throws -> UserData {
+        let urlString = baseURL + "/v2/users/me"
+        let url = try getUrl(for: urlString)
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+                
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get user(me): \(value)")
+                        
+                        switch value.data {
+                        case .userResponseData(let data):
+                            continuation.resume(returning: data)
+                            
+                        default:
+                            break
+                        }
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get user(me) with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     // 회원가입
     func signUp(email: String, name: String, profileImageUrl: String? = nil, providerType: ProviderType, providerAccessToken: String) async throws -> String {
         let urlString = baseURL + "/v2/users/signup"

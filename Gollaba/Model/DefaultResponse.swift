@@ -12,6 +12,7 @@ enum DataType: Codable {
     case createPollResponseData(CreatePollResponseData)
     case loginResponseData(LoginResponseData)
     case uploadImageResponseData([String])
+    case userResponseData(UserData)
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -24,6 +25,8 @@ enum DataType: Codable {
             self = .loginResponseData(loginResponseData)
         } else if let uploadImageResponseData = try? container.decode([String].self) {
             self = .uploadImageResponseData(uploadImageResponseData)
+        } else if let userResponseData = try? container.decode(UserData.self) {
+            self = .userResponseData(userResponseData)
         }
         else {
             throw DecodingError.typeMismatch(DataType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Expected Bool value"))

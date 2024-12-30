@@ -33,6 +33,8 @@ class MyPollViewModel {
     var currentTabHeight: CGFloat = 400
     
     var authManager: AuthManager?
+    var userData: UserData?
+    var userName: String = ""
     
     init() {
         for i in 1...10 {
@@ -44,22 +46,41 @@ class MyPollViewModel {
     }
     
     func updateCurrentTabHeight() {
-            switch selectedTab {
-            case .madeByMe:
-                currentTabHeight = madeByMeTabHeight
-            case .like:
-                currentTabHeight = likeTabHeight
-            }
+        switch selectedTab {
+        case .madeByMe:
+            currentTabHeight = madeByMeTabHeight
+        case .like:
+            currentTabHeight = likeTabHeight
         }
+    }
     
     func kakaoLogout() async {
         guard let authManager else {
-            Logger.shared.log(String(describing: self), #function, "authManager is nil")
+            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
             return
         }
         
         do {
             try await authManager.kakaoLogout()
+        } catch {
+            
+        }
+    }
+    
+    func getUser() async {
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
+            return
+        }
+        
+        guard let jwtToken = authManager.jwtToken else {
+            Logger.shared.log(String(describing: self), #function, "jwtToken is nil", .error)
+            return
+        }
+        
+        do {
+            userData = try await ApiManager.shared.getUserMe(jwtToken: jwtToken)
+            userName = userData?.name ?? ""
         } catch {
             
         }
