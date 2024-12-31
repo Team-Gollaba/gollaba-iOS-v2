@@ -20,6 +20,7 @@ enum ApiError: Error {
 
 enum AuthError: String, Error {
     case notSignUp = "NOT_SIGN_UP"
+    case jwtTokenExpired = "JWT_TOKEN_EXPIRED"
 }
 
 enum VotingError: Error {
@@ -91,6 +92,38 @@ class ApiManager {
         self.authManager = authManager
     }
     
+    //MARK: - favorites
+    // 좋아요 생성
+    func createFavoritePoll(pollHashId: String) async throws {
+        let urlString = baseURL + "/v2/favorites"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        let param: [String: Any] = [
+            "pollHashId": pollHashId
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to create favorite poll: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to create favorite poll with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     //MARK: - polls
     // 전체 투표
     func getPolls(
@@ -129,9 +162,7 @@ class ApiManager {
         let queryString = queryItems.joined(separator: "&")
         let urlString = baseURL + "/v2/polls" + "?" + queryString
         let url = try getUrl(for: urlString)
-        
-        print("urlString: \(urlString)")
-        
+                
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -213,7 +244,7 @@ class ApiManager {
     }
     
     // 특정 유저가 생성한 투표 전체 조회
-    func getPollsCreatedByMe(page: Int = 0, size: Int = 10, jwtToken: String) async throws -> AllPollData {
+    func getPollsCreatedByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
         var queryItems: [String] = []
         
         if page != 0 {
@@ -225,6 +256,7 @@ class ApiManager {
         let queryString = queryItems.joined(separator: "&")
         let urlString = baseURL + "/v2/polls/me" + "?" + queryString
         let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
             "Content-Type": "application/json",
@@ -316,9 +348,10 @@ class ApiManager {
     
     //MARK: - users
     // 유저 이름 수정
-    func updateUserName(jwtToken: String, name: String) async throws {
+    func updateUserName(name: String) async throws {
         let urlString = baseURL + "/v2/users"
         let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
             "Content-Type": "application/json",
@@ -347,9 +380,10 @@ class ApiManager {
         
     
     // 유저 본인 조회
-    func getUserMe(jwtToken: String) async throws -> UserData {
+    func getUserMe() async throws -> UserData {
         let urlString = baseURL + "/v2/users/me"
         let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
             "Content-Type": "application/json",
@@ -597,10 +631,19 @@ class ApiManager {
     
     func getUrl(for path: String) throws -> URL {
         guard let url = URL(string: path) else {
-            Logger.shared.log(String(describing: type(of: self)), #function, "Failed to create URL from path: \(path)")
+            Logger.shared.log(String(describing: type(of: self)), #function, "Failed to create URL from path: \(path)", .error)
             
             throw ApiError.invalidURL
         }
         return url
+    }
+    
+    func getJwtToken() throws -> String {
+        guard let token = authManager?.jwtToken else {
+            Logger.shared.log(String(describing: self), #function, "Failed to get JWT token", .error)
+            
+            throw AuthError.jwtTokenExpired
+        }
+        return token
     }
 }
