@@ -16,73 +16,60 @@ struct HorizontalPollContentView: View {
         NavigationLink {
             PollDetailView(id: poll.id)
         } label: {
-            VStack (alignment: .leading) {
-                HStack (spacing: 12) {
-                    if let profileImageUrl = poll.creatorProfileUrl {
-                        KFImage(URL(string: profileImageUrl))
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
-                    } else {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24)
+            VStack (alignment: .leading, spacing: 12) {
+                HStack {
+                    ForEach(poll.items.prefix(2), id: \.id) { pollItem in
+                        PollContentOptionItemView(
+                            imageUrl: pollItem.imageUrl,
+                            title: pollItem.description,
+                            parentWidth: contentWidth
+                        )
                     }
                     
-                    VStack (alignment: .leading) {
-                        Text(poll.creatorName)
-                            .font(.suitBold16)
-                        
-                        Text("\(formattedDate(poll.endAt)). 마감")
-                            .font(.suitVariable16)
+                    if poll.items.count > 2 {
+                        Image(systemName: "ellipsis")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32, height: 32)
+                            .foregroundColor(.gray)
                     }
                 }
                 
-                Text(poll.title)
-                    .font(.suitBold24)
-                    .overlay(
-                        poll.id == "-1" ? .white : .clear
-                    )
-                    .overlay(
-                        poll.id == "-1" ? ShimmerView() : nil
-                    )
-                    .padding(.bottom, 8)
-                HStack {
-                    ForEach(Array(poll.items.enumerated()), id: \.element.id) { index, item in
-                        
-                        if let imageUrl = item.imageUrl {
-                            Text(item.description)
-                                .font(.suitVariable16)
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    KFImage(URL(string: imageUrl))
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 40)
-                                        .cornerRadius(10)
-                                )
+                HStack (alignment: .top, spacing: 12) {
+                    Group {
+                        if let profileImageUrl = poll.creatorProfileUrl {
+                            KFImage(URL(string: profileImageUrl))
+                                .resizable()
                         } else {
-                            Text(item.description)
-                                .font(.suitVariable16)
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .frame(height: 40)
-                                        .foregroundStyle(.gray)
-                                    
-                                )
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .foregroundColor(.gray)
                         }
                     }
-                }
-                .frame(maxWidth: .infinity)
-                
-                HStack {
-                    Spacer()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
                     
-                    Text("\(poll.totalVotingCount)명 참여")
-                        .font(.suitBold12)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(poll.title)
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        
+                        Text(poll.creatorName)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
+                        Text("조회수 \(poll.readCount)회 · \(poll.totalVotingCount)명 참여")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                        
+                        Text("\(formattedDate(poll.endAt)). 마감")
+                            .font(.footnote)
+                            .foregroundColor(.red)
+                    }
                 }
+                
+                
             }
             .padding()
             .background(
@@ -94,7 +81,7 @@ struct HorizontalPollContentView: View {
         .frame(width: min(contentWidth, UIScreen.main.bounds.width))
         .tint(.black)
         .disabled(poll.id == "-1")
-        .padding()
+        .padding(.vertical, 8)
     }
     
     private func formattedDate(_ date: String) -> String {
