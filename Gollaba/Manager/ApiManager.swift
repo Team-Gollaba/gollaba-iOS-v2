@@ -124,6 +124,37 @@ class ApiManager {
         }
     }
     
+    // 좋아요 삭제
+    func deleteFavoritePoll(pollHashId: String) async throws {
+        let urlString = baseURL + "/v2/favorites"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        let param: [String: Any] = [
+            "pollHashId": pollHashId
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .delete, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to delete favorite poll: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to delete favorite poll with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     //MARK: - polls
     // 전체 투표
     func getPolls(
