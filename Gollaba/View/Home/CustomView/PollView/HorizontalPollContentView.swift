@@ -26,13 +26,13 @@ struct HorizontalPollContentView: View {
                         )
                     }
                     
-                    if poll.items.count > 2 {
-                        Image(systemName: "ellipsis")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.gray)
-                    }
+//                    if poll.items.count > 2 {
+//                        Image(systemName: "ellipsis")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 32, height: 32)
+//                            .foregroundColor(.gray)
+//                    }
                 }
                 
                 HStack (alignment: .top, spacing: 12) {
