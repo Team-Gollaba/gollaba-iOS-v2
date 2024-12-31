@@ -27,7 +27,7 @@ struct InduceLoginContentView: View {
                         .fill(iconBackgroundColor)
                 )
                 
-            VStack (alignment: .leading, spacing: 16) {
+            VStack (alignment: .leading, spacing: 8) {
                 Text(title)
                     .font(.suitBold16)
                     .multilineTextAlignment(.leading)
