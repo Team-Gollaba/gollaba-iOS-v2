@@ -21,7 +21,7 @@ struct PollContentOptionItemView: View {
                     .scaledToFill()
                     .frame(maxWidth: parentWidth / 2 - 32)
                     .frame(height: 120)
-                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             
             Text(title)
@@ -29,7 +29,7 @@ struct PollContentOptionItemView: View {
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 10)
                         .fill(Color.black.opacity(0.5))
                 )
         }
