@@ -33,6 +33,7 @@ class PollDetailViewModel {
         }
     }
     var isVoted: Bool = false
+    var isFavorite: Bool = false
     
     init(id: String) {
         self.id = id
@@ -152,6 +153,23 @@ class PollDetailViewModel {
         }
     }
     
+    func createFavorite() async {
+        do {
+            try await ApiManager.shared.createFavoritePoll(pollHashId: id)
+        } catch {
+            
+        }
+    }
+    
+    func deleteFavorite() async {
+        do {
+            try await ApiManager.shared.deleteFavoritePoll(pollHashId: id)
+        } catch {
+            
+        }
+    }
+    
+    //MARK: - check valid
     func isCompletedVoting() -> Bool {
         if isVoted {
             self.showAlreadyVotedAlert = true

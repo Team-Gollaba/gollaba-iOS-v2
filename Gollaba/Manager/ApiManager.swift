@@ -420,6 +420,8 @@ class ApiManager {
             "Content-Type": "application/json",
             "Accept": "application/json"
         ]
+        
+        print("jwtToken: \(jwtToken)")
                 
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)

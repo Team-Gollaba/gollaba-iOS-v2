@@ -34,6 +34,22 @@ struct PollDetailView: View {
                         Text(viewModel.poll?.title ?? "")
                             .font(.suitBold32)
                         
+                        Spacer()
+                        
+                        if authManager.isLoggedIn {
+                            FavoritesButton(isFavorite: $viewModel.isFavorite)
+                                .onChange(of: viewModel.isFavorite) { _, newValue in
+                                    if newValue {
+                                        Task {
+                                            await viewModel.createFavorite()
+                                        }
+                                    } else {
+                                        Task {
+                                            await viewModel.deleteFavorite()
+                                        }
+                                    }
+                                }
+                        }
                     }
                     .padding(.leading, 4)
                     
@@ -64,7 +80,9 @@ struct PollDetailView: View {
                     
                 }
                 
-                PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
+                
+                    PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
+                    
                 
                 if viewModel.poll?.pollType == PollType.named.rawValue && !authManager.isLoggedIn {
                     VStack (alignment: .leading, spacing: 4) {
