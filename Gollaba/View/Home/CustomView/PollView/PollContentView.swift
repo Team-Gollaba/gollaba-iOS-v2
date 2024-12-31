@@ -43,6 +43,7 @@ struct PollContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 16, height: 16)
+                                    .foregroundStyle(.gray)
                             }
                             
                             Text(poll.creatorName)
