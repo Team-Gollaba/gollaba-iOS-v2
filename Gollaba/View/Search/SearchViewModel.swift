@@ -27,6 +27,9 @@ class SearchViewModel {
     
     var searchResultPollData: AllPollData?
     var recentKeywords: [SearchKeyword]?
+    var recommendedKeywords: [String] = [
+        "돈까스", "펩시", "코카콜라", "부먹", "찍먹", "회식", "spring boot", "node.js", "민트초코", "고기"
+    ]
     
     var requestAddPoll: Bool = false
     var isEnd: Bool = false

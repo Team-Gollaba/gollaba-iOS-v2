@@ -95,6 +95,36 @@ struct SearchView: View {
                         .padding()
                         .background(.white)
                         
+                        VStack (alignment: .leading, spacing: 16) {
+                            HStack {
+                                Text("추천 검색어")
+                                    .font(.yangjin20)
+                                
+                                Spacer()
+                            }
+                            
+                            ForEach(Array(viewModel.recommendedKeywords.enumerated()), id: \.offset) { index, recommendedKeyword in
+                                HStack {
+                                    Button {
+                                        viewModel.searchText = recommendedKeyword
+                                        viewModel.goToSearchResult = true
+                                    } label: {
+                                        
+                                        Text("\(index + 1). ")
+                                            .font(.suitBold16)
+                                            .foregroundStyle(.enrollButton)
+                                        
+                                        Text(recommendedKeyword)
+                                            .font(.suitVariable16)
+                                        
+                                    }
+                                    .tint(.black)
+                                    Spacer()
+                                }
+                            }
+                        }
+                        .padding()
+                        
                         Spacer()
                     }
                     
