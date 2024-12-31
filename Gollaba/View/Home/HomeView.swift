@@ -43,6 +43,7 @@ struct HomeView: View {
                             //                                    viewModel.goToSearchResult = true
                             //                                }
                             //                            }
+                            HomeDividerView()
                             
                             HorizontalPollList(
                                 title: "🗓️ 오늘의 투표",
@@ -51,7 +52,7 @@ struct HomeView: View {
                                 goToPollDetail: $viewModel.goToPollDetail
                             )
                             
-                            
+                            HomeDividerView()
                             
                             HorizontalPollList(
                                 title: "🏆 인기 투표",
@@ -60,7 +61,7 @@ struct HomeView: View {
                                 goToPollDetail: $viewModel.goToPollDetail
                             )
                             
-                            
+                            HomeDividerView()
                             
                             VerticalPollList(
                                 title: "📝 전체 투표",
