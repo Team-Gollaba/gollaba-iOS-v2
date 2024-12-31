@@ -65,18 +65,8 @@ class MyPollViewModel {
     }
     
     func getUser() async {
-        guard let authManager else {
-            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
-            return
-        }
-        
-        guard let jwtToken = authManager.jwtToken else {
-            Logger.shared.log(String(describing: self), #function, "jwtToken is nil", .error)
-            return
-        }
-        
         do {
-            userData = try await ApiManager.shared.getUserMe(jwtToken: jwtToken)
+            userData = try await ApiManager.shared.getUserMe()
             userName = userData?.name ?? ""
         } catch {
             
@@ -84,18 +74,8 @@ class MyPollViewModel {
     }
     
     func updateUserName() async {
-        guard let authManager else {
-            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
-            return
-        }
-        
-        guard let jwtToken = authManager.jwtToken else {
-            Logger.shared.log(String(describing: self), #function, "jwtToken is nil", .error)
-            return
-        }
-        
         do {
-            try await ApiManager.shared.updateUserName(jwtToken: jwtToken, name: userName)
+            try await ApiManager.shared.updateUserName(name: userName)
         } catch {
             
         }
@@ -103,19 +83,9 @@ class MyPollViewModel {
     
     func getPollsCreatedByMe() async {
         guard madeByMePollList.isEmpty else { return }
-        
-        guard let authManager else {
-            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
-            return
-        }
-        
-        guard let jwtToken = authManager.jwtToken else {
-            Logger.shared.log(String(describing: self), #function, "jwtToken is nil", .error)
-            return
-        }
-        
+
         do {
-            let polls = try await ApiManager.shared.getPollsCreatedByMe(page: madeByMePollPage, size: madeByMePollSize, jwtToken: jwtToken)
+            let polls = try await ApiManager.shared.getPollsCreatedByMe(page: madeByMePollPage, size: madeByMePollSize)
             madeByMePollList = polls.items
             madeByMePollPage += 1
         } catch {
@@ -125,19 +95,9 @@ class MyPollViewModel {
     
     func fetchPollsCreatedByMe() async {
         if madeByMePollIsEnd { return }
-        
-        guard let authManager else {
-            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
-            return
-        }
-        
-        guard let jwtToken = authManager.jwtToken else {
-            Logger.shared.log(String(describing: self), #function, "jwtToken is nil", .error)
-            return
-        }
-        
+
         do {
-            let newPolls = try await ApiManager.shared.getPollsCreatedByMe(page: madeByMePollPage, size: madeByMePollSize, jwtToken: jwtToken)
+            let newPolls = try await ApiManager.shared.getPollsCreatedByMe(page: madeByMePollPage, size: madeByMePollSize)
             madeByMePollPage += 1
             madeByMePollList.append(contentsOf: newPolls.items)
             madeByMePollRequestAdd = false

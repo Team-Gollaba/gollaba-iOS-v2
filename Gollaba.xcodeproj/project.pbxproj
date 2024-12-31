@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491A17142CEB85EF00C4666F /* Kingfisher */; };
-		491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */; };
+		491A17482CEC66FD00C4666F /* PollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17472CEC66FD00C4666F /* PollContentView.swift */; };
 		491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17492CEC685C00C4666F /* PollContentOptionView.swift */; };
 		491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */; };
 		491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174D2CEC876400C4666F /* MyPollViewModel.swift */; };
@@ -56,6 +56,7 @@
 		49AA4DB62D225BDE0068102F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49AA4DB52D225BDE0068102F /* GoogleService-Info.plist */; };
 		49AA4DB92D225C520068102F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 49AA4DB82D225C520068102F /* FirebaseAnalytics */; };
 		49AA4DBB2D225C520068102F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 49AA4DBA2D225C520068102F /* FirebaseMessaging */; };
+		49AA4DC02D23C1DC0068102F /* HorizontalPollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DBF2D23C1DC0068102F /* HorizontalPollContentView.swift */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
@@ -80,7 +81,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentWebStyle.swift; sourceTree = "<group>"; };
+		491A17472CEC66FD00C4666F /* PollContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentView.swift; sourceTree = "<group>"; };
 		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
 		491A174D2CEC876400C4666F /* MyPollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPollViewModel.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearableTextFieldView.swift; sourceTree = "<group>"; };
 		49AA4DB52D225BDE0068102F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49AA4DBC2D22613A0068102F /* Gollaba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gollaba.entitlements; sourceTree = "<group>"; };
+		49AA4DBF2D23C1DC0068102F /* HorizontalPollContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPollContentView.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
@@ -286,7 +288,8 @@
 				4945A2822CEB6ECC00FF05DC /* ViewContent */,
 				4945A2842CEB6ECC00FF05DC /* VerticalPollList.swift */,
 				4945A2852CEB6ECC00FF05DC /* PollContent.swift */,
-				491A17472CEC66FD00C4666F /* PollContentWebStyle.swift */,
+				491A17472CEC66FD00C4666F /* PollContentView.swift */,
+				49AA4DBF2D23C1DC0068102F /* HorizontalPollContentView.swift */,
 				491A17492CEC685C00C4666F /* PollContentOptionView.swift */,
 				497DDF9E2CF83622008A8534 /* PollContentOptionItemView.swift */,
 				4945A2862CEB6ECC00FF05DC /* HorizontalPollList.swift */,
@@ -615,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */,
+				49AA4DC02D23C1DC0068102F /* HorizontalPollContentView.swift in Sources */,
 				4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */,
 				497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */,
 				4945A2A92CEB6ECC00FF05DC /* Color+.swift in Sources */,
@@ -645,7 +649,7 @@
 				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
 				49C8A6AB2D1057620030D648 /* SearchFilterContentView.swift in Sources */,
-				491A17482CEC66FD00C4666F /* PollContentWebStyle.swift in Sources */,
+				491A17482CEC66FD00C4666F /* PollContentView.swift in Sources */,
 				4945A2B92CEB6ECC00FF05DC /* VerticalPollList.swift in Sources */,
 				4945A2BA2CEB6ECC00FF05DC /* PollContent.swift in Sources */,
 				49C8A6B12D11CCCD0030D648 /* OpenAndCloseButton.swift in Sources */,

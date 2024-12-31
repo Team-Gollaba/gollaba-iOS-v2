@@ -37,7 +37,7 @@ struct VerticalPollList: View {
                 
                 ForEach(pollList, id: \.self) { poll in
                     
-                    PollContentWebStyle(poll: poll, contentWidth: UIScreen.main.bounds.width)
+                    PollContentView(poll: poll, contentWidth: UIScreen.main.bounds.width)
                 }
                 
                 Color.clear

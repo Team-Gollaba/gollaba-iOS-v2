@@ -53,8 +53,11 @@ struct HorizontalPollList: View {
                         
                         ForEach(pollList, id: \.self) { poll in
                             
-                            PollContentWebStyle(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
+                            PollContentView(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
                                 .id(poll.id)
+                            
+//                            HorizontalPollContentView(poll: poll, contentWidth: UIScreen.main.bounds.width - 120)
+//                                .id(poll.id)
                             
                         }
                     }

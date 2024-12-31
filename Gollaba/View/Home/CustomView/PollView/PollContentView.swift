@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct PollContentWebStyle: View {
+struct PollContentView: View {
     var poll: PollItem
     var isHorizontal: Bool = false
     let contentWidth: CGFloat
@@ -20,24 +20,7 @@ struct PollContentWebStyle: View {
         } label: {
             ZStack {
                 VStack (alignment: .leading, spacing: 4) {
-                    HStack {
-//                        if let profileImageUrl = poll.creatorProfileUrl {
-//                            KFImage(URL(string: profileImageUrl))
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 20, height: 20)
-//                        } else {
-//                            Image(systemName: "person.circle.fill")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 20, height: 20)
-//                        }
-//                        
-//                        Text(poll.creatorName)
-//                            .font(.suitBold20)
-//                        
-                        
-                    }
+
                     Text(poll.title)
                         .font(.suitBold20)
                         .overlay(
@@ -46,17 +29,53 @@ struct PollContentWebStyle: View {
                         .overlay(
                             poll.id == "-1" ? ShimmerView() : nil
                         )
+                        .padding(.bottom, 8)
                     
-                    Text("\(formattedDate(poll.endAt)). 마감")
-                        .font(.suitVariable16)
-                        .foregroundStyle(.myPollLikedVotes)
+                    HStack (alignment: .center) {
+                        HStack {
+                            if let profileUrl = poll.creatorProfileUrl {
+                                KFImage(URL(string: profileUrl))
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 16, height: 16)
+                            } else {
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 16, height: 16)
+                            }
+                            
+                            Text(poll.creatorName)
+                                .font(.suitVariable16)
+                                .foregroundStyle(.myPollLikedVotes)
+                        }
                         .overlay(
                             poll.id == "-1" ? .white : .clear
                         )
                         .overlay(
                             poll.id == "-1" ? ShimmerView() : nil
                         )
-                        .padding(.bottom, 12)
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Image(systemName: "stopwatch")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16, height: 16)
+                            
+                            Text("\(formattedDate(poll.endAt)). 마감")
+                                .font(.suitVariable16)
+                                .foregroundStyle(.myPollLikedVotes)
+                        }
+                        .overlay(
+                            poll.id == "-1" ? .white : .clear
+                        )
+                        .overlay(
+                            poll.id == "-1" ? ShimmerView() : nil
+                        )
+                    }
+                    .padding(.bottom, 12)
                     
                     PollContentOptionView(options: poll.items, isHorizontal: isHorizontal, parentWidth: contentWidth)
                         .overlay(
@@ -118,5 +137,5 @@ struct PollContentWebStyle: View {
 }
 
 #Preview {
-    PollContentWebStyle(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity)
+    PollContentView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity)
 }
