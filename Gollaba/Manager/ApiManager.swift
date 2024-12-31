@@ -155,6 +155,48 @@ class ApiManager {
         }
     }
     
+    // 좋아요 목록 조회
+    func getFavoritePolls() async throws {
+        let urlString = baseURL + "/v2/favorites/me"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get favorite polls: \(value)")
+                        
+                        switch value.data {
+                        case .stringListResponseData(let data):
+                            if let authManager = self.authManager {
+                                authManager.favoritePolls = data
+                            } else {
+                                Logger.shared.log(String(describing: self), #function, "Favorite polls is nil", .error)
+                            }
+                            continuation.resume()
+                            
+                        default:
+                            Logger.shared.log(String(describing: self), #function, "Failed to get favorite polls with invalid response", .error)
+                            continuation.resume(throwing: ApiError.invalidResponse)
+                            break
+                        }
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get favorite polls with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     //MARK: - polls
     // 전체 투표
     func getPolls(
@@ -648,7 +690,7 @@ class ApiManager {
                     Logger.shared.log(String(describing: self), #function, "Success to upload image: \(value)")
                     
                     switch value.data {
-                    case .uploadImageResponseData(let data):
+                    case .stringListResponseData(let data):
                         continuation.resume(returning: data)
                         
                     default:

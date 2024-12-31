@@ -107,4 +107,12 @@ class MyPollViewModel {
             
         }
     }
+    
+    func getFavoritePolls() async {
+        do {
+            try await ApiManager.shared.getFavoritePolls()
+        } catch {
+            
+        }
+    }
 }

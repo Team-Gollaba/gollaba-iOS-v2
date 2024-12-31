@@ -11,9 +11,9 @@ enum DataType: Codable {
     case boolValue(Bool)
     case createPollResponseData(CreatePollResponseData)
     case loginResponseData(LoginResponseData)
-    case uploadImageResponseData([String])
+    case stringListResponseData([String])
     case userResponseData(UserData)
-    case favoritePollResponseData(FavoritePollResponseData)
+    case favoritePollResponseData(CreateFavoritePollResponseData)
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -25,10 +25,10 @@ enum DataType: Codable {
         } else if let loginResponseData = try? container.decode(LoginResponseData.self) {
             self = .loginResponseData(loginResponseData)
         } else if let uploadImageResponseData = try? container.decode([String].self) {
-            self = .uploadImageResponseData(uploadImageResponseData)
+            self = .stringListResponseData(uploadImageResponseData)
         } else if let userResponseData = try? container.decode(UserData.self) {
             self = .userResponseData(userResponseData)
-        } else if let favoritePollResponseData = try? container.decode(FavoritePollResponseData.self) {
+        } else if let favoritePollResponseData = try? container.decode(CreateFavoritePollResponseData.self) {
             self = .favoritePollResponseData(favoritePollResponseData)
         }
         else {
@@ -52,6 +52,6 @@ struct LoginResponseData: Codable {
     let accessToken: String
 }
 
-struct FavoritePollResponseData: Codable {
+struct CreateFavoritePollResponseData: Codable {
     let id: Int
 }

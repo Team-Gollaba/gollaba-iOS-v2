@@ -169,6 +169,14 @@ class PollDetailViewModel {
         }
     }
     
+    func getFavorite() async {
+        do {
+            try await ApiManager.shared.getFavoritePolls()
+        } catch {
+            
+        }
+    }
+    
     //MARK: - check valid
     func isCompletedVoting() -> Bool {
         if isVoted {

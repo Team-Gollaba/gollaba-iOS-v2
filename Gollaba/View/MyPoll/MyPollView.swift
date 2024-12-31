@@ -211,6 +211,7 @@ struct MyPollView: View {
             if authManager.isLoggedIn {
                 Task {
                     await viewModel.getUser()
+                    await viewModel.getFavoritePolls()
                 }
             }
         }

@@ -16,6 +16,7 @@ class AuthManager {
     }
     var jwtToken: String?
     var providerType: ProviderType = .none
+    var favoritePolls: [String] = []
     
     var profileImageUrl: URL? {
         get {
