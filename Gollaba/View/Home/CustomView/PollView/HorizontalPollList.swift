@@ -42,6 +42,7 @@ struct HorizontalPollList: View {
                         .frame(width: 20, height: 20)
                 }
                 .tint(.black)
+                .contentShape(Rectangle())
                 
             }
             .padding(.horizontal, 16)
