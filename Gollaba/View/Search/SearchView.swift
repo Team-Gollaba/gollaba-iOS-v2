@@ -77,7 +77,7 @@ struct SearchView: View {
                                     viewModel.deleteAllKeywords(context: context)
                                 } label: {
                                     Text("전체삭제")
-                                        .font(.suitVariable20)
+                                        .font(.suitVariable16)
                                 }
                                 .tint(.black)
                             }, content: {
@@ -108,7 +108,7 @@ struct SearchView: View {
                             sideContent: {
                                 if let date = viewModel.whenGetToRecommendedKeywords {
                                     Text("\(formattedTime(date: date)) 갱신")
-                                        .font(.suitVariable20)
+                                        .font(.suitVariable16)
                                         .foregroundStyle(.gray)
                                 }
                             }, content: {
@@ -121,11 +121,11 @@ struct SearchView: View {
                                         } label: {
                                             
                                             Text("\(index + 1) ")
-                                                .font(.suitBold20)
+                                                .font(.suitBold16)
                                                 .foregroundStyle((1...3).contains(index + 1) ? .enrollButton : .black)
                                             
                                             Text(recommendedKeyword.searchedWord)
-                                                .font(.suitVariable20)
+                                                .font(.suitVariable16)
                                             
                                         }
                                         .tint(.black)

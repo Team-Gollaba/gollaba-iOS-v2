@@ -15,7 +15,7 @@ struct RecentSearchKeywordView: View {
     var body: some View {
         HStack {
             Text(keyword)
-                .font(.suitBold20)
+                .font(.suitBold16)
                 .onTapGesture {
                     tapAction()
                 }
