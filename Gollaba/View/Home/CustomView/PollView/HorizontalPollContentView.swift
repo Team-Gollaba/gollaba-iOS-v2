@@ -34,6 +34,12 @@ struct HorizontalPollContentView: View {
 //                            .foregroundColor(.gray)
 //                    }
                 }
+                .overlay(
+                    poll.id == "-1" ? .white : .clear
+                )
+                .overlay(
+                    poll.id == "-1" ? ShimmerView() : nil
+                )
                 
                 HStack (alignment: .top, spacing: 12) {
                     Group {
@@ -49,23 +55,53 @@ struct HorizontalPollContentView: View {
                     .scaledToFit()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
+                    .overlay(
+                        poll.id == "-1" ? .white : .clear
+                    )
+                    .overlay(
+                        poll.id == "-1" ? ShimmerView() : nil
+                    )
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text(poll.title)
                             .font(.headline)
                             .foregroundColor(.black)
+                            .overlay(
+                                poll.id == "-1" ? .white : .clear
+                            )
+                            .overlay(
+                                poll.id == "-1" ? ShimmerView() : nil
+                            )
                         
                         Text(poll.creatorName)
                             .font(.subheadline)
                             .foregroundColor(.gray)
+                            .overlay(
+                                poll.id == "-1" ? .white : .clear
+                            )
+                            .overlay(
+                                poll.id == "-1" ? ShimmerView() : nil
+                            )
                         
                         Text("조회수 \(poll.readCount)회 · \(poll.totalVotingCount)명 참여")
                             .font(.footnote)
                             .foregroundColor(.gray)
+                            .overlay(
+                                poll.id == "-1" ? .white : .clear
+                            )
+                            .overlay(
+                                poll.id == "-1" ? ShimmerView() : nil
+                            )
                         
                         Text("\(formattedDate(poll.endAt)). 마감")
                             .font(.footnote)
                             .foregroundColor(.red)
+                            .overlay(
+                                poll.id == "-1" ? .white : .clear
+                            )
+                            .overlay(
+                                poll.id == "-1" ? ShimmerView() : nil
+                            )
                     }
                 }
                 
