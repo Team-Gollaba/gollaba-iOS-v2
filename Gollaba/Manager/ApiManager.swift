@@ -306,6 +306,7 @@ class ApiManager {
                     case .createPollResponseData(let data):
                         continuation.resume(returning: data.id)
                     default:
+                        continuation.resume(throwing: ApiError.invalidResponse)
                         break
                     }
                 case .failure(let error):
@@ -353,24 +354,33 @@ class ApiManager {
         }
     }
     
-    // 오늘의 투표
-    func getTrendingPolls(limit: Int = 10) async throws -> [PollItem] {
-        let urlString = baseURL + "/v2/polls/trending?" + "limit=\(limit)"
+    // 인기 검색어
+    func getTopSearchKeywords() async throws -> [TrendingSearchResponseData] {
+        let urlString = baseURL + "/v2/polls/search-trending"
         let url = try getUrl(for: urlString)
         
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
-                .responseDecodable(of: PollListResponse.self) { response in
+                .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
                     case .success(let value):
-                        Logger.shared.log(String(describing: self), #function, "Success to get trending polls: \(value)")
-                        continuation.resume(returning: value.data)
+                        Logger.shared.log(String(describing: self), #function, "Success to get top keywords: \(value)")
+                        
+                        switch value.data {
+                        case .trendingSearchListResponseData(let data):
+                            continuation.resume(returning: data)
+                            
+                        default:
+                            continuation.resume(throwing: ApiError.invalidResponse)
+                            break
+                        }
                         
                     case .failure(let error):
-                        Logger.shared.log(String(describing: self), #function, "Failed to get trending polls with error: \(error)", .error)
+                        Logger.shared.log(String(describing: self), #function, "Failed to get top keywords with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
+                    
                 }
         }
     }
@@ -391,6 +401,28 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get top polls with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    // 오늘의 투표
+    func getTrendingPolls(limit: Int = 10) async throws -> [PollItem] {
+        let urlString = baseURL + "/v2/polls/trending?" + "limit=\(limit)"
+        let url = try getUrl(for: urlString)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: PollListResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get trending polls: \(value)")
+                        continuation.resume(returning: value.data)
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get trending polls with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }
@@ -478,6 +510,7 @@ class ApiManager {
                             continuation.resume(returning: data)
                             
                         default:
+                            continuation.resume(throwing: ApiError.invalidResponse)
                             break
                         }
                     case .failure(let error):
@@ -516,6 +549,7 @@ class ApiManager {
                         case .loginResponseData(let data):
                             continuation.resume(returning: data.accessToken)
                         default:
+                            continuation.resume(throwing: ApiError.invalidResponse)
                             break
                         }
                         
@@ -608,6 +642,7 @@ class ApiManager {
                         case .boolValue(let data):
                             continuation.resume(returning: data)
                         default:
+                            continuation.resume(throwing: ApiError.invalidResponse)
                             break
                         }
                         
@@ -641,6 +676,7 @@ class ApiManager {
                         case .loginResponseData(let data):
                             continuation.resume(returning: data.accessToken)
                         default:
+                            continuation.resume(throwing: ApiError.invalidResponse)
                             break
                         }
                         
@@ -694,6 +730,7 @@ class ApiManager {
                         continuation.resume(returning: data)
                         
                     default:
+                        continuation.resume(throwing: ApiError.invalidResponse)
                         break
                     }
                 case .failure(let error):
