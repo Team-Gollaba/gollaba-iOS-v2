@@ -15,7 +15,7 @@ struct RecentSearchKeywordView: View {
     var body: some View {
         HStack {
             Text(keyword)
-                .font(.suitBold16)
+                .font(.suitBold20)
                 .onTapGesture {
                     tapAction()
                 }
@@ -32,6 +32,7 @@ struct RecentSearchKeywordView: View {
             RoundedRectangle(cornerRadius: 33)
                 .stroke(.black, lineWidth: 1)
         )
+        .padding(.leading)
     }
 }
 

@@ -355,7 +355,7 @@ class ApiManager {
     }
     
     // 인기 검색어
-    func getTopSearchKeywords() async throws -> [TrendingSearchResponseData] {
+    func getTrendingSearchKeywords() async throws -> [TrendingSearchResponseData] {
         let urlString = baseURL + "/v2/polls/search-trending"
         let url = try getUrl(for: urlString)
         

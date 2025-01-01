@@ -67,67 +67,77 @@ struct SearchView: View {
                         Spacer()
                     }
                     
-                    
                     VStack {
-                        VStack (alignment: .leading) {
-                            Text("최근 검색어")
-                                .font(.yangjin20)
-                            
-                            
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 20) {
-                                    ForEach(recentKeywords) { keyword in
-                                        RecentSearchKeywordView(
-                                            keyword: keyword.keyword,
-                                            tapAction: {
-                                                viewModel.searchText = keyword.keyword
-                                                viewModel.saveKeyword(viewModel.searchText, context: context)
-                                                viewModel.goToSearchResult = true
-                                            },
-                                            deleteAction: {
-                                                viewModel.deleteKeyword(keyword.keyword, context: context)
-                                            })
-                                    }
+                        SpecialSearchContentView(
+                            title: "최근 검색어",
+                            image: Image(systemName: "stopwatch"),
+                            imageColor: .signUpButtonEnd,
+                            sideContent: {
+                                Button {
+                                    viewModel.deleteAllKeywords(context: context)
+                                } label: {
+                                    Text("전체삭제")
+                                        .font(.suitVariable20)
                                 }
-                                .padding(4)
-                            }
-                        }
-                        .padding()
-                        .background(.white)
-                        
-                        VStack (alignment: .leading, spacing: 16) {
-                            HStack {
-                                Text("추천 검색어")
-                                    .font(.yangjin20)
-                                
-                                Spacer()
-                            }
-                            
-                            ForEach(Array(viewModel.recommendedKeywords.enumerated()), id: \.offset) { index, recommendedKeyword in
-                                HStack {
-                                    Button {
-                                        viewModel.searchText = recommendedKeyword
-                                        viewModel.goToSearchResult = true
-                                    } label: {
-                                        
-                                        Text("\(index + 1). ")
-                                            .font(.suitBold16)
-                                            .foregroundStyle(.enrollButton)
-                                        
-                                        Text(recommendedKeyword)
-                                            .font(.suitVariable16)
-                                        
+                                .tint(.black)
+                            }, content: {
+                                ScrollView (.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 0) {
+                                        ForEach(recentKeywords) { keyword in
+                                            RecentSearchKeywordView(
+                                                keyword: keyword.keyword,
+                                                tapAction: {
+                                                    viewModel.searchText = keyword.keyword
+                                                    viewModel.saveKeyword(viewModel.searchText, context: context)
+                                                    viewModel.goToSearchResult = true
+                                                },
+                                                deleteAction: {
+                                                    viewModel.deleteKeyword(keyword.keyword, context: context)
+                                                })
+                                        }
                                     }
-                                    .tint(.black)
-                                    Spacer()
+                                    .padding(4)
+                                    .padding(.trailing)
                                 }
-                            }
-                        }
-                        .padding()
+                            })
                         
-                        Spacer()
+                        SpecialSearchContentView(
+                            title: "인기 검색어",
+                            image: Image(systemName: "flame.fill"),
+                            imageColor: .red,
+                            sideContent: {
+                                if let date = viewModel.whenGetToRecommendedKeywords {
+                                    Text("\(formattedTime(date: date)) 갱신")
+                                        .font(.suitVariable20)
+                                        .foregroundStyle(.gray)
+                                }
+                            }, content: {
+                                ForEach(Array(viewModel.recommendedKeywords.prefix(10).enumerated()), id: \.offset) { index, recommendedKeyword in
+                                    HStack {
+                                        Button {
+                                            viewModel.searchText = recommendedKeyword.searchedWord
+                                            viewModel.saveKeyword(viewModel.searchText, context: context)
+                                            viewModel.goToSearchResult = true
+                                        } label: {
+                                            
+                                            Text("\(index + 1) ")
+                                                .font(.suitBold20)
+                                                .foregroundStyle((1...3).contains(index + 1) ? .enrollButton : .black)
+                                            
+                                            Text(recommendedKeyword.searchedWord)
+                                                .font(.suitVariable20)
+                                            
+                                        }
+                                        .tint(.black)
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.bottom, 8)
+                                }
+                            })
+                        
+                        
                     }
-                    
                 }
                 Spacer()
             }
@@ -141,6 +151,9 @@ struct SearchView: View {
             viewModel.recentKeywords = recentKeywords
             viewModel.searchFocus = false
             viewModel.searchFocus = true
+            Task {
+                await viewModel.getTrendingKeywords()
+            }
         }
         .onDisappear {
             viewModel.searchText = ""
@@ -153,6 +166,12 @@ struct SearchView: View {
             isPresenting: $viewModel.showSearchErrorToast) {
                 AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
             }
+    }
+    
+    func formattedTime(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
     }
 }
 

@@ -27,9 +27,8 @@ class SearchViewModel {
     
     var searchResultPollData: AllPollData?
     var recentKeywords: [SearchKeyword]?
-    var recommendedKeywords: [String] = [
-        "돈까스", "펩시", "코카콜라", "부먹", "찍먹", "회식", "spring boot", "node.js", "민트초코", "고기"
-    ]
+    var recommendedKeywords: [TrendingSearchResponseData] = []
+    var whenGetToRecommendedKeywords: Date?
     
     var requestAddPoll: Bool = false
     var isEnd: Bool = false
@@ -46,63 +45,15 @@ class SearchViewModel {
         return true
     }
     
-//    func getPolls() async {
-//        let pollTypeIndex = pollTypeFilter.indices.filter { pollTypeFilter[$0] }.first ?? 0
-//        let isActiveIndex = isActiveFilter.indices.filter { isActiveFilter[$0] }.first ?? 0
-//        
-//        let pollType = PollType(rawValue: pollTypeFilterText[pollTypeIndex])
-//        let isActive = IsActive(rawValue: isActiveFilterText[isActiveIndex])
-//        
-//        self.page = 0
-//        
-//        do {
-//            searchResultPollData?.items.removeAll()
-//            let newPolls = try await ApiManager.shared.getPolls(
-//                page: page,
-//                size: pageSize,
-//                sort: sortedBy,
-//                pollType: pollType ?? .none,
-//                optionGroup: .title,
-//                query: searchText,
-//                isActive: isActive ?? .none
-//            )
-//            searchResultPollData = newPolls
-//            page += 1
-//            
-//            isEnd = searchResultPollData?.items.count == searchResultPollData?.totalCount
-//        } catch {
-//            
-//        }
-//    }
-    
-//    func fetchMoreResult() async {
-//        if isEnd { return }
-//        
-//        let pollTypeIndex = pollTypeFilter.indices.filter { pollTypeFilter[$0] }.first ?? 0
-//        let isActiveIndex = isActiveFilter.indices.filter { isActiveFilter[$0] }.first ?? 0
-//        
-//        let pollType = PollType(rawValue: pollTypeFilterText[pollTypeIndex])
-//        let isActive = IsActive(rawValue: isActiveFilterText[isActiveIndex])
-//        
-//        do {
-//            let newPolls = try await ApiManager.shared.getPolls(
-//                page: page,
-//                size: pageSize,
-//                sort: sortedBy,
-//                pollType: pollType ?? .none,
-//                optionGroup: .title,
-//                query: searchText,
-//                isActive: isActive ?? .none
-//            )
-//            page += 1
-//            searchResultPollData?.items.append(contentsOf: newPolls.items)
-//            requestAddPoll = false
-//            
-//            isEnd = newPolls.items.isEmpty
-//        } catch {
-//            
-//        }
-//    }
+    //MARK: - API
+    func getTrendingKeywords() async {
+        do {
+            recommendedKeywords = try await ApiManager.shared.getTrendingSearchKeywords()
+            whenGetToRecommendedKeywords = Date()
+        } catch {
+            
+        }
+    }
     
     //MARK: - SwiftData
     func saveKeyword(_ keyword: String, context: ModelContext) {
