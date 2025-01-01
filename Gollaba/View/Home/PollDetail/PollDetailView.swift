@@ -51,6 +51,12 @@ struct PollDetailView: View {
                         }
                     }
                     .padding(.leading, 4)
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
                     
                     HStack {
                         if let creatorProfileUrl = viewModel.poll?.creatorProfileUrl {
@@ -76,11 +82,23 @@ struct PollDetailView: View {
                         Text("\(viewModel.poll?.readCount ?? -1)")
                             .font(.suitVariable16)
                     }
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
                     
                 }
                 
                 
                 PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
                 
                 
                 if viewModel.poll?.pollType == PollType.named.rawValue && !authManager.isLoggedIn {
@@ -100,13 +118,32 @@ struct PollDetailView: View {
                                 .stroke(.black, lineWidth: 1)
                         )
                     }
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
                 }
+                
                 
                 if let poll = viewModel.poll, viewModel.isValidDatePoll {
                     if poll.responseType == ResponseType.single.rawValue {
                         PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)
+                            .overlay(
+                                viewModel.poll == nil ? .white : .clear
+                            )
+                            .overlay(
+                                viewModel.poll == nil ? ShimmerView() : nil
+                            )
                     } else if poll.responseType == ResponseType.multiple.rawValue {
                         PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll)
+                            .overlay(
+                                viewModel.poll == nil ? .white : .clear
+                            )
+                            .overlay(
+                                viewModel.poll == nil ? ShimmerView() : nil
+                            )
                     }
                 }
                 
@@ -117,11 +154,29 @@ struct PollDetailView: View {
                         }
                     }
                 }
+                .overlay(
+                    viewModel.poll == nil ? .white : .clear
+                )
+                .overlay(
+                    viewModel.poll == nil ? ShimmerView() : nil
+                )
                 
                 PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [], isHide: !viewModel.isVoted && viewModel.isValidDatePoll)
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
                 
                 if viewModel.isVoted || !viewModel.isValidDatePoll {
                     PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
+                        .overlay(
+                            viewModel.poll == nil ? .white : .clear
+                        )
+                        .overlay(
+                            viewModel.poll == nil ? ShimmerView() : nil
+                        )
                 }
                 
             }
