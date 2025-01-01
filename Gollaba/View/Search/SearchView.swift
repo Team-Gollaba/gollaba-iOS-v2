@@ -146,7 +146,7 @@ struct SearchView: View {
         .onTapGesture {
             viewModel.searchFocus = false
         }
-        .dragToHide(isHide: $isHideTabBar)
+//        .dragToHide(isHide: $isHideTabBar)
         .onAppear {
             viewModel.recentKeywords = recentKeywords
             viewModel.searchFocus = false

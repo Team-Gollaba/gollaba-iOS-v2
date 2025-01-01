@@ -130,7 +130,7 @@ struct CreatePollView: View {
                     
                 }
             }
-            .dragToHide(isHide: $isHideTabBar)
+//            .dragToHide(isHide: $isHideTabBar)
             .dialog(
                 isPresented: $viewModel.isQuestionPresent,
                 title: "투표 만들기 도움말",
