@@ -97,6 +97,7 @@ class KakaoAuthManager {
         }
     }
     
+    @MainActor
     func handleLoginWithKakaoAccount() async -> Bool {
         await withCheckedContinuation { continuation in
             UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
@@ -104,9 +105,30 @@ class KakaoAuthManager {
                     Logger.shared.log(String(describing: self), #function, "Failed to login with KakaoAccount with error: \(error)", .error)
                     continuation.resume(returning: false)
                 } else {
+                    UserApi.shared.me {(me, error) in
+                        if let error {
+                            Logger.shared.log(String(describing: self), #function, "Failed to get user information with error: \(error)", .error)
+                        }
+                        
+                        guard let name = me?.kakaoAccount?.profile?.nickname else {
+                            return
+                        }
+                        
+                        guard let mail = me?.kakaoAccount?.email else {
+                            return
+                        }
+                        
+                        guard let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
+                            return
+                        }
+                        self.userName = name
+                        self.userMail = mail
+                        self.profileImageUrl = profileUrl
+                    }
                     
                     // 성공 시 동작 구현
                     _ = oauthToken
+                    self.accessToken = oauthToken?.accessToken
                     continuation.resume(returning: true)
                 }
             }
