@@ -59,17 +59,10 @@ struct PollDetailView: View {
                     )
                     
                     HStack {
-                        if let creatorProfileUrl = viewModel.poll?.creatorProfileUrl {
-                            KFImage(URL(string: creatorProfileUrl))
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 16, height: 16)
-                        } else {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 16, height: 16)
+                        ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl) {
+                            
                         }
+                        .frame(width: 24, height: 24)
                         
                         Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
                             .font(.suitVariable16)

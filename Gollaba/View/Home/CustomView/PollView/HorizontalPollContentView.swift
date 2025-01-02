@@ -42,19 +42,10 @@ struct HorizontalPollContentView: View {
                 )
                 
                 HStack (alignment: .top, spacing: 12) {
-                    Group {
-                        if let profileImageUrl = poll.creatorProfileUrl {
-                            KFImage(URL(string: profileImageUrl))
-                                .resizable()
-                        } else {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .foregroundColor(.gray)
-                        }
+                    ProfileImageView(imageUrl: poll.creatorProfileUrl) {
+                        
                     }
-                    .scaledToFit()
                     .frame(width: 40, height: 40)
-                    .clipShape(Circle())
                     .overlay(
                         poll.id == "-1" ? .white : .clear
                     )

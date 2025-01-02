@@ -35,18 +35,16 @@ struct MyPollView: View {
             ScrollView {
                 if authManager.isLoggedIn {
                     VStack (spacing: 0) {
-                        if let imageUrl = viewModel.userData?.profileImageUrl {
-                            ProfileImageView(image: KFImage(URL(string: imageUrl))) {
-                                viewModel.isClickedProfileImage = true
-                            }
-                        } else {
-                            ProfileImageView {
-                                viewModel.isClickedProfileImage = true
-                            }
+                        ProfileImageView(
+                            imageUrl: viewModel.userData?.profileImageUrl
+                        ) {
+                            viewModel.isClickedProfileImage = true
                         }
+                        .frame(width: 100, height: 100)
                         
                         
                         ProfileNameView(name: $viewModel.userName, email: viewModel.userData?.email ?? "")
+                            .padding(.top, 12)
                             .padding(.bottom, 24)
                             .onChange(of: viewModel.userName) { oldValue, newValue in
                                 if oldValue != "" {

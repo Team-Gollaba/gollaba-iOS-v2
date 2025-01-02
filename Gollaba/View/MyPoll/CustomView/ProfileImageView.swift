@@ -9,32 +9,30 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileImageView: View {
-    var image: KFImage?
+    var imageUrl: String?
     var action: () -> Void
     
     var body: some View {
         Button {
             action()
         } label: {
-            ZStack {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
-                
-                image?
+            if let imageUrl {
+                KFImage(URL(string: imageUrl))
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 100, height: 100)
                     .clipShape(Circle())
                     .overlay(
-                        Circle().stroke(Color.toolbarBackgroundColor, lineWidth: 2)
+                        Circle().stroke(.gray, lineWidth: 1)
                     )
-                    .shadow(radius: 5)
+            } else {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .scaledToFill()
+                    .foregroundStyle(.gray)
+                    .clipShape(Circle())
             }
         }
-        .padding(.bottom)
+        .padding(.vertical)
     }
 }
 
