@@ -80,7 +80,7 @@ struct HomeView: View {
                             if newValue {
                                 scrollToTopTrigger = false
                                 withAnimation {
-                                    parentScrollProxy.scrollTo("Top", anchor: .top)
+                                    parentScrollProxy.scrollTo("Top", anchor: .bottom)
                                 }
                             }
                         }
