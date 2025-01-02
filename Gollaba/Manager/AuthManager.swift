@@ -18,6 +18,8 @@ class AuthManager {
     var providerType: ProviderType = .none
     var favoritePolls: [String] = []
     
+    var name: String = ""
+    
     var profileImageUrl: URL? {
         get {
             switch providerType {

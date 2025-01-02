@@ -68,6 +68,7 @@ class MyPollViewModel {
         do {
             userData = try await ApiManager.shared.getUserMe()
             userName = userData?.name ?? ""
+            authManager?.name = userName
         } catch {
             
         }

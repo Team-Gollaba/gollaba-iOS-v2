@@ -141,7 +141,12 @@ class PollDetailViewModel {
     
     func voting() async {
         var pollItemIds: [Int] = []
-        let voterName = "temp voter"
+        var voterName: String
+        if let authManager, authManager.isLoggedIn {
+            voterName = authManager.name
+        } else {
+            voterName = inputNameText
+        }
         
         if let poll {
             if poll.responseType == ResponseType.single.rawValue, let selectedPollItemIndex = selectedSinglePoll {
@@ -195,6 +200,7 @@ class PollDetailViewModel {
     
     //MARK: - check valid
     func isCompletedVoting() -> Bool {
+        
         if isVoted {
             self.showAlreadyVotedAlert = true
             return false
@@ -211,7 +217,7 @@ class PollDetailViewModel {
                 self.inValidVoteAlert = true
                 
                 return false
-            } else if poll.responseType == ResponseType.multiple.rawValue && selectedMultiplePoll.isEmpty {
+            } else if poll.responseType == ResponseType.multiple.rawValue && !selectedMultiplePoll.contains(true) {
                 self.inValidVoteAlertContent = "투표를 선택해주세요. (최소 1개)"
                 self.inValidVoteAlert = true
                 
