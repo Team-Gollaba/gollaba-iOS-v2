@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreatePollView: View {
+    @Environment(AuthManager.self) var authManager
     @State var viewModel = CreatePollViewModel()
     @Binding var isHideTabBar: Bool
     
@@ -32,8 +33,14 @@ struct CreatePollView: View {
                             ClearableTextFieldView(
                                 placeholder: "투표 작성자 이름을 입력해주세요.",
                                 editText: $viewModel.creatorNameText,
-                                isFocused: $viewModel.creatorNameFocus
+                                isFocused: $viewModel.creatorNameFocus,
+                                disabled: authManager.isLoggedIn
                                 )
+                            .onAppear {
+                                if authManager.isLoggedIn {
+                                    viewModel.creatorNameText = authManager.name
+                                }
+                            }
                         }
                         
                         OptionBoxView(title: "투표 제목") {

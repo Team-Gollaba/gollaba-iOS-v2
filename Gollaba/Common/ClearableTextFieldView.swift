@@ -12,6 +12,7 @@ struct ClearableTextFieldView: View {
     @Binding var editText: String
     @Binding var isFocused: Bool
     @FocusState private var isTextFieldFocused: Bool
+    var disabled: Bool = false
     
     var body: some View {
         HStack {
@@ -20,20 +21,24 @@ struct ClearableTextFieldView: View {
                 .textInputAutocapitalization(.never)
                 .focused($isTextFieldFocused)
                 .font(.suitVariable16)
+                .foregroundStyle(disabled ? .gray : .black)
                 .onChange(of: isFocused) { _, newValue in
                     isTextFieldFocused = newValue
                 }
                 .onChange(of: isTextFieldFocused) { _, newValue in
                     isFocused = newValue
                 }
+                .disabled(disabled)
             
-            Button {
-                editText = ""
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundStyle(.gray)
+            if !disabled {
+                Button {
+                    editText = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.gray)
+                }
+                .opacity(editText.isEmpty ? 0 : 1)
             }
-            .opacity(editText.isEmpty ? 0 : 1)
         }
     }
 }
