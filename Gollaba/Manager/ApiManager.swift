@@ -256,7 +256,10 @@ class ApiManager {
     func createPoll(title: String, creatorName: String, responseType: String, pollType: String, endAt: Date, items: [PollOptionForParameter]) async throws -> String {
         let urlString = baseURL + "/v2/polls"
         let url = try getUrl(for: urlString)
-        let headers: HTTPHeaders = ["Content-Type": "multipart/form-data", "Accept": "application/json"]
+        var headers: HTTPHeaders = ["Content-Type": "multipart/form-data", "Accept": "application/json"]
+        if let authManager, authManager.isLoggedIn, let jwtToken = authManager.jwtToken {
+            headers["Authorization"] = "Bearer \(jwtToken)"
+        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -653,6 +656,19 @@ class ApiManager {
                 }
         }
     }
+//    
+//    // 내 투표 참여 조회
+//    func getMyVoting
+//    
+//    // 투표 참여 수정
+//    func updateVote(votingId: String) async throws {
+//        let urlString = baseURL + "/v2/voting/\(votingId)"
+//        let url = try getUrl(for: urlString)
+//        let jwtToken = try getJwtToken()
+//        let param: [String: Any] = [
+//            "voterName": au
+//        ]
+//    }
     
     //MARK: - auth
     func loginByProviderToken(providerToken: String, providerType: ProviderType) async throws -> String {
