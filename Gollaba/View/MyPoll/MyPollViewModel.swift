@@ -77,6 +77,7 @@ class MyPollViewModel {
     func updateUserName() async {
         do {
             try await ApiManager.shared.updateUserName(name: userName)
+            authManager?.name = userName
         } catch {
             
         }
