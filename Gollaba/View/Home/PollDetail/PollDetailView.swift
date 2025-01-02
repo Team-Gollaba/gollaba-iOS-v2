@@ -101,7 +101,7 @@ struct PollDetailView: View {
                     )
                 
                 
-                if viewModel.poll?.pollType == PollType.named.rawValue && !authManager.isLoggedIn {
+                if viewModel.poll?.pollType == PollType.named.rawValue && !viewModel.isVoted && viewModel.isValidDatePoll && !authManager.isLoggedIn {
                     VStack (alignment: .leading, spacing: 4) {
                         Text("닉네임 (변경 하려면 입력하세요.)")
                             .font(.suitVariable12)
@@ -218,6 +218,8 @@ struct PollDetailView: View {
             if authManager.isLoggedIn && authManager.favoritePolls.contains(viewModel.id) {
                 viewModel.isFavorite = true
             }
+            
+            viewModel.authManager = authManager
         }
         .onDisappear {
             viewModel.deleteOption()

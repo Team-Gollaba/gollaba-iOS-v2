@@ -11,38 +11,32 @@ enum PollButtonState {
     case normal
     case completed
     case ended
-}
-
-struct PollButton: View {
-    @Binding var pollbuttonState: PollButtonState
+    
     var title: String {
-        switch pollbuttonState {
-        case .normal:
-            return "투표하기"
-        case .completed:
-            return "재투표하기"
-        case .ended:
-            return "이미 종료된 투표입니다."
+        switch self {
+        case .normal: return "투표하기"
+        case .completed: return "재투표하기"
+        case .ended: return "이미 종료된 투표입니다."
         }
     }
     
     var backgroundColor: Color {
-        switch pollbuttonState {
-        case .normal, .completed:
-            return .pollButton
-        case .ended:
-            return .pollEndedBackground
+        switch self {
+        case .normal, .completed: return .pollButton
+        case .ended: return .pollEndedBackground
         }
     }
     
     var strokeColor: Color {
-        switch pollbuttonState {
-        case .normal, .completed:
-            return .enrollButton
-        case .ended:
-            return .attach
+        switch self {
+        case .normal, .completed: return .enrollButton
+        case .ended: return .attach
         }
     }
+}
+
+struct PollButton: View {
+    @Binding var pollbuttonState: PollButtonState
     
     var action: () -> Void
     
@@ -56,7 +50,7 @@ struct PollButton: View {
                     .frame(width: 20, height: 20)
                     .colorInvert()
                 
-                Text(title)
+                Text(pollbuttonState.title)
                     .font(.suitBold16)
                     .foregroundStyle(.white)
             }
@@ -65,12 +59,12 @@ struct PollButton: View {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(strokeColor, lineWidth: 4)
+                    .stroke(pollbuttonState.strokeColor, lineWidth: 4)
                     .background(
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(backgroundColor)
+                            .fill(pollbuttonState.backgroundColor)
                     )
-
+                
             )
         }
         .tint(.white)

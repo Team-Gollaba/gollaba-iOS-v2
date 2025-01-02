@@ -32,8 +32,18 @@ class PollDetailViewModel {
             }
         }
     }
-    var isVoted: Bool = false
+    var isVoted: Bool = false {
+        didSet {
+            guard let authManager else { return }
+            
+            if isVoted && isValidDatePoll && authManager.isLoggedIn {
+                pollButtonState = .completed
+            }
+        }
+    }
     var isFavorite: Bool = false
+    
+    var authManager: AuthManager?
     
     init(id: String) {
         self.id = id
@@ -77,7 +87,6 @@ class PollDetailViewModel {
             
             if let poll {
                 selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
-                pollButtonState = isValidDatePoll ? .normal : .ended
                 
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
@@ -104,6 +113,13 @@ class PollDetailViewModel {
         do {
             if let poll {
                 isVoted = try await ApiManager.shared.votingCheck(pollHashId: poll.id)
+                
+                if !isValidDatePoll {
+                    pollButtonState = .ended
+                } else if isVoted && (authManager?.isLoggedIn ?? false) {
+                    pollButtonState = .completed
+                }
+                
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
             }
