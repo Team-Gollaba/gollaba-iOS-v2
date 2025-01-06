@@ -21,7 +21,7 @@ struct MyPollView: View {
         }
     }
     
-    struct LikeTabHeightPreferenceKey: PreferenceKey {
+    struct FavoriteByMeTabHeightPreferenceKey: PreferenceKey {
         static var defaultValue: CGFloat = 0
         
         static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
@@ -66,7 +66,7 @@ struct MyPollView: View {
                             .frame(maxWidth: .infinity)
                             
                             Button {
-                                viewModel.selectedTab = .like
+                                viewModel.selectedTab = .faovirteByMe
                             } label: {
                                 Text("내가 좋아하는 투표")
                                     .font(.yangjin16)
@@ -82,28 +82,34 @@ struct MyPollView: View {
                             .animation(.bouncy, value: viewModel.selectedTab)
                         
                         TabView (selection: $viewModel.selectedTab) {
-                                PollMadeByMeListView(pollMadeByMeList: viewModel.madeByMePollList, requestAddPoll: $viewModel.madeByMePollRequestAdd, isEnd: $viewModel.madeByMePollIsEnd)
-                                    .tag(MyPollSelectedTab.madeByMe)
-                                    .background(GeometryReader { proxy in
-                                        Color.clear
-                                            .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
-                                    })
+                            PollListInMyPoll(
+                                pollMadeByMeList: viewModel.madeByMePollList,
+                                requestAddPoll: $viewModel.madeByMePollRequestAdd,
+                                isEnd: $viewModel.madeByMePollIsEnd
+                            )
+                            .tag(MyPollSelectedTab.madeByMe)
+                            .background(GeometryReader { proxy in
+                                Color.clear
+                                    .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                            })
                             
-                            
-                            Text("내가 좋아하는 투표")
-                                .frame(height: 400)
-                                .tag(MyPollSelectedTab.like)
-                                .background(GeometryReader { proxy in
-                                    Color.clear
-                                        .preference(key: LikeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
-                                })
+                            PollListInMyPoll(
+                                pollMadeByMeList: viewModel.favoriteByMePollList,
+                                requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
+                                isEnd: $viewModel.favoriteByMePollIsEnd
+                            )
+                            .tag(MyPollSelectedTab.faovirteByMe)
+                            .background(GeometryReader { proxy in
+                                Color.clear
+                                    .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                            })
                         }
                         .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용
                         .onPreferenceChange(MadeByMeTabHeightPreferenceKey.self) { value in
                             viewModel.madeByMeTabHeight = value // 각 탭의 높이를 저장
                             viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
                         }
-                        .onPreferenceChange(LikeTabHeightPreferenceKey.self) { value in
+                        .onPreferenceChange(FavoriteByMeTabHeightPreferenceKey.self) { value in
                             viewModel.likeTabHeight = value // 각 탭의 높이를 저장
                             viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
                         }
@@ -127,6 +133,7 @@ struct MyPollView: View {
                     .onAppear {
                         Task {
                             await viewModel.getPollsCreatedByMe()
+                            await viewModel.getPollsFavoriteByMe()
                         }
                     }
                 } else {

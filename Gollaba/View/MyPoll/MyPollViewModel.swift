@@ -9,7 +9,7 @@ import SwiftUI
 
 enum MyPollSelectedTab: Int {
     case madeByMe = 0
-    case like = 1
+    case faovirteByMe = 1
 }
 
 @Observable
@@ -22,7 +22,13 @@ class MyPollViewModel {
     var madeByMePollRequestAdd: Bool = false
     var madeByMePollIsEnd: Bool = false
     var madeByMePollPage: Int = 0
-    var madeByMePollSize: Int = 10
+    let madeByMePollSize: Int = 10
+    
+    var favoriteByMePollList: [PollItem] = []
+    var favoriteByMePollRequestAdd: Bool = false
+    var favoriteByMePollIsEnd: Bool = false
+    var favoriteByMePollPage: Int = 0
+    let favoriteByMePollSize: Int = 10
     
     var selectedTab: MyPollSelectedTab = .madeByMe
     var madeByMeTabHeight: CGFloat = 0
@@ -46,7 +52,7 @@ class MyPollViewModel {
         switch selectedTab {
         case .madeByMe:
             currentTabHeight = madeByMeTabHeight
-        case .like:
+        case .faovirteByMe:
             currentTabHeight = likeTabHeight
         }
     }
@@ -105,6 +111,33 @@ class MyPollViewModel {
             madeByMePollRequestAdd = false
             
             madeByMePollIsEnd = newPolls.items.isEmpty
+        } catch {
+            
+        }
+    }
+    
+    func getPollsFavoriteByMe() async {
+        guard favoriteByMePollList.isEmpty else { return }
+        
+        do {
+            let polls = try await ApiManager.shared.getPollsFavoriteByMe(page: favoriteByMePollPage, size: favoriteByMePollSize)
+            favoriteByMePollList = polls.items
+            favoriteByMePollPage += 1
+        } catch {
+            
+        }
+    }
+    
+    func fetchPollsFavoriteByMe() async {
+        if favoriteByMePollIsEnd { return }
+        
+        do {
+            let newPolls = try await ApiManager.shared.getPollsFavoriteByMe(page: favoriteByMePollPage, size: favoriteByMePollSize)
+            favoriteByMePollPage += 1
+            favoriteByMePollList.append(contentsOf: newPolls.items)
+            favoriteByMePollRequestAdd = false
+            
+            favoriteByMePollIsEnd = newPolls.items.isEmpty
         } catch {
             
         }

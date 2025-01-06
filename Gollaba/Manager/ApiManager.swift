@@ -320,6 +320,43 @@ class ApiManager {
         }
     }
     
+    // 특정 유저가 좋아요한 투표 전체 조회
+    func getPollsFavoriteByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
+        var queryItems: [String] = []
+        
+        if page != 0 {
+            queryItems.append("page=\(page)")
+        }
+        if size != 10 {
+            queryItems.append("size=\(size)")
+        }
+        let queryString = queryItems.joined(separator: "&")
+        let urlString = baseURL + "/v2/polls/favorites-me" + "?" + queryString
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: AllPollResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get polls favorite by me: \(value)")
+                        continuation.resume(returning: value.data)
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get polls favorite by me with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     // 특정 유저가 생성한 투표 전체 조회
     func getPollsCreatedByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
         var queryItems: [String] = []
