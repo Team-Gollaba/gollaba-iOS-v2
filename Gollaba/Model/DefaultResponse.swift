@@ -15,6 +15,7 @@ enum DataType: Codable {
     case userResponseData(UserData)
     case favoritePollResponseData(CreateFavoritePollResponseData)
     case trendingSearchListResponseData([TrendingSearchResponseData])
+    case votingIdResponseData(VotingIdResponseData)
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -33,6 +34,8 @@ enum DataType: Codable {
             self = .favoritePollResponseData(favoritePollResponseData)
         } else if let trendingSearchListResponseData = try? container.decode([TrendingSearchResponseData].self) {
             self = .trendingSearchListResponseData(trendingSearchListResponseData)
+        } else if let votingIdResponseData = try? container.decode(VotingIdResponseData.self) {
+            self = .votingIdResponseData(votingIdResponseData)
         }
         else {
             throw DecodingError.typeMismatch(DataType.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Expected Bool value"))
@@ -62,4 +65,9 @@ struct CreateFavoritePollResponseData: Codable {
 struct TrendingSearchResponseData: Codable {
     let searchedWord: String
     let searchCount: Int
+}
+
+struct VotingIdResponseData: Codable {
+    let votingId: Int
+    let votedItemIds: [Int]
 }

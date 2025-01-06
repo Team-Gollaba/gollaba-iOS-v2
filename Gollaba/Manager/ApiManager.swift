@@ -534,9 +534,7 @@ class ApiManager {
             "Content-Type": "application/json",
             "Accept": "application/json"
         ]
-        
-        print("jwtToken: \(jwtToken)")
-                
+                        
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -631,6 +629,11 @@ class ApiManager {
             "pollHashId": pollHashId,
             "pollItemIds": pollItemIds
         ]
+        var headers: HTTPHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
+        if let authManager, authManager.isLoggedIn {
+            let jwtToken = try getJwtToken()
+            headers["Authorization"] = "Bearer \(jwtToken)"
+        }
         
         if let voterName { // 기명 투표
             param["voterName"] = voterName
@@ -693,10 +696,44 @@ class ApiManager {
                 }
         }
     }
-//    
-//    // 내 투표 참여 조회
-//    func getMyVoting
-//    
+    
+    // 내 투표 참여 조회
+    func getVotingIdByPollHashId(pollHashId: String) async throws -> VotingIdResponseData {
+        let urlString = baseURL + "/v2/voting/me" + "?pollHashId=\(pollHashId)"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        print("urlString: \(urlString), headers: \(headers)")
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get voting id: \(value)")
+                        
+                        switch value.data {
+                        case .votingIdResponseData(let data):
+                            continuation.resume(returning: data)
+                        default:
+                            continuation.resume(throwing: ApiError.invalidResponse)
+                            break
+                        }
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get voting id with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
 //    // 투표 참여 수정
 //    func updateVote(votingId: String) async throws {
 //        let urlString = baseURL + "/v2/voting/\(votingId)"

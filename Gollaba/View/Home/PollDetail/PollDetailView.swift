@@ -205,6 +205,9 @@ struct PollDetailView: View {
                 await viewModel.readPoll()
                 await viewModel.getPoll()
                 await viewModel.votingCheck()
+                if authManager.isLoggedIn && viewModel.isVoted {
+                    await viewModel.getVotingId()
+                }
             }
             viewModel.inputNameText = viewModel.getRandomNickName()
             

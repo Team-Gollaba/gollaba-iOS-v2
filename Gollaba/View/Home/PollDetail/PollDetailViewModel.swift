@@ -42,6 +42,7 @@ class PollDetailViewModel {
         }
     }
     var isFavorite: Bool = false
+    var votingIdData: VotingIdResponseData?
     
     var authManager: AuthManager?
     
@@ -126,7 +127,19 @@ class PollDetailViewModel {
         } catch {
             
         }
+    }
+    
+    func getVotingId() async {
         
+        do {
+            if let poll {
+                votingIdData = try await ApiManager.shared.getVotingIdByPollHashId(pollHashId: poll.id)
+            } else {
+                Logger.shared.log(String(describing: self), #function, "poll not found", .error)
+            }
+        } catch {
+            
+        }
     }
     
     @Sendable func loadPoll() async {
