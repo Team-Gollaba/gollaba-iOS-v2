@@ -41,7 +41,6 @@ struct PollListInMyPoll: View {
                         .font(.suitBold24)
                 }
             }
-            .frame(minHeight: 300)
         }
     }
 }

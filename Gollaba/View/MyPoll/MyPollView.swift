@@ -103,6 +103,8 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
+                            
+                            
                         }
                         .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용
                         .onPreferenceChange(MadeByMeTabHeightPreferenceKey.self) { value in
@@ -110,7 +112,7 @@ struct MyPollView: View {
                             viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
                         }
                         .onPreferenceChange(FavoriteByMeTabHeightPreferenceKey.self) { value in
-                            viewModel.likeTabHeight = value // 각 탭의 높이를 저장
+                            viewModel.favoriteByMeTabHeight = value // 각 탭의 높이를 저장
                             viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
                         }
                         .onChange(of: viewModel.selectedTab) {

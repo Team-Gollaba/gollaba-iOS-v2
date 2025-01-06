@@ -32,8 +32,8 @@ class MyPollViewModel {
     
     var selectedTab: MyPollSelectedTab = .madeByMe
     var madeByMeTabHeight: CGFloat = 0
-    var likeTabHeight: CGFloat = 0
-    var currentTabHeight: CGFloat = 400
+    var favoriteByMeTabHeight: CGFloat = 0
+    var currentTabHeight: CGFloat = 0
     
     var authManager: AuthManager?
     var userData: UserData?
@@ -53,8 +53,10 @@ class MyPollViewModel {
         case .madeByMe:
             currentTabHeight = madeByMeTabHeight
         case .faovirteByMe:
-            currentTabHeight = likeTabHeight
+            currentTabHeight = favoriteByMeTabHeight
         }
+        
+        print("currentTabHeight: \(currentTabHeight)")
     }
     
     func kakaoLogout() async {
