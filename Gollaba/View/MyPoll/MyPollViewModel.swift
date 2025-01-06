@@ -91,6 +91,18 @@ class MyPollViewModel {
         }
     }
     
+    func resetPollsCreatedByMe() {
+        madeByMePollList.removeAll()
+        madeByMePollPage = 0
+        madeByMePollIsEnd = false
+    }
+    
+    func resetPollsFavoriteByMe() {
+        favoriteByMePollList.removeAll()
+        favoriteByMePollPage = 0
+        favoriteByMePollIsEnd = false
+    }
+    
     func getPollsCreatedByMe() async {
         guard madeByMePollList.isEmpty else { return }
 

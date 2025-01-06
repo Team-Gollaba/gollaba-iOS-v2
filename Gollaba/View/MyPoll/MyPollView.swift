@@ -148,6 +148,10 @@ struct MyPollView: View {
                             await viewModel.getPollsFavoriteByMe()
                         }
                     }
+                    .onDisappear {
+                        viewModel.resetPollsCreatedByMe()
+                        viewModel.resetPollsFavoriteByMe()
+                    }
                 } else {
                     VStack (spacing: 20) {
                         Spacer()
@@ -217,6 +221,8 @@ struct MyPollView: View {
                 onPrimaryButton: {
                     Task {
                         await viewModel.kakaoLogout()
+                        viewModel.resetPollsCreatedByMe()
+                        viewModel.resetPollsFavoriteByMe()
                     }
                 }
             )
