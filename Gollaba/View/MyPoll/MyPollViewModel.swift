@@ -145,6 +145,22 @@ class MyPollViewModel {
         }
     }
     
+    func createFavorite(pollHashId: String) async {
+        do {
+            try await ApiManager.shared.createFavoritePoll(pollHashId: pollHashId)
+        } catch {
+            
+        }
+    }
+    
+    func deleteFavorite(pollHashId: String) async {
+        do {
+            try await ApiManager.shared.deleteFavoritePoll(pollHashId: pollHashId)
+        } catch {
+            
+        }
+    }
+    
     func getFavoritePolls() async {
         do {
             try await ApiManager.shared.getFavoritePolls()

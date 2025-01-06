@@ -82,7 +82,7 @@ struct MyPollView: View {
                             .animation(.bouncy, value: viewModel.selectedTab)
                         
                         TabView (selection: $viewModel.selectedTab) {
-                            PollListInMyPoll(
+                            PollListMadeByMe(
                                 pollMadeByMeList: viewModel.madeByMePollList,
                                 requestAddPoll: $viewModel.madeByMePollRequestAdd,
                                 isEnd: $viewModel.madeByMePollIsEnd
@@ -93,17 +93,27 @@ struct MyPollView: View {
                                     .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
                             
-                            PollListInMyPoll(
-                                pollMadeByMeList: viewModel.favoriteByMePollList,
+                            
+                            PollFavoriteByMeListView(
+                                pollFavoriteByMeList: viewModel.favoriteByMePollList,
+                                favoritePolls: authManager.favoritePolls,
                                 requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
-                                isEnd: $viewModel.favoriteByMePollIsEnd
+                                isEnd: $viewModel.favoriteByMePollIsEnd,
+                                createFavorite: { pollHashId in
+                                    Task {
+                                        await viewModel.createFavorite(pollHashId: pollHashId)
+                                    }
+                                }, deleteFavorite: { pollHashId in
+                                    Task {
+                                        await viewModel.deleteFavorite(pollHashId: pollHashId)
+                                    }
+                                }
                             )
                             .tag(MyPollSelectedTab.faovirteByMe)
                             .background(GeometryReader { proxy in
                                 Color.clear
                                     .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
-                            
                             
                         }
                         .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용

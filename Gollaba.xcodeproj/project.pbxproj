@@ -58,6 +58,7 @@
 		49AA4DBB2D225C520068102F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 49AA4DBA2D225C520068102F /* FirebaseMessaging */; };
 		49AA4DC02D23C1DC0068102F /* HorizontalPollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DBF2D23C1DC0068102F /* HorizontalPollContentView.swift */; };
 		49AA4DC42D240F800068102F /* HomeDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC32D240F800068102F /* HomeDividerView.swift */; };
+		49AA4DC62D2415300068102F /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC52D2415300068102F /* FavoritesButton.swift */; };
 		49AA4DC82D2516F90068102F /* SpecialSearchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC72D2516F90068102F /* SpecialSearchContentView.swift */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
@@ -133,6 +134,7 @@
 		49AA4DBC2D22613A0068102F /* Gollaba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gollaba.entitlements; sourceTree = "<group>"; };
 		49AA4DBF2D23C1DC0068102F /* HorizontalPollContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPollContentView.swift; sourceTree = "<group>"; };
 		49AA4DC32D240F800068102F /* HomeDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
+		49AA4DC52D2415300068102F /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
 		49AA4DC72D2516F90068102F /* SpecialSearchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialSearchContentView.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				497DDFBE2CFD99F6008A8534 /* ClearableTextFieldView.swift */,
 				49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */,
 				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
+				49AA4DC52D2415300068102F /* FavoritesButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				4945A2C42CEB6ECC00FF05DC /* MainViewModel.swift in Sources */,
 				497DDFBD2CFC2036008A8534 /* ShimmerView.swift in Sources */,
 				4945A2C52CEB6ECC00FF05DC /* MyPollView.swift in Sources */,
+				49AA4DC62D2415300068102F /* FavoritesButton.swift in Sources */,
 				497DDFBB2CFC1FA8008A8534 /* View+Shimmer.swift in Sources */,
 				4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */,
 				4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */,
