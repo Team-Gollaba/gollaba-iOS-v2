@@ -32,8 +32,9 @@ struct MyPollView: View {
     var body: some View {
         
         ZStack {
-            ScrollView {
-                if authManager.isLoggedIn {
+            
+            if authManager.isLoggedIn {
+                ScrollView {
                     VStack (spacing: 0) {
                         ProfileImageView(
                             imageUrl: viewModel.userData?.profileImageUrl
@@ -152,81 +153,82 @@ struct MyPollView: View {
                         viewModel.resetPollsCreatedByMe()
                         viewModel.resetPollsFavoriteByMe()
                     }
-                } else {
-                    VStack (spacing: 20) {
-                        Spacer()
-                        
-                        Text("모든 기능을 이용하려면\n로그인을 해주세요.")
-                            .font(.yangjin32)
-                            .multilineTextAlignment(.center)
-                            .padding(.bottom, 20)
-                        
-                        InduceLoginContentView(
-                            icon: Image(systemName: "chart.bar"),
-                            iconColor: .signUpButtonStart,
-                            iconBackgroundColor: .signUpButtonStart.opacity(0.1),
-                            title: "생성한 투표 보기",
-                            subtitle: "실시간으로 생성한 모든 투표를 확인하세요.".forceCharWrapping
-                        )
-                        
-                        InduceLoginContentView(
-                            icon: Image(systemName: "suit.heart"),
-                            iconColor: .red,
-                            iconBackgroundColor: .red.opacity(0.1),
-                            title: "좋아요한 투표 목록",
-                            subtitle: "좋아요를 누른 투표를 저장하고 언제든지 다시 확인하세요.".forceCharWrapping
-                        )
-                        
-                        InduceLoginContentView(
-                            icon: Image(systemName: "person"),
-                            iconColor: .signUpButtonStart,
-                            iconBackgroundColor: .signUpButtonStart.opacity(0.1),
-                            title: "개인 프로필",
-                            subtitle: "고유한 프로필을 만들고 투표 평판을 쌓아보세요.".forceCharWrapping
-                        )
-                        
-                        Button {
-                            viewModel.goToLogin = true
-                        } label: {
-                            HStack {
-                                Text("로그인")
-                                    .font(.suitBold16)
-                                
-                                Image(systemName: "arrow.right")
-                            }
-                            .tint(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(.signUpButtonEnd)
-                            )
+                }
+                .refreshable(action: viewModel.loadPolls)
+                .dialog(
+                    isPresented: $viewModel.isClickedLogoutButton,
+                    title: "로그아웃",
+                    content: Text("로그아웃 하시겠습니까?"),
+                    primaryButtonText: "확인",
+                    secondaryButtonText: "취소",
+                    onPrimaryButton: {
+                        Task {
+                            await viewModel.kakaoLogout()
+                            viewModel.resetPollsCreatedByMe()
+                            viewModel.resetPollsFavoriteByMe()
                         }
-                        
-                        Spacer()
                     }
-                    .padding(40)
-                    .navigationDestination(isPresented: $viewModel.goToLogin) {
-                        LoginView()
-                    }
-                }
+                )
                 
-            }
-            .dialog(
-                isPresented: $viewModel.isClickedLogoutButton,
-                title: "로그아웃",
-                content: Text("로그아웃 하시겠습니까?"),
-                primaryButtonText: "확인",
-                secondaryButtonText: "취소",
-                onPrimaryButton: {
-                    Task {
-                        await viewModel.kakaoLogout()
-                        viewModel.resetPollsCreatedByMe()
-                        viewModel.resetPollsFavoriteByMe()
+                
+            } else {
+                VStack (spacing: 20) {
+                    Spacer()
+                    
+                    Text("모든 기능을 이용하려면\n로그인을 해주세요.")
+                        .font(.yangjin32)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 20)
+                    
+                    InduceLoginContentView(
+                        icon: Image(systemName: "chart.bar"),
+                        iconColor: .signUpButtonStart,
+                        iconBackgroundColor: .signUpButtonStart.opacity(0.1),
+                        title: "생성한 투표 보기",
+                        subtitle: "실시간으로 생성한 모든 투표를 확인하세요.".forceCharWrapping
+                    )
+                    
+                    InduceLoginContentView(
+                        icon: Image(systemName: "suit.heart"),
+                        iconColor: .red,
+                        iconBackgroundColor: .red.opacity(0.1),
+                        title: "좋아요한 투표 목록",
+                        subtitle: "좋아요를 누른 투표를 저장하고 언제든지 다시 확인하세요.".forceCharWrapping
+                    )
+                    
+                    InduceLoginContentView(
+                        icon: Image(systemName: "person"),
+                        iconColor: .signUpButtonStart,
+                        iconBackgroundColor: .signUpButtonStart.opacity(0.1),
+                        title: "개인 프로필",
+                        subtitle: "고유한 프로필을 만들고 투표 평판을 쌓아보세요.".forceCharWrapping
+                    )
+                    
+                    Button {
+                        viewModel.goToLogin = true
+                    } label: {
+                        HStack {
+                            Text("로그인")
+                                .font(.suitBold16)
+                            
+                            Image(systemName: "arrow.right")
+                        }
+                        .tint(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.signUpButtonEnd)
+                        )
                     }
+                    
+                    Spacer()
                 }
-            )
-            
+                .padding(40)
+                .navigationDestination(isPresented: $viewModel.goToLogin) {
+                    LoginView()
+                }
+            }
             
         }
         .onAppear {

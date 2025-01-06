@@ -157,6 +157,18 @@ class MyPollViewModel {
         }
     }
     
+    @Sendable func loadPolls() async {
+        do {
+            try await Task.sleep(nanoseconds: 1000_000_000)
+            resetPollsCreatedByMe()
+            resetPollsFavoriteByMe()
+            await getPollsCreatedByMe()
+            await getPollsFavoriteByMe()
+        } catch {
+            
+        }
+    }
+    
     func createFavorite(pollHashId: String) async {
         do {
             try await ApiManager.shared.createFavoritePoll(pollHashId: pollHashId)
