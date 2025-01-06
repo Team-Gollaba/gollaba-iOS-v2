@@ -22,6 +22,7 @@ class SignUpViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var nickName: String = ""
     @Published var providerType: ProviderType = .apple
+    @Published var profileImageUrl: String = ""
     
     @Published var emailFocused: Bool = false
     @Published var nickNameFocused: Bool = false
@@ -63,7 +64,7 @@ class SignUpViewModel: ObservableObject {
                 let url = try await ApiManager.shared.uploadImage(images: [uiImage])
                 return url.first ?? ""
             } else {
-                
+                return profileImageUrl
             }
         } catch {
             
