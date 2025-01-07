@@ -122,7 +122,7 @@ struct PollDetailView: View {
                 
                 if let poll = viewModel.poll, viewModel.isValidDatePoll {
                     if poll.responseType == ResponseType.single.rawValue {
-                        PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll)
+                        PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
                             .overlay(
                                 viewModel.poll == nil ? .white : .clear
                             )
@@ -130,7 +130,7 @@ struct PollDetailView: View {
                                 viewModel.poll == nil ? ShimmerView() : nil
                             )
                     } else if poll.responseType == ResponseType.multiple.rawValue {
-                        PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll)
+                        PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
                             .overlay(
                                 viewModel.poll == nil ? .white : .clear
                             )
@@ -148,7 +148,9 @@ struct PollDetailView: View {
                                 await viewModel.vote()
                                 await viewModel.getVotingId()
                                 await viewModel.getPoll()
+                                viewModel.activateSelectAnimation = true
                             }
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         }
                     case .completed:
                         if viewModel.checkVoting() {
@@ -156,7 +158,9 @@ struct PollDetailView: View {
                                 await viewModel.updateVote()
                                 await viewModel.getVotingId()
                                 await viewModel.getPoll()
+                                viewModel.activateSelectAnimation = true
                             }
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         }
                     default:
                         break

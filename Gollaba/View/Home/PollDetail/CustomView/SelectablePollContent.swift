@@ -14,9 +14,11 @@ struct SelectablePollContent: View {
     
     var responseType: ResponseType
     var isSelected: Bool
-
+    @Binding var activateSelectAnimation: Bool
     
     var action: () -> Void
+    
+    @State private var showAnimation: Bool = false
     
     var body: some View {
         ZStack {
@@ -64,14 +66,26 @@ struct SelectablePollContent: View {
             )
             .cornerRadius(10)
             .shadow(radius: 2)
+            .scaleEffect(showAnimation ? 1.1 : 1.0)
+            .animation(.bouncy(duration: 0.2), value: showAnimation)
         }
         .contentShape(Rectangle())
         .onTapGesture {
             action()
         }
+        .onChange(of: activateSelectAnimation) { _, newValue in
+            
+            if newValue && isSelected {
+                showAnimation = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    showAnimation = false
+                }
+            }
+            activateSelectAnimation = false
+        }
     }
 }
 
 #Preview {
-    SelectablePollContent(pollOption: PollOption(id: 1, description: "des", imageUrl: nil, votingCount: 1), responseType: .multiple, isSelected: true, action: {})
+    SelectablePollContent(pollOption: PollOption(id: 1, description: "des", imageUrl: nil, votingCount: 1), responseType: .multiple, isSelected: true, activateSelectAnimation: .constant(false), action: {})
 }

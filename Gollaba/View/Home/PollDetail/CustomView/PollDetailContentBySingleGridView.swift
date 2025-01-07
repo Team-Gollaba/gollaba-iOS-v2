@@ -10,6 +10,7 @@ import SwiftUI
 struct PollDetailContentBySingleGridView: View {
     var poll: PollItem
     @Binding var selectedPoll: Int?
+    @Binding var activateSelectAnimation: Bool
     
     var body: some View {
         ThreeByTwoGridView(itemsCount: poll.items.count) { index in
@@ -17,6 +18,7 @@ struct PollDetailContentBySingleGridView: View {
                 pollOption: poll.items[index],
                 responseType: .single,
                 isSelected: index + 1 == selectedPoll,
+                activateSelectAnimation: $activateSelectAnimation,
                 action: { selectedPoll = index + 1 }
             )
             .padding(.horizontal, 4)

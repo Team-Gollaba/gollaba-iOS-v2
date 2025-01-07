@@ -41,6 +41,7 @@ class PollDetailViewModel {
             }
         }
     }
+    var activateSelectAnimation: Bool = false
     var isFavorite: Bool = false
     var votingIdData: VotingIdResponseData?
     
@@ -87,7 +88,9 @@ class PollDetailViewModel {
             self.poll = try await ApiManager.shared.getPoll(pollHashId: self.id)
             
             if let poll {
-                selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+                if selectedMultiplePoll.isEmpty {
+                    selectedMultiplePoll = Array(repeating: false, count: poll.items.count)
+                }
                 
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
@@ -173,9 +176,6 @@ class PollDetailViewModel {
     }
     
     func updateVote() async {
-        guard votingIdData?.votedItemIds.sorted() != getSelectedPollItemId().sorted() else {
-            return
-        }
         guard let authManager else {
             Logger.shared.log(String(describing: self), #function, "authManager is nil")
             return
@@ -226,6 +226,10 @@ class PollDetailViewModel {
         
         if !authManager.isLoggedIn && isVoted {
             self.showAlreadyVotedAlert = true
+            return false
+        }
+        
+        guard votingIdData?.votedItemIds.sorted() != getSelectedPollItemId().sorted() else {
             return false
         }
         

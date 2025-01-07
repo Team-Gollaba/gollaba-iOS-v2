@@ -10,6 +10,7 @@ import SwiftUI
 struct PollDetailContentByMultipleGridView: View {
     var poll: PollItem
     @Binding var selectedPoll: [Bool]
+    @Binding var activateSelectAnimation: Bool
     
     var body: some View {
         ThreeByTwoGridView(itemsCount: poll.items.count) { index in
@@ -17,6 +18,7 @@ struct PollDetailContentByMultipleGridView: View {
                 pollOption: poll.items[index],
                 responseType: .multiple,
                 isSelected: selectedPoll[index],
+                activateSelectAnimation: $activateSelectAnimation,
                 action: { selectedPoll[index].toggle() }
             )
             .padding(.horizontal, 4)
