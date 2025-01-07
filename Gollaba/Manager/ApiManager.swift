@@ -707,9 +707,7 @@ class ApiManager {
             "Content-Type": "application/json",
             "Accept": "application/json"
         ]
-        
-        print("urlString: \(urlString), headers: \(headers)")
-        
+                
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -734,15 +732,36 @@ class ApiManager {
         }
     }
     
-//    // 투표 참여 수정
-//    func updateVote(votingId: String) async throws {
-//        let urlString = baseURL + "/v2/voting/\(votingId)"
-//        let url = try getUrl(for: urlString)
-//        let jwtToken = try getJwtToken()
-//        let param: [String: Any] = [
-//            "voterName": au
-//        ]
-//    }
+    // 투표 참여 수정
+    func updateVote(votingId: Int, voterName: String, pollItemIds: [Int]) async throws {
+        let urlString = baseURL + "/v2/voting/\(votingId)"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        let param: [String: Any] = [
+            "voterName": voterName,
+            "pollItemIds": pollItemIds
+        ]
+                
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to update vote: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to update vote with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
     
     //MARK: - auth
     func loginByProviderToken(providerToken: String, providerType: ProviderType) async throws -> String {

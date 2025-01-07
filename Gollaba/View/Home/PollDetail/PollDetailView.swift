@@ -141,11 +141,27 @@ struct PollDetailView: View {
                 }
                 
                 PollButton(pollbuttonState: $viewModel.pollButtonState) {
-                    if viewModel.isCompletedVoting() {
-                        Task {
-                            await viewModel.voting()
+                    switch viewModel.pollButtonState {
+                    case .normal:
+                        if viewModel.checkVoting() {
+                            Task {
+                                await viewModel.vote()
+                                await viewModel.getVotingId()
+                                await viewModel.getPoll()
+                            }
                         }
+                    case .completed:
+                        if viewModel.checkVoting() {
+                            Task {
+                                await viewModel.updateVote()
+                                await viewModel.getVotingId()
+                                await viewModel.getPoll()
+                            }
+                        }
+                    default:
+                        break
                     }
+                    
                 }
                 .overlay(
                     viewModel.poll == nil ? .white : .clear
@@ -207,6 +223,7 @@ struct PollDetailView: View {
                 await viewModel.votingCheck()
                 if authManager.isLoggedIn && viewModel.isVoted {
                     await viewModel.getVotingId()
+                    viewModel.setSelectedPollItem()
                 }
             }
             viewModel.inputNameText = viewModel.getRandomNickName()
@@ -220,13 +237,13 @@ struct PollDetailView: View {
         .onDisappear {
             viewModel.deleteOption()
         }
-        .onChange(of: viewModel.isVoted) { oldValue, newValue in
+        .onChange(of: viewModel.isVoted, { _, newValue in
             if newValue {
                 Task {
-                    await viewModel.getPoll()
+                    await viewModel.getVotingId()
                 }
             }
-        }
+        })
         .onChange(of: viewModel.inputNameFocused, { _, newValue in
             if newValue {
                 viewModel.inputNameText = ""

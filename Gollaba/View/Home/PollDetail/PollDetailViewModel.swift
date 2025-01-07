@@ -152,8 +152,8 @@ class PollDetailViewModel {
         }
     }
     
-    func voting() async {
-        var pollItemIds: [Int] = []
+    func vote() async {
+        let pollItemIds: [Int] = getSelectedPollItemId()
         var voterName: String
         if let authManager, authManager.isLoggedIn {
             voterName = authManager.name
@@ -161,28 +161,35 @@ class PollDetailViewModel {
             voterName = inputNameText
         }
         
-        if let poll {
-            if poll.responseType == ResponseType.single.rawValue, let selectedPollItemIndex = selectedSinglePoll {
-                pollItemIds.append(poll.items[selectedPollItemIndex - 1].id)
-            } else if poll.responseType == ResponseType.multiple.rawValue {
-                for (index, selectedPollItemId) in selectedMultiplePoll.enumerated() {
-                    if selectedPollItemId {
-                        pollItemIds.append(poll.items[index].id)
-                    }
-                }
-            }
+        do {
+            try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll?.pollType == PollType.named.rawValue ? voterName : nil)
             
-            do {
-                try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll.pollType == PollType.named.rawValue ? voterName : nil)
-                
-                self.isVoted = true
-            } catch {
-                if let votingError = error as? VotingError, votingError == VotingError.alreadyVoted {
-                    self.showAlreadyVotedAlert = true
-                }
+            self.isVoted = true
+        } catch {
+            if let votingError = error as? VotingError, votingError == VotingError.alreadyVoted {
+                self.showAlreadyVotedAlert = true
             }
-            
-        } else {
+        }
+    }
+    
+    func updateVote() async {
+        guard votingIdData?.votedItemIds.sorted() != getSelectedPollItemId().sorted() else {
+            return
+        }
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is nil")
+            return
+        }
+        guard let votingIdData else {
+            Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
+            return
+        }
+        let pollItemIds: [Int] = getSelectedPollItemId()
+        let voterName = authManager.name
+        
+        do {
+            try await ApiManager.shared.updateVote(votingId: votingIdData.votingId, voterName: voterName, pollItemIds: pollItemIds)
+        } catch {
             
         }
     }
@@ -212,9 +219,12 @@ class PollDetailViewModel {
     }
     
     //MARK: - check valid
-    func isCompletedVoting() -> Bool {
+    func checkVoting() -> Bool {
+        guard let authManager else {
+            return false
+        }
         
-        if isVoted {
+        if !authManager.isLoggedIn && isVoted {
             self.showAlreadyVotedAlert = true
             return false
         }
@@ -259,5 +269,50 @@ class PollDetailViewModel {
         ]
         
         return (frontNickname.randomElement() ?? "") + (backNickname.randomElement() ?? "")
+    }
+    
+    //MARK: - ETC
+    func getSelectedPollItemId() -> [Int] {
+        var pollItemIds: [Int] = []
+        
+        if let poll {
+            if poll.responseType == ResponseType.single.rawValue, let selectedPollItemIndex = selectedSinglePoll {
+                pollItemIds.append(poll.items[selectedPollItemIndex - 1].id)
+            } else if poll.responseType == ResponseType.multiple.rawValue {
+                for (index, selectedPollItemId) in selectedMultiplePoll.enumerated() {
+                    if selectedPollItemId {
+                        pollItemIds.append(poll.items[index].id)
+                    }
+                }
+            }
+        } else {
+            
+        }
+        
+        return pollItemIds
+    }
+    
+    func setSelectedPollItem() {
+        guard let poll else {
+            Logger.shared.log(String(describing: self), #function, "poll is nil")
+            return
+        }
+        guard let votingIdData else {
+            Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
+            return
+        }
+        
+        switch poll.responseType {
+        case ResponseType.single.rawValue:
+            selectedSinglePoll = (poll.items.firstIndex(where: { $0.id == votingIdData.votedItemIds.first }) ?? 0) + 1
+            
+        case ResponseType.multiple.rawValue:
+            poll.items.enumerated().forEach { index, item in
+                selectedMultiplePoll[index] = votingIdData.votedItemIds.contains(item.id)
+            }
+            
+        default:
+            break
+        }
     }
 }
