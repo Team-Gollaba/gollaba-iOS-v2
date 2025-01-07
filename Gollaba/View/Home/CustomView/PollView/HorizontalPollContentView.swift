@@ -16,36 +16,18 @@ struct HorizontalPollContentView: View {
         NavigationLink {
             PollDetailView(id: poll.id)
         } label: {
-            VStack (alignment: .leading, spacing: 12) {
-                HStack {
-                    ForEach(poll.items.prefix(2), id: \.id) { pollItem in
-                        PollContentOptionItemView(
-                            imageUrl: pollItem.imageUrl,
-                            title: pollItem.description,
-                            parentWidth: contentWidth
-                        )
+            ZStack (alignment: .topTrailing) {
+                VStack (alignment: .leading, spacing: 12) {
+                    HStack {
+                        ForEach(poll.items.prefix(2), id: \.id) { pollItem in
+                            PollContentOptionItemView(
+                                imageUrl: pollItem.imageUrl,
+                                title: pollItem.description,
+                                parentWidth: contentWidth
+                            )
+                        }
+
                     }
-                    
-//                    if poll.items.count > 2 {
-//                        Image(systemName: "ellipsis")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 32, height: 32)
-//                            .foregroundColor(.gray)
-//                    }
-                }
-                .overlay(
-                    poll.id == "-1" ? .white : .clear
-                )
-                .overlay(
-                    poll.id == "-1" ? ShimmerView() : nil
-                )
-                
-                HStack (alignment: .top, spacing: 12) {
-                    ProfileImageView(imageUrl: poll.creatorProfileUrl) {
-                        
-                    }
-                    .frame(width: 40, height: 40)
                     .overlay(
                         poll.id == "-1" ? .white : .clear
                     )
@@ -53,57 +35,73 @@ struct HorizontalPollContentView: View {
                         poll.id == "-1" ? ShimmerView() : nil
                     )
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(poll.title)
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .overlay(
-                                poll.id == "-1" ? .white : .clear
-                            )
-                            .overlay(
-                                poll.id == "-1" ? ShimmerView() : nil
-                            )
+                    HStack (alignment: .top, spacing: 12) {
+                        ProfileImageView(imageUrl: poll.creatorProfileUrl) {
+                            
+                        }
+                        .frame(width: 40, height: 40)
+                        .overlay(
+                            poll.id == "-1" ? .white : .clear
+                        )
+                        .overlay(
+                            poll.id == "-1" ? ShimmerView() : nil
+                        )
                         
-                        Text(poll.creatorName)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .overlay(
-                                poll.id == "-1" ? .white : .clear
-                            )
-                            .overlay(
-                                poll.id == "-1" ? ShimmerView() : nil
-                            )
-                        
-                        Text("조회수 \(poll.readCount)회 · \(poll.totalVotingCount)명 참여")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .overlay(
-                                poll.id == "-1" ? .white : .clear
-                            )
-                            .overlay(
-                                poll.id == "-1" ? ShimmerView() : nil
-                            )
-                        
-                        Text("\(formattedDate(poll.endAt)). 마감")
-                            .font(.footnote)
-                            .foregroundColor(.red)
-                            .overlay(
-                                poll.id == "-1" ? .white : .clear
-                            )
-                            .overlay(
-                                poll.id == "-1" ? ShimmerView() : nil
-                            )
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(poll.title)
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .overlay(
+                                    poll.id == "-1" ? .white : .clear
+                                )
+                                .overlay(
+                                    poll.id == "-1" ? ShimmerView() : nil
+                                )
+                            
+                            Text(poll.creatorName)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .overlay(
+                                    poll.id == "-1" ? .white : .clear
+                                )
+                                .overlay(
+                                    poll.id == "-1" ? ShimmerView() : nil
+                                )
+                            
+                            Text("조회수 \(poll.readCount)회 · \(poll.totalVotingCount)명 참여")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .overlay(
+                                    poll.id == "-1" ? .white : .clear
+                                )
+                                .overlay(
+                                    poll.id == "-1" ? ShimmerView() : nil
+                                )
+                            
+                            Text("\(formattedDate(poll.endAt)). 마감")
+                                .font(.footnote)
+                                .foregroundColor(.red)
+                                .overlay(
+                                    poll.id == "-1" ? .white : .clear
+                                )
+                                .overlay(
+                                    poll.id == "-1" ? ShimmerView() : nil
+                                )
+                        }
                     }
+                    
+                    
                 }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.white)
+                        .shadow(radius: 5)
+                )
                 
+                PollStateViewRibbonStyle(state: getState(poll.endAt))
                 
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.white)
-                    .shadow(radius: 5)
-            )
         }
         .frame(width: min(contentWidth, UIScreen.main.bounds.width))
         .tint(.black)
@@ -113,6 +111,22 @@ struct HorizontalPollContentView: View {
     
     private func formattedDate(_ date: String) -> String {
         return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
+    }
+    
+    func setDate(_ dateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            return date
+        } else {
+            return Date()
+        }
+    }
+    
+    func getState(_ dateString: String) -> Bool {
+        let date = setDate(dateString)
+        return date > Date()
     }
 }
 

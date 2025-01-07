@@ -60,6 +60,8 @@
 		49AA4DC42D240F800068102F /* HomeDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC32D240F800068102F /* HomeDividerView.swift */; };
 		49AA4DC62D2415300068102F /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC52D2415300068102F /* FavoritesButton.swift */; };
 		49AA4DC82D2516F90068102F /* SpecialSearchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC72D2516F90068102F /* SpecialSearchContentView.swift */; };
+		49AA4DD22D2D4E470068102F /* RibbonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DD12D2D4E470068102F /* RibbonShape.swift */; };
+		49AA4DD42D2D4F8C0068102F /* PollStateViewRibbonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DD32D2D4F8C0068102F /* PollStateViewRibbonStyle.swift */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
@@ -136,6 +138,8 @@
 		49AA4DC32D240F800068102F /* HomeDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
 		49AA4DC52D2415300068102F /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
 		49AA4DC72D2516F90068102F /* SpecialSearchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialSearchContentView.swift; sourceTree = "<group>"; };
+		49AA4DD12D2D4E470068102F /* RibbonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonShape.swift; sourceTree = "<group>"; };
+		49AA4DD32D2D4F8C0068102F /* PollStateViewRibbonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollStateViewRibbonStyle.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */,
 				4945A2782CEB6ECC00FF05DC /* OptionBoxView.swift */,
 				49AA4DC52D2415300068102F /* FavoritesButton.swift */,
+				49AA4DD12D2D4E470068102F /* RibbonShape.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				4945A2812CEB6ECC00FF05DC /* PollStateView.swift */,
+				49AA4DD32D2D4F8C0068102F /* PollStateViewRibbonStyle.swift */,
 			);
 			path = ViewContent;
 			sourceTree = "<group>";
@@ -627,6 +633,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				497DDF9F2CF83622008A8534 /* PollContentOptionItemView.swift in Sources */,
+				49AA4DD42D2D4F8C0068102F /* PollStateViewRibbonStyle.swift in Sources */,
 				49AA4DC02D23C1DC0068102F /* HorizontalPollContentView.swift in Sources */,
 				4945A2C92CEB73A700FF05DC /* HomeViewModel.swift in Sources */,
 				497DDFBF2CFD99F6008A8534 /* ClearableTextFieldView.swift in Sources */,
@@ -657,6 +664,7 @@
 				49C8A6A22D1052F70030D648 /* SearchViewModel.swift in Sources */,
 				49C8A6E52D2064120030D648 /* String+.swift in Sources */,
 				4945A2B52CEB6ECC00FF05DC /* CreatePollViewModel.swift in Sources */,
+				49AA4DD22D2D4E470068102F /* RibbonShape.swift in Sources */,
 				4945A2B62CEB6ECC00FF05DC /* PollChartView.swift in Sources */,
 				4945A2B72CEB6ECC00FF05DC /* PollStateView.swift in Sources */,
 				49C8A6AB2D1057620030D648 /* SearchFilterContentView.swift in Sources */,
