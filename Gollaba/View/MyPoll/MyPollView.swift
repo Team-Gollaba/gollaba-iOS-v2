@@ -84,7 +84,7 @@ struct MyPollView: View {
                         
                         TabView (selection: $viewModel.selectedTab) {
                             PollListMadeByMe(
-                                pollMadeByMeList: viewModel.madeByMePollList,
+                                pollMadeByMeList: viewModel.madeByMePollList.isEmpty ? viewModel.tempPolls : viewModel.madeByMePollList,
                                 requestAddPoll: $viewModel.madeByMePollRequestAdd,
                                 isEnd: $viewModel.madeByMePollIsEnd,
                                 activateAnimation: $viewModel.activateAnimation
@@ -97,7 +97,7 @@ struct MyPollView: View {
                             
                             
                             PollFavoriteByMeListView(
-                                pollFavoriteByMeList: viewModel.favoriteByMePollList,
+                                pollFavoriteByMeList: viewModel.favoriteByMePollList.isEmpty ? viewModel.tempPolls : viewModel.favoriteByMePollList,
                                 favoritePolls: authManager.favoritePolls,
                                 requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
                                 isEnd: $viewModel.favoriteByMePollIsEnd,

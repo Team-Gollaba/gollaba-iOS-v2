@@ -19,13 +19,31 @@ struct PollMadeByMeView: View {
                 HStack (spacing: 16) {
                     Text(poll.title)
                         .font(.suitVariable20)
+                        .overlay(
+                            poll.id == "-1" ? .white : .clear
+                        )
+                        .overlay(
+                            poll.id == "-1" ? ShimmerView() : nil
+                        )
                     
                     Spacer()
                     
                     //                PollStateView(state: state)
                     PollStateView(state: getState(poll.endAt))
+                        .overlay(
+                            poll.id == "-1" ? .white : .clear
+                        )
+                        .overlay(
+                            poll.id == "-1" ? ShimmerView() : nil
+                        )
                     
                     OpenAndCloseButton(isOpen: $isOpen)
+                        .overlay(
+                            poll.id == "-1" ? .white : .clear
+                        )
+                        .overlay(
+                            poll.id == "-1" ? ShimmerView() : nil
+                        )
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 16)
