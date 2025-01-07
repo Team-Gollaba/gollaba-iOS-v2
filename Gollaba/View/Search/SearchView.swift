@@ -112,7 +112,7 @@ struct SearchView: View {
                                         .foregroundStyle(.gray)
                                 }
                             }, content: {
-                                ForEach(Array(viewModel.recommendedKeywords.prefix(10).enumerated()), id: \.offset) { index, recommendedKeyword in
+                                ForEach(Array( viewModel.recommendedKeywords.prefix(10).enumerated()), id: \.offset) { index, recommendedKeyword in
                                     HStack {
                                         Button {
                                             viewModel.searchText = recommendedKeyword.searchedWord

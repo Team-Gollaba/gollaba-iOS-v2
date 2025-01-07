@@ -57,7 +57,7 @@ struct SearchResultListView: View {
                     ScrollView {
                         
                         VerticalPollList(
-                            pollList: viewModel.searchResultPollData?.items ?? [],
+                            pollList: (viewModel.searchResultPollData?.items.isEmpty ?? true) ? viewModel.tempPolls : viewModel.searchResultPollData!.items,
                             requestAddPoll: $viewModel.requestAddPoll,
                             isEnd: $viewModel.isEnd
                         )
