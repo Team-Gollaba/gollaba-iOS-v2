@@ -135,6 +135,7 @@ struct MyPollView: View {
                             }
                         }
                         
+                        
                         LogoutButton {
                             viewModel.isClickedLogoutButton = true
                         }

@@ -23,12 +23,19 @@ struct DragToHideModifier: ViewModifier {
                         }
                         dragEndLocation = value.location.y
                     }
-                    .onEnded { _ in
-                        if dragEndLocation > dragStartLocation {
-                            isHide = false
-                        } else if dragEndLocation < dragStartLocation {
-                            isHide = true
+                    .onEnded { value in
+                        let horizontalDistance = abs(value.translation.width)
+                        let verticalDistance = abs(value.translation.height)
+                        
+                        // 수직 드래그가 수평 드래그보다 클 때만 처리
+                        if verticalDistance > horizontalDistance {
+                            if dragEndLocation > dragStartLocation {
+                                isHide = false
+                            } else if dragEndLocation < dragStartLocation {
+                                isHide = true
+                            }
                         }
+                        
                         dragStartLocation = 0.0
                         dragEndLocation = 0.0
                     }
@@ -41,3 +48,4 @@ extension View {
         self.modifier(DragToHideModifier(isHide: isHide))
     }
 }
+
