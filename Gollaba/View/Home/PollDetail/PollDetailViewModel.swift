@@ -42,6 +42,7 @@ class PollDetailViewModel {
         }
     }
     var activateSelectAnimation: Bool = false
+    
     var isFavorite: Bool = false
     var votingIdData: VotingIdResponseData?
     
@@ -85,7 +86,12 @@ class PollDetailViewModel {
     func getPoll() async {
         
         do {
-            self.poll = try await ApiManager.shared.getPoll(pollHashId: self.id)
+            
+            let newPoll = try await ApiManager.shared.getPoll(pollHashId: self.id)
+            
+            withAnimation(.bouncy) {
+                self.poll = newPoll
+            }
             
             if let poll {
                 if selectedMultiplePoll.isEmpty {

@@ -86,7 +86,8 @@ struct MyPollView: View {
                             PollListMadeByMe(
                                 pollMadeByMeList: viewModel.madeByMePollList,
                                 requestAddPoll: $viewModel.madeByMePollRequestAdd,
-                                isEnd: $viewModel.madeByMePollIsEnd
+                                isEnd: $viewModel.madeByMePollIsEnd,
+                                activateAnimation: $viewModel.activateAnimation
                             )
                             .tag(MyPollSelectedTab.madeByMe)
                             .background(GeometryReader { proxy in

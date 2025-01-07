@@ -12,6 +12,7 @@ struct PollListMadeByMe: View {
     
     @Binding var requestAddPoll: Bool
     @Binding var isEnd: Bool
+    @Binding var activateAnimation: Bool
     
     var body: some View {
         ScrollViewReader { proxy in
@@ -46,5 +47,5 @@ struct PollListMadeByMe: View {
 }
 
 #Preview {
-    PollListMadeByMe(pollMadeByMeList: [], requestAddPoll: .constant(false), isEnd: .constant(false))
+    PollListMadeByMe(pollMadeByMeList: [], requestAddPoll: .constant(false), isEnd: .constant(false), activateAnimation: .constant(false))
 }

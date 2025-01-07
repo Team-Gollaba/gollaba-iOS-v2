@@ -174,7 +174,11 @@ struct PollDetailView: View {
                     viewModel.poll == nil ? ShimmerView() : nil
                 )
                 
-                PollResultView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [], isHide: !viewModel.isVoted && viewModel.isValidDatePoll)
+                PollResultView(
+                    totalVotingCount: viewModel.poll?.totalVotingCount ?? 0,
+                    pollOptions: viewModel.poll?.items ?? [],
+                    isHide: !viewModel.isVoted && viewModel.isValidDatePoll
+                )
                     .overlay(
                         viewModel.poll == nil ? .white : .clear
                     )
@@ -237,6 +241,7 @@ struct PollDetailView: View {
             }
             
             viewModel.authManager = authManager
+            
         }
         .onDisappear {
             viewModel.deleteOption()

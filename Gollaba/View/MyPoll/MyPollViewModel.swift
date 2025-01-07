@@ -23,6 +23,7 @@ class MyPollViewModel {
     var madeByMePollIsEnd: Bool = false
     var madeByMePollPage: Int = 0
     let madeByMePollSize: Int = 10
+    var activateAnimation: Bool = false
     
     var favoriteByMePollList: [PollItem] = []
     var favoriteByMePollRequestAdd: Bool = false

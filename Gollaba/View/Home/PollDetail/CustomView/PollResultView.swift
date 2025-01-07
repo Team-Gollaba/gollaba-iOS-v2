@@ -28,7 +28,11 @@ struct PollResultView: View {
                 }
                 
                 ForEach(pollOptions, id: \.self) { pollOption in
-                    PollChartView(title: "\(pollOption.description) - \(getPercentage(pollOption.votingCount, totalVotingCount))", allCount: totalVotingCount, selectedCount: pollOption.votingCount)
+                    PollChartView(
+                        title: "\(pollOption.description) - \(getPercentage(pollOption.votingCount, totalVotingCount))",
+                        allCount: totalVotingCount,
+                        selectedCount: pollOption.votingCount
+                    )
                 }
             }
             .frame(maxWidth: .infinity)

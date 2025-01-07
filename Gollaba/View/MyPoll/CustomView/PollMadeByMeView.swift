@@ -32,7 +32,11 @@ struct PollMadeByMeView: View {
                 
                 if isOpen {
                     ForEach(poll.items, id: \.self) { pollOption in
-                        PollChartView(title: pollOption.description, allCount: poll.totalVotingCount, selectedCount: pollOption.votingCount)
+                        PollChartView(
+                            title: pollOption.description,
+                            allCount: poll.totalVotingCount,
+                            selectedCount: pollOption.votingCount
+                        )
                         
                     }
                     
