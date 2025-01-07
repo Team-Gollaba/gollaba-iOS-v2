@@ -17,7 +17,7 @@ public struct DialogViewModifier: ViewModifier {
     var onPrimaryButton: () -> Void
     var onSecondaryButton: (() -> Void)?
     
-    @State private var scale: CGFloat = 0.8
+    @State private var scale: CGFloat = 0.0
     @State private var opacity: Double = 0.0
     
     public func body(content: Content) -> some View {
@@ -45,7 +45,7 @@ public struct DialogViewModifier: ViewModifier {
                                     Button {
                                         withAnimation {
                                             opacity = 0.0
-                                            scale = 0.8
+                                            scale = 0.0
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                             isPresented = false
@@ -63,7 +63,7 @@ public struct DialogViewModifier: ViewModifier {
                                 Button {
                                     withAnimation {
                                         opacity = 0.0
-                                        scale = 0.8
+                                        scale = 0.0
                                     }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         isPresented = false
@@ -100,7 +100,7 @@ public struct DialogViewModifier: ViewModifier {
                             if !newValue {
                                 withAnimation {
                                     opacity = 0.0
-                                    scale = 0.8
+                                    scale = 0.0
                                 }
                             }
                         }
