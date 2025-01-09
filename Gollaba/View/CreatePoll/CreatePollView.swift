@@ -33,8 +33,7 @@ struct CreatePollView: View {
                             ClearableTextFieldView(
                                 placeholder: "투표 작성자 이름을 입력해주세요.",
                                 editText: $viewModel.creatorNameText,
-                                isFocused: $viewModel.creatorNameFocus,
-                                disabled: authManager.isLoggedIn
+                                isFocused: $viewModel.creatorNameFocus
                                 )
                             .onAppear {
                                 if authManager.isLoggedIn {
