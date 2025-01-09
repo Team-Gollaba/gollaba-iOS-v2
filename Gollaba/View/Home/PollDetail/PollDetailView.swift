@@ -245,7 +245,7 @@ struct PollDetailView: View {
                     await viewModel.votingCheck()
                     viewModel.votingIdData = nil
                     viewModel.selectedSinglePoll = nil
-                    viewModel.selectedMultiplePoll.removeAll()
+                    viewModel.selectedMultiplePoll = Array(repeating: false, count: viewModel.selectedMultiplePoll.count)
                     viewModel.pollButtonState = .normal
                 }
             }
