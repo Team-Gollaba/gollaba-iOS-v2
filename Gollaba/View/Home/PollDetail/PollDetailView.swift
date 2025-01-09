@@ -140,32 +140,40 @@ struct PollDetailView: View {
                     }
                 }
                 
-                PollButton(pollbuttonState: $viewModel.pollButtonState) {
-                    switch viewModel.pollButtonState {
-                    case .normal:
-                        if viewModel.checkVoting() {
-                            Task {
-                                await viewModel.vote()
-                                await viewModel.getVotingId()
-                                await viewModel.getPoll()
-                                viewModel.activateSelectAnimation = true
+                HStack {
+                    PollButton(pollbuttonState: $viewModel.pollButtonState) {
+                        switch viewModel.pollButtonState {
+                        case .normal:
+                            if viewModel.checkVoting() {
+                                Task {
+                                    await viewModel.vote()
+                                    await viewModel.getVotingId()
+                                    await viewModel.getPoll()
+                                }
+                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             }
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        }
-                    case .completed:
-                        if viewModel.checkVoting() {
-                            Task {
-                                await viewModel.updateVote()
-                                await viewModel.getVotingId()
-                                await viewModel.getPoll()
-                                viewModel.activateSelectAnimation = true
+                        case .completed:
+                            if viewModel.checkVoting() {
+                                Task {
+                                    await viewModel.updateVote()
+                                    await viewModel.getVotingId()
+                                    await viewModel.getPoll()
+                                }
+                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             }
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        default:
+                            break
                         }
-                    default:
-                        break
+                        
                     }
                     
+                    if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
+                        PollCancelButton {
+                            viewModel.isClickedCancelButton = true
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        }
+                        .animation(.bouncy, value: viewModel.isVoted)
+                    }
                 }
                 .overlay(
                     viewModel.poll == nil ? .white : .clear
@@ -223,6 +231,24 @@ struct PollDetailView: View {
             content: Text(viewModel.inValidVoteAlertContent),
             primaryButtonText: "확인",
             onPrimaryButton: {}
+        )
+        .dialog(
+            isPresented: $viewModel.isClickedCancelButton,
+            title: "투표하기",
+            content: Text("투표를 취소하시겠습니까?"),
+            primaryButtonText: "확인",
+            secondaryButtonText: "취소",
+            onPrimaryButton: {
+                Task {
+                    await viewModel.cancelVote()
+                    await viewModel.getPoll()
+                    await viewModel.votingCheck()
+                    viewModel.votingIdData = nil
+                    viewModel.selectedSinglePoll = nil
+                    viewModel.selectedMultiplePoll.removeAll()
+                    viewModel.pollButtonState = .normal
+                }
+            }
         )
         .onAppear {
             Task {

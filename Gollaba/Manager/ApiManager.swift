@@ -84,7 +84,7 @@ class ApiManager {
     static let shared = ApiManager()
     let baseURL: String = "https://api.gollaba.app"
     
-    let headers: HTTPHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
+    let headers: HTTPHeaders = ["Content-Type": "application/json"]
     
     var authManager: AuthManager?
     
@@ -100,8 +100,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
         let param: [String: Any] = [
             "pollHashId": pollHashId
@@ -131,8 +130,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
         let param: [String: Any] = [
             "pollHashId": pollHashId
@@ -162,8 +160,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -336,8 +333,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -373,8 +369,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -499,8 +494,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
         let param: [String: Any] = [
             "name": name
@@ -531,8 +525,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
                         
         return try await withCheckedThrowingContinuation { continuation in
@@ -629,7 +622,7 @@ class ApiManager {
             "pollHashId": pollHashId,
             "pollItemIds": pollItemIds
         ]
-        var headers: HTTPHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
+        var headers: HTTPHeaders = ["Content-Type": "application/json"]
         if let authManager, authManager.isLoggedIn {
             let jwtToken = try getJwtToken()
             headers["Authorization"] = "Bearer \(jwtToken)"
@@ -669,6 +662,11 @@ class ApiManager {
     func votingCheck(pollHashId: String) async throws -> Bool {
         let urlString = baseURL + "/v2/voting/check"
         let url = try getUrl(for: urlString)
+        var headers: HTTPHeaders = ["Content-Type": "application/json"]
+        if let authManager, authManager.isLoggedIn {
+            let jwtToken = try getJwtToken()
+            headers["Authorization"] = "Bearer \(jwtToken)"
+        }
         let param: [String: Any] = [
             "pollHashId": pollHashId
         ]
@@ -704,8 +702,7 @@ class ApiManager {
         let jwtToken = try getJwtToken()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(jwtToken)",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         ]
                 
         return try await withCheckedThrowingContinuation { continuation in
@@ -757,6 +754,33 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to update vote with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    // 투표 참여 철회
+    func cancelVote(votingId: Int) async throws {
+        let urlString = baseURL + "/v2/voting/\(votingId)"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .delete, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to cancel vote: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to cancel vote with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }

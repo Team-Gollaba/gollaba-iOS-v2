@@ -42,6 +42,7 @@ class PollDetailViewModel {
         }
     }
     var activateSelectAnimation: Bool = false
+    var isClickedCancelButton: Bool = false
     
     var isFavorite: Bool = false
     var votingIdData: VotingIdResponseData?
@@ -89,9 +90,9 @@ class PollDetailViewModel {
             
             let newPoll = try await ApiManager.shared.getPoll(pollHashId: self.id)
             
-            withAnimation(.bouncy) {
+            
                 self.poll = newPoll
-            }
+            
             
             if let poll {
                 if selectedMultiplePoll.isEmpty {
@@ -174,6 +175,7 @@ class PollDetailViewModel {
             try await ApiManager.shared.voting(pollHashId: self.id, pollItemIds: pollItemIds, voterName: poll?.pollType == PollType.named.rawValue ? voterName : nil)
             
             self.isVoted = true
+            activateSelectAnimation = true
         } catch {
             if let votingError = error as? VotingError, votingError == VotingError.alreadyVoted {
                 self.showAlreadyVotedAlert = true
@@ -195,6 +197,20 @@ class PollDetailViewModel {
         
         do {
             try await ApiManager.shared.updateVote(votingId: votingIdData.votingId, voterName: voterName, pollItemIds: pollItemIds)
+            activateSelectAnimation = true
+        } catch {
+            
+        }
+    }
+    
+    func cancelVote() async {
+        guard let votingIdData else {
+            Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
+            return
+        }
+        
+        do {
+            try await ApiManager.shared.cancelVote(votingId: votingIdData.votingId)
         } catch {
             
         }
