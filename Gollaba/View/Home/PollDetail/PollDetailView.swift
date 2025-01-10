@@ -21,191 +21,209 @@ struct PollDetailView: View {
     
     
     var body: some View {
-        ScrollView {
-            VStack (alignment: .leading, spacing: 20) {
-                
-                VStack (alignment: .leading) {
-                    HStack (spacing: 12) {
-                        Image(systemName: "arrowtriangle.forward.fill")
-                            .resizable()
-                            .foregroundStyle(.enrollButton)
-                            .frame(width: 16, height: 28)
-                        
-                        Text(viewModel.poll?.title ?? "")
-                            .font(.suitBold32)
-                        
-                        Spacer()
-                        
-                        if authManager.isLoggedIn {
-                            FavoritesButton(isFavorite: $viewModel.isFavorite)
-                                .onChange(of: viewModel.isFavorite) { _, newValue in
-                                    Task {
-                                        if newValue {
-                                            await viewModel.createFavorite()
-                                        } else {
-                                            await viewModel.deleteFavorite()
-                                        }
-                                        await viewModel.getFavorite()
-                                    }
-                                }
-                        }
-                    }
-                    .padding(.leading, 4)
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
+        ZStack {
+            ScrollView {
+                VStack (alignment: .leading, spacing: 20) {
                     
-                    HStack {
-                        ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl) {
+                    VStack (alignment: .leading) {
+                        HStack (spacing: 12) {
+                            Image(systemName: "arrowtriangle.forward.fill")
+                                .resizable()
+                                .foregroundStyle(.enrollButton)
+                                .frame(width: 16, height: 28)
                             
-                        }
-                        .frame(width: 24, height: 24)
-                        
-                        Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
-                            .font(.suitVariable16)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "eye")
-                            .padding(.leading, 12)
-                        
-                        Text("\(viewModel.poll?.readCount ?? -1)")
-                            .font(.suitVariable16)
-                    }
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
-                    
-                }
-                
-                
-                PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
-                
-                
-                if viewModel.poll?.pollType == PollType.named.rawValue && !viewModel.isVoted && viewModel.isValidDatePoll && !authManager.isLoggedIn {
-                    VStack (alignment: .leading, spacing: 4) {
-                        Text("닉네임 (변경 하려면 입력하세요.)")
-                            .font(.suitVariable12)
-                            .foregroundStyle(.pollContentTitleFont)
-                        
-                        ClearableTextFieldView(
-                            placeholder: "기명 투표를 위해 닉네임을 입력해주세요.",
-                            editText: $viewModel.inputNameText,
-                            isFocused: $viewModel.inputNameFocused
-                        )
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 3)
-                                .stroke(.black, lineWidth: 1)
-                        )
-                    }
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
-                }
-                
-                
-                if let poll = viewModel.poll, viewModel.isValidDatePoll {
-                    if poll.responseType == ResponseType.single.rawValue {
-                        PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
-                            .overlay(
-                                viewModel.poll == nil ? .white : .clear
-                            )
-                            .overlay(
-                                viewModel.poll == nil ? ShimmerView() : nil
-                            )
-                    } else if poll.responseType == ResponseType.multiple.rawValue {
-                        PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
-                            .overlay(
-                                viewModel.poll == nil ? .white : .clear
-                            )
-                            .overlay(
-                                viewModel.poll == nil ? ShimmerView() : nil
-                            )
-                    }
-                }
-                
-                HStack {
-                    PollButton(pollbuttonState: $viewModel.pollButtonState) {
-                        switch viewModel.pollButtonState {
-                        case .normal:
-                            if viewModel.checkVoting() {
-                                Task {
-                                    await viewModel.vote()
-                                    await viewModel.getVotingId()
-                                    await viewModel.getPoll()
-                                }
-                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            Text(viewModel.poll?.title ?? "")
+                                .font(.suitBold32)
+                            
+                            Spacer()
+                            
+                            if authManager.isLoggedIn {
+                                FavoritesButton(isFavorite: $viewModel.isFavorite)
+                                    .onChange(of: viewModel.isFavorite) { _, newValue in
+                                        Task {
+                                            if newValue {
+                                                await viewModel.createFavorite()
+                                            } else {
+                                                await viewModel.deleteFavorite()
+                                            }
+                                            await viewModel.getFavorite()
+                                        }
+                                    }
                             }
-                        case .completed:
-                            if viewModel.checkVoting() {
-                                Task {
-                                    await viewModel.updateVote()
-                                    await viewModel.getVotingId()
-                                    await viewModel.getPoll()
-                                }
-                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            }
-                        default:
-                            break
                         }
-                        
-                    }
-                    
-                    if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
-                        PollCancelButton {
-                            viewModel.isClickedCancelButton = true
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        }
-                        .animation(.bouncy, value: viewModel.isVoted)
-                    }
-                }
-                .overlay(
-                    viewModel.poll == nil ? .white : .clear
-                )
-                .overlay(
-                    viewModel.poll == nil ? ShimmerView() : nil
-                )
-                
-                PollResultView(
-                    totalVotingCount: viewModel.poll?.totalVotingCount ?? 0,
-                    pollOptions: viewModel.poll?.items ?? [],
-                    isHide: !viewModel.isVoted && viewModel.isValidDatePoll
-                )
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
-                
-                if viewModel.isVoted || !viewModel.isValidDatePoll {
-                    PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
+                        .padding(.leading, 4)
                         .overlay(
                             viewModel.poll == nil ? .white : .clear
                         )
                         .overlay(
                             viewModel.poll == nil ? ShimmerView() : nil
                         )
+                        
+                        HStack {
+                            ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl) {
+                                
+                            }
+                            .frame(width: 24, height: 24)
+                            
+                            Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
+                                .font(.suitVariable16)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "eye")
+                                .padding(.leading, 12)
+                            
+                            Text("\(viewModel.poll?.readCount ?? -1)")
+                                .font(.suitVariable16)
+                        }
+                        .overlay(
+                            viewModel.poll == nil ? .white : .clear
+                        )
+                        .overlay(
+                            viewModel.poll == nil ? ShimmerView() : nil
+                        )
+                        
+                    }
+                    
+                    
+                    PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
+                        .overlay(
+                            viewModel.poll == nil ? .white : .clear
+                        )
+                        .overlay(
+                            viewModel.poll == nil ? ShimmerView() : nil
+                        )
+                    
+                    
+                    if viewModel.poll?.pollType == PollType.named.rawValue && !viewModel.isVoted && viewModel.isValidDatePoll && !authManager.isLoggedIn {
+                        VStack (alignment: .leading, spacing: 4) {
+                            Text("닉네임 (변경 하려면 입력하세요.)")
+                                .font(.suitVariable12)
+                                .foregroundStyle(.pollContentTitleFont)
+                            
+                            ClearableTextFieldView(
+                                placeholder: "기명 투표를 위해 닉네임을 입력해주세요.",
+                                editText: $viewModel.inputNameText,
+                                isFocused: $viewModel.inputNameFocused
+                            )
+                            .padding(12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 3)
+                                    .stroke(.black, lineWidth: 1)
+                            )
+                        }
+                        .overlay(
+                            viewModel.poll == nil ? .white : .clear
+                        )
+                        .overlay(
+                            viewModel.poll == nil ? ShimmerView() : nil
+                        )
+                    }
+                    
+                    
+                    if let poll = viewModel.poll, viewModel.isValidDatePoll {
+                        if poll.responseType == ResponseType.single.rawValue {
+                            PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
+                                .overlay(
+                                    viewModel.poll == nil ? .white : .clear
+                                )
+                                .overlay(
+                                    viewModel.poll == nil ? ShimmerView() : nil
+                                )
+                        } else if poll.responseType == ResponseType.multiple.rawValue {
+                            PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
+                                .overlay(
+                                    viewModel.poll == nil ? .white : .clear
+                                )
+                                .overlay(
+                                    viewModel.poll == nil ? ShimmerView() : nil
+                                )
+                        }
+                    }
+                    
+                    HStack {
+                        PollButton(pollbuttonState: $viewModel.pollButtonState) {
+                            switch viewModel.pollButtonState {
+                            case .normal:
+                                if viewModel.checkVoting() {
+                                    Task {
+                                        await viewModel.vote()
+                                        await viewModel.getVotingId()
+                                        await viewModel.getPoll()
+                                        await viewModel.getPollVoters()
+                                    }
+                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                }
+                            case .completed:
+                                if viewModel.checkVoting() {
+                                    Task {
+                                        await viewModel.updateVote()
+                                        await viewModel.getVotingId()
+                                        await viewModel.getPoll()
+                                        await viewModel.getPollVoters()
+                                    }
+                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                }
+                            default:
+                                break
+                            }
+                            
+                        }
+                        
+                        if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
+                            PollCancelButton {
+                                viewModel.isClickedCancelButton = true
+                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            }
+                            .animation(.bouncy, value: viewModel.isVoted)
+                        }
+                    }
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
+                    
+                    PollResultView(
+                        totalVotingCount: viewModel.poll?.totalVotingCount ?? 0,
+                        pollOptions: viewModel.poll?.items ?? [],
+                        isHide: !viewModel.isVoted && viewModel.isValidDatePoll,
+                        onClickChart: { pollItemId in
+                            guard let pollVoters = viewModel.pollVoters else { return }
+                            viewModel.pollVotersTitle = viewModel.poll?.items.first(where: { $0.id == pollItemId})?.description ?? ""
+                            viewModel.pollVoterNames = pollVoters.first(where: { $0.pollItemId == pollItemId })?.voterNames ?? []
+                            viewModel.isPresentPollVotersView = true
+                        }
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? .white : .clear
+                    )
+                    .overlay(
+                        viewModel.poll == nil ? ShimmerView() : nil
+                    )
+                    
+                    if viewModel.isVoted || !viewModel.isValidDatePoll {
+                        PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
+                            .overlay(
+                                viewModel.poll == nil ? .white : .clear
+                            )
+                            .overlay(
+                                viewModel.poll == nil ? ShimmerView() : nil
+                            )
+                    }
+                    
                 }
-                
+                .padding()
             }
-            .padding()
+            
+            if viewModel.isPresentPollVotersView {
+                PollVotersView(
+                    isPresented: $viewModel.isPresentPollVotersView,
+                    title: viewModel.pollVotersTitle,
+                    voterNames: viewModel.pollVoterNames
+                )
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -255,6 +273,7 @@ struct PollDetailView: View {
                 await viewModel.readPoll()
                 await viewModel.getPoll()
                 await viewModel.votingCheck()
+                await viewModel.getPollVoters()
                 if authManager.isLoggedIn && viewModel.isVoted {
                     await viewModel.getVotingId()
                     viewModel.setSelectedPollItem()

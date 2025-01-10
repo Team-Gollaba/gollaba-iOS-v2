@@ -423,10 +423,10 @@
 		49C5CF6B2CDE24D2001DD737 = {
 			isa = PBXGroup;
 			children = (
-				4945A2A12CEB6ECC00FF05DC /* Gollaba */,
-				49C5CF752CDE24D2001DD737 /* Products */,
-				4A5C00A7197583F18C551A39 /* Pods */,
 				A05026F0897EBFCA5CA919E7 /* Frameworks */,
+				4945A2A12CEB6ECC00FF05DC /* Gollaba */,
+				4A5C00A7197583F18C551A39 /* Pods */,
+				49C5CF752CDE24D2001DD737 /* Products */,
 			);
 			sourceTree = "<group>";
 		};

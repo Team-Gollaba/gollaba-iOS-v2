@@ -11,6 +11,7 @@ import SwiftUI
 class PollDetailViewModel {
     var id: String
     var poll: PollItem?
+    var pollVoters: [PollVotersResponseData]?
     var selectedSinglePoll: Int? = nil
     var selectedMultiplePoll: [Bool] = []
     var pollButtonState: PollButtonState = .normal
@@ -43,6 +44,10 @@ class PollDetailViewModel {
     }
     var activateSelectAnimation: Bool = false
     var isClickedCancelButton: Bool = false
+    var isPresentPollVotersView: Bool = false
+    
+    var pollVotersTitle: String = ""
+    var pollVoterNames: [String] = []
     
     var isFavorite: Bool = false
     var votingIdData: VotingIdResponseData?
@@ -144,6 +149,20 @@ class PollDetailViewModel {
         do {
             if let poll {
                 votingIdData = try await ApiManager.shared.getVotingIdByPollHashId(pollHashId: poll.id)
+            } else {
+                Logger.shared.log(String(describing: self), #function, "poll not found", .error)
+            }
+        } catch {
+            
+        }
+    }
+    
+    func getPollVoters() async {
+        
+        do {
+            if let poll {
+                guard poll.pollType == PollType.named.rawValue else { return }
+                pollVoters = try await ApiManager.shared.getVoters(pollHashId: poll.id)
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
             }

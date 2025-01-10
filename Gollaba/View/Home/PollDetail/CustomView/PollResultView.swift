@@ -12,6 +12,8 @@ struct PollResultView: View {
     var pollOptions: [PollOption]
     var isHide: Bool
     
+    let onClickChart: (Int) -> Void
+    
     var body: some View {
         ZStack {
             VStack (spacing: 10) {
@@ -33,6 +35,9 @@ struct PollResultView: View {
                         allCount: totalVotingCount,
                         selectedCount: pollOption.votingCount
                     )
+                    .onTapGesture {
+                        onClickChart(pollOption.id)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
@@ -79,5 +84,5 @@ struct PollResultView: View {
 }
 
 #Preview {
-    PollResultView(totalVotingCount: 10, pollOptions: [], isHide: true)
+    PollResultView(totalVotingCount: 10, pollOptions: [], isHide: true, onClickChart: { _ in})
 }

@@ -859,6 +859,33 @@ class ApiManager {
         }
     }
     
+    // 투표 참여자 이름 조회
+    func getVoters(pollHashId: String) async throws -> [PollVotersResponseData] {
+        let urlString = baseURL + "/v2/voting/voter" + "?pollHashId=\(pollHashId)"
+        let url = try getUrl(for: urlString)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get voters: \(value)")
+                        
+                        switch value.data {
+                        case .pollVotersResponseData(let data):
+                            continuation.resume(returning: data)
+                        default:
+                            continuation.resume(throwing: ApiError.invalidResponseData)
+                        }
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get voters with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     // 투표 참여 수정
     func updateVote(votingId: Int, voterName: String, pollItemIds: [Int]) async throws {
         let urlString = baseURL + "/v2/voting/\(votingId)"
