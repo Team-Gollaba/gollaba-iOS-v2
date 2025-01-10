@@ -100,6 +100,7 @@ struct HorizontalPollContentView: View {
                 )
                 
                 PollStateViewRibbonStyle(state: getState(poll.endAt))
+                    .opacity(poll.id == "-1" ? 0 : 1)
                 
             }
         }
