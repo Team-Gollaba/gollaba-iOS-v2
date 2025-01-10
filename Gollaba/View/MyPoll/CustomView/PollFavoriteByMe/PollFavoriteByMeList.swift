@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PollFavoriteByMeListView: View {
+struct PollFavoriteByMeList: View {
     let pollFavoriteByMeList: [PollItem]
     var favoritePolls: [String]
     
@@ -44,5 +44,5 @@ struct PollFavoriteByMeListView: View {
 }
 
 #Preview {
-    PollFavoriteByMeListView(pollFavoriteByMeList: [], favoritePolls: [], requestAddPoll: .constant(false), isEnd: .constant(false), createFavorite: { _ in }, deleteFavorite: { _ in })
+    PollFavoriteByMeList(pollFavoriteByMeList: [], favoritePolls: [], requestAddPoll: .constant(false), isEnd: .constant(false), createFavorite: { _ in }, deleteFavorite: { _ in })
 }

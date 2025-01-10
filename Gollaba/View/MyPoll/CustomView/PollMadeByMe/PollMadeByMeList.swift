@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PollListMadeByMe: View {
+struct PollMadeByMeList: View {
     let pollMadeByMeList: [PollItem]
     
     @Binding var requestAddPoll: Bool
@@ -47,5 +47,5 @@ struct PollListMadeByMe: View {
 }
 
 #Preview {
-    PollListMadeByMe(pollMadeByMeList: [], requestAddPoll: .constant(false), isEnd: .constant(false), activateAnimation: .constant(false))
+    PollMadeByMeList(pollMadeByMeList: [], requestAddPoll: .constant(false), isEnd: .constant(false), activateAnimation: .constant(false))
 }

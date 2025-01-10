@@ -10,6 +10,7 @@ import SwiftUI
 enum MyPollSelectedTab: Int {
     case madeByMe = 0
     case faovirteByMe = 1
+    case participated = 2
 }
 
 @Observable
@@ -40,6 +41,7 @@ class MyPollViewModel {
     var selectedTab: MyPollSelectedTab = .madeByMe
     var madeByMeTabHeight: CGFloat = 0
     var favoriteByMeTabHeight: CGFloat = 0
+    var participatedTabHeight: CGFloat = 0
     var currentTabHeight: CGFloat = 0
     
     var authManager: AuthManager?
@@ -85,6 +87,8 @@ class MyPollViewModel {
             currentTabHeight = madeByMeTabHeight
         case .faovirteByMe:
             currentTabHeight = favoriteByMeTabHeight
+        case .participated:
+            currentTabHeight = participatedTabHeight
         }
         
         print("currentTabHeight: \(currentTabHeight)")
@@ -252,6 +256,7 @@ class MyPollViewModel {
     }
     
     func createAppNotification() async {
+        guard !AppStorageManager.shared.saveToNotificationServerSuccess else { return }
         guard let agentId = AppStorageManager.shared.agentId else {
             Logger.shared.log(String(describing: self), #function, "agentId is nil")
             return

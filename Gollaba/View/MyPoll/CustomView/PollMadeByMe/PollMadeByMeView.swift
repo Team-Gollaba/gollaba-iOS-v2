@@ -1,22 +1,21 @@
 //
-//  PollFavoriteByMeView.swift
+//  AllPollContent.swift
 //  Gollaba
 //
-//  Created by 김견 on 1/6/25.
+//  Created by 김견 on 11/13/24.
 //
 
 import SwiftUI
 
-struct PollFavoriteByMeView: View {
+struct PollMadeByMeView: View {
     let poll: PollItem
-    @State var isFavorite: Bool
-    var onFavorite: ((Bool) -> Void)
+    @State var isOpen: Bool = false
     
     var body: some View {
         NavigationLink {
             PollDetailView(id: poll.id)
         } label: {
-            VStack (alignment: .leading, spacing: 12) {
+            VStack (alignment: .leading) {
                 HStack (spacing: 16) {
                     Text(poll.title)
                         .font(.suitBold20)
@@ -29,6 +28,7 @@ struct PollFavoriteByMeView: View {
                     
                     Spacer()
                     
+                    //                PollStateView(state: state)
                     PollStateView(state: getState(poll.endAt))
                         .overlay(
                             poll.id == "-1" ? .white : .clear
@@ -37,10 +37,7 @@ struct PollFavoriteByMeView: View {
                             poll.id == "-1" ? ShimmerView() : nil
                         )
                     
-                    FavoritesButton(isFavorite: $isFavorite)
-                        .onChange(of: isFavorite) { _, newValue in
-                            onFavorite(newValue)
-                        }
+                    OpenAndCloseButton(isOpen: $isOpen)
                         .overlay(
                             poll.id == "-1" ? .white : .clear
                         )
@@ -48,33 +45,27 @@ struct PollFavoriteByMeView: View {
                             poll.id == "-1" ? ShimmerView() : nil
                         )
                 }
+                .padding(.top, 10)
+                .padding(.bottom, 16)
                 
-                Text("\(formattedDate(poll.endAt)) 마감 · 조회수 \(poll.readCount)회")
-                    .font(.suitVariable16)
-                    .foregroundStyle(.gray.opacity(0.7))
-                    .overlay(
-                        poll.id == "-1" ? .white : .clear
-                    )
-                    .overlay(
-                        poll.id == "-1" ? ShimmerView() : nil
-                    )
-                
-                HStack {
-                    ProfileImageView(imageUrl: poll.creatorProfileUrl) {
+                if isOpen {
+                    ForEach(poll.items, id: \.self) { pollOption in
+                        PollChartView(
+                            title: pollOption.description,
+                            allCount: poll.totalVotingCount,
+                            selectedCount: pollOption.votingCount
+                        )
                         
                     }
-                    .frame(width: 24, height: 24)
                     
-                    Text("\(poll.creatorName)")
-                        .font(.suitBold16)
-                        .foregroundStyle(.gray.opacity(0.7))
+                    
+                    HStack {
+                        Text("\(formattedDate(poll.endAt)) 마감 · 조회수 \(poll.readCount)회")
+                            .font(.suitVariable16)
+                            .foregroundStyle(.gray.opacity(0.7))
+                        
+                    }
                 }
-                .overlay(
-                    poll.id == "-1" ? .white : .clear
-                )
-                .overlay(
-                    poll.id == "-1" ? ShimmerView() : nil
-                )
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
@@ -110,12 +101,8 @@ struct PollFavoriteByMeView: View {
         let date = setDate(dateString)
         return date > Date()
     }
-    
 }
 
 #Preview {
-    PollFavoriteByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 5, totalVotingCount: 10, items: [
-        PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 3),
-        PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 7)
-    ]), isFavorite: false, onFavorite: { _ in })
+    PollMadeByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 3, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 2), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 8)]))
 }

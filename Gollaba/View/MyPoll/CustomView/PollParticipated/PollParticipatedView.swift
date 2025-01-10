@@ -1,13 +1,13 @@
 //
-//  AllPollContent.swift
+//  PollParticipatedView.swift
 //  Gollaba
 //
-//  Created by 김견 on 11/13/24.
+//  Created by 김견 on 1/10/25.
 //
 
 import SwiftUI
 
-struct PollMadeByMeView: View {
+struct PollParticipatedView: View {
     let poll: PollItem
     @State var isOpen: Bool = false
     
@@ -15,10 +15,10 @@ struct PollMadeByMeView: View {
         NavigationLink {
             PollDetailView(id: poll.id)
         } label: {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 16) {
                 HStack (spacing: 16) {
                     Text(poll.title)
-                        .font(.suitVariable20)
+                        .font(.suitBold20)
                         .overlay(
                             poll.id == "-1" ? .white : .clear
                         )
@@ -28,7 +28,6 @@ struct PollMadeByMeView: View {
                     
                     Spacer()
                     
-                    //                PollStateView(state: state)
                     PollStateView(state: getState(poll.endAt))
                         .overlay(
                             poll.id == "-1" ? .white : .clear
@@ -55,16 +54,24 @@ struct PollMadeByMeView: View {
                             allCount: poll.totalVotingCount,
                             selectedCount: pollOption.votingCount
                         )
-                        
                     }
-                    
                     
                     HStack {
-                        Text("\(formattedDate(poll.endAt)) 마감 · 조회수 \(poll.readCount)회")
-                            .font(.suitVariable16)
-                            .foregroundStyle(.gray.opacity(0.7))
+                        ProfileImageView(imageUrl: poll.creatorProfileUrl) {
+                            
+                        }
+                        .frame(width: 24, height: 24)
                         
+                        Text("\(poll.creatorName)")
+                            .font(.suitBold16)
+                            .foregroundStyle(.gray.opacity(0.7))
                     }
+                    
+                    
+                    Text("\(formattedDate(poll.endAt)) 마감 · 조회수 \(poll.readCount)회")
+                        .font(.suitVariable16)
+                        .foregroundStyle(.gray.opacity(0.7))
+                        
                 }
             }
             .padding(.horizontal, 20)
@@ -104,5 +111,5 @@ struct PollMadeByMeView: View {
 }
 
 #Preview {
-    PollMadeByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 3, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 2), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 8)]))
+    PollParticipatedView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "", pollType: "", endAt: "2026-01-10T12:34:56", readCount: 2, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 3), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 7)]))
 }

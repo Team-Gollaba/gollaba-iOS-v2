@@ -31,6 +31,14 @@ struct MyPollView: View {
         }
     }
     
+    struct ParticipatedTabHeightPreferenceKey: PreferenceKey {
+        static var defaultValue: CGFloat = 0
+        
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = max(value, nextValue()) // 여러 값 중 최대값을 사용
+        }
+    }
+    
     var body: some View {
         
         ZStack {
@@ -75,8 +83,10 @@ struct MyPollView: View {
                             Button {
                                 viewModel.selectedTab = .madeByMe
                             } label: {
-                                Text("내가 만든 투표")
-                                    .font(.yangjin16)
+                                Image(systemName: "pencil")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundStyle(viewModel.selectedTab == .madeByMe ? .enrollButton : .gray)
                             }
                             .tint(.black)
                             .frame(maxWidth: .infinity)
@@ -84,21 +94,35 @@ struct MyPollView: View {
                             Button {
                                 viewModel.selectedTab = .faovirteByMe
                             } label: {
-                                Text("내가 좋아하는 투표")
-                                    .font(.yangjin16)
+                                Image(systemName: "heart.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundStyle(viewModel.selectedTab == .faovirteByMe ? .enrollButton : .gray)
+                            }
+                            .tint(.black)
+                            .frame(maxWidth: .infinity)
+                            
+                            Button {
+                                viewModel.selectedTab = .participated
+                            } label: {
+                                Image(systemName: "checkmark.square.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundStyle(viewModel.selectedTab == .participated ? .enrollButton : .gray)
                             }
                             .tint(.black)
                             .frame(maxWidth: .infinity)
                         }
+                        .padding(.bottom, 8)
                         
                         Rectangle()
                             .fill(.enrollButton)
-                            .frame(width: UIScreen.main.bounds.width / 2 - 100, height: 4)
-                            .offset(x: UIScreen.main.bounds.width / 2 * (CGFloat(viewModel.selectedTab.rawValue) - (1 / 2)))
-                            .animation(.bouncy, value: viewModel.selectedTab)
+                                .frame(width: UIScreen.main.bounds.width / 3 - 24, height: 4) // 3등분 중 여백 포함
+                                .offset(x: (UIScreen.main.bounds.width / 3) * CGFloat(viewModel.selectedTab.rawValue) - UIScreen.main.bounds.width / 2 + UIScreen.main.bounds.width / 6)
+                                .animation(.bouncy, value: viewModel.selectedTab)
                         
                         TabView (selection: $viewModel.selectedTab) {
-                            PollListMadeByMe(
+                            PollMadeByMeList(
                                 pollMadeByMeList: viewModel.madeByMePollList.isEmpty ? viewModel.tempPolls : viewModel.madeByMePollList,
                                 requestAddPoll: $viewModel.madeByMePollRequestAdd,
                                 isEnd: $viewModel.madeByMePollIsEnd,
@@ -111,7 +135,7 @@ struct MyPollView: View {
                             })
                             
                             
-                            PollFavoriteByMeListView(
+                            PollFavoriteByMeList(
                                 pollFavoriteByMeList: viewModel.favoriteByMePollList.isEmpty ? viewModel.tempPolls : viewModel.favoriteByMePollList,
                                 favoritePolls: authManager.favoritePolls,
                                 requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
@@ -132,6 +156,17 @@ struct MyPollView: View {
                                     .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
                             
+                            PollParticipatedList(
+                                pollParticipatedList: viewModel.participatedPollList.isEmpty ? viewModel.tempPolls : viewModel.participatedPollList,
+                                requestAddPoll: $viewModel.participatedPollRequestAdd,
+                                isEnd: $viewModel.participatedPollIsEnd
+                            )
+                            .tag(MyPollSelectedTab.participated)
+                            .background(GeometryReader { proxy in
+                                Color.clear
+                                    .preference(key: ParticipatedTabHeightPreferenceKey.self, value: proxy.size.height)
+                            })
+                            
                         }
                         .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용
                         .onPreferenceChange(MadeByMeTabHeightPreferenceKey.self) { value in
@@ -141,6 +176,10 @@ struct MyPollView: View {
                         .onPreferenceChange(FavoriteByMeTabHeightPreferenceKey.self) { value in
                             viewModel.favoriteByMeTabHeight = value // 각 탭의 높이를 저장
                             viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
+                        }
+                        .onPreferenceChange(ParticipatedTabHeightPreferenceKey.self) { value in
+                            viewModel.participatedTabHeight = value
+                            viewModel.updateCurrentTabHeight()
                         }
                         .onChange(of: viewModel.selectedTab) {
                             DispatchQueue.main.async {
