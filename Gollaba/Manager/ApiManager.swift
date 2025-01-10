@@ -92,6 +92,100 @@ class ApiManager {
         self.authManager = authManager
     }
     
+    //MARK: - app-notifications
+    // 푸쉬 알림 등록
+    func createAppPushNotification(agentId: String, allowsNotification: Bool) async throws {
+        let urlString = baseURL + "/v2/app-notifications"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        let deviceName = await UIDevice.current.name
+        let param: [String: Any] = [
+            "agentId": agentId,
+            "osType": "IOS",
+            "deviceName": deviceName,
+            "allowsNotification": allowsNotification
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to create app notification: \(value)")
+                        AppStorageManager.shared.saveToNotificationServerSuccess = true
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to create app notification with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    // 푸쉬 알림 수정
+    func updateAppPushNotification(agentId: String, allowsNotification: Bool) async throws {
+        let urlSting = baseURL + "/v2/app-notifications"
+        let url = try getUrl(for: urlSting)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        let param: [String: Any] = [
+            "agentId": agentId,
+            "allowsNotification": allowsNotification
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to update app notification: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to update app notification with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    // [TEMP] 푸쉬 알림 메시지 전송
+    func sendPushNotification(title: String, content: String) async throws {
+        let urlString = baseURL + "/v2/server-message"
+        let url = try getUrl(for: urlString)
+        let param: [String: Any] = [
+            "title": title,
+            "content": content
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to send push notification: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Faild to send push notification with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+        
+    
     //MARK: - favorites
     // 좋아요 생성
     func createFavoritePoll(pollHashId: String) async throws {

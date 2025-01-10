@@ -250,4 +250,32 @@ class MyPollViewModel {
             
         }
     }
+    
+    func createAppNotification() async {
+        guard let agentId = AppStorageManager.shared.agentId else {
+            Logger.shared.log(String(describing: self), #function, "agentId is nil")
+            return
+        }
+        guard let permissionForNotification = AppStorageManager.shared.permissionForNotification else {
+            Logger.shared.log(String(describing: self), #function, "permissionForNotification is nil")
+            return
+        }
+        do {
+            try await ApiManager.shared.createAppPushNotification(
+                agentId: agentId,
+                allowsNotification: permissionForNotification
+            )
+        } catch {
+            
+        }
+    }
+    
+    // fcm테스트용
+    func sendToServerMessage(title: String, content: String) async {
+        do {
+            try await ApiManager.shared.sendPushNotification(title: title, content: content)
+        } catch {
+            
+        }
+    }
 }

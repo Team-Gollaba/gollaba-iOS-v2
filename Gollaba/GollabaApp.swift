@@ -59,7 +59,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 options: authOption
             ) { granted, error in
                 Logger.shared.log("AppDelegate", #function, "granted: \(granted)")
-                
+                AppStorageManager.shared.permissionForNotification = granted
+                if let error {
+                    Logger.shared.log("AppDelegate", #function, "Failed to request authorization: \(error.localizedDescription)", .error)
+                } else if !AppStorageManager.shared.saveToNotificationServerSuccess {
+                    if let token = AppStorageManager.shared.agentId {
+                        Task {
+                            do {
+                                try await ApiManager.shared.createAppPushNotification(
+                                    agentId: token,
+                                    allowsNotification: granted
+                                )
+                            } catch {
+                                
+                            }
+                        }
+                    }
+                }
             }
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -82,7 +98,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
+// Cloud Messaging
 extension AppDelegate: MessagingDelegate {
+    
+    // fcm 등록 토큰을 받았을 때
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         Logger.shared.log("AppDelegate", #function, "token received: \(fcmToken ?? "")")
         
@@ -90,10 +109,26 @@ extension AppDelegate: MessagingDelegate {
         
         Logger.shared.log("AppDelegate", #function, "dataDict: \(dataDict)")
         
+        if AppStorageManager.shared.saveToNotificationServerSuccess && AppStorageManager.shared.agentId == fcmToken {
+            return
+        }
         
+        if let permissionForNotification = AppStorageManager.shared.permissionForNotification, AppStorageManager.shared.agentId != fcmToken {
+            Task {
+                do {
+                    try await ApiManager.shared.createAppPushNotification(
+                        agentId: fcmToken ?? "",
+                        allowsNotification: permissionForNotification
+                    )
+                }
+            }
+        }
+        
+        AppStorageManager.shared.agentId = fcmToken
     }
 }
 
+// User Notifications [AKA InApp Notification]
 @available(iOS 10.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
     

@@ -12,6 +12,8 @@ struct MyPollView: View {
     @Environment(AuthManager.self) var authManager
     @State var viewModel = MyPollViewModel()
     @Binding var isHideTabBar: Bool
+    @State var titleText: String = ""
+    @State var contentText: String = ""
     
     struct MadeByMeTabHeightPreferenceKey: PreferenceKey {
         static var defaultValue: CGFloat = 0
@@ -55,6 +57,19 @@ struct MyPollView: View {
                                 }
                             }
                         
+//                            TextField("제목", text: $titleText)
+//                        TextField("내용", text: $contentText)
+//                        
+//                        Button {
+//                            Task {
+//                                await viewModel.sendToServerMessage(title: titleText, content: contentText)
+//                                titleText = ""
+//                                contentText = ""
+//                            }
+//                        } label: {
+//                            Text("전송")
+//                        }
+//                        
                         
                         HStack {
                             Button {
@@ -240,6 +255,7 @@ struct MyPollView: View {
                 Task {
                     await viewModel.getUser()
                     await viewModel.getFavoritePolls()
+                    await viewModel.createAppNotification()
                 }
             }
         }
