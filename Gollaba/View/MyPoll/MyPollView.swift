@@ -149,6 +149,7 @@ struct MyPollView: View {
                         Task {
                             await viewModel.getPollsCreatedByMe()
                             await viewModel.getPollsFavoriteByMe()
+                            await viewModel.getPollsParticipated()
                         }
                     }
                     .onDisappear {

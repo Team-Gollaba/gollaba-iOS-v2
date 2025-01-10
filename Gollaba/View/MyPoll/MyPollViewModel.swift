@@ -31,6 +31,12 @@ class MyPollViewModel {
     var favoriteByMePollPage: Int = 0
     let favoriteByMePollSize: Int = 10
     
+    var participatedPollList: [PollItem] = []
+    var participatedPollRequestAdd: Bool = false
+    var participatedPollIsEnd: Bool = false
+    var participatedPollPage: Int = 0
+    let participatedPollSize: Int = 10
+    
     var selectedTab: MyPollSelectedTab = .madeByMe
     var madeByMeTabHeight: CGFloat = 0
     var favoriteByMeTabHeight: CGFloat = 0
@@ -177,6 +183,33 @@ class MyPollViewModel {
             favoriteByMePollRequestAdd = false
             
             favoriteByMePollIsEnd = newPolls.items.isEmpty
+        } catch {
+            
+        }
+    }
+    
+    func getPollsParticipated() async {
+        guard participatedPollList.isEmpty else { return }
+        
+        do {
+            let polls = try await ApiManager.shared.getPollsParticipated(page: participatedPollPage, size: participatedPollSize)
+            participatedPollList = polls.items
+            participatedPollPage += 1
+        } catch {
+            
+        }
+    }
+    
+    func fetchPollsParticipated() async {
+        if participatedPollIsEnd { return }
+        
+        do {
+            let newPolls = try await ApiManager.shared.getPollsParticipated(page: participatedPollPage, size: participatedPollSize)
+            participatedPollPage += 1
+            participatedPollList.append(contentsOf: newPolls.items)
+            participatedPollRequestAdd = false
+            
+            participatedPollIsEnd = newPolls.items.isEmpty
         } catch {
             
         }
