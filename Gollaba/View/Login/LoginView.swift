@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
@@ -22,11 +23,13 @@ struct LoginView: View {
                     .padding(.bottom, 50)
                 
                 
-                OAuthLoginButton(
-                    image: Image("NaverIcon"),
-                    oAuthPath: "네이버",
-                    action: {}
-                )
+//                OAuthLoginButton(
+//                    image: Image("NaverIcon"),
+//                    oAuthPath: "네이버",
+//                    action: {}
+//                )
+                AppleLoginButton()
+                
                 
                 OAuthLoginButton(
                     image: Image("KakaoIcon"),

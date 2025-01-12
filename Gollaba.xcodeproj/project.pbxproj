@@ -62,6 +62,7 @@
 		49AA4DC82D2516F90068102F /* SpecialSearchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DC72D2516F90068102F /* SpecialSearchContentView.swift */; };
 		49AA4DD22D2D4E470068102F /* RibbonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DD12D2D4E470068102F /* RibbonShape.swift */; };
 		49AA4DD42D2D4F8C0068102F /* PollStateViewRibbonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4DD32D2D4F8C0068102F /* PollStateViewRibbonStyle.swift */; };
+		49AA4E6A2D33E4D40068102F /* AppleLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4E692D33E4D40068102F /* AppleLoginButton.swift */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
@@ -140,6 +141,7 @@
 		49AA4DC72D2516F90068102F /* SpecialSearchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialSearchContentView.swift; sourceTree = "<group>"; };
 		49AA4DD12D2D4E470068102F /* RibbonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonShape.swift; sourceTree = "<group>"; };
 		49AA4DD32D2D4F8C0068102F /* PollStateViewRibbonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollStateViewRibbonStyle.swift; sourceTree = "<group>"; };
+		49AA4E692D33E4D40068102F /* AppleLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButton.swift; sourceTree = "<group>"; };
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6752D0B06090030D648 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				4945A28C2CEB6ECC00FF05DC /* OAuthLoginButton.swift */,
+				49AA4E692D33E4D40068102F /* AppleLoginButton.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */,
 				4945A2B12CEB6ECC00FF05DC /* PollItemView.swift in Sources */,
 				4945A2B22CEB6ECC00FF05DC /* QuestionButton.swift in Sources */,
+				49AA4E6A2D33E4D40068102F /* AppleLoginButton.swift in Sources */,
 				4945A2B32CEB6ECC00FF05DC /* CreatePollContentGridView.swift in Sources */,
 				49C8A6D92D157B590030D648 /* RecentSearchKeywordView.swift in Sources */,
 				49C8A6A92D1056D70030D648 /* SearchFilterView.swift in Sources */,
