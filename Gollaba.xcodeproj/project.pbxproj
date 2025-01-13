@@ -300,10 +300,8 @@
 		4945A2872CEB6ECC00FF05DC /* PollView */ = {
 			isa = PBXGroup;
 			children = (
-				4945A2822CEB6ECC00FF05DC /* ViewContent */,
 				49AA4E762D34F5AA0068102F /* PollListView */,
 				49AA4E772D34F5FF0068102F /* PollListContentView */,
-				49AA4E782D34F63E0068102F /* ETCDesignView */,
 			);
 			path = PollView;
 			sourceTree = "<group>";
@@ -312,6 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				4945A2872CEB6ECC00FF05DC /* PollView */,
+				4945A2822CEB6ECC00FF05DC /* ViewContent */,
+				49AA4E782D34F63E0068102F /* ETCDesignView */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
