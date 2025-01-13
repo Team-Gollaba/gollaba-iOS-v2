@@ -320,7 +320,6 @@
 				4945A2892CEB6ECC00FF05DC /* CustomView */,
 				4945A28A2CEB6ECC00FF05DC /* HomeView.swift */,
 				4945A2C82CEB73A200FF05DC /* HomeViewModel.swift */,
-				4945A2CC2CEB741300FF05DC /* PollDetail */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -384,6 +383,7 @@
 				4945A2982CEB6ECC00FF05DC /* MyPoll */,
 				4945A28F2CEB6ECC00FF05DC /* Login */,
 				497DDFDD2CFDF258008A8534 /* SignUp */,
+				4945A2CC2CEB741300FF05DC /* PollDetail */,
 			);
 			path = View;
 			sourceTree = "<group>";

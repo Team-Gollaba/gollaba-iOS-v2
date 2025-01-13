@@ -265,6 +265,11 @@ struct PollDetailView: View {
                 }
             }
         )
+        .dialog(
+            isPresented: $viewModel.showErrorDialog,
+            title: "투표화면",
+            content: Text("\(viewModel.errorMessage)")
+        )
         .onAppear {
             Task {
                 await viewModel.readPoll()
