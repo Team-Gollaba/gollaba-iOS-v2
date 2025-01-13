@@ -75,3 +75,31 @@ struct PollOptionForUpdate {
     let description: String
     let imageUrl: String
 }
+
+extension PollItem {
+    static func tempDataList() -> [PollItem] {
+        Array(
+            repeating: PollItem(
+                id: "-1",
+                title: "title title title",
+                creatorName: "creatorName",
+                creatorProfileUrl: "",
+                responseType: "responseType",
+                pollType: "pollType",
+                endAt: "2024. 22. 22.",
+                readCount: 0,
+                totalVotingCount: 0,
+                items: Array(
+                    repeating: PollOption(
+                        id: 0,
+                        description: "",
+                        imageUrl: "",
+                        votingCount: 1
+                    ),
+                    count: 2
+                )
+            ),
+            count: 10
+        )
+    }
+}
