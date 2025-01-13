@@ -261,15 +261,12 @@
 		4945A27C2CEB6ECC00FF05DC /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				4945A2742CEB6ECC00FF05DC /* CalendarView.swift */,
-				4945A2752CEB6ECC00FF05DC /* CallendarOptionView.swift */,
-				49FEE25F2CF229AD000991DB /* TimerOptionView.swift */,
-				49FEE25D2CF22712000991DB /* TimePickerView.swift */,
-				4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */,
-				4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */,
-				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
-				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
-				4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */,
+				49AA4E832D3527B00068102F /* PopUp */,
+				49AA4E842D3527BA0068102F /* Date */,
+				49AA4E862D3528730068102F /* Option */,
+				49AA4E872D35287A0068102F /* Enroll */,
+				49AA4E852D3528030068102F /* PollContent */,
+				49AA4E882D3528860068102F /* CallPopUp */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -455,6 +452,65 @@
 				4945A2922CEB6ECC00FF05DC /* TitleView.swift */,
 			);
 			path = TitleView;
+			sourceTree = "<group>";
+		};
+		49AA4E822D35279B0068102F /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2742CEB6ECC00FF05DC /* CalendarView.swift */,
+				49FEE25D2CF22712000991DB /* TimePickerView.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		49AA4E832D3527B00068102F /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				49AA4E822D35279B0068102F /* Date */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		49AA4E842D3527BA0068102F /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				49FEE25F2CF229AD000991DB /* TimerOptionView.swift */,
+				4945A2752CEB6ECC00FF05DC /* CallendarOptionView.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		49AA4E852D3528030068102F /* PollContent */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2792CEB6ECC00FF05DC /* PollItemView.swift */,
+				4945A27B2CEB6ECC00FF05DC /* CreatePollContentGridView.swift */,
+			);
+			path = PollContent;
+			sourceTree = "<group>";
+		};
+		49AA4E862D3528730068102F /* Option */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2762CEB6ECC00FF05DC /* ChooseTwoOptionsView.swift */,
+			);
+			path = Option;
+			sourceTree = "<group>";
+		};
+		49AA4E872D35287A0068102F /* Enroll */ = {
+			isa = PBXGroup;
+			children = (
+				4945A2772CEB6ECC00FF05DC /* EnrollPollButton.swift */,
+			);
+			path = Enroll;
+			sourceTree = "<group>";
+		};
+		49AA4E882D3528860068102F /* CallPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				4945A27A2CEB6ECC00FF05DC /* QuestionButton.swift */,
+			);
+			path = CallPopUp;
 			sourceTree = "<group>";
 		};
 		49C5CF6B2CDE24D2001DD737 = {

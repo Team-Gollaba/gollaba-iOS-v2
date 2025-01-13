@@ -19,7 +19,7 @@ struct CreatePollContentGridView: View {
                 EmptyView()
             } else {
                 
-                PollItemView(
+                CreatePollItemView(
                     pollItemName: $pollItemName[index],
                     selectedItem: $selectedItem,
                     isCreateModel: pollItemName.count == index + 1,

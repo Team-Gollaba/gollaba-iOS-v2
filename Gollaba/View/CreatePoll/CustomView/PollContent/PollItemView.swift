@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct PollItemView: View {
+struct CreatePollItemView: View {
     @Binding var pollItemName: String
     @Binding var selectedItem: [PhotosPickerItem?]
     @Environment(CreatePollViewModel.self) var createPollViewModel
