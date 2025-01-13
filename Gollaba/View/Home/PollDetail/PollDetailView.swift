@@ -11,14 +11,11 @@ import Kingfisher
 struct PollDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) var authManager
-    var id: String
     @State var viewModel: PollDetailViewModel
     
     init(id: String) {
-        self.id = id
         self._viewModel = State(wrappedValue: PollDetailViewModel(id: id))
     }
-    
     
     var body: some View {
         ZStack {
@@ -279,12 +276,11 @@ struct PollDetailView: View {
                     viewModel.setSelectedPollItem()
                 }
             }
-            viewModel.inputNameText = viewModel.getRandomNickName()
             
             if authManager.isLoggedIn && authManager.favoritePolls.contains(viewModel.id) {
                 viewModel.isFavorite = true
             }
-            
+            viewModel.inputNameText = viewModel.getRandomNickName()
             viewModel.authManager = authManager
             
         }

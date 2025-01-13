@@ -41,6 +41,7 @@ class HomeViewModel {
     let allPollsSize: Int = 10
     
     //MARK: - ETC
+    // 에러 발생 시 보여줄 메시지를 저장하는 변수
     var errorMessage: String = ""
     
     //MARK: - API
