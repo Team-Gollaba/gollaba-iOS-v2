@@ -33,28 +33,6 @@ struct PollContentView: View {
                     
                     HStack (alignment: .center) {
                         HStack {
-//                            if let profileUrl = poll.creatorProfileUrl {
-//                                KFImage(URL(string: profileUrl))
-//                                    .resizable()
-//                                    .scaledToFill()
-//                                    .frame(width: 20, height: 20)
-//                                    .clipShape(Circle())
-//                                    .overlay {
-//                                        Circle()
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    }
-//                            } else {
-//                                Image(systemName: "person.circle.fill")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 20, height: 20)
-//                                    .foregroundStyle(.gray)
-//                                    .clipShape(Circle())
-//                                    .overlay {
-//                                        Circle()
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    }
-//                            }
                             
                             ProfileImageView(imageUrl: poll.creatorProfileUrl) {
                                 
