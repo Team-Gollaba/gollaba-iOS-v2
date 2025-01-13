@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 @Observable
 class LoginViewModel {
@@ -30,6 +31,30 @@ class LoginViewModel {
         }
     }
     
+    func appleLogin(result: Result<ASAuthorization, Error>) async {
+        switch result {
+        case .success(let auth):
+            Logger.shared.log(String(describing: self), #function, "Success to apple login. \(auth)")
+            
+            if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
+                let userId = appleIDCredential.user
+                let fullName = appleIDCredential.fullName
+                let email = appleIDCredential.email
+                Logger.shared.log(String(describing: self), #function, "userId: \(userId), fullName: \(fullName), email: \(email)")
+                
+                if let identityToken = appleIDCredential.identityToken, let tokenString = String(data: identityToken, encoding: .utf8) {
+                    Logger.shared.log(String(describing: self), #function, "identityToken: \(tokenString)")
+                }
+                
+                if let authorizationCode = appleIDCredential.authorizationCode, let authCodeString = String(data: authorizationCode, encoding: .utf8) {
+                    Logger.shared.log(String(describing: self), #function, "authorizationCode: \(authCodeString)")
+                }
+            }
+        case .failure(let error):
+            Logger.shared.log(String(describing: self), #function, "Failed to apple login with error: \(error)", .error)
+        }
+    }
+    
     func login(providerToken: String, providerType: ProviderType) async -> String {
         do {
             let jwtToken = try await ApiManager.shared.loginByProviderToken(providerToken: providerToken, providerType: providerType)
@@ -41,4 +66,5 @@ class LoginViewModel {
         }
         return ""
     }
+
 }

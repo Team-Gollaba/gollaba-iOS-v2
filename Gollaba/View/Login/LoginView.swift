@@ -28,7 +28,11 @@ struct LoginView: View {
 //                    oAuthPath: "네이버",
 //                    action: {}
 //                )
-                AppleLoginButton()
+                AppleLoginButton(handleAppleLogin: { result in
+                    Task {
+                        await viewModel.appleLogin(result: result)
+                    }
+                })
                 
                 
                 OAuthLoginButton(
