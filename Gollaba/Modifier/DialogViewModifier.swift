@@ -76,6 +76,7 @@ public struct DialogViewModifier: ViewModifier {
                                         .padding(.horizontal, 12)
                                 }
                             }
+                            .padding(.top, 12)
                         }
                         .frame(maxWidth: 300)
                         .padding()
