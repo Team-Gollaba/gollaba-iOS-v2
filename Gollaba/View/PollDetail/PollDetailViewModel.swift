@@ -162,6 +162,7 @@ class PollDetailViewModel {
     
     // 진행한 투표에서 votingId관련 데이터를 가져오는 함수
     func getVotingId() async {
+        guard authManager?.isLoggedIn ?? false else { return }
         
         do {
             if let poll {
