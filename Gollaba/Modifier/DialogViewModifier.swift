@@ -14,7 +14,7 @@ public struct DialogViewModifier: ViewModifier {
     var content: Text?
     var primaryButtonText: String
     var secondaryButtonText: String?
-    var onPrimaryButton: () -> Void
+    var onPrimaryButton: (() -> Void)?
     var onSecondaryButton: (() -> Void)?
     
     @State private var scale: CGFloat = 0.0
@@ -67,7 +67,7 @@ public struct DialogViewModifier: ViewModifier {
                                     }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         isPresented = false
-                                        onPrimaryButton()
+                                        onPrimaryButton?()
                                     }
                                 } label: {
                                     Text(primaryButtonText)
@@ -112,7 +112,7 @@ public struct DialogViewModifier: ViewModifier {
 
 
 public extension View {
-    func dialog(isPresented: Binding<Bool>, title: String, content: Text? = nil, primaryButtonText: String, secondaryButtonText: String? = nil, onPrimaryButton: @escaping () -> Void, onSecondaryButton: (() -> Void)? = nil) -> some View {
+    func dialog(isPresented: Binding<Bool>, title: String, content: Text? = nil, primaryButtonText: String = "확인", secondaryButtonText: String? = nil, onPrimaryButton: (() -> Void)? = nil, onSecondaryButton: (() -> Void)? = nil) -> some View {
         modifier(
             DialogViewModifier(isPresented: isPresented, title: title, content: content, primaryButtonText: primaryButtonText, secondaryButtonText: secondaryButtonText, onPrimaryButton: onPrimaryButton, onSecondaryButton: onSecondaryButton)
         )

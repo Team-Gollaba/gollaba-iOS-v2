@@ -20,89 +20,75 @@ struct HomeView: View {
         NavigationStack {
             ScrollViewReader { parentScrollProxy in
                 ScrollView {
-                    ZStack {
-                        GeometryReader { geometry in
-                            Color.clear
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    viewModel.searchFocus = false
-                                }
+                    VStack {
+                        Color.clear
+                            .frame(height: 0)
+                            .id("Top")
+                        
+                        GoToSearchView {
+                            goToSearch = true
                         }
                         
-                        VStack {
-                            Color.clear
-                                .frame(height: 0)
-                                .id("Top")
-                            
-                            GoToSearchView {
-                                goToSearch = true
-                            }
-                            //                            SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocus) {
-                            //                                if viewModel.isValidSearchText() {
-                            //                                    viewModel.goToSearchResult = true
-                            //                                }
-                            //                            }
-                            HomeDividerView()
-                            
-                            HorizontalPollList(
-                                title: "🗓️ 오늘의 투표",
-                                pollList: (viewModel.trendingPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.trendingPolls!,
-                                isScrollToLeading: $viewModel.isScrollToTop,
-                                goToPollDetail: $viewModel.goToPollDetail
-                            )
-                            
-                            HomeDividerView()
-                            
-                            HorizontalPollList(
-                                title: "🏆 인기 투표",
-                                pollList: (viewModel.topPolls?.isEmpty ?? true) ? viewModel.tempPolls : viewModel.topPolls!,
-                                isScrollToLeading: $viewModel.isScrollToTop,
-                                goToPollDetail: $viewModel.goToPollDetail
-                            )
-                            
-                            HomeDividerView()
-                            
-                            VerticalPollList(
-                                title: "📝 전체 투표",
-                                pollList: (viewModel.allPolls?.items.isEmpty ?? true) ? viewModel.tempPolls : viewModel.allPolls!.items,
-                                requestAddPoll: $viewModel.requestAddPoll,
-                                isEnd: $viewModel.isAllPollsEnd
-                            )
-                            .onChange(of: viewModel.requestAddPoll) { _, newValue in
-                                if newValue {
-                                    viewModel.fetchPolls()
-                                }
-                            }
-                            
-                        }
-                        .onChange(of: scrollToTopTrigger) { _, newValue in
+                        HomeDividerView()
+                        
+                        HorizontalPollList(
+                            title: "🗓️ 오늘의 투표",
+                            pollList: (viewModel.trendingPolls?.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.trendingPolls!,
+                            isScrollToLeading: $viewModel.isScrollToTop
+                        )
+                        
+                        HomeDividerView()
+                        
+                        HorizontalPollList(
+                            title: "🏆 인기 투표",
+                            pollList: (viewModel.topPolls?.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.topPolls!,
+                            isScrollToLeading: $viewModel.isScrollToTop
+                        )
+                        
+                        HomeDividerView()
+                        
+                        VerticalPollList(
+                            title: "📝 전체 투표",
+                            pollList: (viewModel.allPolls?.items.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.allPolls!.items,
+                            requestAddPoll: $viewModel.requestAddPoll,
+                            isEnd: $viewModel.isAllPollsEnd
+                        )
+                        .onChange(of: viewModel.requestAddPoll) { _, newValue in
                             if newValue {
-                                scrollToTopTrigger = false
-                                withAnimation {
-                                    parentScrollProxy.scrollTo("Top", anchor: .bottom)
+                                Task {
+                                    await viewModel.fetchPolls()
                                 }
                             }
                         }
-                        .padding(.vertical)
+                        
                     }
+                    .onChange(of: scrollToTopTrigger) { _, newValue in
+                        if newValue {
+                            scrollToTopTrigger = false
+                            withAnimation {
+                                parentScrollProxy.scrollTo("Top", anchor: .bottom)
+                            }
+                        }
+                    }
+                    .padding(.vertical)
+                    
                 }
                 .refreshable(action: viewModel.loadEveryPolls)
                 .onAppear {
-                    viewModel.getPolls()
-                    viewModel.getTrendingPolls()
-                    viewModel.getTopPolls()
+                    Task {
+                        await viewModel.getPolls()
+                        await viewModel.getTrendingPolls()
+                        await viewModel.getTopPolls()
+                    }
                 }
                 .dragToHide(isHide: $isHideTapBar)
+                .dialog(
+                    isPresented: $viewModel.showErrorDialog,
+                    title: "홈 화면",
+                    content: Text("\(viewModel.errorMessage)")
+                )
             }
         }
-        .navigationDestination(isPresented: $viewModel.goToSearchResult) {
-            SearchResultListView(searchText: viewModel.searchText)
-        }
-        .toast(
-            isPresenting: $viewModel.showSearchErrorToast) {
-                AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
-            }
     }
 }
 

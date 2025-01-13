@@ -14,7 +14,6 @@ struct HorizontalPollList: View {
     
     @Binding var isScrollToLeading: Bool
     
-    @Binding var goToPollDetail: Bool
     @State var position = ScrollPosition(edge: .leading)
     @State var isOpen: Bool = true
     
@@ -96,5 +95,5 @@ struct HorizontalPollList: View {
 }
 
 #Preview {
-    HorizontalPollList(title: "Title", pollList: [], isScrollToLeading: .constant(false), goToPollDetail: .constant(false))
+    HorizontalPollList(title: "Title", pollList: [], isScrollToLeading: .constant(false))
 }
