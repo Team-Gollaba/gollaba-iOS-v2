@@ -22,8 +22,8 @@ struct CreatePollView: View {
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 viewModel.isPollItemFocused = false
-                                viewModel.isPollTitleFocused = false
-                                viewModel.isPollCreatorNameFocused = false
+                                viewModel.titleFocus = false
+                                viewModel.creatorNameFocus = false
                             }
                     }
                     VStack (spacing: 16) {
@@ -106,18 +106,6 @@ struct CreatePollView: View {
                         
                     }
                     .padding()
-                    .onChange(of: viewModel.isPollTitleFocused) { _, newValue in
-                        viewModel.titleFocus = newValue
-                    }
-                    .onChange(of: viewModel.titleFocus) { _, newValue in
-                        viewModel.isPollTitleFocused = newValue
-                    }
-                    .onChange(of: viewModel.isPollCreatorNameFocused) { _, newValue in
-                        viewModel.creatorNameFocus = newValue
-                    }
-                    .onChange(of: viewModel.creatorNameFocus) { _, newValue in
-                        viewModel.isPollCreatorNameFocused = newValue
-                    }
                     
                     if viewModel.showDatePicker {
                         CalendarView(
@@ -145,9 +133,9 @@ struct CreatePollView: View {
                 onPrimaryButton: {}
             )
             .dialog(
-                isPresented: $viewModel.showAlert,
+                isPresented: $viewModel.showCompletedDialog,
                 title: "투표 만들기",
-                content: Text(viewModel.alertMessage),
+                content: Text(viewModel.completedMessage),
                 primaryButtonText: "확인",
                 onPrimaryButton: {
                     if viewModel.isCompletedCreatePoll {

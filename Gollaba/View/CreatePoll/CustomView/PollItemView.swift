@@ -114,7 +114,6 @@ struct PollItemView: View {
                                     createPollViewModel.isPollItemFocused = newValue
                                 })
                                 .onChange(of: createPollViewModel.isPollItemFocused) { oldValue, newValue in
-                                    print("focus: \(newValue)")
                                     if !newValue {
                                         focus = newValue
                                     }
