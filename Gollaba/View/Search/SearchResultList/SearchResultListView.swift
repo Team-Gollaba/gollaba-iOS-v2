@@ -57,7 +57,7 @@ struct SearchResultListView: View {
                     ScrollView {
                         
                         VerticalPollList(
-                            pollList: (viewModel.searchResultPollData?.items.isEmpty ?? true) ? viewModel.tempPolls : viewModel.searchResultPollData!.items,
+                            pollList: (viewModel.searchResultPollData?.items.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.searchResultPollData!.items,
                             requestAddPoll: $viewModel.requestAddPoll,
                             isEnd: $viewModel.isEnd
                         )
@@ -97,30 +97,11 @@ struct SearchResultListView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .topBarLeading) {
-//                Button {
-//                    dismiss()
-//                } label: {
-//                    Image(systemName: "chevron.left")
-//                        .tint(.black)
-//                }
-//            }
-//            
-//            ToolbarItem(placement: .principal) {
-//                //                Text("\'\(viewModel.searchText)\' 검색 결과")
-//                //                    .font(.suitBold16)
-//                
-//                HStack (spacing: 12) {
-//                    SearchPollView(text: $viewModel.searchText, searchFocus: $viewModel.searchFocused) {
-//                        
-//                    }
-//                    
-//                    SearchFilterButton(isFilterOpen: $viewModel.isFilterOpen)
-//                        .padding(.leading, -12)
-//                }
-//            }
-//        }
+        .dialog(
+            isPresented: $viewModel.showErrorDialog,
+            title: "검색 오류",
+            content: Text("\(viewModel.errorMessage)")
+        )
         .toast(
             isPresenting: $viewModel.showSearchErrorToast) {
                 AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
