@@ -46,24 +46,16 @@ struct SearchView: View {
                             }
                             .tint(.black)
                         }, content: {
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(recentKeywords) { keyword in
-                                        RecentSearchKeywordView(
-                                            keyword: keyword.keyword,
-                                            tapAction: {
-                                                viewModel.searchText = keyword.keyword
-                                                viewModel.saveKeyword(viewModel.searchText, context: context)
-                                                viewModel.goToSearchResult = true
-                                            },
-                                            deleteAction: {
-                                                viewModel.deleteKeyword(keyword.keyword, context: context)
-                                            })
-                                    }
-                                }
-                                .padding(4)
-                                .padding(.trailing)
-                            }
+                            RecentSearchKeywordList(
+                                recentSearchKeywords: recentKeywords,
+                                tapAction: { keyword in
+                                    viewModel.searchText = keyword
+                                    viewModel.saveKeyword(viewModel.searchText, context: context)
+                                    viewModel.goToSearchResult = true
+                                },
+                                deleteAction: { keyword in
+                                    viewModel.deleteKeyword(keyword, context: context)
+                                })
                         })
                     
                     SpecialSearchContentView(
@@ -77,28 +69,12 @@ struct SearchView: View {
                                     .foregroundStyle(.gray)
                             }
                         }, content: {
-                            ForEach(Array( viewModel.recommendedKeywords.prefix(10).enumerated()), id: \.offset) { index, recommendedKeyword in
-                                HStack {
-                                    Button {
-                                        viewModel.searchText = recommendedKeyword.searchedWord
-                                        viewModel.saveKeyword(viewModel.searchText, context: context)
-                                        viewModel.goToSearchResult = true
-                                    } label: {
-                                        
-                                        Text("\(index + 1) ")
-                                            .font(.suitBold16)
-                                            .foregroundStyle((1...3).contains(index + 1) ? .enrollButton : .black)
-                                        
-                                        Text(recommendedKeyword.searchedWord)
-                                            .font(.suitVariable16)
-                                        
-                                    }
-                                    .tint(.black)
-                                    Spacer()
+                            TrendingKeywordList(
+                                trendingKeywords: Array(viewModel.trendingKeywords.prefix(10))) { searchedWord in
+                                    viewModel.searchText = searchedWord
+                                    viewModel.saveKeyword(viewModel.searchText, context: context)
+                                    viewModel.goToSearchResult = true
                                 }
-                                .padding(.horizontal)
-                                .padding(.bottom, 8)
-                            }
                         })
                 }
                 Spacer()

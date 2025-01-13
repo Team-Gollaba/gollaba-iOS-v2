@@ -33,7 +33,7 @@ class SearchViewModel {
     var recentKeywords: [SearchKeyword] = []
     
     // 서버에서 받아온 인기 검색어를 저장하는 변수
-    var recommendedKeywords: [TrendingSearchResponseData] = []
+    var trendingKeywords: [TrendingSearchResponseData] = []
     
     // 인기 검색어의 갱신 시간을 저장하는 함수
     var whenGetToRecommendedKeywords: Date?
@@ -46,7 +46,7 @@ class SearchViewModel {
     // 인기 검색어를 불러오는 함수
     func getTrendingKeywords() async {
         do {
-            self.recommendedKeywords = try await ApiManager.shared.getTrendingSearchKeywords()
+            self.trendingKeywords = try await ApiManager.shared.getTrendingSearchKeywords()
             self.whenGetToRecommendedKeywords = Date()
         } catch {
             handleError(error: error)
