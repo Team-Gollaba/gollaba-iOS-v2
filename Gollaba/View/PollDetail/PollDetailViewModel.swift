@@ -99,6 +99,7 @@ class PollDetailViewModel {
     // 로그인 상태에서 데이터를 다루기 위한 변수
     var authManager: AuthManager?
     
+    //MARK: - Error
     // 에러 발생 시 보여줄 메시지를 저장하는 변수
     var errorMessage: String = ""
     

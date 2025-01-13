@@ -40,7 +40,7 @@ class HomeViewModel {
     // 모든 투표 리스트의 페이지네이션 페이지 사이즈
     let allPollsSize: Int = 10
     
-    //MARK: - ETC
+    //MARK: - Error
     // 에러 발생 시 보여줄 메시지를 저장하는 변수
     var errorMessage: String = ""
     
