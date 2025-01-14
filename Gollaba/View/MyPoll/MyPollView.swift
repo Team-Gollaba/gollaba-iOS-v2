@@ -123,10 +123,9 @@ struct MyPollView: View {
                         
                         TabView (selection: $viewModel.selectedTab) {
                             PollMadeByMeList(
-                                pollMadeByMeList: viewModel.madeByMePollList.isEmpty ? viewModel.tempPolls : viewModel.madeByMePollList,
+                                pollMadeByMeList: viewModel.madeByMePollList.isEmpty ? PollItem.tempDataList() : viewModel.madeByMePollList,
                                 requestAddPoll: $viewModel.madeByMePollRequestAdd,
-                                isEnd: $viewModel.madeByMePollIsEnd,
-                                activateAnimation: $viewModel.activateAnimation
+                                isEnd: $viewModel.madeByMePollIsEnd
                             )
                             .tag(MyPollSelectedTab.madeByMe)
                             .background(GeometryReader { proxy in
@@ -136,7 +135,7 @@ struct MyPollView: View {
                             
                             
                             PollFavoriteByMeList(
-                                pollFavoriteByMeList: viewModel.favoriteByMePollList.isEmpty ? viewModel.tempPolls : viewModel.favoriteByMePollList,
+                                pollFavoriteByMeList: viewModel.favoriteByMePollList.isEmpty ? PollItem.tempDataList() : viewModel.favoriteByMePollList,
                                 favoritePolls: authManager.favoritePolls,
                                 requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
                                 isEnd: $viewModel.favoriteByMePollIsEnd,
@@ -157,7 +156,7 @@ struct MyPollView: View {
                             })
                             
                             PollParticipatedList(
-                                pollParticipatedList: viewModel.participatedPollList.isEmpty ? viewModel.tempPolls : viewModel.participatedPollList,
+                                pollParticipatedList: viewModel.participatedPollList.isEmpty ? PollItem.tempDataList() : viewModel.participatedPollList,
                                 requestAddPoll: $viewModel.participatedPollRequestAdd,
                                 isEnd: $viewModel.participatedPollIsEnd
                             )
@@ -298,6 +297,11 @@ struct MyPollView: View {
                 }
             }
         }
+        .dialog(
+            isPresented: $viewModel.showErrorDialog,
+            title: "My투표 오류",
+            content: Text("\(viewModel.errorMessage)")
+        )
     }
 }
 
