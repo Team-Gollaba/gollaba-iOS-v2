@@ -143,6 +143,11 @@ struct CreatePollView: View {
                     }
                 }
             )
+            .dialog(
+                isPresented: $viewModel.showErrorDialog,
+                title: "투표 만들기 오류",
+                content: Text("\(viewModel.errorMessage)")
+            )
             
             VStack {
                 Spacer()
