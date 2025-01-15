@@ -12,7 +12,7 @@ import AlertToast
 struct SearchView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \SearchKeyword.timeStamp, order: .reverse) private var recentKeywords: [SearchKeyword]
-    @State var viewModel = SearchViewModel()
+    @State private var viewModel = SearchViewModel()
     @Binding var isHideTabBar: Bool
     
     var body: some View {
@@ -114,7 +114,7 @@ struct SearchView: View {
             content: Text("\(viewModel.errorMessage)")
         )
         .toast(
-            isPresenting: $viewModel.showSearchErrorToast) {
+            isPresenting: $viewModel.showKeywordEmptyErrorToast) {
                 AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
             }
     }

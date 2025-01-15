@@ -9,9 +9,9 @@ import SwiftUI
 import AuthenticationServices
 
 struct LoginView: View {
-    @Environment(\.dismiss) var dismiss
-    @Environment(AuthManager.self) var authManager
-    @State var viewModel = LoginViewModel()
+    @Environment(\.dismiss) private var dismiss
+    @Environment(AuthManager.self) private var authManager
+    @State private var viewModel = LoginViewModel()
     
     var body: some View {
         ZStack {
@@ -64,7 +64,7 @@ struct LoginView: View {
             }
         }
         .onAppear {
-            viewModel.authManager = authManager
+            viewModel.setAuthManager(authManager)
             if let jwtToken = authManager.jwtToken, jwtToken != "" {
                 dismiss()
             }

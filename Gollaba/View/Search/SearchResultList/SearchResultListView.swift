@@ -9,8 +9,8 @@ import SwiftUI
 import AlertToast
 
 struct SearchResultListView: View {
-    @Environment(\.dismiss) var dismiss
-    @State var viewModel: SearchResultListViewModel
+    @Environment(\.dismiss) private var dismiss
+    @State private var viewModel: SearchResultListViewModel
     
     init(searchText: String) {
         self.viewModel = SearchResultListViewModel(query: searchText)
@@ -103,7 +103,7 @@ struct SearchResultListView: View {
             content: Text("\(viewModel.errorMessage)")
         )
         .toast(
-            isPresenting: $viewModel.showSearchErrorToast) {
+            isPresenting: $viewModel.showKeywordEmptyErrorToast) {
                 AlertToast(type: .error(.red), title: "검색할 키워드를 입력해주세요.", style: .style(titleFont: .suitBold16))
             }
     }

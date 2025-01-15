@@ -9,9 +9,9 @@ import SwiftUI
 import Kingfisher
 
 struct PollDetailView: View {
-    @Environment(\.dismiss) var dismiss
-    @Environment(AuthManager.self) var authManager
-    @State var viewModel: PollDetailViewModel
+    @Environment(\.dismiss) private var dismiss
+    @Environment(AuthManager.self) private var authManager
+    @State private var viewModel: PollDetailViewModel
     
     init(id: String) {
         self._viewModel = State(wrappedValue: PollDetailViewModel(id: id))
@@ -286,7 +286,7 @@ struct PollDetailView: View {
                 viewModel.isFavorite = true
             }
             viewModel.inputNameText = viewModel.getRandomNickName()
-            viewModel.authManager = authManager
+            viewModel.setAuthManager(authManager)
             
         }
         .onDisappear {

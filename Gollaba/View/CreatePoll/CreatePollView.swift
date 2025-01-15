@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CreatePollView: View {
-    @Environment(AuthManager.self) var authManager
-    @State var viewModel = CreatePollViewModel()
+    @Environment(AuthManager.self) private var authManager
+    @State private var viewModel = CreatePollViewModel()
     @Binding var isHideTabBar: Bool
     
     var body: some View {

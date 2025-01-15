@@ -18,7 +18,7 @@ class CreatePollViewModel {
     var showDatePicker: Bool = false
     var showTimePicker: Bool = false
     
-    var isCompletedCreatePoll: Bool = false
+    private(set) var isCompletedCreatePoll: Bool = false
     var goToPollDetail: Bool = false
     
     var showInvalidDialog: Bool = false
@@ -26,7 +26,7 @@ class CreatePollViewModel {
     var showErrorDialog: Bool = false
     
     //MARK: - Data
-    var pollHashId: String = ""
+    private(set) var pollHashId: String = ""
     var titleText: String = ""
     var creatorNameText: String = ""
     
@@ -61,9 +61,9 @@ class CreatePollViewModel {
     var uiImage: [UIImage?] = Array(repeating: nil, count: 6)
     
     //MARK: - Dialog Message
-    var invalidMessage: String = ""
-    var completedMessage: String = ""
-    var errorMessage: String = ""
+    private(set) var invalidMessage: String = ""
+    private(set) var completedMessage: String = ""
+    private(set) var errorMessage: String = ""
     
     //MARK: - Image
     func convertImage(item: PhotosPickerItem?, index: Int) async {

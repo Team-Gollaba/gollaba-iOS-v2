@@ -18,6 +18,13 @@ enum NickNameError {
 }
 
 class SignUpViewModel: ObservableObject {
+    //MARK: - Properties
+    
+    //MARK: - Flag
+    @Published var showAlert: Bool = false
+    @Published var showInValidToast: Bool = false
+    
+    //MARK: - Data
     @Published var providerAccessToken: String = ""
     @Published var email: String = ""
     @Published var nickName: String = ""
@@ -27,14 +34,15 @@ class SignUpViewModel: ObservableObject {
     @Published var emailFocused: Bool = false
     @Published var nickNameFocused: Bool = false
     
+    //MARK: - Image
     @Published var selectedItem: PhotosPickerItem?
     @Published var image: Image?
     @Published var uiImage: UIImage?
     
-    @Published var showAlert: Bool = false
-    @Published var alertMessage: String = ""
-    @Published var nicknameError: NickNameError = .None
-    @Published var showInValidToast: Bool = false
+    //MARK: - Error
+    @Published private(set) var alertMessage: String = ""
+    @Published private(set) var nicknameError: NickNameError = .None
+    
     
     func convertImage(item: PhotosPickerItem?) async {
         guard let imageSelection = await ImageManager.convertImage(item: item) else { return }

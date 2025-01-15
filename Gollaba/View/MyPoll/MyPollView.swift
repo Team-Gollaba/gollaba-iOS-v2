@@ -9,11 +9,11 @@ import SwiftUI
 import Kingfisher
 
 struct MyPollView: View {
-    @Environment(AuthManager.self) var authManager
-    @State var viewModel = MyPollViewModel()
+    @Environment(AuthManager.self) private var authManager
+    @State private var viewModel = MyPollViewModel()
     @Binding var isHideTabBar: Bool
-    @State var titleText: String = ""
-    @State var contentText: String = ""
+    @State private var titleText: String = ""
+    @State private var contentText: String = ""
     
     struct MadeByMeTabHeightPreferenceKey: PreferenceKey {
         static var defaultValue: CGFloat = 0
@@ -288,7 +288,7 @@ struct MyPollView: View {
             
         }
         .onAppear {
-            viewModel.authManager = authManager
+            viewModel.setAuthManager(authManager)
             if authManager.isLoggedIn {
                 Task {
                     await viewModel.getUser()

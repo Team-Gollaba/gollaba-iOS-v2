@@ -12,41 +12,19 @@ class PollDetailViewModel {
     //MARK: - Properties
     
     //MARK: - Flag
-    // 비 로그인 유저가 이미 한 투표에 또 투표를 할 경우 true
     var showAlreadyVotedAlert: Bool = false
-    
-    // 투표를 하기 위한 검사 도중 문제가 있을 경우 true
     var inValidVoteAlert: Bool = false
-    
-    // 투표하기 성공 시 선택된 옵션들에 애니메이션을 주기 위한 변수
     var activateSelectAnimation: Bool = false
-    
-    // 로그인 유저가 투표취소 버튼을 눌렀을 경우 true
     var isClickedCancelButton: Bool = false
-    
-    // 기명 투표의 경우 투표 결과의 chart를 클릭할 경우 true
     var isPresentPollVotersView: Bool = false
-    
-    // 좋아요 상태에 따른 변수 (로그인 유저만 이용 가능)
     var isFavorite: Bool = false
-    
-    // 에러 발생 시 에러 메시지를 보여주기 위한 flag
     var showErrorDialog: Bool = false
     
     //MARK: - Poll Data
-    // 생성자로 전달되는 해당 투표의 id 값
-    var id: String
-    
-    // 해당 투표의 데이터
-    var poll: PollItem?
-    
-    // 해당 투표의 투표자들에 대한 데이터
-    var pollVoters: [PollVotersResponseData]?
-    
-    // 단일 투표를 다루기 위한 변수
+    let id: String
+    private(set) var poll: PollItem?
+    private(set) var pollVoters: [PollVotersResponseData]?
     var selectedSinglePoll: Int? = nil
-    
-    // 복수 투표를 다루기 위한 변수
     var selectedMultiplePoll: [Bool] = []
     
     // 투표 상태를 다루기 위한 변수
@@ -56,14 +34,10 @@ class PollDetailViewModel {
     ///     - ended : 이미 기한이 끝나 종료된 투표 ("이미 종료된 투표입니다." 로 표시)
     var pollButtonState: PollButtonState = .normal
     
-    // 기명 투표의 경우 입력되는 이름
     var inputNameText: String = ""
-    
-    // inputNameText의 textField의 focus를 관리하는 변수
     var inputNameFocused: Bool = false
     
-    // 투표 여부를 체크 하는 변수
-    var isVoted: Bool = false {
+    private(set) var isVoted: Bool = false {
         didSet {
             guard let authManager else { return }
             
@@ -73,10 +47,7 @@ class PollDetailViewModel {
         }
     }
     
-    // 유효하지 않은 상태에서 투표를 할경우의 메세지 저장을 위한 변수
-    var inValidVoteAlertContent: String = ""
-    
-    // 유효한 날짜인지를 다루는 변수
+    private(set) var inValidVoteAlertContent: String = ""
     var isValidDatePoll: Bool {
         get {
             if let poll {
@@ -87,21 +58,15 @@ class PollDetailViewModel {
         }
     }
     
-    // 투표자들이 선택한 옵션을 저장하는 변수
     var pollVotersTitle: String = ""
-    
-    // 투표자들의 이름을 저장하는 변수
     var pollVoterNames: [String] = []
     
-    // 로그인 유저가 재투표 및 투표 철회를 하기 위해 votingId와 함께 다루는 변수
     var votingIdData: VotingIdResponseData?
     
-    // 로그인 상태에서 데이터를 다루기 위한 변수
-    var authManager: AuthManager?
+    private var authManager: AuthManager?
     
     //MARK: - Error
-    // 에러 발생 시 보여줄 메시지를 저장하는 변수
-    var errorMessage: String = ""
+    private(set) var errorMessage: String = ""
     
     //MARK: - Initialization
     init(id: String) {
@@ -109,7 +74,6 @@ class PollDetailViewModel {
     }
     
     //MARK: - API
-    // 생성자로 전달 받은 id로 투표의 모든 데이터를 불러오는 함수
     func getPoll() async {
         do {
             let newPoll = try await ApiManager.shared.getPoll(pollHashId: self.id)
@@ -130,7 +94,6 @@ class PollDetailViewModel {
         
     }
     
-    // 조회수를 올리는 함수
     func readPoll() async {
         do {
             try await ApiManager.shared.readPoll(pollHashId: self.id)
@@ -139,7 +102,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 투표 진행 여부를 확인하는 함수
     func votingCheck() async {
         do {
             if let poll {
@@ -160,7 +122,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 진행한 투표에서 votingId관련 데이터를 가져오는 함수
     func getVotingId() async {
         guard authManager?.isLoggedIn ?? false else { return }
         
@@ -176,7 +137,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 기명 투표일 경우 투표자들을 불러오는 함수
     func getPollVoters() async {
         
         do {
@@ -192,7 +152,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 새로 고침 시 호출되는 함수
     @Sendable func loadPoll() async {
         do {
             try await Task.sleep(nanoseconds: 1_000_000_000)
@@ -203,7 +162,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 투표를 진행하는 함수
     func vote() async {
         let pollItemIds: [Int] = getSelectedPollItemId()
         var voterName: String
@@ -234,7 +192,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 로그인 유저가 다른 옵션으로 투표를 바꾸는 함수
     func updateVote() async {
         guard let authManager else {
             Logger.shared.log(String(describing: self), #function, "authManager is nil")
@@ -257,7 +214,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 로그인 유저가 투표를 철회하는 함수
     func cancelVote() async {
         guard let votingIdData else {
             Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
@@ -272,7 +228,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 로그인 유저가 좋아요를 클릭하여 좋아요 항목으로 추가될 때 호출되는 함수
     func createFavorite() async {
         do {
             try await ApiManager.shared.createFavoritePoll(pollHashId: id)
@@ -281,7 +236,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 로그인 유저가 좋아요를 철회할 때 호출되는 함수
     func deleteFavorite() async {
         do {
             try await ApiManager.shared.deleteFavoritePoll(pollHashId: id)
@@ -290,7 +244,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 로그인 유저가 좋아요한 투표의 id 리스트를 가져오는 함수
     func getFavorite() async {
         do {
             try await ApiManager.shared.getFavoritePolls()
@@ -300,7 +253,6 @@ class PollDetailViewModel {
     }
     
     //MARK: - check valid
-    // 투표를 진행할 때 유효한지 확인하는 함수
     func checkVoting() -> Bool {
         guard let authManager else {
             return false
@@ -343,7 +295,10 @@ class PollDetailViewModel {
     }
     
     //MARK: - ETC
-    // 비 로그인 유저가 기명 투표를 할 때 자동으로 이름을 만들어주는 함수
+    func setAuthManager(_ authManager: AuthManager) {
+        self.authManager = authManager
+    }
+    
     func getRandomNickName() -> String {
         let frontNickname = [
             "뽀짝", "몽글", "쪼꼬", "졸귀", "포동", "귀염", "깜찍", "말랑", "도톰", "보들",
@@ -359,7 +314,6 @@ class PollDetailViewModel {
         return (frontNickname.randomElement() ?? "") + (backNickname.randomElement() ?? "")
     }
     
-    // 선택 된 투표들을 모두 초기화 하는 함수
     func deleteOption() {
         selectedSinglePoll = nil
         
@@ -368,7 +322,6 @@ class PollDetailViewModel {
         }
     }
     
-    // 문자열로 된 날짜 데이터를 Date 타입으로 반환하는 함수
     private func setDate(_ dateString: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -390,7 +343,7 @@ class PollDetailViewModel {
     }
     
     // 현재 선택된 옵션(들)의 pollItemId를 반환하는 함수
-    func getSelectedPollItemId() -> [Int] {
+    private func getSelectedPollItemId() -> [Int] {
         var pollItemIds: [Int] = []
         
         if let poll {

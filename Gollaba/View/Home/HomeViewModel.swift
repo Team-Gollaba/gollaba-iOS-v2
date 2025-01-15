@@ -12,40 +12,24 @@ class HomeViewModel {
     //MARK: - Properties
     
     //MARK: - Flag
-    // All Polls의 스크롤이 끝에 도달 했을 때 true
     var requestAddPoll: Bool = false
-    
-    // All Polls의 fetch api 호출을 다루기 위한 끝에 도달 했는지 체크하는 변수
     var isAllPollsEnd: Bool = false
-    
-    // 홈 화면에서 하단 탭뷰의 홈 탭을 눌렀을 때 true
     var isScrollToTop: Bool = false
     
-    // 에러 발생 시 에러 메시지를 보여주기 위한 flag
     var showErrorDialog: Bool = false
     
     //MARK: - Poll Data
-    // verticalList로 보여지는 모든 투표 리스트
-    var allPolls: AllPollData?
+    private(set) var allPolls: AllPollData?
+    private(set) var trendingPolls: [PollItem]?
+    private(set) var topPolls: [PollItem]?
     
-    // 오늘의 투표 리스트
-    var trendingPolls: [PollItem]?
-    
-    // 인기 투표 리스트
-    var topPolls: [PollItem]?
-    
-    // 모든 투표 리스트의 페이지네이션 할 때의 페이지
-    var allPollsPage: Int = 0
-    
-    // 모든 투표 리스트의 페이지네이션 페이지 사이즈
-    let allPollsSize: Int = 10
+    private var allPollsPage: Int = 0
+    private let allPollsSize: Int = 10
     
     //MARK: - Error
-    // 에러 발생 시 보여줄 메시지를 저장하는 변수
-    var errorMessage: String = ""
+    private(set) var errorMessage: String = ""
     
     //MARK: - API
-    // 모든 투표 리스트를 불러오는 함수
     func getPolls() async {
         if let allPolls, !allPolls.items.isEmpty { return }
         
@@ -57,7 +41,6 @@ class HomeViewModel {
         }
     }
     
-    // 모든 투표 리스트를 추가로 불러오는 함수
     func fetchPolls() async {
         if isAllPollsEnd { return }
         
@@ -73,7 +56,6 @@ class HomeViewModel {
         }
     }
     
-    // 오늘의 투표 리스트를 불러오는 함수
     func getTrendingPolls() async {
         if let trendingPolls, !trendingPolls.isEmpty { return }
         
@@ -86,7 +68,6 @@ class HomeViewModel {
         }
     }
     
-    // 인기 투표 리스트를 불러오는 함수
     func getTopPolls() async {
         if let topPolls, !topPolls.isEmpty { return }
         
@@ -99,7 +80,6 @@ class HomeViewModel {
         }
     }
     
-    // 새로 고침 시 호출되는 함수
     @Sendable func loadEveryPolls() async {
         
         do {

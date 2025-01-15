@@ -9,7 +9,7 @@ import SwiftUI
 import AlertToast
 
 struct HomeView: View {
-    @State var viewModel = HomeViewModel()
+    @State private var viewModel = HomeViewModel()
     @State private var dragStartLocation: CGFloat = 0.0
     @State private var dragEndLocation: CGFloat = 0.0
     @Binding var scrollToTopTrigger: Bool

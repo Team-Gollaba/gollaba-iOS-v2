@@ -10,14 +10,20 @@ import AuthenticationServices
 
 @Observable
 class LoginViewModel {
+    //MARK: - Properties
+    
+    //MARK: - Flag
+    private(set) var isNotSignUp: Bool = false
+    var goToSignUp: Bool = false
+    
+    //MARK: - Data
     var accessToken: String = ""
     var email: String = ""
     var providerType: ProviderType = .apple
-    var isNotSignUp: Bool = false
-    var goToSignUp: Bool = false
     
-    var authManager: AuthManager?
+    private var authManager: AuthManager?
     
+    //MARK: - Login
     func kakaoLogin() async {
         guard let authManager else {
             Logger.shared.log(String(describing: self), #function, "authManager is nil")
@@ -67,4 +73,8 @@ class LoginViewModel {
         return ""
     }
 
+    //MARK: - ETC
+    func setAuthManager(_ authManager: AuthManager) {
+        self.authManager = authManager
+    }
 }

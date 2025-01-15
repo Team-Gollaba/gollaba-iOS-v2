@@ -24,25 +24,25 @@ class MyPollViewModel {
     var showErrorDialog: Bool = false
     
     // 내가 만든 투표
-    var madeByMePollList: [PollItem] = []
+    private(set) var madeByMePollList: [PollItem] = []
     var madeByMePollRequestAdd: Bool = false
     var madeByMePollIsEnd: Bool = false
-    var madeByMePollPage: Int = 0
-    let madeByMePollSize: Int = 10
+    private var madeByMePollPage: Int = 0
+    private let madeByMePollSize: Int = 10
     
     // 좋아요 한 투표
-    var favoriteByMePollList: [PollItem] = []
+    private(set) var favoriteByMePollList: [PollItem] = []
     var favoriteByMePollRequestAdd: Bool = false
     var favoriteByMePollIsEnd: Bool = false
-    var favoriteByMePollPage: Int = 0
-    let favoriteByMePollSize: Int = 10
+    private var favoriteByMePollPage: Int = 0
+    private let favoriteByMePollSize: Int = 10
     
     // 참여한 투표
-    var participatedPollList: [PollItem] = []
+    private(set) var participatedPollList: [PollItem] = []
     var participatedPollRequestAdd: Bool = false
     var participatedPollIsEnd: Bool = false
-    var participatedPollPage: Int = 0
-    let participatedPollSize: Int = 10
+    private var participatedPollPage: Int = 0
+    private let participatedPollSize: Int = 10
     
     var selectedTab: MyPollSelectedTab = .madeByMe
     
@@ -51,11 +51,12 @@ class MyPollViewModel {
     var participatedTabHeight: CGFloat = 0
     var currentTabHeight: CGFloat = 0
     
-    var authManager: AuthManager?
-    var userData: UserData?
+    private(set) var userData: UserData?
     var userName: String = ""
     
-    var errorMessage: String = ""
+    private var authManager: AuthManager?
+    
+    private(set) var errorMessage: String = ""
     
     //MARK: - OAuth
     
@@ -240,6 +241,10 @@ class MyPollViewModel {
     }
     
     //MARK: - ETC
+    func setAuthManager(_ authManager: AuthManager) {
+        self.authManager = authManager
+    }
+    
     func updateCurrentTabHeight() {
         switch selectedTab {
         case .madeByMe:

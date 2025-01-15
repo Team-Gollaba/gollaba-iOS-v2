@@ -13,37 +13,23 @@ class SearchViewModel {
     //MARK: - Properties
     
     //MARK: - Flag
-    // 키워드 없이 검색 버튼을 눌렀을 경우 true
-    var showSearchErrorToast: Bool = false
-    
-    // 검색 결과 화면으로 이동 하기 위한 변수
+    var showKeywordEmptyErrorToast: Bool = false
     var goToSearchResult: Bool = false
-    
-    // 에러 발생 시 에러 메시지를 보여주기 위한 flag
     var showErrorDialog: Bool = false
     
     //MARK: - Data
-    // 검색 창의 텍스트를 관리하는 변수
     var searchText: String = ""
-    
-    // 검색 창의 focus를 관리하는 변수
     var searchFocus: Bool = false
     
-    // 최근 검색어를 저장하는 변수
     var recentKeywords: [SearchKeyword] = []
     
-    // 서버에서 받아온 인기 검색어를 저장하는 변수
     var trendingKeywords: [TrendingSearchResponseData] = []
-    
-    // 인기 검색어의 갱신 시간을 저장하는 함수
-    var whenGetToRecommendedKeywords: Date?
+    private(set) var whenGetToRecommendedKeywords: Date?
     
     //MARK: - Error
-    // 에러 발생 시 보여줄 메시지를 저장하는 변수
-    var errorMessage: String = ""
+    private(set) var errorMessage: String = ""
     
     //MARK: - API
-    // 인기 검색어를 불러오는 함수
     func getTrendingKeywords() async {
         do {
             self.trendingKeywords = try await ApiManager.shared.getTrendingSearchKeywords()
@@ -54,7 +40,6 @@ class SearchViewModel {
     }
     
     //MARK: - SwiftData
-    // 검색한 검색어를 swiftData에 저장하는 함수
     func saveKeyword(_ keyword: String, context: ModelContext) {
         let fetchDescriptor = FetchDescriptor<SearchKeyword>()
         let existingKeyword = try? context.fetch(fetchDescriptor).first(where: { $0.keyword == keyword })
@@ -75,7 +60,6 @@ class SearchViewModel {
         }
     }
     
-    // swiftData에 저장된 검색어를 지우는 함수
     func deleteKeyword(_ keyword: String, context: ModelContext) {
         let fetchDescriptor = FetchDescriptor<SearchKeyword>()
         
@@ -92,7 +76,6 @@ class SearchViewModel {
         }
     }
     
-    // swiftData에 저장된 모든 검색어를 지우는 함수
     func deleteAllKeywords(context: ModelContext) {
         do {
             let allKeywords = try context.fetch(FetchDescriptor<SearchKeyword>())
@@ -106,10 +89,9 @@ class SearchViewModel {
     }
     
     //MARK: - Check Valid
-    // 검색창이 비어있는지 확인하는 함수
     func isValidSearchText() -> Bool {
         if searchText.isEmpty {
-            self.showSearchErrorToast = true
+            self.showKeywordEmptyErrorToast = true
             
             return false
         }

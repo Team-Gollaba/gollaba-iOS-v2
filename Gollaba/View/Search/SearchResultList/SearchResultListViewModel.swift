@@ -12,26 +12,17 @@ class SearchResultListViewModel {
     //MARK: - Properties
     
     //MARK: - Flag
-    // 검색 필터 창을 다루는 변수
     var isFilterOpen: Bool = false
     
-    // 검색어가 없을 경우 토스트를 띄우기 위해 다루는 변수
-    var showSearchErrorToast: Bool = false
+    var showKeywordEmptyErrorToast: Bool = false
     
-    // 검색 결과 페이지네이션을 할 때 추가로 필요할 경우 true
     var requestAddPoll: Bool = false
-    
-    // 검색 결과 데이터가 더 이상 없을 경우 true
     var isEnd: Bool = false
     
-    // 에러 발생 시 에러 메시지를 보여주기 위한 flag
     var showErrorDialog: Bool = false
     
     //MARK: - Data
-    // 검색 창의 텍스트를 관리하는 변수
     var searchText: String
-
-    // 검색 창의 focus를 관리하는 변수
     var searchFocused: Bool = false
     
     // 기명/익명 여부를 다루는 변수
@@ -52,24 +43,16 @@ class SearchResultListViewModel {
     ///     - endAt : "마감 날짜 순"
     var sortedBy: SortedBy = .createdAt
     
-    // pollTypeFilter에 따른 enum value 값을 저장한 변수
-    let pollTypeFilterText: [String] = ["", "NAMED", "ANONYMOUS"]
+    private let pollTypeFilterText: [String] = ["", "NAMED", "ANONYMOUS"]
+    private let isActiveFilterText: [String] = ["", "ACTIVE", "INACTIVE"]
     
-    // isActiveFilter에 따른 enum value 값을 저장한 변수
-    let isActiveFilterText: [String] = ["", "ACTIVE", "INACTIVE"]
+    private var page: Int = 0
+    private let pageSize: Int = 10
     
-    // 검색 결과 페이지네이션의 페이지
-    var page: Int = 0
-    
-    // 검색 결과 페이지네이션의 페이지 사이즈
-    let pageSize: Int = 10
-    
-    // 검색 결과 데이터를 저장하는 변수
-    var searchResultPollData: AllPollData?
+    private(set) var searchResultPollData: AllPollData?
     
     //MARK: - Error
-    // 에러 발생 시 보여줄 메시지를 저장하는 변수
-    var errorMessage: String = ""
+    private(set) var errorMessage: String = ""
     
     //MARK: - Initialization
     init(query: String) {
@@ -77,7 +60,6 @@ class SearchResultListViewModel {
     }
     
     //MARK: - API
-    // 검색 결과를 가져오는 함수 (맨 처음 한번만 호출되는 함수)
     func getSearchResult() async {
         do {
             self.searchResultPollData = try await ApiManager.shared.getPolls(page: self.page, size: self.pageSize, optionGroup: .title, query: self.searchText)
@@ -89,7 +71,6 @@ class SearchResultListViewModel {
         }
     }
     
-    // 필터에 따른 검색 결과를 가져오는 함수 (검색 버튼 혹은 필터의 적용 버튼을 클릭 했을 때 호출되는 함수)
     func getSearchResultByFilter() async {
         let pollTypeIndex = self.pollTypeFilter.indices.filter { self.pollTypeFilter[$0] }.first ?? 0
         let isActiveIndex = self.isActiveFilter.indices.filter { self.isActiveFilter[$0] }.first ?? 0
@@ -122,7 +103,6 @@ class SearchResultListViewModel {
         }
     }
 
-    // 페이지네이션에 의한 추가 데이터를 가져오는 함수
     func fetchMoreResultByFilter() async {
         if self.isEnd { return }
         
@@ -156,10 +136,9 @@ class SearchResultListViewModel {
     }
     
     //MARK: - Check Valid
-    // 검색어를 입력했는지 확인하는 함수
     func isValidSearchText() -> Bool {
         if searchText.isEmpty {
-            self.showSearchErrorToast = true
+            self.showKeywordEmptyErrorToast = true
             
             return false
         }
