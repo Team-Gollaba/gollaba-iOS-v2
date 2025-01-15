@@ -67,35 +67,34 @@ struct OAuthLoginButton: View {
     var action: () -> Void
     
     var body: some View {
-        Button {
-            action()
-        } label: {
-            HStack {
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 28, height: 28)
-                    .foregroundStyle(providerType == .apple ? .white : .black)
-                
-                Spacer()
-                
-                Text("\(oAuthPath)로 시작하기")
-                    .font(.suitVariable20)
-                    .foregroundStyle(oAuthFontColor)
-                
-                Spacer()
-            }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(oAuthBackgroundColor)
-                    .shadow(radius: 2)
-            )
-            .tint(.black)
-            .padding(.horizontal)
-            .padding(.vertical, 4)
+        HStack {
+            image
+                .resizable()
+                .scaledToFit()
+                .frame(width: 28, height: 28)
+                .foregroundStyle(providerType == .apple ? .white : .black)
+            
+            Spacer()
+            
+            Text("\(oAuthPath)로 시작하기")
+                .font(.suitVariable20)
+                .foregroundStyle(oAuthFontColor)
+            
+            Spacer()
         }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 5)
+                .fill(oAuthBackgroundColor)
+                .shadow(radius: 2)
+        )
+        .tint(.black)
+        .padding(.horizontal)
+        .padding(.vertical, 4)
         .frame(height: 60)
+        .onTapGesture {
+            action()
+        }
     }
 }
 
