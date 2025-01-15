@@ -296,6 +296,7 @@ struct MyPollView: View {
                     await viewModel.createAppNotification()
                 }
             }
+            
         }
         .dialog(
             isPresented: $viewModel.showErrorDialog,

@@ -87,15 +87,23 @@ struct SearchView: View {
         //        .dragToHide(isHide: $isHideTabBar)
         .onAppear {
             viewModel.recentKeywords = recentKeywords
-            viewModel.searchFocus = false
-            viewModel.searchFocus = true
             Task {
                 await viewModel.getTrendingKeywords()
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
+                viewModel.searchFocus = true
+//                UIApplication.shared.sendAction(
+//                    #selector(UIResponder.resignFirstResponder),
+//                    to: nil,
+//                    from: nil,
+//                    for: nil
+//                )
+            })
         }
         .onDisappear {
-            viewModel.searchText = ""
-            
+            viewModel.searchFocus = false
+        
+                viewModel.searchText = ""
         }
         .navigationDestination(isPresented: $viewModel.goToSearchResult, destination: {
             SearchResultListView(searchText: viewModel.searchText)

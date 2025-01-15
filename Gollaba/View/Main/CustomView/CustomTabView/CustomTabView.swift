@@ -40,9 +40,8 @@ struct CustomTabView: View {
                     .tag(SelectedTab.myPoll)
                 
             }
-//            .padding(.bottom, tabBarHeight)
             .padding(.bottom, isHideTabBar ? 0 : tabBarHeight)
-//            .animation(.easeInOut(duration: 0.3), value: isHideTabBar)
+
             
             
             HStack {
@@ -101,7 +100,6 @@ struct CustomTabView: View {
         .animation(.easeIn(duration: 0.3), value: isHideTabBar)
         .onAppear {
             if safeAreaBottom == 0 {
-                print("safeAreaBottom: \(safeAreaBottom)")
                 safeAreaBottom = getSafeAreaInsets()?.bottom ?? 0
             }
         }
