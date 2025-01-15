@@ -14,37 +14,76 @@ struct LoginView: View {
     @State private var viewModel = LoginViewModel()
     
     var body: some View {
-        ZStack {
-            VStack {
-                Image("AppIconImage")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 150, height: 150)
-                    .padding(.bottom, 50)
-                
-                
-//                OAuthLoginButton(
-//                    image: Image("NaverIcon"),
-//                    oAuthPath: "네이버",
-//                    action: {}
-//                )
+        
+        VStack (spacing: 20) {
+            Image("AppIconImage")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 150, height: 150)
+                .padding(.bottom, 50)
+            
+            
+            //                OAuthLoginButton(
+            //                    image: Image("NaverIcon"),
+            //                    oAuthPath: "네이버",
+            //                    action: {}
+            //                )
+            //                AppleLoginButton(handleAppleLogin: { result in
+            //                    Task {
+            //                        await viewModel.appleLogin(result: result)
+            //                    }
+            //                })
+            
+            OAuthLoginButton(
+                image: Image("kakaoLogo"),
+                providerType: .kakao,
+                action: {
+                    Task {
+                        await viewModel.kakaoLogin()
+                    }
+                }
+            )
+            
+            OAuthLoginButton(
+                image: Image("NaverLogo"),
+                providerType: .naver,
+                action: {
+                    
+                }
+            )
+            
+            OAuthLoginButton(
+                image: Image("GoogleLogo"),
+                providerType: .google,
+                action: {
+                    
+                }
+            )
+            
+            ZStack {
                 AppleLoginButton(handleAppleLogin: { result in
                     Task {
                         await viewModel.appleLogin(result: result)
                     }
                 })
                 
-                
                 OAuthLoginButton(
-                    image: Image("KakaoIcon"),
-                    oAuthPath: "카카오",
+                    image: Image(systemName: "applelogo"),
+                    providerType: .apple,
                     action: {
-                        Task {
-                            await viewModel.kakaoLogin()
-                        }
+                        
                     }
                 )
+                .allowsHitTesting(false)
             }
+            
+            OAuthLoginButton(
+                image: Image("GithubLogo"),
+                providerType: .github,
+                action: {
+                    
+                }
+            )
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {

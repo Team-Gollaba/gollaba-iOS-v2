@@ -17,11 +17,10 @@ struct AppleLoginButton: View {
         } onCompletion: { result in
             handleAppleLogin(result)
         }
-        .signInWithAppleButtonStyle(.black)
+        .padding(.horizontal)
         .frame(height: 60)
-        .padding()
-        .cornerRadius(3)
-
+        .cornerRadius(10)
+        .signInWithAppleButtonStyle(.black)
     }
 }
 
