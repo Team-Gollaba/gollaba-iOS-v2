@@ -20,6 +20,8 @@ struct PollMadeByMeView: View {
                     Text(poll.title)
                         .font(.suitBold20)
                         .skeleton(isActive: poll.id == "-1")
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                     
                     Spacer()
                     

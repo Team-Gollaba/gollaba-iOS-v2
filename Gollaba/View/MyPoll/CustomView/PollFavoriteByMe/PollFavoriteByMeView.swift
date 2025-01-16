@@ -20,7 +20,8 @@ struct PollFavoriteByMeView: View {
                 HStack (spacing: 16) {
                     Text(poll.title)
                         .font(.suitBold20)
-                        .skeleton(isActive: poll.id == "-1")
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                         .skeleton(isActive: poll.id == "-1")
                     
                     Spacer()
@@ -44,6 +45,8 @@ struct PollFavoriteByMeView: View {
                     Text("\(poll.creatorName)")
                         .font(.suitBold16)
                         .foregroundStyle(.gray.opacity(0.7))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 }
                 .skeleton(isActive: poll.id == "-1")
                 
