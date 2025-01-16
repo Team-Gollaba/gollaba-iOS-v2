@@ -8,10 +8,12 @@
 import SwiftUI
 
 extension View {
-    func shimmer() -> some View {
+    func skeleton(isActive: Bool) -> some View {
         self.overlay(
-            ShimmerView()
-                .mask(self)
+            isActive ? Color.white : Color.clear
+        )
+        .overlay(
+            isActive ? ShimmerView() : nil
         )
     }
 }

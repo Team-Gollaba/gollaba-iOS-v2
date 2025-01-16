@@ -28,65 +28,39 @@ struct HorizontalPollContentView: View {
                         }
 
                     }
-                    .overlay(
-                        poll.id == "-1" ? .white : .clear
-                    )
-                    .overlay(
-                        poll.id == "-1" ? ShimmerView() : nil
-                    )
+                    .skeleton(isActive: poll.id == "-1")
                     
                     HStack (alignment: .top, spacing: 12) {
                         ProfileImageView(imageUrl: poll.creatorProfileUrl) {
                             
                         }
                         .frame(width: 40, height: 40)
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(poll.title)
                                 .font(.headline)
                                 .foregroundColor(.black)
-                                .overlay(
-                                    poll.id == "-1" ? .white : .clear
-                                )
-                                .overlay(
-                                    poll.id == "-1" ? ShimmerView() : nil
-                                )
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .skeleton(isActive: poll.id == "-1")
                             
                             Text(poll.creatorName)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
-                                .overlay(
-                                    poll.id == "-1" ? .white : .clear
-                                )
-                                .overlay(
-                                    poll.id == "-1" ? ShimmerView() : nil
-                                )
+                                .lineLimit(1)
+                                .truncationMode(.tail)
+                                .skeleton(isActive: poll.id == "-1")
                             
                             Text("조회수 \(poll.readCount)회 · \(poll.totalVotingCount)명 참여")
                                 .font(.footnote)
                                 .foregroundColor(.gray)
-                                .overlay(
-                                    poll.id == "-1" ? .white : .clear
-                                )
-                                .overlay(
-                                    poll.id == "-1" ? ShimmerView() : nil
-                                )
+                                .skeleton(isActive: poll.id == "-1")
                             
                             Text("\(formattedDate(poll.endAt)). 마감")
                                 .font(.footnote)
                                 .foregroundColor(.red)
-                                .overlay(
-                                    poll.id == "-1" ? .white : .clear
-                                )
-                                .overlay(
-                                    poll.id == "-1" ? ShimmerView() : nil
-                                )
+                                .skeleton(isActive: poll.id == "-1")
                         }
                     }
                     

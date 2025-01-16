@@ -155,6 +155,7 @@ class MyPollViewModel {
             let polls = try await ApiManager.shared.getPollsParticipated(page: participatedPollPage, size: participatedPollSize)
             participatedPollList = polls.items
             participatedPollPage += 1
+            
         } catch {
             handleError(error: error)
         }

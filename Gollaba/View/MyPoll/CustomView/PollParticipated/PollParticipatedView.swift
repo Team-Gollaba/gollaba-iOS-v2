@@ -19,30 +19,15 @@ struct PollParticipatedView: View {
                 HStack (spacing: 16) {
                     Text(poll.title)
                         .font(.suitBold20)
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                     
                     Spacer()
                     
                     PollStateView(state: getState(poll.endAt))
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                     
                     OpenAndCloseButton(isOpen: $isOpen)
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 16)

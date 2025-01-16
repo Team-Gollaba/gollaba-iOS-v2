@@ -21,15 +21,20 @@ struct PollContentView: View {
             ZStack {
                 VStack (alignment: .leading, spacing: 4) {
 
-                    Text(poll.title)
-                        .font(.suitBold20)
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
-                        .padding(.bottom, 8)
+                    HStack (alignment: .top) {
+                        Text(poll.title)
+                            .font(.suitBold20)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .skeleton(isActive: poll.id == "-1")
+                            .padding(.bottom, 8)
+                        
+                        Spacer()
+                        
+                        PollStateView(state: getState(poll.endAt))
+                            .skeleton(isActive: poll.id == "-1")
+                            
+                    }
                     
                     HStack (alignment: .center) {
                         HStack {
@@ -42,13 +47,10 @@ struct PollContentView: View {
                             Text(poll.creatorName)
                                 .font(.suitVariable16)
                                 .foregroundStyle(.myPollLikedVotes)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
                         }
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                         
                         Spacer()
                         
@@ -62,22 +64,12 @@ struct PollContentView: View {
                                 .font(.suitVariable16)
                                 .foregroundStyle(.myPollLikedVotes)
                         }
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                     }
                     .padding(.bottom, 12)
                     
                     PollContentOptionView(options: poll.items, isHorizontal: isHorizontal, parentWidth: contentWidth)
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                 }
                 .padding()
                 .background(
@@ -86,21 +78,21 @@ struct PollContentView: View {
                         .shadow(radius: 5)
                 )
                 
-                VStack {
-                    HStack {
-                        Spacer()
-                        
-                        PollStateView(state: getState(poll.endAt))
-                            .overlay(
-                                poll.id == "-1" ? .white : .clear
-                            )
-                            .overlay(
-                                poll.id == "-1" ? ShimmerView() : nil
-                            )
-                    }
-                    Spacer()
-                }
-                .padding()
+//                VStack {
+//                    HStack {
+//                        Spacer()
+//                        
+//                        PollStateView(state: getState(poll.endAt))
+//                            .overlay(
+//                                poll.id == "-1" ? .white : .clear
+//                            )
+//                            .overlay(
+//                                poll.id == "-1" ? ShimmerView() : nil
+//                            )
+//                    }
+//                    Spacer()
+//                }
+//                .padding()
             }
             .padding(12)
         }

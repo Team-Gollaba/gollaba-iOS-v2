@@ -20,33 +20,19 @@ struct PollFavoriteByMeView: View {
                 HStack (spacing: 16) {
                     Text(poll.title)
                         .font(.suitBold20)
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
+                        .skeleton(isActive: poll.id == "-1")
                     
                     Spacer()
                     
                     PollStateView(state: getState(poll.endAt))
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                     
                     FavoritesButton(isFavorite: $isFavorite)
                         .onChange(of: isFavorite) { _, newValue in
                             onFavorite(newValue)
                         }
-                        .overlay(
-                            poll.id == "-1" ? .white : .clear
-                        )
-                        .overlay(
-                            poll.id == "-1" ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: poll.id == "-1")
                 }
                 
                 HStack {
@@ -59,22 +45,12 @@ struct PollFavoriteByMeView: View {
                         .font(.suitBold16)
                         .foregroundStyle(.gray.opacity(0.7))
                 }
-                .overlay(
-                    poll.id == "-1" ? .white : .clear
-                )
-                .overlay(
-                    poll.id == "-1" ? ShimmerView() : nil
-                )
+                .skeleton(isActive: poll.id == "-1")
                 
                 Text("\(formattedDate(poll.endAt)) 마감 · 조회수 \(poll.readCount)회")
                     .font(.suitVariable16)
                     .foregroundStyle(.gray.opacity(0.7))
-                    .overlay(
-                        poll.id == "-1" ? .white : .clear
-                    )
-                    .overlay(
-                        poll.id == "-1" ? ShimmerView() : nil
-                    )
+                    .skeleton(isActive: poll.id == "-1")
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)

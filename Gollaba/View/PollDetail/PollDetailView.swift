@@ -49,12 +49,7 @@ struct PollDetailView: View {
                             }
                         }
                         .padding(.leading, 4)
-                        .overlay(
-                            viewModel.poll == nil ? .white : .clear
-                        )
-                        .overlay(
-                            viewModel.poll == nil ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: viewModel.poll == nil)
                         
                         HStack {
                             ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl) {
@@ -73,23 +68,13 @@ struct PollDetailView: View {
                             Text("\(viewModel.poll?.readCount ?? -1)")
                                 .font(.suitVariable16)
                         }
-                        .overlay(
-                            viewModel.poll == nil ? .white : .clear
-                        )
-                        .overlay(
-                            viewModel.poll == nil ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: viewModel.poll == nil)
                         
                     }
                     
                     
                     PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
-                        .overlay(
-                            viewModel.poll == nil ? .white : .clear
-                        )
-                        .overlay(
-                            viewModel.poll == nil ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: viewModel.poll == nil)
                     
                     
                     if viewModel.poll?.pollType == PollType.named.rawValue && !viewModel.isVoted && viewModel.isValidDatePoll && !authManager.isLoggedIn {
@@ -109,32 +94,17 @@ struct PollDetailView: View {
                                     .stroke(.black, lineWidth: 1)
                             )
                         }
-                        .overlay(
-                            viewModel.poll == nil ? .white : .clear
-                        )
-                        .overlay(
-                            viewModel.poll == nil ? ShimmerView() : nil
-                        )
+                        .skeleton(isActive: viewModel.poll == nil)
                     }
                     
                     
                     if let poll = viewModel.poll, viewModel.isValidDatePoll {
                         if poll.responseType == ResponseType.single.rawValue {
                             PollDetailContentBySingleGridView(poll: poll, selectedPoll: $viewModel.selectedSinglePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
-                                .overlay(
-                                    viewModel.poll == nil ? .white : .clear
-                                )
-                                .overlay(
-                                    viewModel.poll == nil ? ShimmerView() : nil
-                                )
+                                .skeleton(isActive: viewModel.poll == nil)
                         } else if poll.responseType == ResponseType.multiple.rawValue {
                             PollDetailContentByMultipleGridView(poll: poll, selectedPoll: $viewModel.selectedMultiplePoll, activateSelectAnimation: $viewModel.activateSelectAnimation)
-                                .overlay(
-                                    viewModel.poll == nil ? .white : .clear
-                                )
-                                .overlay(
-                                    viewModel.poll == nil ? ShimmerView() : nil
-                                )
+                                .skeleton(isActive: viewModel.poll == nil)
                         }
                     }
                     
@@ -175,12 +145,7 @@ struct PollDetailView: View {
                             .animation(.bouncy, value: viewModel.isVoted)
                         }
                     }
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
+                    .skeleton(isActive: viewModel.poll == nil)
                     
                     PollResultView(
                         totalVotingCount: viewModel.poll?.totalVotingCount ?? 0,
@@ -193,21 +158,11 @@ struct PollDetailView: View {
                             viewModel.isPresentPollVotersView = true
                         }
                     )
-                    .overlay(
-                        viewModel.poll == nil ? .white : .clear
-                    )
-                    .overlay(
-                        viewModel.poll == nil ? ShimmerView() : nil
-                    )
+                    .skeleton(isActive: viewModel.poll == nil)
                     
                     if viewModel.isVoted || !viewModel.isValidDatePoll {
                         PollRankingView(totalVotingCount: viewModel.poll?.totalVotingCount ?? 0, pollOptions: viewModel.poll?.items ?? [])
-                            .overlay(
-                                viewModel.poll == nil ? .white : .clear
-                            )
-                            .overlay(
-                                viewModel.poll == nil ? ShimmerView() : nil
-                            )
+                            .skeleton(isActive: viewModel.poll == nil)
                     }
                     
                 }

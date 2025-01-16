@@ -198,17 +198,17 @@ struct MyPollView: View {
                     .sheet(isPresented: $viewModel.isClickedProfileImage) {
                         ProfileImageDetailView(image: KFImage(URL(string: viewModel.userData?.profileImageUrl ?? "")))
                     }
-                    .onAppear {
-                        Task {
-                            await viewModel.getPollsCreatedByMe()
-                            await viewModel.getPollsFavoriteByMe()
-                            await viewModel.getPollsParticipated()
-                        }
+                }
+                .onAppear {
+                    Task {
+                        await viewModel.getPollsCreatedByMe()
+                        await viewModel.getPollsFavoriteByMe()
+                        await viewModel.getPollsParticipated()
                     }
-                    .onDisappear {
-                        viewModel.resetPollsCreatedByMe()
-                        viewModel.resetPollsFavoriteByMe()
-                    }
+                }
+                .onDisappear {
+                    viewModel.resetPollsCreatedByMe()
+                    viewModel.resetPollsFavoriteByMe()
                 }
                 .refreshable(action: viewModel.loadPolls)
                 .dialog(
