@@ -598,7 +598,7 @@ class ApiManager {
             "Authorization": "Bearer \(jwtToken)",
             "Content-Type": "application/json"
         ]
-        
+                
         return try await withCheckedThrowingContinuation { contination in
             AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -1031,6 +1031,7 @@ class ApiManager {
         }
     }
     
+    //MARK: - ETC
     func getUrl(for path: String) throws -> URL {
         guard let url = URL(string: path) else {
             Logger.shared.log(String(describing: type(of: self)), #function, "Failed to create URL from path: \(path)", .error)

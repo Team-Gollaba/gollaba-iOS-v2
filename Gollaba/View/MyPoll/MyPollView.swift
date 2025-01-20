@@ -65,7 +65,7 @@ struct MyPollView: View {
                                 }
                             }
                         
-//                            TextField("제목", text: $titleText)
+//                        TextField("제목", text: $titleText)
 //                        TextField("내용", text: $contentText)
 //                        
 //                        Button {
@@ -77,7 +77,7 @@ struct MyPollView: View {
 //                        } label: {
 //                            Text("전송")
 //                        }
-//                        
+                        //
                         
                         HStack {
                             Button {
@@ -117,9 +117,9 @@ struct MyPollView: View {
                         
                         Rectangle()
                             .fill(.enrollButton)
-                                .frame(width: UIScreen.main.bounds.width / 3 - 24, height: 4) // 3등분 중 여백 포함
-                                .offset(x: (UIScreen.main.bounds.width / 3) * CGFloat(viewModel.selectedTab.rawValue) - UIScreen.main.bounds.width / 2 + UIScreen.main.bounds.width / 6)
-                                .animation(.bouncy, value: viewModel.selectedTab)
+                            .frame(width: UIScreen.main.bounds.width / 3 - 24, height: 4) // 3등분 중 여백 포함
+                            .offset(x: (UIScreen.main.bounds.width / 3) * CGFloat(viewModel.selectedTab.rawValue) - UIScreen.main.bounds.width / 2 + UIScreen.main.bounds.width / 6)
+                            .animation(.bouncy, value: viewModel.selectedTab)
                         
                         TabView (selection: $viewModel.selectedTab) {
                             PollMadeByMeList(

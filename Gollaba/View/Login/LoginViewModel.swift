@@ -22,6 +22,7 @@ class LoginViewModel {
     var providerType: ProviderType = .apple
     
     private var authManager: AuthManager?
+    private(set) var isAppleLogin: Bool = false
     
     //MARK: - Login
     func kakaoLogin() async {
@@ -55,6 +56,7 @@ class LoginViewModel {
                 if let authorizationCode = appleIDCredential.authorizationCode, let authCodeString = String(data: authorizationCode, encoding: .utf8) {
                     Logger.shared.log(String(describing: self), #function, "authorizationCode: \(authCodeString)")
                 }
+                self.isAppleLogin = true
             }
         case .failure(let error):
             Logger.shared.log(String(describing: self), #function, "Failed to apple login with error: \(error)", .error)
