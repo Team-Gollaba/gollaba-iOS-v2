@@ -25,8 +25,8 @@ struct TitleView: View {
             
             Spacer()
             
-            Button {
-                
+            NavigationLink {
+                NotificationView()
             } label: {
                 Image(systemName: "bell")
                     .resizable()
@@ -36,8 +36,8 @@ struct TitleView: View {
             .tint(.signUpButtonEnd)
             .padding(.trailing, 8)
             
-            Button {
-                
+            NavigationLink {
+                SettingView()
             } label: {
                 Image(systemName: "gearshape")
                     .resizable()
