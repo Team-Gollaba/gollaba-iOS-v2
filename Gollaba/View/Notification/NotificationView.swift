@@ -12,7 +12,12 @@ struct NotificationView: View {
     
     var body: some View {
         VStack {
-            
+            ScrollView {
+                ForEach(0..<10) { _ in
+                    NotificationContentView()
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {

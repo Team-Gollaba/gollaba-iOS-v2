@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		490CE2152D3E24E100D67E6D /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE2142D3E24E100D67E6D /* NotificationView.swift */; };
 		490CE2182D3E24F800D67E6D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE2172D3E24F800D67E6D /* SettingView.swift */; };
+		490CE21B2D3FC34A00D67E6D /* NotificationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */; };
 		491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491A17142CEB85EF00C4666F /* Kingfisher */; };
 		491A17482CEC66FD00C4666F /* PollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17472CEC66FD00C4666F /* PollContentView.swift */; };
 		491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17492CEC685C00C4666F /* PollContentOptionView.swift */; };
@@ -92,6 +93,7 @@
 /* Begin PBXFileReference section */
 		490CE2142D3E24E100D67E6D /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		490CE2172D3E24F800D67E6D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContentView.swift; sourceTree = "<group>"; };
 		491A17472CEC66FD00C4666F /* PollContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentView.swift; sourceTree = "<group>"; };
 		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				490CE2142D3E24E100D67E6D /* NotificationView.swift */,
+				490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -812,6 +815,7 @@
 				49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */,
 				491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */,
 				4945A2BC2CEB6ECC00FF05DC /* SearchPollView.swift in Sources */,
+				490CE21B2D3FC34A00D67E6D /* NotificationContentView.swift in Sources */,
 				4945A2BD2CEB6ECC00FF05DC /* HomeView.swift in Sources */,
 				4945A2BE2CEB6ECC00FF05DC /* OAuthLoginButton.swift in Sources */,
 				49FEE2602CF229AD000991DB /* TimerOptionView.swift in Sources */,
