@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct NotificationView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .tint(.black)
+                }
+            }
+            
+            ToolbarItem(placement: .principal) {
+                Text("알림 목록")
+                    .font(.suitBold24)
+            }
+        }
     }
 }
 
