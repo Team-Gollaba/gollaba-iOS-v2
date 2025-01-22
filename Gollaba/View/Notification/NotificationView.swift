@@ -11,14 +11,14 @@ struct NotificationView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
-            ScrollView {
+        ScrollView {
+            VStack {
                 ForEach(0..<10) { _ in
                     NotificationContentView()
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
