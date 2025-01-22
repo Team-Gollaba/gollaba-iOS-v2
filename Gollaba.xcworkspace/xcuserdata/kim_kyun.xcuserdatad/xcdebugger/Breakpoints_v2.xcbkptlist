@@ -7,59 +7,45 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "03BB1A16-CA92-440A-9E6D-052CD709C09B"
+            uuid = "272D832C-C669-4CE7-BE06-BF4BC5739C96"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Gollaba/View/MyPoll/MyPollView.swift"
+            filePath = "Gollaba/Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "645"
+            endingLineNumber = "645"
+            landmarkName = "updateUserName(name:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "03BB1A16-CA92-440A-9E6D-052CD709C09B - 4d75bc19a52840b2"
+                  uuid = "272D832C-C669-4CE7-BE06-BF4BC5739C96 - a2264eb253014b34"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #1 () async -&gt; () in closure #2 () -&gt; () in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.dialog(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, title: Swift.String, content: Swift.Optional&lt;SwiftUI.Text&gt;, primaryButtonText: Swift.String, secondaryButtonText: Swift.Optional&lt;Swift.String&gt;, onPrimaryButton: Swift.Optional&lt;() -&gt; ()&gt;, onSecondaryButton: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, destination: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in Gollaba.MyPollView.body.getter : some"
+                  symbolName = "closure #1 @Sendable (Alamofire.DataResponse&lt;Gollaba.DefaultResponse, Alamofire.AFError&gt;) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;(), Swift.Error&gt;) -&gt; () in Gollaba.ApiManager.updateUserName(name: Swift.String) async throws -&gt; ()"
                   moduleName = "Gollaba.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kim_kyun/Desktop/Gollaba/Gollaba/View/MyPoll/MyPollView.swift"
+                  urlString = "file:///Users/kim_kyun/Desktop/Gollaba/Gollaba/Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "206"
-                  endingLineNumber = "206">
+                  startingLineNumber = "646"
+                  endingLineNumber = "646">
                </Location>
                <Location
-                  uuid = "03BB1A16-CA92-440A-9E6D-052CD709C09B - 63851859b95ded5c"
+                  uuid = "272D832C-C669-4CE7-BE06-BF4BC5739C96 - a2264eb253014b34"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(6) await resume partial function for closure #1 () async -&gt; () in closure #2 () -&gt; () in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.dialog(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, title: Swift.String, content: Swift.Optional&lt;SwiftUI.Text&gt;, primaryButtonText: Swift.String, secondaryButtonText: Swift.Optional&lt;Swift.String&gt;, onPrimaryButton: Swift.Optional&lt;() -&gt; ()&gt;, onSecondaryButton: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, destination: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in Gollaba.MyPollView.body.getter : some"
+                  symbolName = "closure #1 @Sendable (Alamofire.DataResponse&lt;Gollaba.DefaultResponse, Alamofire.AFError&gt;) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;(), Swift.Error&gt;) -&gt; () in Gollaba.ApiManager.updateUserName(name: Swift.String) async throws -&gt; ()"
                   moduleName = "Gollaba.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kim_kyun/Desktop/Gollaba/Gollaba/View/MyPoll/MyPollView.swift"
+                  urlString = "file:///Users/kim_kyun/Desktop/Gollaba/Gollaba/Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "206"
-                  endingLineNumber = "206">
-               </Location>
-               <Location
-                  uuid = "03BB1A16-CA92-440A-9E6D-052CD709C09B - 96b771200db680b0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for closure #1 () async -&gt; () in closure #2 () -&gt; () in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.dialog(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, title: Swift.String, content: Swift.Optional&lt;SwiftUI.Text&gt;, primaryButtonText: Swift.String, secondaryButtonText: Swift.Optional&lt;Swift.String&gt;, onPrimaryButton: Swift.Optional&lt;() -&gt; ()&gt;, onSecondaryButton: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(isPresented: SwiftUI.Binding&lt;Swift.Bool&gt;, destination: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt; in Gollaba.MyPollView.body.getter : some"
-                  moduleName = "Gollaba.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kim_kyun/Desktop/Gollaba/Gollaba/View/MyPoll/MyPollView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "206"
-                  endingLineNumber = "206">
+                  startingLineNumber = "646"
+                  endingLineNumber = "646">
                </Location>
             </Locations>
          </BreakpointContent>

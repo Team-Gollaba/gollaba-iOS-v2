@@ -10,6 +10,7 @@
 		490CE2152D3E24E100D67E6D /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE2142D3E24E100D67E6D /* NotificationView.swift */; };
 		490CE2182D3E24F800D67E6D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE2172D3E24F800D67E6D /* SettingView.swift */; };
 		490CE21B2D3FC34A00D67E6D /* NotificationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */; };
+		490CE21D2D40B60B00D67E6D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490CE21C2D40B60B00D67E6D /* SettingViewModel.swift */; };
 		491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491A17142CEB85EF00C4666F /* Kingfisher */; };
 		491A17482CEC66FD00C4666F /* PollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17472CEC66FD00C4666F /* PollContentView.swift */; };
 		491A174A2CEC685C00C4666F /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A17492CEC685C00C4666F /* PollContentOptionView.swift */; };
@@ -94,6 +95,7 @@
 		490CE2142D3E24E100D67E6D /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		490CE2172D3E24F800D67E6D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContentView.swift; sourceTree = "<group>"; };
+		490CE21C2D40B60B00D67E6D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		491A17472CEC66FD00C4666F /* PollContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentView.swift; sourceTree = "<group>"; };
 		491A17492CEC685C00C4666F /* PollContentOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
@@ -232,8 +234,8 @@
 		490CE2162D3E24E600D67E6D /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				490CE21E2D40B61200D67E6D /* CusotmView */,
 				490CE2142D3E24E100D67E6D /* NotificationView.swift */,
-				490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -242,8 +244,17 @@
 			isa = PBXGroup;
 			children = (
 				490CE2172D3E24F800D67E6D /* SettingView.swift */,
+				490CE21C2D40B60B00D67E6D /* SettingViewModel.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		490CE21E2D40B61200D67E6D /* CusotmView */ = {
+			isa = PBXGroup;
+			children = (
+				490CE21A2D3FC34A00D67E6D /* NotificationContentView.swift */,
+			);
+			path = CusotmView;
 			sourceTree = "<group>";
 		};
 		4945A26D2CEB6ECC00FF05DC /* Common */ = {
@@ -811,6 +822,7 @@
 				491A17482CEC66FD00C4666F /* PollContentView.swift in Sources */,
 				4945A2B92CEB6ECC00FF05DC /* VerticalPollList.swift in Sources */,
 				49C8A6B12D11CCCD0030D648 /* OpenAndCloseButton.swift in Sources */,
+				490CE21D2D40B60B00D67E6D /* SettingViewModel.swift in Sources */,
 				4945A2BB2CEB6ECC00FF05DC /* HorizontalPollList.swift in Sources */,
 				49FEE25E2CF22712000991DB /* TimePickerView.swift in Sources */,
 				491A174E2CEC876700C4666F /* MyPollViewModel.swift in Sources */,
