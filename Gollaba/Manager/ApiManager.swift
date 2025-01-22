@@ -143,7 +143,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            AF.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -644,6 +644,40 @@ class ApiManager {
                         continuation.resume(throwing: error)
                     }
                 }
+        }
+    }
+    
+    // 유저 프로필 사진 변경
+    func updateUserProfileImage(image: UIImage) async throws {
+        let urlString = baseURL + "/v2/users/change-profile"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "multipart/form-data"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.upload(
+                multipartFormData: { multipartFormData in
+                    if let imageData = image.jpegData(compressionQuality: 0.1) {
+                        let imageField = "image"
+                        multipartFormData.append(imageData, withName: imageField, fileName: "image.jpeg", mimeType: "image/jpeg")
+                    }
+                }, to: url, headers: headers
+            )
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: DefaultResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    Logger.shared.log(String(describing: self), #function, "Success to update user profile image: \(value)")
+                    continuation.resume()
+                    
+                case .failure(let error):
+                    Logger.shared.log(String(describing: self), #function, "Failed to update user profile image with error: \(error)", .error)
+                    continuation.resume(throwing: error)
+                }
+            }
         }
     }
         
