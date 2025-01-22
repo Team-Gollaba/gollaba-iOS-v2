@@ -54,29 +54,31 @@ struct MyPollView: View {
                         .frame(width: 100, height: 100)
                         
                         
-                        ProfileNameView(name: $viewModel.name, email: authManager.userData?.email ?? "")
+                        //                        ProfileNameView(name: $viewModel.name, email: authManager.userData?.email ?? "")
+                        Text(viewModel.name)
+                            .font(.suitBold20)
                             .padding(.top, 12)
                             .padding(.bottom, 24)
-//                            .onChange(of: auth) { oldValue, newValue in
-//                                if oldValue != "" {
-//                                    Task {
-//                                        await viewModel.updateUserName()
-//                                    }
-//                                }
-//                            }
+                        //                            .onChange(of: auth) { oldValue, newValue in
+                        //                                if oldValue != "" {
+                        //                                    Task {
+                        //                                        await viewModel.updateUserName()
+                        //                                    }
+                        //                                }
+                        //                            }
                         
-//                        TextField("제목", text: $titleText)
-//                        TextField("내용", text: $contentText)
-//                        
-//                        Button {
-//                            Task {
-//                                await viewModel.sendToServerMessage(title: titleText, content: contentText)
-//                                titleText = ""
-//                                contentText = ""
-//                            }
-//                        } label: {
-//                            Text("전송")
-//                        }
+                        //                        TextField("제목", text: $titleText)
+                        //                        TextField("내용", text: $contentText)
+                        //
+                        //                        Button {
+                        //                            Task {
+                        //                                await viewModel.sendToServerMessage(title: titleText, content: contentText)
+                        //                                titleText = ""
+                        //                                contentText = ""
+                        //                            }
+                        //                        } label: {
+                        //                            Text("전송")
+                        //                        }
                         //
                         
                         HStack {
@@ -169,23 +171,25 @@ struct MyPollView: View {
                         }
                         .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용
                         .onPreferenceChange(MadeByMeTabHeightPreferenceKey.self) { value in
-                            viewModel.madeByMeTabHeight = value // 각 탭의 높이를 저장
-                            viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
+                            if viewModel.madeByMeTabHeight != value {
+                                viewModel.madeByMeTabHeight = value
+                                viewModel.updateCurrentTabHeight()
+                            }
                         }
                         .onPreferenceChange(FavoriteByMeTabHeightPreferenceKey.self) { value in
-                            viewModel.favoriteByMeTabHeight = value // 각 탭의 높이를 저장
-                            viewModel.updateCurrentTabHeight() // 현재 탭 높이 업데이트
+                            if viewModel.favoriteByMeTabHeight != value {
+                                viewModel.favoriteByMeTabHeight = value
+                                viewModel.updateCurrentTabHeight()
+                            }
                         }
                         .onPreferenceChange(ParticipatedTabHeightPreferenceKey.self) { value in
-                            viewModel.participatedTabHeight = value
-                            viewModel.updateCurrentTabHeight()
+                            if viewModel.participatedTabHeight != value {
+                                viewModel.participatedTabHeight = value
+                                viewModel.updateCurrentTabHeight()
+                            }
                         }
                         .onChange(of: viewModel.selectedTab) {
-                            DispatchQueue.main.async {
-                                withTransaction(Transaction(animation: nil)) {
-                                    viewModel.updateCurrentTabHeight()
-                                }
-                            }
+                            viewModel.updateCurrentTabHeight()
                         }
                         
                         
@@ -200,15 +204,13 @@ struct MyPollView: View {
                     }
                 }
                 .onAppear {
+                    
                     Task {
                         await viewModel.getPollsCreatedByMe()
                         await viewModel.getPollsFavoriteByMe()
                         await viewModel.getPollsParticipated()
                     }
-                }
-                .onDisappear {
-                    viewModel.resetPollsCreatedByMe()
-                    viewModel.resetPollsFavoriteByMe()
+                    
                 }
                 .refreshable(action: viewModel.loadPolls)
                 .dialog(
