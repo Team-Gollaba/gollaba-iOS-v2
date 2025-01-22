@@ -8,10 +8,10 @@
 import Foundation
 
 struct UserData: Codable {
-    let name: String
+    var name: String
     let email: String
     let roleType: String
     let providerType: String
-    let profileImageUrl: String?
-    let backgroundImageUrl: String?
+    var profileImageUrl: String?
+    var backgroundImageUrl: String?
 }

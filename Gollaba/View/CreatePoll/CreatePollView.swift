@@ -37,7 +37,7 @@ struct CreatePollView: View {
                                 )
                             .onAppear {
                                 if authManager.isLoggedIn {
-                                    viewModel.creatorNameText = authManager.name
+                                    viewModel.creatorNameText = authManager.userData?.name ?? ""
                                 }
                             }
                         }

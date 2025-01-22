@@ -47,23 +47,23 @@ struct MyPollView: View {
                 ScrollView {
                     VStack (spacing: 0) {
                         ProfileImageView(
-                            imageUrl: viewModel.userData?.profileImageUrl
+                            imageUrl: authManager.userData?.profileImageUrl
                         ) {
                             viewModel.isClickedProfileImage = true
                         }
                         .frame(width: 100, height: 100)
                         
                         
-                        ProfileNameView(name: $viewModel.userName, email: viewModel.userData?.email ?? "")
+                        ProfileNameView(name: $viewModel.name, email: authManager.userData?.email ?? "")
                             .padding(.top, 12)
                             .padding(.bottom, 24)
-                            .onChange(of: viewModel.userName) { oldValue, newValue in
-                                if oldValue != "" {
-                                    Task {
-                                        await viewModel.updateUserName()
-                                    }
-                                }
-                            }
+//                            .onChange(of: auth) { oldValue, newValue in
+//                                if oldValue != "" {
+//                                    Task {
+//                                        await viewModel.updateUserName()
+//                                    }
+//                                }
+//                            }
                         
 //                        TextField("제목", text: $titleText)
 //                        TextField("내용", text: $contentText)
@@ -196,7 +196,7 @@ struct MyPollView: View {
                     .ignoresSafeArea(.all)
                     .padding(.top)
                     .sheet(isPresented: $viewModel.isClickedProfileImage) {
-                        ProfileImageDetailView(image: KFImage(URL(string: viewModel.userData?.profileImageUrl ?? "")))
+                        ProfileImageDetailView(image: KFImage(URL(string: authManager.userData?.profileImageUrl ?? "")))
                     }
                 }
                 .onAppear {

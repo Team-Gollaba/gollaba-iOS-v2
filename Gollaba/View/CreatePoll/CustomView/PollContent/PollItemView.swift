@@ -36,9 +36,9 @@ struct CreatePollItemView: View {
                         }
                     }
                 )
-                                
+                             
                 ) {
-
+                    
                     if let image = createPollViewModel.postImage[itemNumber - 1] {
                         image
                             .resizable()
@@ -73,23 +73,23 @@ struct CreatePollItemView: View {
                 
                 
                 
-//                VStack {
-//                    Text("이미지 첨부하기 +")
-//                        .font(.suitBold12)
-//                    
-//                    Text("클릭 후 이미지를 첨부하세요.")
-//                        .font(.suitVariable12)
-//                        .multilineTextAlignment(.center)
-//                }
-//                .frame(maxWidth: .infinity)
-//                .frame(height: 80)
-//                .foregroundStyle(.white)
-//                .background(
-//                    Color.attach
-//                )
-//                .onTapGesture {
-//                    onImageAttach()
-//                }
+                //                VStack {
+                //                    Text("이미지 첨부하기 +")
+                //                        .font(.suitBold12)
+                //
+                //                    Text("클릭 후 이미지를 첨부하세요.")
+                //                        .font(.suitVariable12)
+                //                        .multilineTextAlignment(.center)
+                //                }
+                //                .frame(maxWidth: .infinity)
+                //                .frame(height: 80)
+                //                .foregroundStyle(.white)
+                //                .background(
+                //                    Color.attach
+                //                )
+                //                .onTapGesture {
+                //                    onImageAttach()
+                //                }
                 
                 
                 HStack {
@@ -136,12 +136,12 @@ struct CreatePollItemView: View {
             .shadow(radius: 2)
             .blur(radius: isCreateModel ? 2 : 0)
             
-
+            
             
             if isCreateModel {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundStyle(.black.opacity(0.1))
-                    
+                
                 
                 Button {
                     onAddPollItem()

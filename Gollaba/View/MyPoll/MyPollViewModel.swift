@@ -23,6 +23,7 @@ class MyPollViewModel {
     var isClickedLogoutButton: Bool = false
     var showErrorDialog: Bool = false
     
+    //MARK: - Data
     // 내가 만든 투표
     private(set) var madeByMePollList: [PollItem] = []
     var madeByMePollRequestAdd: Bool = false
@@ -51,10 +52,16 @@ class MyPollViewModel {
     var participatedTabHeight: CGFloat = 0
     var currentTabHeight: CGFloat = 0
     
-    private(set) var userData: UserData?
-    var userName: String = ""
+    var authManager: AuthManager?
     
-    private var authManager: AuthManager?
+    var name: String {
+        get {
+            authManager?.userData?.name ?? ""
+        }
+        set {
+            authManager?.userData?.name = newValue
+        }
+    }
     
     private(set) var errorMessage: String = ""
     
@@ -77,9 +84,8 @@ class MyPollViewModel {
     
     func getUser() async {
         do {
-            userData = try await ApiManager.shared.getUserMe()
-            userName = userData?.name ?? ""
-            authManager?.name = userName
+            authManager?.userData = try await ApiManager.shared.getUserMe()
+            
         } catch {
             handleError(error: error)
         }
@@ -87,8 +93,8 @@ class MyPollViewModel {
     
     func updateUserName() async {
         do {
-            try await ApiManager.shared.updateUserName(name: userName)
-            authManager?.name = userName
+//            try await ApiManager.shared.updateUserName(name: userName)
+//            authManager?.userData?.name = userName
         } catch {
             handleError(error: error)
         }

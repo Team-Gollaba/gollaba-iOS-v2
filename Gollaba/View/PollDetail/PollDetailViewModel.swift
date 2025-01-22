@@ -168,7 +168,7 @@ class PollDetailViewModel {
         
         // 로그인 유저일 경우 이름 데이터를 가져오고 비 로그인 유저일 경우 입력창에서 받아온 데이터 사용
         if let authManager, authManager.isLoggedIn {
-            voterName = authManager.name
+            voterName = authManager.userData?.name ?? ""
         } else {
             voterName = inputNameText
         }
@@ -204,7 +204,7 @@ class PollDetailViewModel {
             return
         }
         let pollItemIds: [Int] = getSelectedPollItemId()
-        let voterName = authManager.name
+        let voterName = authManager.userData?.name ?? ""
         
         do {
             try await ApiManager.shared.updateVote(votingId: votingIdData.votingId, voterName: voterName, pollItemIds: pollItemIds)
