@@ -10,11 +10,11 @@ import Kingfisher
 
 struct ProfileImageView: View {
     var imageUrl: String?
-    var action: () -> Void
+    var action: (() -> Void)?
     
     var body: some View {
         Button {
-            action()
+            action?()
         } label: {
             if let imageUrl {
                 KFImage(URL(string: imageUrl))
