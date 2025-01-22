@@ -50,7 +50,7 @@ class MyPollViewModel {
     var madeByMeTabHeight: CGFloat = 0
     var favoriteByMeTabHeight: CGFloat = 0
     var participatedTabHeight: CGFloat = 0
-    var currentTabHeight: CGFloat = 0
+    var currentTabHeight: CGFloat = 300
     
     var authManager: AuthManager?
     
@@ -261,6 +261,8 @@ class MyPollViewModel {
         case .participated:
             currentTabHeight = participatedTabHeight
         }
+        
+        Logger.shared.log(String(describing: self), #function, "currentTabHeight: \(currentTabHeight)")
     }
     
     func resetPollsCreatedByMe() {
@@ -273,6 +275,12 @@ class MyPollViewModel {
         favoriteByMePollList.removeAll()
         favoriteByMePollPage = 0
         favoriteByMePollIsEnd = false
+    }
+    
+    func resetPollsParticipated() {
+        participatedPollList.removeAll()
+        participatedPollPage = 0
+        participatedPollIsEnd = false
     }
     
     func handleError(error: Error) {
