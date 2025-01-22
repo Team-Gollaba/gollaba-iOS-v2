@@ -22,7 +22,7 @@ struct ProfileImageView: View {
                     .scaledToFill()
                     .clipShape(Circle())
                     .overlay(
-                        Circle().stroke(.gray, lineWidth: 1)
+                        Circle().stroke(.gray, lineWidth: 2)
                     )
             } else {
                 Image(systemName: "person.circle.fill")
