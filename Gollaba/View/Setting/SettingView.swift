@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import AlertToast
 
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
@@ -50,7 +51,9 @@ struct SettingView: View {
                         }
                         
                         Button {
-                            
+                            withAnimation {
+                                viewModel.showSetNicknameDialog = true
+                            }
                         } label: {
                             Text("닉네임 바꾸기")
                                 .font(.suitVariable16)
@@ -126,7 +129,7 @@ struct SettingView: View {
                             .onChange(of: viewModel.selectedItem) { _, newValue in
                                 Task {
                                     await viewModel.convertImage(item: newValue)
-//                                    await viewModel.uploadImage()
+                                    //                                    await viewModel.uploadImage()
                                 }
                             }
                             
@@ -153,6 +156,82 @@ struct SettingView: View {
                 .transition(.move(edge: .bottom))
                 
             }
+            
+            if viewModel.showSetNicknameDialog {
+                Color.black.opacity(0.3)
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.showSetNicknameDialog = false
+                        }
+                    }
+                
+                GeometryReader { geometry in
+                    VStack {
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .trailing, spacing: 20) {
+                            HStack {
+                                Text("닉네임 바꾸기")
+                                    .font(.suitBold20)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    withAnimation {
+                                        viewModel.showSetNicknameDialog = false
+                                    }
+                                } label: {
+                                    Image(systemName: "xmark")
+                                }
+                                .tint(.black)
+                            }
+                            
+                            ClearableTextFieldView(
+                                placeholder: "바꾸려는 닉네임",
+                                editText: $viewModel.nickName,
+                                isFocused: $viewModel.nickNameFocused
+                            )
+                            
+                            Button {
+                                if viewModel.isValidNickname() {
+                                    Task {
+                                        await viewModel.updateUserName()
+                                        viewModel.showSetNicknameDialog = false
+                                    }
+                                }
+                            } label: {
+                                Text("변경")
+                                    .font(.suitVariable16)
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 8)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.enrollButton)
+                                    )
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.white)
+                                .edgesIgnoringSafeArea(.all)
+                        )
+                        .padding()
+                        .onAppear {
+                            viewModel.nickNameFocused = true
+                        }
+                        .onDisappear {
+                            viewModel.nickNameFocused = false
+                        }
+                        
+                        Spacer()
+                    }
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -170,11 +249,40 @@ struct SettingView: View {
                     .font(.suitBold24)
             }
         }
+        .onAppear {
+            viewModel.nickName = authManager.userData?.name ?? ""
+            viewModel.setAuthManager(authManager)
+        }
+        .onDisappear {
+            viewModel.showSetProfileImageDialog = false
+            viewModel.showSetNicknameDialog = false
+        }
         .dialog(
             isPresented: $viewModel.showErrorDialog,
             title: "설정",
             content: Text("\(viewModel.errorMessage)")
         )
+        .toast(isPresenting: $viewModel.showSuccessUpdateUserNameToast, alert: {
+            AlertToast(type: .regular, title: "닉네임 변경이 완료되었습니다.", style: .style(titleFont: .suitBold16))
+        })
+        .toast(isPresenting: $viewModel.showInValidToast, alert: {
+            switch viewModel.nicknameError {
+            case .Empty:
+                return AlertToast(type: .error(.red), title: "닉네임을 입력해주세요.", style: .style(titleFont: .suitBold16))
+            case .Length:
+                return AlertToast(type: .error(.red), title: "닉네임은 2자 이상 10자 이하로 입력해주세요.", style: .style(titleFont: .suitBold16))
+            case .ContainsBlank:
+                return AlertToast(type: .error(.red), title: "닉네임에 공백이 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
+            case .Duplicate:
+                return AlertToast(type: .error(.red), title: "이미 사용중인 닉네임입니다.", style: .style(titleFont: .suitBold16))
+            case .SpecialCharacter:
+                return AlertToast(type: .error(.red), title: "닉네임에 특수문자가 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
+            case .ContainsForbiddenCharacter:
+                return AlertToast(type: .error(.red), title: "닉네임에 금지된 단어가 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
+            default:
+                return AlertToast(type: .error(.red), title: "")
+            }
+        })
     }
 }
 
