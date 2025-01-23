@@ -53,6 +53,7 @@ struct MyPollView: View {
                         ) {
                             viewModel.isClickedProfileImage = true
                         }
+                        .frame(width: 100, height: 100)
                         
                         
                         //                        ProfileNameView(name: $viewModel.name, email: authManager.userData?.email ?? "")
