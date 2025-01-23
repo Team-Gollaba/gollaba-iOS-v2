@@ -37,6 +37,7 @@ struct ProfileImageView: View {
             )
         }
         .padding(.vertical)
+        .frame(width: width, height: height)
     }
 }
 

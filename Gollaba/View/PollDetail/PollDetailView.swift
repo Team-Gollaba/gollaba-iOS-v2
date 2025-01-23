@@ -53,7 +53,6 @@ struct PollDetailView: View {
                         
                         HStack {
                             ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl, width: 24, height: 24)
-                                .frame(width: 24, height: 24)
                             
                             Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
                                 .font(.suitVariable16)
