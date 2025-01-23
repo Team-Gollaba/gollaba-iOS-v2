@@ -153,7 +153,10 @@ struct PollDetailView: View {
                             guard let pollVoters = viewModel.pollVoters else { return }
                             viewModel.pollVotersTitle = viewModel.poll?.items.first(where: { $0.id == pollItemId})?.description ?? ""
                             viewModel.pollVoterNames = pollVoters.first(where: { $0.pollItemId == pollItemId })?.voterNames ?? []
-                            viewModel.isPresentPollVotersView = true
+                            
+                            withAnimation {
+                                viewModel.isPresentPollVotersView = true
+                            }
                         }
                     )
                     .skeleton(isActive: viewModel.poll == nil)
