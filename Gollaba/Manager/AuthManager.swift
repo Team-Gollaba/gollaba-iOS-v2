@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 @Observable
 class AuthManager {
@@ -45,8 +46,8 @@ class AuthManager {
     
     func kakaoLogout() async throws {
         if await kakaoAuthManager.kakaoLogout() {
-            jwtToken = nil
-            providerType = .none
+            self.jwtToken = nil
+            self.providerType = .none
         } else {
             throw KakaoLogoutError.invalidResponse
         }

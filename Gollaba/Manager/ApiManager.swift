@@ -87,6 +87,13 @@ class ApiManager {
     let headers: HTTPHeaders = ["Content-Type": "application/json"]
     
     var authManager: AuthManager?
+    let apiInterceptor: ApiInterceptor
+    let session: Session
+    
+    init() {
+        self.apiInterceptor = ApiInterceptor()
+        self.session = Session(interceptor: self.apiInterceptor)
+    }
     
     func setAuthManager(_ authManager: AuthManager) {
         self.authManager = authManager
@@ -111,7 +118,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -143,7 +150,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -201,7 +208,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -231,7 +238,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .delete, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .delete, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -258,7 +265,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -357,7 +364,7 @@ class ApiManager {
         let endAtString = dateFormatter.string(from: endAt)
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.upload(multipartFormData: { multipartFormData in
+            session.upload(multipartFormData: { multipartFormData in
                 multipartFormData.append(Data(title.utf8), withName: "title")
                 multipartFormData.append(Data(creatorName.utf8), withName: "creatorName")
                 multipartFormData.append(Data(responseType.utf8), withName: "responseType")
@@ -431,7 +438,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: AllPollResponse.self) { response in
                     switch response.result {
@@ -467,7 +474,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: AllPollResponse.self) { response in
                     switch response.result {
@@ -600,7 +607,7 @@ class ApiManager {
         ]
                 
         return try await withCheckedThrowingContinuation { contination in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: AllPollResponse.self) { response in
                     switch response.result {
@@ -631,7 +638,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -658,7 +665,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.upload(
+            session.upload(
                 multipartFormData: { multipartFormData in
                     if let imageData = image.jpegData(compressionQuality: 0.1) {
                         let imageField = "image"
@@ -693,7 +700,7 @@ class ApiManager {
         ]
                         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -804,7 +811,7 @@ class ApiManager {
         }
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -843,7 +850,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -877,7 +884,7 @@ class ApiManager {
         ]
                 
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -942,7 +949,7 @@ class ApiManager {
         ]
                 
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
+            session.request(url, method: .put, parameters: param, encoding: JSONEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -969,7 +976,7 @@ class ApiManager {
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .delete, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .delete, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: DefaultResponse.self) { response in
                     switch response.result {
@@ -985,7 +992,35 @@ class ApiManager {
         }
     }
     
-    //MARK: - auth
+    //MARK: - Auth
+    // 토큰 갱신
+    func refreshToken(completion: @escaping (Result<String, Error>) -> Void) throws {
+        let urlString = baseURL + "/v2/auth/renew-token"
+        let url = try getUrl(for: urlString)
+        
+        AF.request(url, method: .post, encoding: URLEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: DefaultResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    Logger.shared.log(String(describing: self), #function, "Success to refresh token: \(value)")
+                    
+                    switch value.data {
+                    case .loginResponseData(let data):
+                        self.authManager?.jwtToken = data.accessToken
+                        completion(.success(data.accessToken))
+                    default:
+                        completion(.failure(ApiError.invalidResponse))
+                    }
+                case .failure(let error):
+                    Logger.shared.log(String(describing: self), #function, "Failed to refresh token with error: \(error)", .error)
+                    completion(.failure(error))
+                }
+            }
+        
+    }
+    
+    // OAuth 로그인
     func loginByProviderToken(providerToken: String, providerType: ProviderType) async throws -> String {
         let providerTypeString = providerType.rawValue
         let urlString = baseURL + "/v2/auth/login/by-provider-token"
@@ -1002,6 +1037,11 @@ class ApiManager {
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to login by provider token: \(value)")
+                        if let cookies = HTTPCookieStorage.shared.cookies {
+                            for cookie in cookies {
+                                print("쿠키 이름: \(cookie.name), 값: \(cookie.value)")
+                            }
+                        }
                         
                         switch value.data {
                         case .loginResponseData(let data):
