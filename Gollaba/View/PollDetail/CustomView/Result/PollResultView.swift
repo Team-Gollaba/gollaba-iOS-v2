@@ -27,6 +27,10 @@ struct PollResultView: View {
                         .font(.suitBold24)
                     
                     Spacer()
+                    
+                    Text("\(totalVotingCount)명 참여")
+                        .font(.suitBold16)
+                        .foregroundStyle(.gray)
                 }
                 
                 ForEach(pollOptions, id: \.self) { pollOption in

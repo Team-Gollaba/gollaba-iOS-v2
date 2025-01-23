@@ -14,9 +14,16 @@ struct PollChartView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text(title)
-                .font(.suitVariable16)
-            
+            HStack {
+                Text(title)
+                    .font(.suitVariable16)
+                
+                Spacer()
+                
+                Text("\(selectedCount)명")
+                    .font(.suitBold12)
+                    .foregroundStyle(.gray)
+            }
             ZStack (alignment: .leading) {
                 Rectangle()
                     .foregroundStyle(.gray.opacity(0.3))
