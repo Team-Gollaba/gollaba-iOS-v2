@@ -129,7 +129,8 @@ struct SettingView: View {
                             .onChange(of: viewModel.selectedItem) { _, newValue in
                                 Task {
                                     await viewModel.convertImage(item: newValue)
-                                    //                                    await viewModel.uploadImage()
+                                    await viewModel.updateProfileImage()
+                                    await viewModel.getUser()
                                 }
                             }
                             

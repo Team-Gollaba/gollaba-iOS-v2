@@ -18,6 +18,10 @@ enum nickNameError {
     case None
 }
 
+enum profileImageError: Error {
+    case imageNil
+}
+
 @Observable
 class SettingViewModel {
     //MARK: - Properties
@@ -59,16 +63,17 @@ class SettingViewModel {
         }
     }
     
-    func uploadImage() async -> String {
+    func updateProfileImage() async {
+        guard let uiImage = self.uiImage else {
+            handleError(error: profileImageError.imageNil)
+            return
+        }
+        
         do {
-            if let uiImage = uiImage {
-                let url = try await ApiManager.shared.uploadImage(images: [uiImage])
-                return url.first ?? ""
-            }
+            try await ApiManager.shared.updateUserProfileImage(image: uiImage)
         } catch {
             handleError(error: error)
         }
-        return ""
     }
     
     func updateUserName() async {
@@ -76,6 +81,16 @@ class SettingViewModel {
             try await ApiManager.shared.updateUserName(name: nickName)
             self.authManager?.userData?.name = nickName
             self.showSuccessUpdateUserNameToast = true
+        } catch {
+            handleError(error: error)
+        }
+    }
+    
+    func getUser() async {
+        do {
+            let userData = try await ApiManager.shared.getUserMe()
+            authManager?.userData = userData
+            self.nickName = userData.name
         } catch {
             handleError(error: error)
         }

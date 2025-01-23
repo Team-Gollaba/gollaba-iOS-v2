@@ -210,7 +210,6 @@ struct MyPollView: View {
                         await viewModel.getPollsFavoriteByMe()
                         await viewModel.getPollsParticipated()
                     }
-                    
                 }
                 .refreshable(action: viewModel.loadPolls)
                 .dialog(
