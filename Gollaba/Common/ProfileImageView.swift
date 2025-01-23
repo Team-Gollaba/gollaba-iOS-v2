@@ -10,32 +10,36 @@ import Kingfisher
 
 struct ProfileImageView: View {
     var imageUrl: String?
+    var width: CGFloat
+    var height: CGFloat
     var action: (() -> Void)?
     
     var body: some View {
         Button {
             action?()
         } label: {
-            if let imageUrl {
-                KFImage(URL(string: imageUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(.gray, lineWidth: 2)
-                    )
-            } else {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .scaledToFill()
-                    .foregroundStyle(.gray)
-                    .clipShape(Circle())
+            Group {
+                if let imageUrl {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .scaledToFill()
+                        .foregroundStyle(.gray)
+                }
             }
+            .frame(width: width, height: height)
+            .clipShape(Circle())
+            .overlay(
+                Circle().stroke(.gray, lineWidth: 2)
+            )
         }
         .padding(.vertical)
     }
 }
 
-//#Preview {
-//    ProfileImageView(image: KFImage("cha_eun_woo"), action: {})
-//}
+#Preview {
+    ProfileImageView(width: 40, height: 40)
+}

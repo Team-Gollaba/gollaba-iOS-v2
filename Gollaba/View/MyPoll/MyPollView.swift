@@ -47,11 +47,12 @@ struct MyPollView: View {
                 ScrollView {
                     VStack (spacing: 0) {
                         ProfileImageView(
-                            imageUrl: authManager.userData?.profileImageUrl
+                            imageUrl: authManager.userData?.profileImageUrl,
+                            width: 100,
+                            height: 100
                         ) {
                             viewModel.isClickedProfileImage = true
                         }
-                        .frame(width: 100, height: 100)
                         
                         
                         //                        ProfileNameView(name: $viewModel.name, email: authManager.userData?.email ?? "")

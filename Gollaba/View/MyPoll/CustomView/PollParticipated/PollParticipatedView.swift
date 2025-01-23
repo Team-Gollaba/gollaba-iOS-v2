@@ -44,10 +44,7 @@ struct PollParticipatedView: View {
                     }
                     
                     HStack {
-                        ProfileImageView(imageUrl: poll.creatorProfileUrl) {
-                            
-                        }
-                        .frame(width: 24, height: 24)
+                        ProfileImageView(imageUrl: poll.creatorProfileUrl, width: 24, height: 24)
                         
                         Text("\(poll.creatorName)")
                             .font(.suitBold16)

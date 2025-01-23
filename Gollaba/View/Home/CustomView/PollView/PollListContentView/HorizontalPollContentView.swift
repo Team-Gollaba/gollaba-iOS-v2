@@ -31,10 +31,8 @@ struct HorizontalPollContentView: View {
                     .skeleton(isActive: poll.id == "-1")
                     
                     HStack (alignment: .top, spacing: 12) {
-                        ProfileImageView(imageUrl: poll.creatorProfileUrl) {
-                            
-                        }
-                        .frame(width: 40, height: 40)
+                        ProfileImageView(imageUrl: poll.creatorProfileUrl, width: 40, height: 40)
+                            .frame(width: 40, height: 40)
                         .skeleton(isActive: poll.id == "-1")
                         
                         VStack(alignment: .leading, spacing: 4) {

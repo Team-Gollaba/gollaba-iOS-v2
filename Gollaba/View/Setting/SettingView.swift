@@ -19,8 +19,7 @@ struct SettingView: View {
             ScrollView {
                 VStack (spacing: 20) {
                     HStack (spacing: 20) {
-                        ProfileImageView(imageUrl: authManager.userData?.profileImageUrl)
-                            .frame(width: 80, height: 80)
+                        ProfileImageView(imageUrl: authManager.userData?.profileImageUrl, width: 80, height: 80)
                         
                         VStack (alignment: .leading, spacing: 4) {
                             Text(authManager.userData?.name ?? "사용자")

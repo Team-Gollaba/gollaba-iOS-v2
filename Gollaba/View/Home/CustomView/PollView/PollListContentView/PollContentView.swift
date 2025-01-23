@@ -39,10 +39,8 @@ struct PollContentView: View {
                     HStack (alignment: .center) {
                         HStack {
                             
-                            ProfileImageView(imageUrl: poll.creatorProfileUrl) {
-                                
-                            }
-                            .frame(width: 28, height: 28)
+                            ProfileImageView(imageUrl: poll.creatorProfileUrl, width: 28, height: 28)
+                                .frame(width: 28, height: 28)
                             
                             Text(poll.creatorName)
                                 .font(.suitVariable16)

@@ -10,10 +10,7 @@ import SwiftUI
 struct NotificationContentView: View {
     var body: some View {
         HStack (alignment: .top, spacing: 12) {
-            ProfileImageView {
-                
-            }
-            .frame(width: 60, height: 60)
+            ProfileImageView(width: 60, height: 60)
             
             VStack (alignment: .leading, spacing: 8) {
                 HStack {
