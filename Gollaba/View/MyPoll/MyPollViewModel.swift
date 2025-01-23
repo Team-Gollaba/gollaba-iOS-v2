@@ -187,8 +187,10 @@ class MyPollViewModel {
             try await Task.sleep(nanoseconds: 1000_000_000)
             resetPollsCreatedByMe()
             resetPollsFavoriteByMe()
+            resetPollsParticipated()
             await getPollsCreatedByMe()
             await getPollsFavoriteByMe()
+            await getPollsParticipated()
         } catch {
             handleError(error: error)
         }

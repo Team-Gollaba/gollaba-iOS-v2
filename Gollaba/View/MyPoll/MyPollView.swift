@@ -245,6 +245,7 @@ struct MyPollView: View {
                             await viewModel.kakaoLogout()
                             viewModel.resetPollsCreatedByMe()
                             viewModel.resetPollsFavoriteByMe()
+                            viewModel.resetPollsParticipated()
                         }
                     }
                 )
