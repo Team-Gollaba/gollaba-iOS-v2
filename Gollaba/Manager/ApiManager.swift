@@ -717,7 +717,7 @@ class ApiManager {
     }
     
     // 회원가입
-    func signUp(email: String, name: String, profileImageUrl: String? = nil, providerType: ProviderType, providerAccessToken: String) async throws -> String {
+    func signUp(email: String, name: String, profileImageUrl: String? = nil, providerType: ProviderType, providerAccessToken: String? = nil, providerId: String? = nil) async throws -> String {
         let urlString = baseURL + "/v2/users/signup"
         let url = try getUrl(for: urlString)
         
@@ -725,8 +725,15 @@ class ApiManager {
             "email": email,
             "name": name,
             "providerType": providerType.rawValue,
-            "providerAccessToken": providerAccessToken
         ]
+        
+        if let providerAccessToken {
+            param["providerAccessToken"] = providerAccessToken
+        }
+        
+        if let providerId {
+            param["providerId"] = providerId
+        }
         
         if let profileImageUrl {
             param["profileImageUrl"] = profileImageUrl
