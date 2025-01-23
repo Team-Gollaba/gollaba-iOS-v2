@@ -37,6 +37,7 @@ struct PollParticipatedList: View {
                 } else {
                     Text("참여한 투표가 없습니다.\n투표에 참여해보세요!")
                         .font(.suitBold24)
+                        .frame(height: 300)
                 }
             }
         }

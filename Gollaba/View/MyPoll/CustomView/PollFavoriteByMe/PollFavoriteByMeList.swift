@@ -37,6 +37,7 @@ struct PollFavoriteByMeList: View {
                 } else {
                     Text("좋아요한 투표가 없습니다.")
                         .font(.suitBold24)
+                        .frame(height: 300)
                 }
             }
         }

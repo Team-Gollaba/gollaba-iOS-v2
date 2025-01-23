@@ -126,7 +126,7 @@ struct MyPollView: View {
                         
                         TabView (selection: $viewModel.selectedTab) {
                             PollMadeByMeList(
-                                pollMadeByMeList: viewModel.createdByMePollList.isEmpty ? PollItem.tempDataList() : viewModel.createdByMePollList,
+                                pollMadeByMeList: (viewModel.createdByMePollList.isEmpty && !viewModel.createdByMePollIsEnd) ? PollItem.tempDataList() : viewModel.createdByMePollList,
                                 requestAddPoll: $viewModel.createdByMePollRequestAdd,
                                 isEnd: $viewModel.createdByMePollIsEnd
                             )
@@ -145,7 +145,7 @@ struct MyPollView: View {
                             
                             
                             PollFavoriteByMeList(
-                                pollFavoriteByMeList: viewModel.favoriteByMePollList.isEmpty ? PollItem.tempDataList() : viewModel.favoriteByMePollList,
+                                pollFavoriteByMeList: (viewModel.favoriteByMePollList.isEmpty && !viewModel.favoriteByMePollIsEnd) ? PollItem.tempDataList() : viewModel.favoriteByMePollList,
                                 favoritePolls: authManager.favoritePolls,
                                 requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
                                 isEnd: $viewModel.favoriteByMePollIsEnd,
@@ -173,7 +173,7 @@ struct MyPollView: View {
                             }
                             
                             PollParticipatedList(
-                                pollParticipatedList: viewModel.participatedPollList.isEmpty ? PollItem.tempDataList() : viewModel.participatedPollList,
+                                pollParticipatedList: (viewModel.participatedPollList.isEmpty && !viewModel.participatedPollIsEnd) ? PollItem.tempDataList() : viewModel.participatedPollList,
                                 requestAddPoll: $viewModel.participatedPollRequestAdd,
                                 isEnd: $viewModel.participatedPollIsEnd
                             )

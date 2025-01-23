@@ -107,6 +107,7 @@ class MyPollViewModel {
             let polls = try await ApiManager.shared.getPollsCreatedByMe(page: createdByMePollPage, size: createdByMePollSize)
             createdByMePollList = polls.items
             createdByMePollPage += 1
+            createdByMePollIsEnd = polls.items.count == polls.totalCount
         } catch {
             handleError(error: error)
         }
@@ -134,6 +135,7 @@ class MyPollViewModel {
             let polls = try await ApiManager.shared.getPollsFavoriteByMe(page: favoriteByMePollPage, size: favoriteByMePollSize)
             favoriteByMePollList = polls.items
             favoriteByMePollPage += 1
+            favoriteByMePollIsEnd = polls.items.count == polls.totalCount
         } catch {
             handleError(error: error)
         }
@@ -161,6 +163,7 @@ class MyPollViewModel {
             let polls = try await ApiManager.shared.getPollsParticipated(page: participatedPollPage, size: participatedPollSize)
             participatedPollList = polls.items
             participatedPollPage += 1
+            participatedPollIsEnd = polls.items.count == polls.totalCount
             
         } catch {
             handleError(error: error)

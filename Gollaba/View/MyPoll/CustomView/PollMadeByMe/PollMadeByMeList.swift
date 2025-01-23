@@ -39,6 +39,7 @@ struct PollMadeByMeList: View {
                 } else {
                     Text("만든 투표가 없습니다.\n투표를 만들어 주세요!")
                         .font(.suitBold24)
+                        .frame(height: 300)
                 }
             }
         }
