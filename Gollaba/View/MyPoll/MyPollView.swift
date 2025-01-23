@@ -126,16 +126,16 @@ struct MyPollView: View {
                         
                         TabView (selection: $viewModel.selectedTab) {
                             PollMadeByMeList(
-                                pollMadeByMeList: viewModel.madeByMePollList.isEmpty ? PollItem.tempDataList() : viewModel.madeByMePollList,
-                                requestAddPoll: $viewModel.madeByMePollRequestAdd,
-                                isEnd: $viewModel.madeByMePollIsEnd
+                                pollMadeByMeList: viewModel.createdByMePollList.isEmpty ? PollItem.tempDataList() : viewModel.createdByMePollList,
+                                requestAddPoll: $viewModel.createdByMePollRequestAdd,
+                                isEnd: $viewModel.createdByMePollIsEnd
                             )
                             .tag(MyPollSelectedTab.madeByMe)
                             .background(GeometryReader { proxy in
                                 Color.clear
                                     .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
-                            .onChange(of: viewModel.madeByMePollRequestAdd) { _, newValue in
+                            .onChange(of: viewModel.createdByMePollRequestAdd) { _, newValue in
                                 if newValue {
                                     Task {
                                         await viewModel.fetchPollsCreatedByMe()

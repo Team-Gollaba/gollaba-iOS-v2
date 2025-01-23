@@ -25,11 +25,11 @@ class MyPollViewModel {
     
     //MARK: - Data
     // 내가 만든 투표
-    private(set) var madeByMePollList: [PollItem] = []
-    var madeByMePollRequestAdd: Bool = false
-    var madeByMePollIsEnd: Bool = false
-    private var madeByMePollPage: Int = 0
-    private let madeByMePollSize: Int = 10
+    private(set) var createdByMePollList: [PollItem] = []
+    var createdByMePollRequestAdd: Bool = false
+    var createdByMePollIsEnd: Bool = false
+    private var createdByMePollPage: Int = 0
+    private let createdByMePollSize: Int = 10
     
     // 좋아요 한 투표
     private(set) var favoriteByMePollList: [PollItem] = []
@@ -101,27 +101,27 @@ class MyPollViewModel {
     }
     
     func getPollsCreatedByMe() async {
-        guard madeByMePollList.isEmpty else { return }
+        guard createdByMePollList.isEmpty else { return }
 
         do {
-            let polls = try await ApiManager.shared.getPollsCreatedByMe(page: madeByMePollPage, size: madeByMePollSize)
-            madeByMePollList = polls.items
-            madeByMePollPage += 1
+            let polls = try await ApiManager.shared.getPollsCreatedByMe(page: createdByMePollPage, size: createdByMePollSize)
+            createdByMePollList = polls.items
+            createdByMePollPage += 1
         } catch {
             handleError(error: error)
         }
     }
     
     func fetchPollsCreatedByMe() async {
-        if madeByMePollIsEnd { return }
+        if createdByMePollIsEnd { return }
 
         do {
-            let newPolls = try await ApiManager.shared.getPollsCreatedByMe(page: madeByMePollPage, size: madeByMePollSize)
-            madeByMePollPage += 1
-            madeByMePollList.append(contentsOf: newPolls.items)
-            madeByMePollRequestAdd = false
+            let newPolls = try await ApiManager.shared.getPollsCreatedByMe(page: createdByMePollPage, size: createdByMePollSize)
+            createdByMePollPage += 1
+            createdByMePollList.append(contentsOf: newPolls.items)
+            createdByMePollRequestAdd = false
             
-            madeByMePollIsEnd = newPolls.items.isEmpty
+            createdByMePollIsEnd = newPolls.items.isEmpty
         } catch {
             handleError(error: error)
         }
@@ -268,9 +268,9 @@ class MyPollViewModel {
     }
     
     func resetPollsCreatedByMe() {
-        madeByMePollList.removeAll()
-        madeByMePollPage = 0
-        madeByMePollIsEnd = false
+        createdByMePollList.removeAll()
+        createdByMePollPage = 0
+        createdByMePollIsEnd = false
     }
     
     func resetPollsFavoriteByMe() {
