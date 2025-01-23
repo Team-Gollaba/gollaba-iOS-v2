@@ -136,6 +136,13 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
+                            .onChange(of: viewModel.madeByMePollRequestAdd) { _, newValue in
+                                if newValue {
+                                    Task {
+                                        await viewModel.fetchPollsCreatedByMe()
+                                    }
+                                }
+                            }
                             
                             
                             PollFavoriteByMeList(
@@ -158,6 +165,13 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
+                            .onChange(of: viewModel.favoriteByMePollRequestAdd) { _, newValue in
+                                if newValue {
+                                    Task {
+                                        await viewModel.fetchPollsFavoriteByMe()
+                                    }
+                                }
+                            }
                             
                             PollParticipatedList(
                                 pollParticipatedList: viewModel.participatedPollList.isEmpty ? PollItem.tempDataList() : viewModel.participatedPollList,
@@ -169,6 +183,13 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: ParticipatedTabHeightPreferenceKey.self, value: proxy.size.height)
                             })
+                            .onChange(of: viewModel.participatedPollRequestAdd) { _, newValue in
+                                if newValue {
+                                    Task {
+                                        await viewModel.fetchPollsParticipated()
+                                    }
+                                }
+                            }
                             
                         }
                         .frame(height: viewModel.currentTabHeight) // 현재 선택된 탭의 높이만 사용
