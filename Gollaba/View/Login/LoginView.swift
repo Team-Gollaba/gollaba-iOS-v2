@@ -44,21 +44,21 @@ struct LoginView: View {
                 }
             )
             
-//            OAuthLoginButton(
-//                image: Image("NaverLogo"),
-//                providerType: .naver,
-//                action: {
-//                    
-//                }
-//            )
-//            
-//            OAuthLoginButton(
-//                image: Image("GoogleLogo"),
-//                providerType: .google,
-//                action: {
-//                    
-//                }
-//            )
+            //            OAuthLoginButton(
+            //                image: Image("NaverLogo"),
+            //                providerType: .naver,
+            //                action: {
+            //
+            //                }
+            //            )
+            //
+            //            OAuthLoginButton(
+            //                image: Image("GoogleLogo"),
+            //                providerType: .google,
+            //                action: {
+            //
+            //                }
+            //            )
             
             ZStack {
                 AppleLoginButton(handleAppleLogin: { result in
@@ -77,13 +77,13 @@ struct LoginView: View {
                 .allowsHitTesting(false)
             }
             
-//            OAuthLoginButton(
-//                image: Image("GithubLogo"),
-//                providerType: .github,
-//                action: {
-//                    
-//                }
-//            )
+            //            OAuthLoginButton(
+            //                image: Image("GithubLogo"),
+            //                providerType: .github,
+            //                action: {
+            //
+            //                }
+            //            )
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -124,12 +124,20 @@ struct LoginView: View {
             }
         }
         .onChange(of: viewModel.isAppleLogin, { _, newValue in
-            if newValue {
-                dismiss()
+            
+            Task {
+                authManager.jwtToken = await viewModel.login(providerToken: viewModel.accessToken, providerType: .apple)
+                viewModel.providerType = .apple
+                
+                if !viewModel.isNotSignUp && newValue {
+                    dismiss()
+                } else {
+                    viewModel.goToSignUp = true
+                }
             }
         })
         .navigationDestination(isPresented: $viewModel.goToSignUp) {
-            SignUpView(accessToken: viewModel.accessToken, email: viewModel.email, providerType: viewModel.providerType)
+            SignUpView(accessToken: viewModel.accessToken, email: viewModel.email, providerType: viewModel.providerType, providerId: viewModel.providerId)
         }
     }
 }

@@ -29,6 +29,7 @@ class SignUpViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var nickName: String = ""
     @Published var providerType: ProviderType = .apple
+    @Published var providerId: String = ""
     @Published var profileImageUrl: String = ""
     
     @Published var emailFocused: Bool = false
@@ -57,7 +58,13 @@ class SignUpViewModel: ObservableObject {
         do {
             let url = await uploadImage()
             if url != "" {
-                let jwtToken = try await ApiManager.shared.signUp(email: email, name: nickName, profileImageUrl: url, providerType: providerType, providerAccessToken: providerAccessToken)
+                let jwtToken: String
+                switch providerType {
+                case .apple:
+                    jwtToken = try await ApiManager.shared.signUp(email: email, name: nickName, profileImageUrl: url, providerType: providerType, providerId: providerId)
+                default:
+                    jwtToken = try await ApiManager.shared.signUp(email: email, name: nickName, profileImageUrl: url, providerType: providerType, providerAccessToken: providerAccessToken)
+                }
                 return jwtToken
             }
         } catch {

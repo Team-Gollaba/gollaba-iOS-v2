@@ -20,6 +20,7 @@ class LoginViewModel {
     var accessToken: String = ""
     var email: String = ""
     var providerType: ProviderType = .apple
+    var providerId: String?
     
     private var authManager: AuthManager?
     private(set) var isAppleLogin: Bool = false
@@ -44,9 +45,9 @@ class LoginViewModel {
             Logger.shared.log(String(describing: self), #function, "Success to apple login. \(auth)")
             
             if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
-                let userId = appleIDCredential.user
+                let userId = appleIDCredential.user // 서버 쪽에서 Provider ID
                 let fullName = appleIDCredential.fullName
-                let email = appleIDCredential.email
+                self.email = appleIDCredential.email ?? ""
                 Logger.shared.log(String(describing: self), #function, "userId: \(userId), fullName: \(fullName), email: \(email)")
                 
                 if let identityToken = appleIDCredential.identityToken, let tokenString = String(data: identityToken, encoding: .utf8) {
@@ -54,8 +55,11 @@ class LoginViewModel {
                 }
                 
                 if let authorizationCode = appleIDCredential.authorizationCode, let authCodeString = String(data: authorizationCode, encoding: .utf8) {
+                    self.accessToken = authCodeString
                     Logger.shared.log(String(describing: self), #function, "authorizationCode: \(authCodeString)")
                 }
+                
+                self.providerId = userId
                 self.isAppleLogin = true
             }
         case .failure(let error):

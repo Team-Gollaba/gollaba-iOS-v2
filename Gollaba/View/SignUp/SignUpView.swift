@@ -18,11 +18,13 @@ struct SignUpView: View {
     @State private var accessToken: String = ""
     @State private var email: String = ""
     @State private var providerType: ProviderType = .none
+    @State private var providerId: String?
     
-    init(accessToken: String, email: String, providerType: ProviderType) {
+    init(accessToken: String, email: String, providerType: ProviderType, providerId: String?) {
         _accessToken = State(initialValue: accessToken)
         _email = State(initialValue: email)
         _providerType = State(initialValue: providerType)
+        _providerId = State(initialValue: providerId)
     }
     
     var body: some View {
@@ -144,11 +146,12 @@ struct SignUpView: View {
                 viewModel.providerAccessToken = accessToken
                 viewModel.email = email
                 viewModel.providerType = providerType
+                viewModel.providerId = providerId ?? ""
             }
         }
     }
 }
 
 #Preview {
-    SignUpView(accessToken: "", email: "email@example.com", providerType: .kakao)
+    SignUpView(accessToken: "", email: "email@example.com", providerType: .kakao, providerId: nil)
 }
