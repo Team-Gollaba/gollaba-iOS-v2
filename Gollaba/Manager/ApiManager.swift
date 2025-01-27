@@ -21,6 +21,7 @@ enum ApiError: Error {
 enum AuthError: String, Error {
     case notSignUp = "NOT_SIGN_UP"
     case jwtTokenExpired = "JWT_TOKEN_EXPIRED"
+    case authManagerIsNil
 }
 
 enum VotingError: Error {
@@ -717,6 +718,33 @@ class ApiManager {
                         }
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get user(me) with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    // 회원탈퇴
+    func deleteAccount() async throws {
+        let urlString = baseURL + "/v2/users/sign-out"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            session.request(url, method: .delete, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to delete account: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to delete account with error: \(error)", .error)
                         continuation.resume(throwing: error)
                     }
                 }

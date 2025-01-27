@@ -86,6 +86,20 @@ struct SettingView: View {
                             }
                         }
                     }
+                    
+                    Button {
+                        viewModel.showDeleteAccountDialog = true
+                    } label: {
+                        Text("회원탈퇴")
+                            .font(.suitBold16)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.red)
+                            )
+                    }
                 }
                 .padding()
             }
@@ -257,10 +271,27 @@ struct SettingView: View {
             viewModel.showSetProfileImageDialog = false
             viewModel.showSetNicknameDialog = false
         }
+        .onChange(of: authManager.jwtToken, { _, newValue in
+            if newValue == nil {
+                dismiss()
+            }
+        })
         .dialog(
             isPresented: $viewModel.showErrorDialog,
             title: "설정",
             content: Text("\(viewModel.errorMessage)")
+        )
+        .dialog(
+            isPresented: $viewModel.showDeleteAccountDialog,
+            title: "회원탈퇴",
+            content: Text("정말로 탈퇴 하시겠습니까?"),
+            primaryButtonText: "확인",
+            secondaryButtonText: "취소",
+            onPrimaryButton: {
+                Task {
+                    await viewModel.deleteAccount()
+                }
+            }
         )
         .toast(isPresenting: $viewModel.showSuccessUpdateUserNameToast, alert: {
             AlertToast(type: .regular, title: "닉네임 변경이 완료되었습니다.", style: .style(titleFont: .suitBold16))

@@ -32,6 +32,7 @@ class SettingViewModel {
     var showSetNicknameDialog: Bool = false
     var showInValidToast: Bool = false
     var showSuccessUpdateUserNameToast: Bool = false
+    var showDeleteAccountDialog: Bool = false
     
     //MARK: - AppStorageData
     var isNotificationOn: Bool = AppStorageManager.shared.isNotificationEnabled
@@ -91,6 +92,19 @@ class SettingViewModel {
             let userData = try await ApiManager.shared.getUserMe()
             authManager?.userData = userData
             self.nickName = userData.name
+        } catch {
+            handleError(error: error)
+        }
+    }
+    
+    func deleteAccount() async {
+        guard let authManager else {
+            handleError(error: AuthError.authManagerIsNil)
+            return
+        }
+        do {
+            try await ApiManager.shared.deleteAccount()
+            authManager.resetAuth()
         } catch {
             handleError(error: error)
         }

@@ -46,10 +46,16 @@ class AuthManager {
     
     func kakaoLogout() async throws {
         if await kakaoAuthManager.kakaoLogout() {
-            self.jwtToken = nil
-            self.providerType = .none
+            resetAuth()
         } else {
             throw KakaoLogoutError.invalidResponse
         }
+    }
+    
+    func resetAuth() {
+        self.jwtToken = nil
+        self.providerType = .none
+        self.favoritePolls.removeAll()
+        self.userData = nil
     }
 }

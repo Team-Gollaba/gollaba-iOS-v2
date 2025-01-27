@@ -30,16 +30,6 @@ struct MainView: View {
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()
             }
-            .onAppear {
-                Task {
-                    do {
-                        let token = try await ApiManager.shared.refreshToken()
-                        Logger.shared.log(String(describing: self), #function, "Success to refresh token: \(token)")
-                    } catch {
-                        Logger.shared.log(String(describing: self), #function, "Failed to refresh token", .error)
-                    }
-                }
-            }
         }
     }
 }
