@@ -116,7 +116,6 @@ struct PollDetailView: View {
                                         await viewModel.getPoll()
                                         await viewModel.getPollVoters()
                                     }
-                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                                 }
                             case .completed:
                                 if viewModel.checkVoting() {
@@ -126,7 +125,6 @@ struct PollDetailView: View {
                                         await viewModel.getPoll()
                                         await viewModel.getPollVoters()
                                     }
-                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                                 }
                             default:
                                 break
@@ -135,11 +133,9 @@ struct PollDetailView: View {
                         }
                         
                         if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
-                            PollCancelButton {
+                            PollButton(pollbuttonState: .constant(.cancel)) {
                                 viewModel.isClickedCancelButton = true
-                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             }
-                            .animation(.bouncy, value: viewModel.isVoted)
                         }
                     }
                     .skeleton(isActive: viewModel.poll == nil)
