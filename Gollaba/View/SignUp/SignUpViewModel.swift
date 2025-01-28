@@ -14,6 +14,7 @@ enum NickNameError {
     case ContainsBlank
     case SpecialCharacter
     case ContainsForbiddenCharacter
+    case Duplicate
     case None
 }
 

@@ -8,18 +8,14 @@
 import SwiftUI
 import PhotosUI
 
-enum nickNameError {
-    case Empty
-    case Length
-    case ContainsBlank
-    case Duplicate
-    case SpecialCharacter
-    case ContainsForbiddenCharacter
-    case None
+enum ProfileImageError: Error {
+    case imageNil
 }
 
-enum profileImageError: Error {
-    case imageNil
+enum ChangeProfileImage {
+    case toDefault
+    case toPhotoLibrary
+    case none
 }
 
 @Observable
@@ -33,6 +29,7 @@ class SettingViewModel {
     var showInValidToast: Bool = false
     var showSuccessUpdateUserNameToast: Bool = false
     var showDeleteAccountDialog: Bool = false
+    var showQuestionToChangeProfileImageDialog: Bool = false
     
     //MARK: - AppStorageData
     var isNotificationOn: Bool = AppStorageManager.shared.isNotificationEnabled
@@ -46,7 +43,9 @@ class SettingViewModel {
     var nickName: String = ""
     var nickNameFocused: Bool = false
     
-    var nicknameError: nickNameError = .None
+    var changeProfileImage: ChangeProfileImage = .none
+    
+    var nicknameError: NickNameError = .None
     private(set) var errorMessage: String = ""
     
     var authManager: AuthManager?
@@ -66,7 +65,7 @@ class SettingViewModel {
     
     func updateProfileImage() async {
         guard let uiImage = self.uiImage else {
-            handleError(error: profileImageError.imageNil)
+            handleError(error: ProfileImageError.imageNil)
             return
         }
         

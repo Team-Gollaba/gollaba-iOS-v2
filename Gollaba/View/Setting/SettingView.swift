@@ -143,19 +143,18 @@ struct SettingView: View {
                                 if newValue != nil {
                                     Task {
                                         await viewModel.convertImage(item: newValue)
-                                        await viewModel.updateProfileImage()
-                                        await viewModel.getUser()
+                                        viewModel.changeProfileImage = .toPhotoLibrary
+                                        viewModel.showSetProfileImageDialog = false
+                                        viewModel.showQuestionToChangeProfileImageDialog = true
                                     }
                                 }
                             }
                             
                             if authManager.userData?.profileImageUrl != nil {
                                 Button {
-                                    Task {
-                                        viewModel.selectedItem = nil
-                                        await viewModel.deleteProfileImage()
-                                        await viewModel.getUser()
-                                    }
+                                    viewModel.changeProfileImage = .toDefault
+                                    viewModel.showSetProfileImageDialog = false
+                                    viewModel.showQuestionToChangeProfileImageDialog = true
                                 } label: {
                                     Text("기본 이미지로 변경")
                                         .font(.suitVariable16)
@@ -296,6 +295,30 @@ struct SettingView: View {
             onPrimaryButton: {
                 Task {
                     await viewModel.deleteAccount()
+                }
+            }
+        )
+        .dialog(
+            isPresented: $viewModel.showQuestionToChangeProfileImageDialog,
+            title: "프로필 이미지 변경",
+            content: Text("정말로 변경하시겠습니까?"),
+            primaryButtonText: "확인",
+            secondaryButtonText: "취소",
+            onPrimaryButton: {
+                switch viewModel.changeProfileImage {
+                case .toDefault:
+                    Task {
+                        await viewModel.deleteProfileImage()
+                        await viewModel.getUser()
+                        viewModel.selectedItem = nil
+                    }
+                case .toPhotoLibrary:
+                    Task {
+                        await viewModel.updateProfileImage()
+                        await viewModel.getUser()
+                    }
+                case .none:
+                    break
                 }
             }
         )
