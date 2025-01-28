@@ -38,10 +38,7 @@ public struct DialogViewModifier: ViewModifier {
                             }
                             
                             HStack {
-                                Spacer()
-                                
-                                // Secondary Button
-                                if let secondaryText = secondaryButtonText {
+                                if let secondaryButtonText {
                                     Button {
                                         withAnimation {
                                             opacity = 0.0
@@ -52,14 +49,19 @@ public struct DialogViewModifier: ViewModifier {
                                             onSecondaryButton?()
                                         }
                                     } label: {
-                                        Text(secondaryText)
+                                        Text(secondaryButtonText)
                                             .font(.suitVariable16)
-                                            .foregroundStyle(.blue)
-                                            .padding(.trailing, 12)
+                                            .foregroundStyle(.enrollButton)
+                                            .frame(maxWidth: .infinity)
+                                            .padding(.vertical, 12)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: 8)
+                                                    .stroke(Color.enrollButton, lineWidth: 1)
+                                            )
+                                            .padding(4)
                                     }
                                 }
                                 
-                                // Primary Button
                                 Button {
                                     withAnimation {
                                         opacity = 0.0
@@ -72,8 +74,14 @@ public struct DialogViewModifier: ViewModifier {
                                 } label: {
                                     Text(primaryButtonText)
                                         .font(.suitVariable16)
-                                        .foregroundStyle(.blue)
-                                        .padding(.horizontal, 12)
+                                        .foregroundStyle(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 12)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .fill(Color.enrollButton)
+                                        )
+                                        .padding(4)
                                 }
                             }
                             .padding(.top, 12)
