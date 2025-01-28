@@ -91,7 +91,7 @@ struct SearchView: View {
                 await viewModel.getTrendingKeywords()
             }
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
-                viewModel.searchFocus = true
+                
 //                UIApplication.shared.sendAction(
 //                    #selector(UIResponder.resignFirstResponder),
 //                    to: nil,
