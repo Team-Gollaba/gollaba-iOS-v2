@@ -80,9 +80,10 @@ struct PollResultView: View {
     
     private func getPercentage(_ count: Int, _ total: Int) -> String {
         if total == 0 {
-            return "0.0%"
+            return "0%"
         } else {
-            return String(format: "%.1f%%", Double(count) / Double(total) * 100)
+            let percentage = (Double(count) / Double(total) * 100).rounded()
+            return "\(Int(percentage))%"
         }
     }
 }
