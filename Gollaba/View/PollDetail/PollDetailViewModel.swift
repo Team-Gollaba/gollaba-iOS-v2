@@ -27,9 +27,11 @@ class PollDetailViewModel {
     var selectedSinglePoll: Int? = nil {
         didSet {
             if self.pollButtonState == .ended { return }
-            
+            guard let selectedSinglePoll = self.selectedSinglePoll else { return }
+            let selectedItemIds = self.poll?.items[selectedSinglePoll - 1].id ?? 0
+                        
             if let votingIdData = self.votingIdData {
-                if votingIdData.votedItemIds.contains(self.selectedSinglePoll ?? -1) {
+                if votingIdData.votedItemIds.contains(selectedItemIds) {
                     self.pollButtonState = .notChanged
                 } else {
                     self.pollButtonState = .completed
@@ -208,6 +210,7 @@ class PollDetailViewModel {
                 
                 self.isVoted = true
                 self.activateSelectAnimation = true
+                self.pollButtonState = .notChanged
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
                 handleError(error: nil)
@@ -238,6 +241,7 @@ class PollDetailViewModel {
         do {
             try await ApiManager.shared.updateVote(votingId: votingIdData.votingId, voterName: voterName, pollItemIds: pollItemIds)
             self.activateSelectAnimation = true
+            self.pollButtonState = .notChanged
         } catch {
             handleError(error: error)
         }
