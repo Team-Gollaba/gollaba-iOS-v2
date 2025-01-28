@@ -242,7 +242,7 @@ struct MyPollView: View {
                     secondaryButtonText: "취소",
                     onPrimaryButton: {
                         Task {
-                            await viewModel.kakaoLogout()
+                            await viewModel.logout()
                             viewModel.resetPollsCreatedByMe()
                             viewModel.resetPollsFavoriteByMe()
                             viewModel.resetPollsParticipated()

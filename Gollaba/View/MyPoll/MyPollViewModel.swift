@@ -67,6 +67,22 @@ class MyPollViewModel {
     
     //MARK: - OAuth
     
+    func logout() async {
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
+            return
+        }
+        
+        switch authManager.providerType {
+        case .kakao:
+            await kakaoLogout()
+        case .apple:
+            authManager.resetAuth()
+        default:
+            break
+        }
+    }
+    
     func kakaoLogout() async {
         guard let authManager else {
             Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
