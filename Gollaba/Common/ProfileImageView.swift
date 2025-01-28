@@ -33,7 +33,7 @@ struct ProfileImageView: View {
             .frame(width: width, height: height)
             .clipShape(Circle())
             .overlay(
-                Circle().stroke(.gray, lineWidth: 2)
+                Circle().stroke(.gray.opacity(0.2), lineWidth: 2)
             )
         }
         .padding(.vertical)
