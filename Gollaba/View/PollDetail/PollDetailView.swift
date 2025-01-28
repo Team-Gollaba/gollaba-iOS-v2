@@ -107,29 +107,26 @@ struct PollDetailView: View {
                     
                     HStack {
                         VotingButton(pollbuttonState: $viewModel.votingButtonState) {
-                            switch viewModel.votingButtonState {
-                            case .normal:
-                                if viewModel.checkVoting() {
+                            if viewModel.checkVoting() {
+                                switch viewModel.votingButtonState {
+                                case .normal:
                                     Task {
                                         await viewModel.vote()
                                         await viewModel.getVotingId()
                                         await viewModel.getPoll()
                                         await viewModel.getPollVoters()
                                     }
-                                }
-                            case .completed:
-                                if viewModel.checkVoting() {
+                                case .completed:
                                     Task {
                                         await viewModel.updateVote()
                                         await viewModel.getVotingId()
                                         await viewModel.getPoll()
                                         await viewModel.getPollVoters()
                                     }
+                                default:
+                                    break
                                 }
-                            default:
-                                break
                             }
-                            
                         }
                         
                         if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {

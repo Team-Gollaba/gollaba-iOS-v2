@@ -140,8 +140,12 @@ class PollDetailViewModel {
                 
                 if !self.isValidDatePoll {
                     self.votingButtonState = .ended
-                } else if self.isVoted && (self.authManager?.isLoggedIn ?? false) {
-                    self.votingButtonState = .completed
+                } else if self.isVoted {
+                    if self.authManager?.isLoggedIn ?? false {
+                        self.votingButtonState = .completed
+                    } else {
+                        self.votingButtonState = .alreadyVoted
+                    }
                 }
                 
             } else {
