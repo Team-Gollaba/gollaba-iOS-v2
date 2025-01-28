@@ -140,16 +140,22 @@ struct SettingView: View {
                                     .foregroundStyle(.black)
                             }
                             .onChange(of: viewModel.selectedItem) { _, newValue in
-                                Task {
-                                    await viewModel.convertImage(item: newValue)
-                                    await viewModel.updateProfileImage()
-                                    await viewModel.getUser()
+                                if newValue != nil {
+                                    Task {
+                                        await viewModel.convertImage(item: newValue)
+                                        await viewModel.updateProfileImage()
+                                        await viewModel.getUser()
+                                    }
                                 }
                             }
                             
                             if authManager.userData?.profileImageUrl != nil {
                                 Button {
-                                    
+                                    Task {
+                                        viewModel.selectedItem = nil
+                                        await viewModel.deleteProfileImage()
+                                        await viewModel.getUser()
+                                    }
                                 } label: {
                                     Text("기본 이미지로 변경")
                                         .font(.suitVariable16)

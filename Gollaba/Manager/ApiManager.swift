@@ -189,7 +189,7 @@ class ApiManager {
         print("urlString: \(urlString), headers: \(headers), jwtToken: \(jwtToken)")
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+            session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: PushNotificationResponse.self) { response in
                     switch response.result {
@@ -728,6 +728,32 @@ class ApiManager {
         }
     }
         
+    // 유저 프로필 사진 제거
+    func deleteUserProfileImage() async throws {
+        let urlString = baseURL + "/v2/users/delete-profile"
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            session.request(url, method: .delete, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to delete user profile image: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to delete user profile image with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
     
     // 유저 본인 조회
     func getUserMe() async throws -> UserData {

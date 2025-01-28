@@ -110,6 +110,14 @@ class SettingViewModel {
         }
     }
     
+    func deleteProfileImage() async {
+        do {
+            try await ApiManager.shared.deleteUserProfileImage()
+        } catch {
+            handleError(error: error)
+        }
+    }
+    
     //MARK: - Image
     func convertImage(item: PhotosPickerItem?) async {
         guard let imageSelection = await ImageManager.convertImage(item: item) else { return }
