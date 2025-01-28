@@ -24,14 +24,43 @@ class PollDetailViewModel {
     let id: String
     private(set) var poll: PollItem?
     private(set) var pollVoters: [PollVotersResponseData]?
-    var selectedSinglePoll: Int? = nil
-    var selectedMultiplePoll: [Bool] = []
+    var selectedSinglePoll: Int? = nil {
+        didSet {
+            if self.pollButtonState == .ended { return }
+            
+            if let votingIdData = self.votingIdData {
+                if votingIdData.votedItemIds.contains(self.selectedSinglePoll ?? -1) {
+                    self.pollButtonState = .notChanged
+                } else {
+                    self.pollButtonState = .completed
+                }
+            }
+        }
+    }
+    var selectedMultiplePoll: [Bool] = [] {
+        didSet {
+            if self.pollButtonState == .ended { return }
+            
+            guard let votingIdData = self.votingIdData,
+                  let pollItems = self.poll?.items else { return }
+            
+            for (index, item) in pollItems.enumerated() {
+                if votingIdData.votedItemIds.contains(item.id) != self.selectedMultiplePoll[index] {
+                    self.pollButtonState = .completed
+                    return
+                }
+            }
+            
+            self.pollButtonState = .notChanged
+        }
+    }
     
     // 투표 상태를 다루기 위한 변수
     /// - PollButtonState:
     ///     - normal : 투표를 하지 않은 상태 ("투표하기" 로 표시)
     ///     - completed : 로그인 유저가 투표를 완료한 상태 ("재투표하기" 로 표시)
     ///     - ended : 이미 기한이 끝나 종료된 투표 ("이미 종료된 투표입니다." 로 표시)
+    ///     - notChanged : 기존에 했던 투표와 같을 경우 ("재투표하기" 로 표시)
     var pollButtonState: PollButtonState = .normal
     
     var inputNameText: String = ""
@@ -387,6 +416,10 @@ class PollDetailViewModel {
             
         default:
             break
+        }
+        
+        if self.pollButtonState != .ended {
+            self.pollButtonState = .notChanged
         }
     }
     
