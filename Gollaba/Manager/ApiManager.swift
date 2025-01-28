@@ -167,6 +167,45 @@ class ApiManager {
         }
     }
     
+    // 푸쉬 알림 내역 조회
+    func getPushNotificationHistory(page: Int = 0, size: Int = 10) async throws -> PushNotificationDatas {
+        var queryItems: [String] = []
+        
+        if page != 0 {
+            queryItems.append("page=\(page)")
+        }
+        if size != 10 {
+            queryItems.append("size=\(size)")
+        }
+        let queryString = queryItems.joined(separator: "&")
+        let urlString = baseURL + "/v2/app-notifications" + "?" + queryString
+        let url = try getUrl(for: urlString)
+        let jwtToken = try getJwtToken()
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(jwtToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        print("urlString: \(urlString), headers: \(headers), jwtToken: \(jwtToken)")
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: PushNotificationResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to get push notification history: \(value)")
+                        continuation.resume(returning: value.data)
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to get push notification history with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+        
+    
     // [TEMP] 푸쉬 알림 메시지 전송
     func sendPushNotification(title: String, content: String) async throws {
         let urlString = baseURL + "/v2/server-message"

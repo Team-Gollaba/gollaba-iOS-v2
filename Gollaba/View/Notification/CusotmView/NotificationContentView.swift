@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct NotificationContentView: View {
+    let pushNotificationData: PushNotificationData
+    
     var body: some View {
         HStack (alignment: .top, spacing: 12) {
             ProfileImageView(width: 60, height: 60)
             
             VStack (alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("진문장은 잘생겼을까?")
+                    Text(pushNotificationData.title)
                         .font(.suitBold16)
                         .lineLimit(1)
                         .truncationMode(.tail)
                     
                     Spacer()
-                    
-                    Text("1월 6일")
-                        .font(.suitVariable16)
-                        .foregroundStyle(.gray)
+//                    
+//                    Text(pushNotificationData.content)
+//                        .font(.suitVariable16)
+//                        .foregroundStyle(.gray)
                 }
                 
-                Text("투표가 마감되었습니다.")
+                Text(pushNotificationData.content)
                     .font(.suitVariable16)
             }
         }
@@ -35,5 +37,5 @@ struct NotificationContentView: View {
 }
 
 #Preview {
-    NotificationContentView()
+    NotificationContentView(pushNotificationData: PushNotificationData(notificationId: 1, userId: 1, agentId: "agentId", eventId: nil, deepLink: "deepLink", title: "title", content: "content"))
 }
