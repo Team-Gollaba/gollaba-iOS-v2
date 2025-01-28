@@ -26,34 +26,34 @@ class PollDetailViewModel {
     private(set) var pollVoters: [PollVotersResponseData]?
     var selectedSinglePoll: Int? = nil {
         didSet {
-            if self.pollButtonState == .ended { return }
+            if self.votingButtonState == .ended { return }
             guard let selectedSinglePoll = self.selectedSinglePoll else { return }
             let selectedItemIds = self.poll?.items[selectedSinglePoll - 1].id ?? 0
                         
             if let votingIdData = self.votingIdData {
                 if votingIdData.votedItemIds.contains(selectedItemIds) {
-                    self.pollButtonState = .notChanged
+                    self.votingButtonState = .notChanged
                 } else {
-                    self.pollButtonState = .completed
+                    self.votingButtonState = .completed
                 }
             }
         }
     }
     var selectedMultiplePoll: [Bool] = [] {
         didSet {
-            if self.pollButtonState == .ended { return }
+            if self.votingButtonState == .ended { return }
             
             guard let votingIdData = self.votingIdData,
                   let pollItems = self.poll?.items else { return }
             
             for (index, item) in pollItems.enumerated() {
                 if votingIdData.votedItemIds.contains(item.id) != self.selectedMultiplePoll[index] {
-                    self.pollButtonState = .completed
+                    self.votingButtonState = .completed
                     return
                 }
             }
             
-            self.pollButtonState = .notChanged
+            self.votingButtonState = .notChanged
         }
     }
     
@@ -63,7 +63,7 @@ class PollDetailViewModel {
     ///     - completed : 로그인 유저가 투표를 완료한 상태 ("재투표하기" 로 표시)
     ///     - ended : 이미 기한이 끝나 종료된 투표 ("이미 종료된 투표입니다." 로 표시)
     ///     - notChanged : 기존에 했던 투표와 같을 경우 ("재투표하기" 로 표시)
-    var pollButtonState: PollButtonState = .normal
+    var votingButtonState: VotingButtonState = .normal
     
     var inputNameText: String = ""
     var inputNameFocused: Bool = false
@@ -73,7 +73,7 @@ class PollDetailViewModel {
             guard let authManager else { return }
             
             if isVoted && isValidDatePoll && authManager.isLoggedIn {
-                pollButtonState = .completed
+                votingButtonState = .completed
             }
         }
     }
@@ -139,9 +139,9 @@ class PollDetailViewModel {
                 self.isVoted = try await ApiManager.shared.votingCheck(pollHashId: poll.id)
                 
                 if !self.isValidDatePoll {
-                    self.pollButtonState = .ended
+                    self.votingButtonState = .ended
                 } else if self.isVoted && (self.authManager?.isLoggedIn ?? false) {
-                    self.pollButtonState = .completed
+                    self.votingButtonState = .completed
                 }
                 
             } else {
@@ -210,7 +210,7 @@ class PollDetailViewModel {
                 
                 self.isVoted = true
                 self.activateSelectAnimation = true
-                self.pollButtonState = .notChanged
+                self.votingButtonState = .notChanged
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
                 handleError(error: nil)
@@ -241,7 +241,7 @@ class PollDetailViewModel {
         do {
             try await ApiManager.shared.updateVote(votingId: votingIdData.votingId, voterName: voterName, pollItemIds: pollItemIds)
             self.activateSelectAnimation = true
-            self.pollButtonState = .notChanged
+            self.votingButtonState = .notChanged
         } catch {
             handleError(error: error)
         }
@@ -422,8 +422,8 @@ class PollDetailViewModel {
             break
         }
         
-        if self.pollButtonState != .ended {
-            self.pollButtonState = .notChanged
+        if self.votingButtonState != .ended {
+            self.votingButtonState = .notChanged
         }
     }
     

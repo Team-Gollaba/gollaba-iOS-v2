@@ -106,8 +106,8 @@ struct PollDetailView: View {
                     }
                     
                     HStack {
-                        PollButton(pollbuttonState: $viewModel.pollButtonState) {
-                            switch viewModel.pollButtonState {
+                        VotingButton(pollbuttonState: $viewModel.votingButtonState) {
+                            switch viewModel.votingButtonState {
                             case .normal:
                                 if viewModel.checkVoting() {
                                     Task {
@@ -133,7 +133,7 @@ struct PollDetailView: View {
                         }
                         
                         if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
-                            PollButton(pollbuttonState: .constant(.cancel)) {
+                            VotingButton(pollbuttonState: .constant(.cancel)) {
                                 viewModel.isClickedCancelButton = true
                             }
                         }
@@ -212,7 +212,7 @@ struct PollDetailView: View {
                     viewModel.votingIdData = nil
                     viewModel.selectedSinglePoll = nil
                     viewModel.selectedMultiplePoll = Array(repeating: false, count: viewModel.selectedMultiplePoll.count)
-                    viewModel.pollButtonState = .normal
+                    viewModel.votingButtonState = .normal
                 }
             }
         )

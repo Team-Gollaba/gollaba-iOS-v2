@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum PollButtonState {
+enum VotingButtonState {
     case normal
     case completed
     case ended
@@ -40,8 +40,8 @@ enum PollButtonState {
     }
 }
 
-struct PollButton: View {
-    @Binding var pollbuttonState: PollButtonState
+struct VotingButton: View {
+    @Binding var pollbuttonState: VotingButtonState
     
     var action: () -> Void
     
@@ -72,5 +72,5 @@ struct PollButton: View {
 }
 
 #Preview {
-    PollButton(pollbuttonState: .constant(.ended), action: {})
+    VotingButton(pollbuttonState: .constant(.ended), action: {})
 }
