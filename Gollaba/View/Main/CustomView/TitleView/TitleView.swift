@@ -25,26 +25,28 @@ struct TitleView: View {
             
             Spacer()
             
-            NavigationLink {
-                NotificationView()
-            } label: {
-                Image(systemName: "bell")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
+            if authManager.isLoggedIn {
+                NavigationLink {
+                    NotificationView()
+                } label: {
+                    Image(systemName: "bell")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .tint(.signUpButtonEnd)
+                .padding(.trailing, 8)
+                
+                NavigationLink {
+                    SettingView()
+                } label: {
+                    Image(systemName: "gearshape")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
+                .tint(.signUpButtonEnd)
             }
-            .tint(.signUpButtonEnd)
-            .padding(.trailing, 8)
-            
-            NavigationLink {
-                SettingView()
-            } label: {
-                Image(systemName: "gearshape")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-            }
-            .tint(.signUpButtonEnd)
 //            if authManager.isLoggedIn {
 //                if let profileImageUrl = authManager.kakaoAuthManager.profileImageUrl {
 //                    TitleProfileView(imageUrl: profileImageUrl, nickName: authManager.kakaoAuthManager.userName)
