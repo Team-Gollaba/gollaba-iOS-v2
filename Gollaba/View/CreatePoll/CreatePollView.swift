@@ -97,10 +97,10 @@ struct CreatePollView: View {
                         }
                         
                         EnrollPollButton(enable: viewModel.isValidForCreatePoll()) {
-                            Task {
-                                await viewModel.createPoll()
-                            }
-                            
+//                            Task {
+//                                await viewModel.createPoll()
+//                            }
+                            viewModel.showQuestionBeforeCreatePollDialog = true
                         }
                         
                     }
@@ -132,13 +132,14 @@ struct CreatePollView: View {
                 onPrimaryButton: {}
             )
             .dialog(
-                isPresented: $viewModel.showCompletedDialog,
+                isPresented: $viewModel.showQuestionBeforeCreatePollDialog,
                 title: "투표 만들기",
-                content: Text(viewModel.completedMessage),
+                content: Text("투표를 생성하시겠습니까?"),
                 primaryButtonText: "확인",
+                secondaryButtonText: "취소",
                 onPrimaryButton: {
-                    if viewModel.isCompletedCreatePoll {
-                        viewModel.goToPollDetail = true
+                    Task {
+                        await viewModel.createPoll()
                     }
                 }
             )

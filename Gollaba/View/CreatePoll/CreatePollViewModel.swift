@@ -21,7 +21,7 @@ class CreatePollViewModel {
     private(set) var isCompletedCreatePoll: Bool = false
     var goToPollDetail: Bool = false
     
-    var showCompletedDialog: Bool = false
+    var showQuestionBeforeCreatePollDialog: Bool = false
     var showErrorDialog: Bool = false
     
     //MARK: - Data
@@ -92,9 +92,7 @@ class CreatePollViewModel {
             )
             
             contentReset()
-            self.completedMessage = "투표가 생성되었습니다."
-            self.isCompletedCreatePoll = true
-            self.showCompletedDialog = true
+            self.goToPollDetail = true
         } catch {
             handleError(error: error)
         }
