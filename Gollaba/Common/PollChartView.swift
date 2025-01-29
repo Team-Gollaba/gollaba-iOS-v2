@@ -32,12 +32,14 @@ struct PollChartView: View {
                     if allCount > 0 {
                         Rectangle()
                             .frame(width: geometry.size.width * CGFloat(selectedCount) / CGFloat(allCount))
+                            .cornerRadius(10)
                             .foregroundStyle(.green)
                     }
                 }
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 10)
+            .frame(height: 12)
+            .cornerRadius(10)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.bottom, 4)
