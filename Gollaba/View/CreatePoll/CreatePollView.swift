@@ -86,6 +86,9 @@ struct CreatePollView: View {
                                     viewModel.showDatePicker = true
                                 }
                             })
+                            .onAppear {
+                                viewModel.selectedDate = Date().addingTimeInterval(60 * 60)
+                            }
                         }
                         
                         OptionBoxView(title: "투표 종료 시간") {
