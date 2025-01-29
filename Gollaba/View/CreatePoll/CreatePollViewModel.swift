@@ -21,7 +21,6 @@ class CreatePollViewModel {
     private(set) var isCompletedCreatePoll: Bool = false
     var goToPollDetail: Bool = false
     
-    var showInvalidDialog: Bool = false
     var showCompletedDialog: Bool = false
     var showErrorDialog: Bool = false
     
@@ -61,7 +60,6 @@ class CreatePollViewModel {
     var uiImage: [UIImage?] = Array(repeating: nil, count: 6)
     
     //MARK: - Dialog Message
-    private(set) var invalidMessage: String = ""
     private(set) var completedMessage: String = ""
     private(set) var errorMessage: String = ""
     
@@ -104,32 +102,10 @@ class CreatePollViewModel {
     
     //MARK: - Check Valid
     func isValidForCreatePoll() -> Bool {
-        if creatorNameText.isEmpty {
-            self.invalidMessage = "투표 작성자 이름을 입력해주세요."
-            self.showInvalidDialog = true
-            return false
-        }
-        
-        if titleText.isEmpty {
-            self.invalidMessage = "투표 제목을 입력해주세요."
-            self.showInvalidDialog = true
-            return false
-        }
-        
-        if pollItemName.dropLast().contains("") {
-            self.invalidMessage = "투표 항목을 모두 입력해주세요."
-            self.showInvalidDialog = true
-            return false
-        }
-        
         let currentDate = Date()
         let thirtyMinutesLater = currentDate.addingTimeInterval(30 * 60)
-        if selectedDate < thirtyMinutesLater {
-            self.invalidMessage = "투표 시작 날짜는 30분 이후로 설정해주세요."
-            self.showInvalidDialog = true
-            return false
-        }
-        return true
+        
+        return !creatorNameText.isEmpty && !titleText.isEmpty && !pollItemName.dropLast().contains("") && !(selectedDate < thirtyMinutesLater)
     }
     
     //MARK: - ETC

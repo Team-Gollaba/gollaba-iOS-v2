@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EnrollPollButton: View {
+    var enable: Bool
     var action: () -> Void
     
     var body: some View {
@@ -21,13 +22,14 @@ struct EnrollPollButton: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(.enrollButton)
+                        .foregroundStyle(enable ? .enrollButton : .gray)
                 )
                 .shadow(radius: 5)
         }
+        .disabled(!enable)
     }
 }
 
 #Preview {
-    EnrollPollButton(action: {})
+    EnrollPollButton(enable: true, action: {})
 }

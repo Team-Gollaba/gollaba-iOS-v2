@@ -34,7 +34,7 @@ struct CreatePollView: View {
                                 placeholder: "투표 작성자 이름을 입력해주세요.",
                                 editText: $viewModel.creatorNameText,
                                 isFocused: $viewModel.creatorNameFocus
-                                )
+                            )
                             .onAppear {
                                 if authManager.isLoggedIn {
                                     viewModel.creatorNameText = authManager.userData?.name ?? ""
@@ -96,12 +96,11 @@ struct CreatePollView: View {
                             }
                         }
                         
-                        EnrollPollButton {
-                            if viewModel.isValidForCreatePoll() {
-                                Task {
-                                    await viewModel.createPoll()
-                                }
+                        EnrollPollButton(enable: viewModel.isValidForCreatePoll()) {
+                            Task {
+                                await viewModel.createPoll()
                             }
+                            
                         }
                         
                     }
@@ -124,7 +123,7 @@ struct CreatePollView: View {
                     
                 }
             }
-//            .dragToHide(isHide: $isHideTabBar)
+            //            .dragToHide(isHide: $isHideTabBar)
             .dialog(
                 isPresented: $viewModel.isQuestionPresent,
                 title: "투표 만들기 도움말",
@@ -165,19 +164,19 @@ struct CreatePollView: View {
     }
     
     private var questionHelpContent: Text {
-            Text("기명투표")
-                .font(.suitBold16)
-            + Text("를 선택하여 로그인 된 사용자의 투표만 받을 수 있어요.")
-                .font(.suitVariable16)
-            + Text("\n\n복수투표")
-                .font(.suitBold16)
-            + Text("로 여러 선택지를 동시에 고르도록 할 수 있어요.")
-                .font(.suitVariable16)
-            + Text("\n\n마감일")
-                .font(.suitBold16)
-            + Text("을 설정해 투표 기간을 원하는 만큼 지정할 수 있어요.")
-                .font(.suitVariable16)
-        }
+        Text("기명투표")
+            .font(.suitBold16)
+        + Text("를 선택하여 로그인 된 사용자의 투표만 받을 수 있어요.")
+            .font(.suitVariable16)
+        + Text("\n\n복수투표")
+            .font(.suitBold16)
+        + Text("로 여러 선택지를 동시에 고르도록 할 수 있어요.")
+            .font(.suitVariable16)
+        + Text("\n\n마감일")
+            .font(.suitBold16)
+        + Text("을 설정해 투표 기간을 원하는 만큼 지정할 수 있어요.")
+            .font(.suitVariable16)
+    }
 }
 
 #Preview {
