@@ -23,49 +23,42 @@ struct TimePickerView: View {
                 }
             }
         
-        Button {
+        VStack {
+            DatePicker(
+                "시간 선택",
+                selection: $selectedDate,
+                displayedComponents: .hourAndMinute
+            )
+            .datePickerStyle(WheelDatePickerStyle())
+            .labelsHidden()
             
-        } label: {
-            VStack {
-                Text("선택된 시간: \(formattedTime(selectedDate))")
-                    .font(.suitBold20)
+            Button {
+                let currentDate = Date()
+                let thirtyMinutesLater = currentDate.addingTimeInterval(30 * 60)
                 
-                DatePicker(
-                    "시간 선택",
-                    selection: $selectedDate,
-                    displayedComponents: .hourAndMinute
-                )
-                .datePickerStyle(WheelDatePickerStyle())
-                .labelsHidden()
-                
-                Button {
-                    let currentDate = Date()
-                    let thirtyMinutesLater = currentDate.addingTimeInterval(30 * 60)
-                    
-                    if selectedDate < thirtyMinutesLater {
-                        showAlert = true
-                    } else {
-                        showTimerPicker = false
-                    }
-                } label: {
-                    Text("확인")
-                        .font(.suitBold16)
-                        .foregroundStyle(.white)
-                        .padding(.vertical, 12)
-                        .padding(.horizontal)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundStyle(.enrollButton)
-                        )
+                if selectedDate < thirtyMinutesLater {
+                    showAlert = true
+                } else {
+                    showTimerPicker = false
                 }
+            } label: {
+                Text("완료")
+                    .font(.suitBold20)
+                    .foregroundStyle(.white)
+                    .padding(8)
+                    .frame(maxWidth: .infinity)
+                    .background(.enrollButton)
+                    .cornerRadius(10)
+                    .padding()
             }
-            .padding()
         }
-        .tint(.black)
+        .padding(8)
+        .tint(.enrollButton)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(.white)
         )
+        .padding()
         .alert("투표 시작 날짜는 30분 이후로 설정해주세요.", isPresented: $showAlert) {
             Button("확인", role: .cancel) {}
         }

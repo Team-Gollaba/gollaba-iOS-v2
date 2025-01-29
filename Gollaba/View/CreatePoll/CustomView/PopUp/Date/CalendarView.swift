@@ -46,19 +46,22 @@ struct CalendarView: View {
                 }
             } label: {
                 Text("완료")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.enrollButton)
+                    .font(.suitBold20)
                     .foregroundStyle(.white)
+                    .padding(8)
+                    .frame(maxWidth: .infinity)
+                    .background(.enrollButton)
                     .cornerRadius(10)
                     .padding()
             }
         }
-        .frame(maxWidth: .infinity)
-        .background(.white)
-        .cornerRadius(15)
+        .padding(8)
+        .tint(.enrollButton)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(.white)
+        )
         .padding()
-        .shadow(radius: 10)
         .alert("과거 날짜는 선택할 수 없습니다.", isPresented: $showAlert) {
             Button("확인", role: .cancel) {}
         }
