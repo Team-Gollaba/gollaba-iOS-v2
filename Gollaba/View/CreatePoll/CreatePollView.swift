@@ -80,24 +80,35 @@ struct CreatePollView: View {
                         }
                         
                         
-                        OptionBoxView(title: "투표 종료 기간") {
-                            CallendarOptionView(selectedDate: $viewModel.selectedDate, action: {
-                                withAnimation {
-                                    viewModel.showDatePicker = true
+                        OptionBoxView(title: "투표 종료 시기") {
+                            VStack {
+                                CallendarOptionView(selectedDate: $viewModel.selectedDate, action: {
+                                    withAnimation {
+                                        viewModel.showDatePicker = true
+                                    }
+                                })
+                                .onAppear {
+                                    viewModel.selectedDate = Date().addingTimeInterval(60 * 60)
                                 }
-                            })
-                            .onAppear {
-                                viewModel.selectedDate = Date().addingTimeInterval(60 * 60)
+                                
+                                Divider()
+                                    .padding(.vertical, 5)
+                                
+                                TimerOptionView(selectedDate: $viewModel.selectedDate) {
+                                    withAnimation {
+                                        viewModel.showTimePicker = true
+                                    }
+                                }
                             }
                         }
-                        
-                        OptionBoxView(title: "투표 종료 시간") {
-                            TimerOptionView(selectedDate: $viewModel.selectedDate) {
-                                withAnimation {
-                                    viewModel.showTimePicker = true
-                                }
-                            }
-                        }
+//                        
+//                        OptionBoxView(title: "투표 종료 시간") {
+//                            TimerOptionView(selectedDate: $viewModel.selectedDate) {
+//                                withAnimation {
+//                                    viewModel.showTimePicker = true
+//                                }
+//                            }
+//                        }
                         
                         EnrollPollButton(enable: viewModel.isValidForCreatePoll()) {
 //                            Task {
