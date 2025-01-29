@@ -22,13 +22,16 @@ struct PollRankingView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            HStack {
-                Image("LeaderBoard")
+            HStack (alignment: .bottom, spacing: 12) {
+                Image(systemName: "chart.bar")
                     .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(.enrollButton)
                     .frame(width: 24, height: 24)
                 
                 Text("순위")
-                    .font(.suitVariable16)
+                    .font(.suitBold20)
+                    .foregroundStyle(.enrollButton)
             }
             
             Divider()

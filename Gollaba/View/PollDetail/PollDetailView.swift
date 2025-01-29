@@ -23,11 +23,7 @@ struct PollDetailView: View {
                 VStack (alignment: .leading, spacing: 20) {
                     
                     VStack (alignment: .leading) {
-                        HStack (spacing: 12) {
-                            Image(systemName: "arrowtriangle.forward.fill")
-                                .resizable()
-                                .foregroundStyle(.enrollButton)
-                                .frame(width: 16, height: 28)
+                        HStack (alignment: .bottom, spacing: 0) {
                             
                             Text(viewModel.poll?.title ?? "")
                                 .font(.suitBold32)
@@ -48,7 +44,6 @@ struct PollDetailView: View {
                                     }
                             }
                         }
-                        .padding(.leading, 4)
                         .skeleton(isActive: viewModel.poll == nil)
                         
                         HStack {

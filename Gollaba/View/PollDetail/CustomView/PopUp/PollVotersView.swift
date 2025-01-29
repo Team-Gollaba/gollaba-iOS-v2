@@ -24,6 +24,7 @@ struct PollVotersView: View {
                 HStack {
                     Image(systemName: "checkmark.square.fill")
                         .resizable()
+                        .scaledToFit()
                         .frame(width: 20, height: 20)
                     
                     Text("\'\(title)\' 투표자 목록")

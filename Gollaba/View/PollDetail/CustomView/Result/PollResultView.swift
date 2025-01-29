@@ -18,13 +18,15 @@ struct PollResultView: View {
         ZStack {
             VStack (spacing: 10) {
                 HStack (spacing: 12) {
-                    Image(systemName: "arrowtriangle.forward.fill")
+                    Image(systemName: "chart.pie")
                         .resizable()
+                        .scaledToFit()
                         .foregroundStyle(.enrollButton)
-                        .frame(width: 12, height: 24)
+                        .frame(width: 24, height: 24)
                     
                     Text("투표 결과")
-                        .font(.suitBold24)
+                        .font(.suitBold20)
+                        .foregroundStyle(.enrollButton)
                     
                     Spacer()
                     
@@ -32,6 +34,11 @@ struct PollResultView: View {
                         .font(.suitBold16)
                         .foregroundStyle(.gray)
                 }
+                
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.enrollButton)
+                    .padding(.bottom, 8)
                 
                 ForEach(pollOptions, id: \.self) { pollOption in
                     PollChartView(
