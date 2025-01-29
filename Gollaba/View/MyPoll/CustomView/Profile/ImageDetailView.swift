@@ -8,13 +8,13 @@
 import SwiftUI
 import Kingfisher
 
-struct ProfileImageDetailView: View {
+struct ImageDetailView: View {
     @Environment(\.dismiss) var dismiss
-    var image: KFImage
+    let imageUrl: String
     
     var body: some View {
         ZStack {
-            image
+            KFImage(URL(string: imageUrl))
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: .infinity)

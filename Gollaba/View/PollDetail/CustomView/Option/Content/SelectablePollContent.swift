@@ -19,11 +19,12 @@ struct SelectablePollContent: View {
     var action: () -> Void
     
     @State private var showAnimation: Bool = false
+    @State private var isPresentZoomView: Bool = false
     
     var body: some View {
         ZStack {
             VStack (spacing: 0) {
-                VStack {
+                Group {
                     if let imageUrl = pollOption.imageUrl {
                         KFImage(URL(string: imageUrl))
                             .resizable()
@@ -68,6 +69,31 @@ struct SelectablePollContent: View {
             .shadow(radius: 2)
             .scaleEffect(showAnimation ? 1.1 : 1.0)
             .animation(.bouncy(duration: 0.2), value: showAnimation)
+            
+            if pollOption.imageUrl != nil {
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            isPresentZoomView = true
+                        } label: {
+                            Image(systemName: "plus.magnifyingglass")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundStyle(.white)
+                                .frame(width: 16, height: 16)
+                                .padding(8)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.gray.opacity(0.7))
+                                )
+                        }
+                    }
+                    
+                    Spacer()
+                }
+            }
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -82,6 +108,9 @@ struct SelectablePollContent: View {
                 }
             }
             activateSelectAnimation = false
+        }
+        .sheet(isPresented: $isPresentZoomView) {
+            ImageDetailView(imageUrl: pollOption.imageUrl ?? "")
         }
     }
 }

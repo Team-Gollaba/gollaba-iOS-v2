@@ -222,7 +222,7 @@ struct MyPollView: View {
                     .ignoresSafeArea(.all)
                     .padding(.top)
                     .sheet(isPresented: $viewModel.isClickedProfileImage) {
-                        ProfileImageDetailView(image: KFImage(URL(string: authManager.userData?.profileImageUrl ?? "")))
+                        ImageDetailView(imageUrl: authManager.userData?.profileImageUrl ?? "")
                     }
                 }
                 .onAppear {
