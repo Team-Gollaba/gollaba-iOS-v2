@@ -200,9 +200,12 @@ class PollDetailViewModel {
     func vote() async {
         let pollItemIds: [Int] = getSelectedPollItemId()
         var voterName: String
-        
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is Nil", .error)
+            return
+        }
         // 로그인 유저일 경우 이름 데이터를 가져오고 비 로그인 유저일 경우 입력창에서 받아온 데이터 사용
-        if let authManager, authManager.isLoggedIn {
+        if authManager.isLoggedIn {
             voterName = authManager.userData?.name ?? ""
         } else {
             voterName = inputNameText
@@ -214,7 +217,12 @@ class PollDetailViewModel {
                 
                 self.isVoted = true
                 self.activateSelectAnimation = true
-                self.votingButtonState = .notChanged
+                
+                if authManager.isLoggedIn {
+                    self.votingButtonState = .notChanged
+                } else {
+                    self.votingButtonState = .alreadyVoted
+                }
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
                 handleError(error: nil)
