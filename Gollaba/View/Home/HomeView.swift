@@ -33,7 +33,7 @@ struct HomeView: View {
                         
                         HorizontalPollList(
                             title: "🗓️ 오늘의 투표",
-                            pollList: (viewModel.trendingPolls?.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.trendingPolls!,
+                            pollList: viewModel.trendingPolls == nil ? PollItem.tempDataList() : viewModel.trendingPolls!,
                             isScrollToLeading: $viewModel.isScrollToTop
                         )
                         
@@ -41,7 +41,7 @@ struct HomeView: View {
                         
                         HorizontalPollList(
                             title: "🏆 인기 투표",
-                            pollList: (viewModel.topPolls?.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.topPolls!,
+                            pollList: viewModel.topPolls == nil ? PollItem.tempDataList() : viewModel.topPolls!,
                             isScrollToLeading: $viewModel.isScrollToTop
                         )
                         
@@ -49,7 +49,7 @@ struct HomeView: View {
                         
                         VerticalPollList(
                             title: "📝 전체 투표",
-                            pollList: (viewModel.allPolls?.items.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.allPolls!.items,
+                            pollList: viewModel.allPolls == nil ? [PollItem.mockData()] : viewModel.allPolls!.items,
                             requestAddPoll: $viewModel.requestAddPoll,
                             isEnd: $viewModel.isAllPollsEnd
                         )

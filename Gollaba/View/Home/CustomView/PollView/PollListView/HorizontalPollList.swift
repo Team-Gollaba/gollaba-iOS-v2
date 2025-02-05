@@ -50,15 +50,17 @@ struct HorizontalPollList: View {
             if isOpen {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        
-                        ForEach(pollList, id: \.self) { poll in
-                            
-//                            PollContentView(poll: poll, isHorizontal: true, contentWidth: UIScreen.main.bounds.width - 60)
-//                                .id(poll.id)
-                            
-                            HorizontalPollContentView(poll: poll, contentWidth: UIScreen.main.bounds.width - 120)
-                                .id(poll.id)
-                            
+                        if pollList.isEmpty {
+                            Text("투표가 없습니다.")
+                                .font(.suitBold20)
+                                .frame(height: 200)
+                        } else {
+                            ForEach(pollList, id: \.self) { poll in
+                                
+                                HorizontalPollContentView(poll: poll, contentWidth: UIScreen.main.bounds.width - 120)
+                                    .id(poll.id)
+                                
+                            }
                         }
                     }
                 }
