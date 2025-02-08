@@ -134,6 +134,7 @@ struct PollDetailView: View {
                     
                     PollResultView(
                         totalVotingCount: viewModel.poll?.totalVotingCount ?? 0,
+                        votedPeopleCount: viewModel.poll?.votedPeopleCount ?? 0,
                         pollOptions: viewModel.poll?.items ?? [],
                         isHide: !viewModel.isVoted && viewModel.isValidDatePoll,
                         onClickChart: { pollItemId in

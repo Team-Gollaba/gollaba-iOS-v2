@@ -103,5 +103,5 @@ struct HorizontalPollContentView: View {
 }
 
 #Preview {
-    HorizontalPollContentView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "response", pollType: "pollType", endAt: "2024-01-01", readCount: 1, totalVotingCount: 1, items: [PollOption(id: 1, description: "description", imageUrl: nil, votingCount: 2)]), contentWidth: .infinity)
+    HorizontalPollContentView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "response", pollType: "pollType", endAt: "2024-01-01", readCount: 1, votedPeopleCount: 1, totalVotingCount: 1, items: [PollOption(id: 1, description: "description", imageUrl: nil, votingCount: 2)]), contentWidth: .infinity)
 }

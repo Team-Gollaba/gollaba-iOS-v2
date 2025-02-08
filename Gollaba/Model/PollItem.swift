@@ -16,6 +16,7 @@ struct PollItem: Codable, Hashable {
     let pollType: String
     let endAt: String
     let readCount: Int
+    let votedPeopleCount: Int
     let totalVotingCount: Int
     let items: [PollOption]
     
@@ -28,6 +29,7 @@ struct PollItem: Codable, Hashable {
         pollType: String,
         endAt: String,
         readCount: Int,
+        votedPeopleCount: Int,
         totalVotingCount: Int,
         items: [PollOption]
     ) {
@@ -39,6 +41,7 @@ struct PollItem: Codable, Hashable {
         self.pollType = pollType
         self.endAt = endAt
         self.readCount = readCount
+        self.votedPeopleCount = votedPeopleCount
         self.totalVotingCount = totalVotingCount
         self.items = items
     }
@@ -54,6 +57,7 @@ struct PollItem: Codable, Hashable {
         self.pollType = try container.decode(String.self, forKey: .pollType)
         self.endAt = try container.decode(String.self, forKey: .endAt)
         self.readCount = try container.decode(Int.self, forKey: .readCount)
+        self.votedPeopleCount = try container.decode(Int.self, forKey: .votedPeopleCount)
         self.totalVotingCount = try container.decode(Int.self, forKey: .totalVotingCount)
         self.items = try container.decode([PollOption].self, forKey: .items)
     }
@@ -88,6 +92,7 @@ extension PollItem {
                 pollType: "pollType",
                 endAt: "2024. 22. 22.",
                 readCount: 0,
+                votedPeopleCount: 0,
                 totalVotingCount: 0,
                 items: Array(
                     repeating: PollOption(
@@ -113,6 +118,7 @@ extension PollItem {
             pollType: "pollType",
             endAt: "2024. 22. 22.",
             readCount: 0,
+            votedPeopleCount: 0,
             totalVotingCount: 0,
             items: Array(
                 repeating: PollOption(

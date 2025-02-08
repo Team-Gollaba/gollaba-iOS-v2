@@ -91,5 +91,5 @@ struct PollMadeByMeView: View {
 }
 
 #Preview {
-    PollMadeByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 3, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 2), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 8)]))
+    PollMadeByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 3, votedPeopleCount: 1, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 2), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 8)]))
 }

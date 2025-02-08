@@ -97,5 +97,5 @@ struct PollParticipatedView: View {
 }
 
 #Preview {
-    PollParticipatedView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "", pollType: "", endAt: "2026-01-10T12:34:56", readCount: 2, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 3), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 7)]))
+    PollParticipatedView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "", pollType: "", endAt: "2026-01-10T12:34:56", readCount: 2, votedPeopleCount: 1, totalVotingCount: 10, items: [PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 3), PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 7)]))
 }

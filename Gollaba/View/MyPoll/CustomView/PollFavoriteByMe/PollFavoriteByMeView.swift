@@ -90,7 +90,7 @@ struct PollFavoriteByMeView: View {
 }
 
 #Preview {
-    PollFavoriteByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 5, totalVotingCount: 10, items: [
+    PollFavoriteByMeView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: nil, responseType: "responseType", pollType: "pollType", endAt: "2024-12-20T12:22:33", readCount: 5, votedPeopleCount: 1, totalVotingCount: 10, items: [
         PollOption(id: 101, description: "desc1", imageUrl: nil, votingCount: 3),
         PollOption(id: 102, description: "desc2", imageUrl: nil, votingCount: 7)
     ]), isFavorite: false, onFavorite: { _ in })

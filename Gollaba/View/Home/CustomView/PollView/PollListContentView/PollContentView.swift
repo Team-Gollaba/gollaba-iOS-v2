@@ -120,5 +120,5 @@ struct PollContentView: View {
 }
 
 #Preview {
-    PollContentView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity)
+    PollContentView(poll: PollItem(id: "1", title: "title", creatorName: "creator", creatorProfileUrl: "", responseType: "response", pollType: "pollType", endAt: "", readCount: 1, votedPeopleCount: 1, totalVotingCount: 1, items: []), contentWidth: .infinity)
 }

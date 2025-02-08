@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PollResultView: View {
     var totalVotingCount: Int
+    var votedPeopleCount: Int
     var pollOptions: [PollOption]
     var isHide: Bool
     
@@ -30,7 +31,7 @@ struct PollResultView: View {
                     
                     Spacer()
                     
-                    Text("\(totalVotingCount)명 참여")
+                    Text("\(votedPeopleCount)명 참여")
                         .font(.suitBold16)
                         .foregroundStyle(.gray)
                 }
@@ -96,5 +97,5 @@ struct PollResultView: View {
 }
 
 #Preview {
-    PollResultView(totalVotingCount: 10, pollOptions: [], isHide: true, onClickChart: { _ in})
+    PollResultView(totalVotingCount: 10, votedPeopleCount: 1, pollOptions: [], isHide: true, onClickChart: { _ in})
 }
