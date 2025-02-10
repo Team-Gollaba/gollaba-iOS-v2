@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import PagerTabStripView
 
 struct MyPollView: View {
     @Environment(AuthManager.self) private var authManager
@@ -54,33 +55,11 @@ struct MyPollView: View {
                             viewModel.isClickedProfileImage = true
                         }
                         
-                        
-                        //                        ProfileNameView(name: $viewModel.name, email: authManager.userData?.email ?? "")
                         Text(viewModel.name)
                             .font(.suitBold20)
                             .padding(.top, 12)
                             .padding(.bottom, 24)
-                        //                            .onChange(of: auth) { oldValue, newValue in
-                        //                                if oldValue != "" {
-                        //                                    Task {
-                        //                                        await viewModel.updateUserName()
-                        //                                    }
-                        //                                }
-                        //                            }
                         
-                        //                        TextField("제목", text: $titleText)
-                        //                        TextField("내용", text: $contentText)
-                        //
-                        //                        Button {
-                        //                            Task {
-                        //                                await viewModel.sendToServerMessage(title: titleText, content: contentText)
-                        //                                titleText = ""
-                        //                                contentText = ""
-                        //                            }
-                        //                        } label: {
-                        //                            Text("전송")
-                        //                        }
-                        //
                         
                         HStack {
                             Button {
@@ -213,6 +192,109 @@ struct MyPollView: View {
                         .onChange(of: viewModel.selectedTab) {
                             viewModel.updateCurrentTabHeight()
                         }
+                        
+                        //                        PagerTabStripView(selection: $viewModel.selectedTab) {
+                        //                            PollMadeByMeList(
+                        //                                pollMadeByMeList: (viewModel.createdByMePollList.isEmpty && !viewModel.createdByMePollIsEnd) ? PollItem.tempDataList() : viewModel.createdByMePollList,
+                        //                                requestAddPoll: $viewModel.createdByMePollRequestAdd,
+                        //                                isEnd: $viewModel.createdByMePollIsEnd
+                        //                            )
+                        //                            .pagerTabItem(tag: MyPollSelectedTab.madeByMe, {
+                        //                                Image(systemName: "pencil")
+                        //                                    .resizable()
+                        //                                    .frame(width: 20, height: 20)
+                        //                                    .foregroundStyle(viewModel.selectedTab == .madeByMe ? .enrollButton : .gray)
+                        //                            })
+                        //                            .background(GeometryReader { proxy in
+                        //                                Color.clear
+                        //                                    .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                        //                            })
+                        //                            .onChange(of: viewModel.createdByMePollRequestAdd) { _, newValue in
+                        //                                if newValue {
+                        //                                    Task {
+                        //                                        await viewModel.fetchPollsCreatedByMe()
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //
+                        //                            PollFavoriteByMeList(
+                        //                                pollFavoriteByMeList: (viewModel.favoriteByMePollList.isEmpty && !viewModel.favoriteByMePollIsEnd) ? PollItem.tempDataList() : viewModel.favoriteByMePollList,
+                        //                                favoritePolls: authManager.favoritePolls,
+                        //                                requestAddPoll: $viewModel.favoriteByMePollRequestAdd,
+                        //                                isEnd: $viewModel.favoriteByMePollIsEnd,
+                        //                                createFavorite: { pollHashId in
+                        //                                    Task {
+                        //                                        await viewModel.createFavorite(pollHashId: pollHashId)
+                        //                                    }
+                        //                                }, deleteFavorite: { pollHashId in
+                        //                                    Task {
+                        //                                        await viewModel.deleteFavorite(pollHashId: pollHashId)
+                        //                                    }
+                        //                                }
+                        //                            )
+                        //                            .pagerTabItem(tag: MyPollSelectedTab.faovirteByMe, {
+                        //                                Image(systemName: "heart.fill")
+                        //                                    .resizable()
+                        //                                    .frame(width: 20, height: 20)
+                        //                                    .foregroundStyle(viewModel.selectedTab == .faovirteByMe ? .enrollButton : .gray)
+                        //                            })
+                        //                            .background(GeometryReader { proxy in
+                        //                                Color.clear
+                        //                                    .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
+                        //                            })
+                        //                            .onChange(of: viewModel.favoriteByMePollRequestAdd) { _, newValue in
+                        //                                if newValue {
+                        //                                    Task {
+                        //                                        await viewModel.fetchPollsFavoriteByMe()
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //
+                        //                            PollParticipatedList(
+                        //                                pollParticipatedList: (viewModel.participatedPollList.isEmpty && !viewModel.participatedPollIsEnd) ? PollItem.tempDataList() : viewModel.participatedPollList,
+                        //                                requestAddPoll: $viewModel.participatedPollRequestAdd,
+                        //                                isEnd: $viewModel.participatedPollIsEnd
+                        //                            )
+                        //                            .tag(MyPollSelectedTab.participated)
+                        //                            .pagerTabItem(tag: MyPollSelectedTab.participated, {
+                        //                                Image(systemName: "checkmark.square.fill")
+                        //                                    .resizable()
+                        //                                    .frame(width: 20, height: 20)
+                        //                                    .foregroundStyle(viewModel.selectedTab == .participated ? .enrollButton : .gray)
+                        //                            })
+                        //                            .background(GeometryReader { proxy in
+                        //                                Color.clear
+                        //                                    .preference(key: ParticipatedTabHeightPreferenceKey.self, value: proxy.size.height)
+                        //                            })
+                        //                            .onChange(of: viewModel.participatedPollRequestAdd) { _, newValue in
+                        //                                if newValue {
+                        //                                    Task {
+                        //                                        await viewModel.fetchPollsParticipated()
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //                        }
+                        //                        .onPreferenceChange(MadeByMeTabHeightPreferenceKey.self) { value in
+                        //                            if viewModel.madeByMeTabHeight != value {
+                        //                                viewModel.madeByMeTabHeight = value
+                        //                                viewModel.updateCurrentTabHeight()
+                        //                            }
+                        //                        }
+                        //                        .onPreferenceChange(FavoriteByMeTabHeightPreferenceKey.self) { value in
+                        //                            if viewModel.favoriteByMeTabHeight != value {
+                        //                                viewModel.favoriteByMeTabHeight = value
+                        //                                viewModel.updateCurrentTabHeight()
+                        //                            }
+                        //                        }
+                        //                        .onPreferenceChange(ParticipatedTabHeightPreferenceKey.self) { value in
+                        //                            if viewModel.participatedTabHeight != value {
+                        //                                viewModel.participatedTabHeight = value
+                        //                                viewModel.updateCurrentTabHeight()
+                        //                            }
+                        //                        }
+                        //                        .onChange(of: viewModel.selectedTab) {
+                        //                            viewModel.updateCurrentTabHeight()
+                        //                        }
                         
                         
                         LogoutButton {

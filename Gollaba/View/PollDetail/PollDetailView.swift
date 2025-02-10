@@ -42,6 +42,19 @@ struct PollDetailView: View {
                                             await viewModel.getFavorite()
                                         }
                                     }
+                                    .padding(.trailing, 12)
+                            }
+                            
+                            Button {
+                                withAnimation {
+                                    viewModel.showReportDialog = true
+                                }
+                            } label: {
+                                Image(systemName: "exclamationmark.triangle")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 28, height: 28)
+                                    .foregroundColor(.red)
                             }
                         }
                         .skeleton(isActive: viewModel.poll == nil)
@@ -65,8 +78,8 @@ struct PollDetailView: View {
                     }
                     
                     
-                    PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
-                        .skeleton(isActive: viewModel.poll == nil)
+                        PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
+                    .skeleton(isActive: viewModel.poll == nil)
                     
                     
                     if viewModel.poll?.pollType == PollType.named.rawValue && !viewModel.isVoted && viewModel.isValidDatePoll && !authManager.isLoggedIn {
@@ -165,6 +178,17 @@ struct PollDetailView: View {
                     voterNames: viewModel.pollVoterNames
                 )
             }
+            
+            if viewModel.showReportDialog {
+                ReportDialogView(
+                    isPresented: $viewModel.showReportDialog,
+                    reportType: $viewModel.reportType,
+                    reportReason: $viewModel.reportReason,
+                    onReport: {
+                        
+                    }
+                )
+            }
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -255,7 +279,9 @@ struct PollDetailView: View {
         return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
     }
 }
-//
-//#Preview {
-//    PollDetailView(poll: PollItem(id: "1", title: "title", creatorName: "creator", responseType: "response", pollType: "poll", endAt: "", readCount: 1, totalVotingCount: 2, items: []))
-//}
+
+#Preview {
+    PollDetailView(id: "1")
+        .environment(AuthManager())
+        
+}

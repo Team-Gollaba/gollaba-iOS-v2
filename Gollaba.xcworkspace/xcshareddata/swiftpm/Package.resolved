@@ -1,5 +1,5 @@
 {
-  "originHash" : "b311e47b507cdc72f2b0e2bee42f7b72ddd26e2adc80c499576d8246895c772d",
+  "originHash" : "a94f0905f3148fcb8f89bfd1c03f1d37975c82734dd01195cf2e01a666f6ed85",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -125,6 +125,15 @@
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "pagertabstripview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/xmartlabs/PagerTabstripview",
+      "state" : {
+        "revision" : "39ec00d2577adf75d82d1c7023c56950b96d2298",
+        "version" : "4.0.0"
       }
     },
     {

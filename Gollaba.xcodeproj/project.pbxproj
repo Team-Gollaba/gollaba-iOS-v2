@@ -71,6 +71,7 @@
 		49AA4E6A2D33E4D40068102F /* AppleLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4E692D33E4D40068102F /* AppleLoginButton.swift */; };
 		49AA4E8B2D352A530068102F /* TrendingKeywordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4E8A2D352A530068102F /* TrendingKeywordList.swift */; };
 		49AA4E8D2D352D090068102F /* RecentSearchKeywordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AA4E8C2D352D090068102F /* RecentSearchKeywordList.swift */; };
+		49C4424A2D59D4AA00DC1DD9 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 49C442492D59D4AA00DC1DD9 /* PagerTabStripView */; };
 		49C8A6762D0B06090030D648 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6752D0B06090030D648 /* SearchResultListView.swift */; };
 		49C8A6792D0B1EF80030D648 /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6782D0B1EF80030D648 /* SearchResultListViewModel.swift */; };
 		49C8A6992D1012D00030D648 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A6982D1012D00030D648 /* LoginViewModel.swift */; };
@@ -228,6 +229,7 @@
 				491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */,
 				49AA4DBB2D225C520068102F /* FirebaseMessaging in Frameworks */,
 				49AA4DB92D225C520068102F /* FirebaseAnalytics in Frameworks */,
+				49C4424A2D59D4AA00DC1DD9 /* PagerTabStripView in Frameworks */,
 				49FEE26A2CF322D5000991DB /* KakaoSDKCommon in Frameworks */,
 				49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */,
 				CEDA9DE9718C1056720DA3A8 /* Pods_Gollaba.framework in Frameworks */,
@@ -680,6 +682,7 @@
 				49FEE26B2CF322D5000991DB /* KakaoSDKUser */,
 				49AA4DB82D225C520068102F /* FirebaseAnalytics */,
 				49AA4DBA2D225C520068102F /* FirebaseMessaging */,
+				49C442492D59D4AA00DC1DD9 /* PagerTabStripView */,
 			);
 			productName = Gollaba;
 			productReference = 49C5CF742CDE24D2001DD737 /* Gollaba.app */;
@@ -713,6 +716,7 @@
 				491A17132CEB85EF00C4666F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				49FEE2662CF322D5000991DB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				49C442482D59D4AA00DC1DD9 /* XCRemoteSwiftPackageReference "PagerTabstripview" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 49C5CF752CDE24D2001DD737 /* Products */;
@@ -1094,6 +1098,14 @@
 				minimumVersion = 11.6.0;
 			};
 		};
+		49C442482D59D4AA00DC1DD9 /* XCRemoteSwiftPackageReference "PagerTabstripview" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xmartlabs/PagerTabstripview";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		49FEE2662CF322D5000991DB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -1119,6 +1131,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		49C442492D59D4AA00DC1DD9 /* PagerTabStripView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49C442482D59D4AA00DC1DD9 /* XCRemoteSwiftPackageReference "PagerTabstripview" */;
+			productName = PagerTabStripView;
 		};
 		49FEE2672CF322D5000991DB /* KakaoSDKAuth */ = {
 			isa = XCSwiftPackageProductDependency;

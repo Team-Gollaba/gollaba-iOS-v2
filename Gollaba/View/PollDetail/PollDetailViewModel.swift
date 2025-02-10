@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+enum ReportType: String, CaseIterable {
+    case spam = "SPAM"
+    case harassment = "HARASSMENT"
+    case advertisement = "ADVERTISEMENT"
+    case misinformation = "MISINFORMATION"
+    case copyrightInfringement = "COPYRIGHT_INFRINGEMENT"
+    case etc = "ETC"
+    case none
+}
+
 @Observable
 class PollDetailViewModel {
     //MARK: - Properties
@@ -19,6 +29,7 @@ class PollDetailViewModel {
     var isPresentPollVotersView: Bool = false
     var isFavorite: Bool = false
     var showErrorDialog: Bool = false
+    var showReportDialog: Bool = false
     
     //MARK: - Poll Data
     let id: String
@@ -91,6 +102,9 @@ class PollDetailViewModel {
     
     var pollVotersTitle: String = ""
     var pollVoterNames: [String] = []
+    
+    var reportType: ReportType = .none
+    var reportReason: String = ""
     
     var votingIdData: VotingIdResponseData?
     
