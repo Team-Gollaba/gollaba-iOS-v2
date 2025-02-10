@@ -66,7 +66,7 @@ class LoginViewModel {
         }
     }
     
-    func login(providerToken: String, providerType: ProviderType) async -> String {
+    func login(providerToken: String, providerType: ProviderType) async -> String? {
         do {
             let jwtToken = try await ApiManager.shared.loginByProviderToken(providerToken: providerToken, providerType: providerType)
             print("jwtToken: \(jwtToken)")
@@ -76,7 +76,7 @@ class LoginViewModel {
                 isNotSignUp = true
             }
         }
-        return ""
+        return nil
     }
 
     //MARK: - ETC

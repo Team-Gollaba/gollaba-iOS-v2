@@ -226,7 +226,7 @@ struct MyPollView: View {
                     }
                 }
                 .onAppear {
-                    
+                    print("myPollView onAppear")
                     Task {
                         await viewModel.getPollsCreatedByMe()
                         await viewModel.getPollsFavoriteByMe()
