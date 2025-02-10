@@ -100,7 +100,9 @@ struct SignUpView: View {
                     if viewModel.isValid() {
                         Task {
                             authManager.jwtToken = await viewModel.signUp()
-                            dismiss()
+                            if authManager.jwtToken != nil {
+                                dismiss()
+                            }
                         }
                     }
                 }

@@ -31,7 +31,7 @@ class SignUpViewModel: ObservableObject {
     @Published var nickName: String = ""
     @Published var providerType: ProviderType = .apple
     @Published var providerId: String = ""
-    @Published var profileImageUrl: String = ""
+    @Published var profileImageUrl: String?
     
     @Published var emailFocused: Bool = false
     @Published var nickNameFocused: Bool = false
@@ -55,7 +55,7 @@ class SignUpViewModel: ObservableObject {
         }
     }
     
-    func signUp() async -> String {
+    func signUp() async -> String? {
         do {
             let url = await uploadImage()
             if url != "" {
@@ -69,12 +69,12 @@ class SignUpViewModel: ObservableObject {
                 return jwtToken
             }
         } catch {
-            
+            handleError(error: error)
         }
-        return ""
+        return nil
     }
     
-    func uploadImage() async -> String {
+    func uploadImage() async -> String? {
         do {
             if let uiImage = uiImage {
                 let url = try await ApiManager.shared.uploadImage(images: [uiImage])
@@ -83,9 +83,9 @@ class SignUpViewModel: ObservableObject {
                 return profileImageUrl
             }
         } catch {
-            
+            handleError(error: error)
         }
-        return ""
+        return nil
     }
     
     func isValid() -> Bool {
@@ -166,5 +166,10 @@ class SignUpViewModel: ObservableObject {
             }
         }
         return true
+    }
+    
+    func handleError(error: Error) {
+        self.alertMessage = "데이터를 불러오는 중에 오류가 발생하였습니다."
+        self.showAlert = true
     }
 }

@@ -104,6 +104,7 @@ struct LoginView: View {
         }
         .onAppear {
             viewModel.setAuthManager(authManager)
+            print("jwtToken: \(authManager.jwtToken ?? "")")
             if let jwtToken = authManager.jwtToken, jwtToken != "" {
                 dismiss()
             }
