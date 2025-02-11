@@ -25,12 +25,12 @@ struct RecentSearchKeywordView: View {
             } label: {
                 Image(systemName: "xmark")
             }
-            .tint(.black)
         }
+        .foregroundStyle(.black.opacity(0.6))
         .padding(12)
         .background(
-            RoundedRectangle(cornerRadius: 33)
-                .stroke(.black, lineWidth: 1)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.pollEndedBackground, lineWidth: 1)
         )
         .padding(.leading)
     }
