@@ -41,6 +41,7 @@ struct CustomTabView: View {
                 
             }
             .padding(.bottom, isHideTabBar ? 0 : tabBarHeight)
+            .animation(.bouncy, value: isHideTabBar)
 
             
             
@@ -96,8 +97,9 @@ struct CustomTabView: View {
                     .shadow(color: .gray.opacity(0.3), radius: 3)
             )
             .offset(y: isHideTabBar ? tabBarHeight + safeAreaBottom : 0)
+            .animation(.bouncy, value: isHideTabBar)
         }
-        .animation(.easeIn(duration: 0.3), value: isHideTabBar)
+//        .animation(.easeIn(duration: 0.3), value: isHideTabBar)
         .onAppear {
             if safeAreaBottom == 0 {
                 safeAreaBottom = getSafeAreaInsets()?.bottom ?? 0
