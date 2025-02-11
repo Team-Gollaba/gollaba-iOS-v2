@@ -23,7 +23,7 @@ struct SpecialSearchContentView<SideContent: View, Content: View>: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
                 image
                     .resizable()
