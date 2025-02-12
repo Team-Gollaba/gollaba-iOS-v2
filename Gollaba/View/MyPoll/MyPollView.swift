@@ -114,6 +114,11 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
+                            .onAppear {
+                                Task {
+                                    await viewModel.getPollsCreatedByMe()
+                                }
+                            }
                             .onChange(of: viewModel.createdByMePollRequestAdd) { _, newValue in
                                 if newValue {
                                     Task {
@@ -143,6 +148,11 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: FavoriteByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
                             })
+                            .onAppear {
+                                Task {
+                                    await viewModel.getPollsFavoriteByMe()
+                                }
+                            }
                             .onChange(of: viewModel.favoriteByMePollRequestAdd) { _, newValue in
                                 if newValue {
                                     Task {
@@ -161,6 +171,11 @@ struct MyPollView: View {
                                 Color.clear
                                     .preference(key: ParticipatedTabHeightPreferenceKey.self, value: proxy.size.height)
                             })
+                            .onAppear {
+                                Task {
+                                    await viewModel.getPollsParticipated()
+                                }
+                            }
                             .onChange(of: viewModel.participatedPollRequestAdd) { _, newValue in
                                 if newValue {
                                     Task {
@@ -307,14 +322,14 @@ struct MyPollView: View {
                         ImageDetailView(imageUrl: authManager.userData?.profileImageUrl ?? "")
                     }
                 }
-                .onAppear {
-                    print("myPollView onAppear")
-                    Task {
-                        await viewModel.getPollsCreatedByMe()
-                        await viewModel.getPollsFavoriteByMe()
-                        await viewModel.getPollsParticipated()
-                    }
-                }
+//                .onAppear {
+//                    
+//                    Task {
+//                        await viewModel.getPollsCreatedByMe()
+//                        await viewModel.getPollsFavoriteByMe()
+//                        await viewModel.getPollsParticipated()
+//                    }
+//                }
                 .refreshable(action: viewModel.loadPolls)
                 .dialog(
                     isPresented: $viewModel.isClickedLogoutButton,

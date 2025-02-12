@@ -15,7 +15,7 @@ struct PollMadeByMeList: View {
     
     var body: some View {
         ScrollViewReader { proxy in
-            VStack (alignment: .leading) {
+            VStack (alignment: .center) {
                 if !pollMadeByMeList.isEmpty {
                     ForEach(pollMadeByMeList, id: \.self) { poll in
                         
@@ -23,19 +23,24 @@ struct PollMadeByMeList: View {
                         
                     }
                     
-                    Color.clear
-                        .frame(height: 0)
-                        .id("Bottom")
-                        .background(
-                            GeometryReader { geometry in
-                                Color.clear
-                                    .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
-                                        if newValue < UIScreen.main.bounds.height + 100 && !isEnd {
-                                            requestAddPoll = true
-                                        }
-                                    }
-                            }
-                        )
+                    if !isEnd {
+                        RequestAddButton(requestAddPoll: $requestAddPoll) {
+                            requestAddPoll = true
+                        }
+                    }
+//                    Color.clear
+//                        .frame(height: 0)
+//                        .id("Bottom")
+//                        .background(
+//                            GeometryReader { geometry in
+//                                Color.clear
+//                                    .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
+//                                        if newValue < UIScreen.main.bounds.height + 100 && !isEnd {
+//                                            requestAddPoll = true
+//                                        }
+//                                    }
+//                            }
+//                        )
                 } else {
                     Text("만든 투표가 없습니다.\n투표를 만들어 주세요!")
                         .font(.suitBold24)

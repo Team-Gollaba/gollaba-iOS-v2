@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct RequestAddButton: View {
+    @Binding var requestAddPoll: Bool
+    let onClick: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if requestAddPoll {
+            GollabaLoadingView()
+        } else {
+            Button {
+                onClick()
+            } label: {
+                Image(systemName: "chevron.down")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                    .foregroundStyle(.black)
+                    .padding()
+                    .background(
+                        Circle()
+                            .foregroundStyle(.white)
+                            .shadow(radius: 5)
+                    )
+            }
+            .padding(.bottom, 20)
+        }
     }
 }
 
 #Preview {
-    RequestAddButton()
+    RequestAddButton(requestAddPoll: .constant(true), onClick: {})
 }

@@ -19,7 +19,7 @@ struct PollFavoriteByMeList: View {
     
     var body: some View {
         ScrollViewReader { proxy in
-            VStack (alignment: .leading) {
+            VStack (alignment: .center) {
                 if !pollFavoriteByMeList.isEmpty {
                     ForEach(pollFavoriteByMeList, id: \.self) { poll in
                         PollFavoriteByMeView(
@@ -33,6 +33,12 @@ struct PollFavoriteByMeList: View {
                                 }
                             })
                             
+                    }
+                    
+                    if !isEnd {
+                        RequestAddButton(requestAddPoll: $requestAddPoll) {
+                            requestAddPoll = true
+                        }
                     }
                 } else {
                     Text("좋아요한 투표가 없습니다.")

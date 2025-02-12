@@ -137,8 +137,7 @@ class MyPollViewModel {
             createdByMePollPage += 1
             createdByMePollList.append(contentsOf: newPolls.items)
             createdByMePollRequestAdd = false
-            
-            createdByMePollIsEnd = newPolls.items.isEmpty
+            createdByMePollIsEnd = createdByMePollList.count == newPolls.totalCount
         } catch {
             handleError(error: error)
         }
@@ -166,7 +165,7 @@ class MyPollViewModel {
             favoriteByMePollList.append(contentsOf: newPolls.items)
             favoriteByMePollRequestAdd = false
             
-            favoriteByMePollIsEnd = newPolls.items.isEmpty
+            favoriteByMePollIsEnd = favoriteByMePollList.count == newPolls.totalCount
         } catch {
             handleError(error: error)
         }
@@ -194,8 +193,7 @@ class MyPollViewModel {
             participatedPollPage += 1
             participatedPollList.append(contentsOf: newPolls.items)
             participatedPollRequestAdd = false
-            
-            participatedPollIsEnd = newPolls.items.isEmpty
+            participatedPollIsEnd = participatedPollList.count == newPolls.totalCount
         } catch {
             handleError(error: error)
         }
