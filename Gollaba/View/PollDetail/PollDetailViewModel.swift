@@ -123,8 +123,9 @@ class PollDetailViewModel {
     func getPoll() async {
         do {
             let newPoll = try await ApiManager.shared.getPoll(pollHashId: self.id)
-            self.poll = newPoll
-            
+            withAnimation(.bouncy) {
+                self.poll = newPoll
+            }
             if let poll {
                 if self.selectedMultiplePoll.isEmpty {
                     self.selectedMultiplePoll = Array(repeating: false, count: poll.items.count)

@@ -43,9 +43,9 @@ struct PollDetailView: View {
                                             await viewModel.getFavorite()
                                         }
                                     }
-                                    .padding(.trailing, 12)
                             }
                         }
+                        .skeleton(isActive: viewModel.poll == nil)
                         
                         HStack {
                             ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl, width: 24, height: 24)
@@ -125,11 +125,15 @@ struct PollDetailView: View {
                             }
                         }
                         
-                        if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
-                            VotingButton(pollbuttonState: .constant(.cancel)) {
-                                viewModel.isClickedCancelButton = true
+                        VStack {
+                            if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
+                                VotingButton(pollbuttonState: .constant(.cancel)) {
+                                    viewModel.isClickedCancelButton = true
+                                }
+                                .transition(.move(edge: .trailing))
                             }
                         }
+                        .animation(.bouncy, value: authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll)
                     }
                     .skeleton(isActive: viewModel.poll == nil)
                     

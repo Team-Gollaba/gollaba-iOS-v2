@@ -29,12 +29,12 @@ struct PollChartView: View {
                     .foregroundStyle(.gray.opacity(0.3))
                 
                 GeometryReader { geometry in
-                    if allCount > 0 {
-                        Rectangle()
-                            .frame(width: geometry.size.width * CGFloat(selectedCount) / CGFloat(allCount))
-                            .cornerRadius(10)
-                            .foregroundStyle(.green)
-                    }
+                    Rectangle()
+                        .frame(width: allCount > 0 ? geometry.size.width * CGFloat(selectedCount) / CGFloat(allCount) : 0)
+                        .cornerRadius(10)
+                        .foregroundStyle(.green)
+//                        .animation(.bouncy, value: selectedCount)
+//                        .animation(.bouncy, value: allCount)
                 }
             }
             .frame(maxWidth: .infinity)
