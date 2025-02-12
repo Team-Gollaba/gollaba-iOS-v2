@@ -30,6 +30,7 @@ class PollDetailViewModel {
     var isFavorite: Bool = false
     var showErrorDialog: Bool = false
     var showReportDialog: Bool = false
+    var showCompletedReportToast: Bool = false
     
     //MARK: - Poll Data
     let id: String
@@ -306,6 +307,16 @@ class PollDetailViewModel {
     func getFavorite() async {
         do {
             try await ApiManager.shared.getFavoritePolls()
+        } catch {
+            handleError(error: error)
+        }
+    }
+    
+    func reportPoll() async {
+        do {
+            try await ApiManager.shared.reportPoll(pollHashId: id, content: reportReason, reportType: reportType)
+            self.showReportDialog = false
+            self.showCompletedReportToast = true
         } catch {
             handleError(error: error)
         }

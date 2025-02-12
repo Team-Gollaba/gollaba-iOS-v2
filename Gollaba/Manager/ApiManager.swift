@@ -1205,6 +1205,37 @@ class ApiManager {
         }
     }
     
+    //MARK: - Report
+    func reportPoll(pollHashId: String, content: String, reportType: ReportType) async throws {
+        let urlString = baseURL + "/v2/polls/\(pollHashId)/reports"
+        let url = try getUrl(for: urlString)
+        var headers: HTTPHeaders = ["Content-Type": "application/json"]
+        if let authManager, authManager.isLoggedIn {
+            let jwtToken = try getJwtToken()
+            headers["Authorization"] = "Bearer \(jwtToken)"
+        }
+        let param: [String: Any] = [
+            "content": content,
+            "reportType": reportType.rawValue
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            session.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: DefaultResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        Logger.shared.log(String(describing: self), #function, "Success to report poll: \(value)")
+                        continuation.resume()
+                        
+                    case .failure(let error):
+                        Logger.shared.log(String(describing: self), #function, "Failed to report poll with error: \(error)", .error)
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
     //MARK: - ETC
     func getUrl(for path: String) throws -> URL {
         guard let url = URL(string: path) else {

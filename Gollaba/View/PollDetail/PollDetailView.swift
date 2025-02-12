@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import AlertToast
 
 struct PollDetailView: View {
     @Environment(\.dismiss) private var dismiss
@@ -185,7 +186,9 @@ struct PollDetailView: View {
                     reportType: $viewModel.reportType,
                     reportReason: $viewModel.reportReason,
                     onReport: {
-                        
+                        Task {
+                            await viewModel.reportPoll()
+                        }
                     }
                 )
             }
@@ -238,6 +241,9 @@ struct PollDetailView: View {
             title: "투표화면",
             content: Text("\(viewModel.errorMessage)")
         )
+        .toast(isPresenting: $viewModel.showCompletedReportToast, alert: {
+            AlertToast(type: .complete(.enrollButton), title: "신고가 완료 되었습니다.", style: .style(titleFont: .suitBold16))
+        })
         .onAppear {
             Task {
                 await viewModel.readPoll()
