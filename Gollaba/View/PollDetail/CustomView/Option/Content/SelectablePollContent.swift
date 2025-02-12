@@ -31,7 +31,10 @@ struct SelectablePollContent: View {
                             .scaledToFill()
                             .clipped()
                     } else {
-                        Image(systemName: "photo.badge.plus")
+                        Image(systemName: "photo.on.rectangle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
                     }
                 }
                 .frame(maxWidth: .infinity)
