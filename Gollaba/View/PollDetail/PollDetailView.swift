@@ -45,20 +45,7 @@ struct PollDetailView: View {
                                     }
                                     .padding(.trailing, 12)
                             }
-                            
-                            Button {
-                                withAnimation {
-                                    viewModel.showReportDialog = true
-                                }
-                            } label: {
-                                Image(systemName: "exclamationmark.triangle")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 28, height: 28)
-                                    .foregroundColor(.red)
-                            }
                         }
-                        .skeleton(isActive: viewModel.poll == nil)
                         
                         HStack {
                             ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl, width: 24, height: 24)
@@ -201,6 +188,22 @@ struct PollDetailView: View {
                 } label: {
                     Image(systemName: "chevron.left")
                         .tint(.black)
+                }
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    withAnimation {
+                        viewModel.showReportDialog = true
+                    }
+                } label: {
+                    VStack {
+                        Image(systemName: "exclamationmark.bubble")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 28, height: 28)
+                    }
+                    .foregroundColor(.red)
                 }
             }
         }

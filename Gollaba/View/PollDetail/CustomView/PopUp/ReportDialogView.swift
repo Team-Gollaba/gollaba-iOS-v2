@@ -65,6 +65,8 @@ struct ReportDialogView: View {
                     .font(.suitBold16)
                 
                 TextEditor(text: $reportReason)
+                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
                     .focused($isReasonFocused)
                     .frame(height: 100)
                     .padding(.horizontal, 12)
