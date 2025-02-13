@@ -460,7 +460,9 @@ class ApiManager {
     
     // 특정 유저가 좋아요한 투표 전체 조회
     func getPollsFavoriteByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
-        var queryItems: [String] = []
+        var queryItems: [String] = [
+            "sort=\(SortedBy.createdAt.rawValue)"
+        ]
         
         if page != 0 {
             queryItems.append("page=\(page)")
@@ -496,7 +498,9 @@ class ApiManager {
     
     // 특정 유저가 생성한 투표 전체 조회
     func getPollsCreatedByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
-        var queryItems: [String] = []
+        var queryItems: [String] = [
+            "sort=\(SortedBy.createdAt.rawValue)"
+        ]
         
         if page != 0 {
             queryItems.append("page=\(page)")
@@ -629,7 +633,9 @@ class ApiManager {
     
     // 특정 유저가 참여한 투표 전체 조회
     func getPollsParticipated(page: Int = 0, size: Int = 10) async throws -> AllPollData {
-        var queryItems: [String] = []
+        var queryItems: [String] = [
+            "sort=\(SortedBy.createdAt.rawValue)"
+        ]
         
         if page != 0 {
             queryItems.append("page=\(page)")
