@@ -21,6 +21,7 @@ struct TrendingKeywordList: View {
                         
                         Text("\(index + 1) ")
                             .font(.suitBold16)
+                            .frame(width: 20, alignment: .trailing)
                             .foregroundStyle((1...3).contains(index + 1) ? .enrollButton : .black)
                         
                         Text(trendingKeyword.searchedWord)
@@ -39,5 +40,5 @@ struct TrendingKeywordList: View {
 }
 
 #Preview {
-    TrendingKeywordList(trendingKeywords: [], action: {_ in })
+    TrendingKeywordList(trendingKeywords: [TrendingSearchResponseData(searchedWord: "ddd", searchCount: 1)], action: {_ in })
 }
