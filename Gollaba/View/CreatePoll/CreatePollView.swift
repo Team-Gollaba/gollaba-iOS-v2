@@ -135,6 +135,13 @@ struct CreatePollView: View {
                         )
                     }
                     
+                    if viewModel.isLoading {
+                        ZStack {
+                            Color.gray.opacity(0.5).edgesIgnoringSafeArea(.all)
+                            
+                            GollabaLoadingView()
+                        }
+                    }
                 }
             }
             //            .dragToHide(isHide: $isHideTabBar)

@@ -24,6 +24,8 @@ class CreatePollViewModel {
     var showQuestionBeforeCreatePollDialog: Bool = false
     var showErrorDialog: Bool = false
     
+    var isLoading: Bool = false
+    
     //MARK: - Data
     private(set) var pollHashId: String = ""
     var titleText: String = ""
@@ -72,6 +74,7 @@ class CreatePollViewModel {
     
     //MARK: - API
     func createPoll() async {
+        self.isLoading = true
         
         do {
             var pollOptionForParameters: [PollOptionForParameter] = []
@@ -96,6 +99,8 @@ class CreatePollViewModel {
         } catch {
             handleError(error: error)
         }
+        
+        self.isLoading = false
     }
     
     //MARK: - Check Valid
