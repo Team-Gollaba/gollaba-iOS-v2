@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var viewModel = MainViewModel()
+    @State var viewModel = MainViewModel.shared
     
     let titleViewHeight: CGFloat = 48
     
@@ -30,6 +30,15 @@ struct MainView: View {
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()
             }
+            .navigationDestination(
+                isPresented: Binding(
+                    get: { viewModel.pollHashId != nil },
+                    set: { _ in viewModel.pollHashId = nil }
+                )) {
+                    if let pollHashId = viewModel.pollHashId {
+                        PollDetailView(id: pollHashId)
+                    }
+                }
         }
     }
 }

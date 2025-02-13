@@ -16,6 +16,7 @@ import FirebaseMessaging
 @main
 struct GollabaApp: App {
     private var authManager = AuthManager()
+    private var deepLinkManager = DeepLinkManager()
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
@@ -32,10 +33,14 @@ struct GollabaApp: App {
             ContentView()
                 .modelContainer(for: [SearchKeyword.self])
                 .environment(authManager)
+                .environment(deepLinkManager)
                 .onOpenURL(perform: { url in
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {
                         _ = AuthController.handleOpenUrl(url: url)
                     }
+                })
+                .onOpenURL(perform: { url in
+                    deepLinkManager.handleDeepLink(url)
                 })
                 .preferredColorScheme(.light)
                 .onAppear {

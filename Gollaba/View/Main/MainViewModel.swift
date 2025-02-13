@@ -10,5 +10,6 @@ import SwiftUI
 @Observable
 class MainViewModel {
     var goToLogin = false
-    
+    var pollHashId: String?
+    static let shared = MainViewModel()
 }
