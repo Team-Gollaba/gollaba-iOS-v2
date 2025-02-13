@@ -16,6 +16,7 @@ struct NotificationContentView: View {
         } label: {
             HStack (alignment: .top, spacing: 12) {
                 ProfileImageView(width: 60, height: 60)
+                    .skeleton(isActive: pushNotificationData.notificationId == -1)
                 
                 VStack (alignment: .leading, spacing: 8) {
                     HStack {
@@ -30,9 +31,11 @@ struct NotificationContentView: View {
     //                        .font(.suitVariable16)
     //                        .foregroundStyle(.gray)
                     }
+                    .skeleton(isActive: pushNotificationData.notificationId == -1)
                     
                     Text(pushNotificationData.content)
                         .font(.suitVariable16)
+                        .skeleton(isActive: pushNotificationData.notificationId == -1)
                 }
             }
             .padding()

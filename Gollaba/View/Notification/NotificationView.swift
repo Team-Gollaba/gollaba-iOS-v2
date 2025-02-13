@@ -15,7 +15,7 @@ struct NotificationView: View {
     var body: some View {
         VStack {
             NotificationList(
-                pushNotificationList: viewModel.pushNotificationData?.items ?? [],
+                pushNotificationList: viewModel.pushNotificationData?.items ?? PushNotificationData.tempDataList(),
                 requestAddNotification: $viewModel.pushNotificationListRequestAdd,
                 isEnd: $viewModel.pushNotificationListIsEnd
             )

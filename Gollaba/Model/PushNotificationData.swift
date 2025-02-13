@@ -16,3 +16,20 @@ struct PushNotificationData: Codable {
     let title: String
     let content: String
 }
+
+extension PushNotificationData {
+    static func tempDataList() -> [PushNotificationData] {
+        Array(
+            repeating: PushNotificationData(
+                notificationId: -1,
+                userId: -1,
+                agentId: "",
+                eventId: nil,
+                deepLink: nil,
+                title: "titletitletitletitle",
+                content: "contentcontentcontent"
+            ),
+            count: 10
+        )
+    }
+}
