@@ -22,15 +22,17 @@ struct CustomTabViewButton: View {
             VStack {
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .scaledToFit()
                     .frame(width: 20, height: 20)
+                    .scaleEffect(isSelected ? 1.2 : 1)
                 
-                Text(title)
-                    .font(isSelected ? .suitBold12 : .suitVariable12)
+//                Text(title)
+//                    .font(isSelected ? .suitBold12 : .suitVariable12)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
         .buttonStyle(ScaleOnPressStyle(isSelected: isSelected))
+        .foregroundStyle(isSelected ? .signUpButtonEnd : .gray)
     }
 }
 

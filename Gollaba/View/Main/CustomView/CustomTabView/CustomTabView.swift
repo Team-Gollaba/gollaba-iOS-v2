@@ -21,7 +21,7 @@ struct CustomTabView: View {
     
     @State private var goToSearch: Bool = false
     
-    let tabBarHeight: CGFloat = 48
+    let tabBarHeight: CGFloat = 40
     @State var safeAreaBottom: CGFloat = 0
     
     var body: some View {
@@ -57,7 +57,6 @@ struct CustomTabView: View {
                     title: "홈",
                     isSelected: selectedTab == .home
                 )
-                .tint(selectedTab == .home ? .black : .gray)
                 
                 CustomTabViewButton(
                     action: {
@@ -67,7 +66,6 @@ struct CustomTabView: View {
                     title: "검색",
                     isSelected: selectedTab == .search
                 )
-                .tint(selectedTab == .search ? .black : .gray)
                 
                 CustomTabViewButton(
                     action: {
@@ -77,7 +75,6 @@ struct CustomTabView: View {
                     title: "새 투표",
                     isSelected: selectedTab == .create
                 )
-                .tint(selectedTab == .create ? .black : .gray)
                 
                 CustomTabViewButton(
                     action: {
@@ -87,7 +84,6 @@ struct CustomTabView: View {
                     title: "My 투표",
                     isSelected: selectedTab == .myPoll
                 )
-                .tint(selectedTab == .myPoll ? .black : .gray)
             }
             .frame(height: tabBarHeight)
             .background(.white)
