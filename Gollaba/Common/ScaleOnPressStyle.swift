@@ -12,8 +12,8 @@ struct ScaleOnPressStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.9 : (isSelected ? 1.1 : 1.0))
-            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: configuration.isPressed)
-            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: isSelected)
+            .scaleEffect(configuration.isPressed ? 0.8 : (isSelected ? 1.2 : 1.0))
+            .animation(.spring(response: 0.4, dampingFraction: 0.5), value: configuration.isPressed)
+            .animation(.spring(response: 0.4, dampingFraction: 0.5), value: isSelected)
     }
 }
