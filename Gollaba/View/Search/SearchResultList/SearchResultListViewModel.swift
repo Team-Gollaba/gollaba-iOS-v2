@@ -21,6 +21,8 @@ class SearchResultListViewModel {
     
     var showErrorDialog: Bool = false
     
+    var isLoading: Bool = false
+    
     //MARK: - Data
     var searchText: String
     var searchFocused: Bool = false
@@ -61,6 +63,8 @@ class SearchResultListViewModel {
     
     //MARK: - API
     func getSearchResult() async {
+        self.isLoading = true
+        
         do {
             self.searchResultPollData = try await ApiManager.shared.getPolls(page: self.page, size: self.pageSize, optionGroup: .title, query: self.searchText)
             self.page += 1
@@ -69,9 +73,13 @@ class SearchResultListViewModel {
         } catch {
             handleError(error: error)
         }
+        
+        self.isLoading = false
     }
     
     func getSearchResultByFilter() async {
+        self.isLoading = true
+        
         let pollTypeIndex = self.pollTypeFilter.indices.filter { self.pollTypeFilter[$0] }.first ?? 0
         let isActiveIndex = self.isActiveFilter.indices.filter { self.isActiveFilter[$0] }.first ?? 0
         
@@ -101,10 +109,13 @@ class SearchResultListViewModel {
         } catch {
             handleError(error: error)
         }
+        
+        self.isLoading = false
     }
 
     func fetchMoreResultByFilter() async {
         if self.isEnd { return }
+        self.isLoading = true
         
         let pollTypeIndex = self.pollTypeFilter.indices.filter { self.pollTypeFilter[$0] }.first ?? 0
         let isActiveIndex = self.isActiveFilter.indices.filter { self.isActiveFilter[$0] }.first ?? 0
@@ -133,6 +144,8 @@ class SearchResultListViewModel {
         } catch {
             handleError(error: error)
         }
+        
+        self.isLoading = false
     }
     
     //MARK: - Check Valid

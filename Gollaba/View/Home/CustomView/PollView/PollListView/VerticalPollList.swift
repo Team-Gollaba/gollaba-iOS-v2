@@ -38,7 +38,8 @@ struct VerticalPollList: View {
                 if pollList.isEmpty {
                     Text("투표가 없습니다.")
                         .font(.suitBold20)
-                        .frame(height: 200)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .frame(height: UIScreen.main.bounds.height - 200)
                 } else {
                     ForEach(pollList, id: \.self) { poll in
                         

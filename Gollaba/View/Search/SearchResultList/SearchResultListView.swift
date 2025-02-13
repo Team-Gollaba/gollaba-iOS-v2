@@ -57,7 +57,7 @@ struct SearchResultListView: View {
                     ScrollView {
                         
                         VerticalPollList(
-                            pollList: (viewModel.searchResultPollData?.items.isEmpty ?? true) ? PollItem.tempDataList() : viewModel.searchResultPollData!.items,
+                            pollList: viewModel.searchResultPollData?.items ?? [],
                             requestAddPoll: $viewModel.requestAddPoll,
                             isEnd: $viewModel.isEnd
                         )
@@ -86,6 +86,14 @@ struct SearchResultListView: View {
                         }
                     }
                 )
+            }
+            
+            if viewModel.isLoading {
+                ZStack {
+                    Color.gray.opacity(0.5).edgesIgnoringSafeArea(.all)
+                    
+                    GollabaLoadingView()
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
