@@ -22,6 +22,7 @@ class MyPollViewModel {
     var isClickedProfileImage: Bool = false
     var isClickedLogoutButton: Bool = false
     var showErrorDialog: Bool = false
+    var showLogoutedDialog: Bool = false
     
     //MARK: - Data
     // 내가 만든 투표
@@ -73,27 +74,8 @@ class MyPollViewModel {
             return
         }
         
-        switch authManager.providerType {
-        case .kakao:
-            await kakaoLogout()
-        case .apple:
-            authManager.resetAuth()
-        default:
-            break
-        }
-    }
-    
-    func kakaoLogout() async {
-        guard let authManager else {
-            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
-            return
-        }
+        authManager.logout()
         
-        do {
-            try await authManager.kakaoLogout()
-        } catch {
-            
-        }
     }
     
     //MARK: - API

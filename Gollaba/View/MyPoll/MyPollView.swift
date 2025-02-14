@@ -419,10 +419,20 @@ struct MyPollView: View {
             }
             
         }
+        .onChange(of: authManager.isLoggedIn, { _, newValue in
+            if !newValue {
+                viewModel.showLogoutedDialog = true
+            }
+        })
         .dialog(
             isPresented: $viewModel.showErrorDialog,
             title: "My투표 오류",
             content: Text("\(viewModel.errorMessage)")
+        )
+        .dialog(
+            isPresented: $viewModel.showLogoutedDialog,
+            title: "My투표",
+            content: Text("로그아웃 되었습니다.")
         )
     }
 }

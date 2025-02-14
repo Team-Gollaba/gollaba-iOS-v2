@@ -58,4 +58,22 @@ class AuthManager {
         self.favoritePolls.removeAll()
         self.userData = nil
     }
+    
+    func logout() {
+        switch self.providerType {
+        case .kakao:
+            Task {
+                do {
+                    try await kakaoLogout()
+                } catch {
+                    Logger.shared.log(String(describing: self), #function, "Failed to logout", .error)
+                }
+            }
+        case .apple:
+            self.resetAuth()
+        default:
+            break
+        }
+        
+    }
 }

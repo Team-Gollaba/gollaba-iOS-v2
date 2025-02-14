@@ -88,13 +88,11 @@ class ApiManager {
     let headers: HTTPHeaders = ["Content-Type": "application/json"]
     
     var authManager: AuthManager?
-    let apiInterceptor: ApiInterceptor
-    let session: Session
-    
-    init() {
-        self.apiInterceptor = ApiInterceptor()
-        self.session = Session(interceptor: self.apiInterceptor)
-    }
+    let session: Session = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30
+        return Session(configuration: configuration, interceptor: ApiInterceptor())
+    }()
     
     func setAuthManager(_ authManager: AuthManager) {
         self.authManager = authManager
@@ -461,7 +459,7 @@ class ApiManager {
     // 특정 유저가 좋아요한 투표 전체 조회
     func getPollsFavoriteByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
         var queryItems: [String] = [
-            "sort=\(SortedBy.createdAt.rawValue)"
+            "sort=\(SortedBy.createdAt.rawValue),desc"
         ]
         
         if page != 0 {
@@ -499,7 +497,7 @@ class ApiManager {
     // 특정 유저가 생성한 투표 전체 조회
     func getPollsCreatedByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
         var queryItems: [String] = [
-            "sort=\(SortedBy.createdAt.rawValue)"
+            "sort=\(SortedBy.createdAt.rawValue),asc"
         ]
         
         if page != 0 {
@@ -634,7 +632,7 @@ class ApiManager {
     // 특정 유저가 참여한 투표 전체 조회
     func getPollsParticipated(page: Int = 0, size: Int = 10) async throws -> AllPollData {
         var queryItems: [String] = [
-            "sort=\(SortedBy.createdAt.rawValue)"
+            "sort=\(SortedBy.createdAt.rawValue),desc"
         ]
         
         if page != 0 {
