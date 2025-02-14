@@ -24,6 +24,7 @@ class SignUpViewModel: ObservableObject {
     //MARK: - Flag
     @Published var showAlert: Bool = false
     @Published var showInValidToast: Bool = false
+    @Published var showCheckBeforeSignUpDialog: Bool = false
     
     //MARK: - Data
     @Published var providerAccessToken: String = ""
@@ -42,7 +43,7 @@ class SignUpViewModel: ObservableObject {
     @Published var uiImage: UIImage?
     
     //MARK: - Error
-    @Published private(set) var alertMessage: String = ""
+    @Published var alertMessage: String = ""
     @Published private(set) var nicknameError: NickNameError = .None
     
     

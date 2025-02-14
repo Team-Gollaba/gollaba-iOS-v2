@@ -98,6 +98,20 @@ struct SignUpView: View {
                 
                 SignUpButtonView {
                     if viewModel.isValid() {
+                        withAnimation {
+                            viewModel.showCheckBeforeSignUpDialog = true
+                        }
+                    }
+                }
+            }
+            .padding(32)
+            
+            if viewModel.showCheckBeforeSignUpDialog {
+                CheckBeforeSignUpView(
+                    isPresented: $viewModel.showCheckBeforeSignUpDialog,
+                    email: viewModel.email,
+                    nickname: viewModel.nickName,
+                    onSignUp: {
                         Task {
                             authManager.jwtToken = await viewModel.signUp()
                             if authManager.jwtToken != nil {
@@ -105,51 +119,50 @@ struct SignUpView: View {
                             }
                         }
                     }
+                )
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .tint(.black)
                 }
             }
-            .padding(32)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .tint(.black)
-                    }
-                }
+        }
+        .dialog(
+            isPresented: $viewModel.showAlert,
+            title: "투표 만들기",
+            content: Text(viewModel.alertMessage),
+            primaryButtonText: "확인",
+            onPrimaryButton: {
+                
             }
-            .dialog(
-                isPresented: $viewModel.showAlert,
-                title: "투표 만들기",
-                content: Text(viewModel.alertMessage),
-                primaryButtonText: "확인",
-                onPrimaryButton: {
-                    
-                }
-            )
-            .toast(isPresenting: $viewModel.showInValidToast, alert: {
-                switch viewModel.nicknameError {
-                case .Empty:
-                    return AlertToast(type: .error(.red), title: "닉네임을 입력해주세요.", style: .style(titleFont: .suitBold16))
-                case .Length:
-                    return AlertToast(type: .error(.red), title: "닉네임은 2자 이상 10자 이하로 입력해주세요.", style: .style(titleFont: .suitBold16))
-                case .ContainsBlank:
-                    return AlertToast(type: .error(.red), title: "닉네임에 공백이 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
-                case .SpecialCharacter:
-                    return AlertToast(type: .error(.red), title: "닉네임에 특수문자가 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
-                case .ContainsForbiddenCharacter:
-                    return AlertToast(type: .error(.red), title: "닉네임에 금지된 단어가 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
-                default:
-                    return AlertToast(type: .error(.red), title: "")
-                }
-            })
-            .onAppear {
-                viewModel.providerAccessToken = accessToken
-                viewModel.email = email
-                viewModel.providerType = providerType
-                viewModel.providerId = providerId ?? ""
+        )
+        .toast(isPresenting: $viewModel.showInValidToast, alert: {
+            switch viewModel.nicknameError {
+            case .Empty:
+                return AlertToast(type: .error(.red), title: "닉네임을 입력해주세요.", style: .style(titleFont: .suitBold16))
+            case .Length:
+                return AlertToast(type: .error(.red), title: "닉네임은 2자 이상 10자 이하로 입력해주세요.", style: .style(titleFont: .suitBold16))
+            case .ContainsBlank:
+                return AlertToast(type: .error(.red), title: "닉네임에 공백이 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
+            case .SpecialCharacter:
+                return AlertToast(type: .error(.red), title: "닉네임에 특수문자가 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
+            case .ContainsForbiddenCharacter:
+                return AlertToast(type: .error(.red), title: "닉네임에 금지된 단어가 포함되어 있습니다.", style: .style(titleFont: .suitBold16))
+            default:
+                return AlertToast(type: .error(.red), title: "")
             }
+        })
+        .onAppear {
+            viewModel.providerAccessToken = accessToken
+            viewModel.email = email
+            viewModel.providerType = providerType
+            viewModel.providerId = providerId ?? ""
         }
     }
 }
