@@ -103,6 +103,7 @@ class SettingViewModel {
         }
         do {
             try await ApiManager.shared.deleteAccount()
+            authManager.justDeletedAccount = true
             authManager.resetAuth()
         } catch {
             handleError(error: error)

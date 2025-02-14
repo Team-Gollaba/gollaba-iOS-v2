@@ -15,6 +15,7 @@ class AuthManager {
             jwtToken != nil
         }
     }
+    var justDeletedAccount: Bool = false
     var jwtToken: String?
     var providerType: ProviderType = .none
     var favoritePolls: [String] = []

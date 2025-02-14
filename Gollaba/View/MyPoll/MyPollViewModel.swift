@@ -81,18 +81,14 @@ class MyPollViewModel {
     //MARK: - API
     
     func getUser() async {
-        do {
-            authManager?.userData = try await ApiManager.shared.getUserMe()
-            
-        } catch {
-            handleError(error: error)
+        guard let authManager else {
+            Logger.shared.log(String(describing: self), #function, "authManager is nil", .error)
+            return
         }
-    }
-    
-    func updateUserName() async {
+        
         do {
-//            try await ApiManager.shared.updateUserName(name: userName)
-//            authManager?.userData?.name = userName
+            authManager.userData = try await ApiManager.shared.getUserMe()
+            
         } catch {
             handleError(error: error)
         }
@@ -100,6 +96,7 @@ class MyPollViewModel {
     
     func getPollsCreatedByMe() async {
         guard createdByMePollList.isEmpty else { return }
+        guard authManager?.isLoggedIn ?? false else { return }
 
         do {
             let polls = try await ApiManager.shared.getPollsCreatedByMe(page: createdByMePollPage, size: createdByMePollSize)
@@ -127,6 +124,7 @@ class MyPollViewModel {
     
     func getPollsFavoriteByMe() async {
         guard favoriteByMePollList.isEmpty else { return }
+        guard authManager?.isLoggedIn ?? false else { return }
         
         do {
             let polls = try await ApiManager.shared.getPollsFavoriteByMe(page: favoriteByMePollPage, size: favoriteByMePollSize)
@@ -155,6 +153,7 @@ class MyPollViewModel {
     
     func getPollsParticipated() async {
         guard participatedPollList.isEmpty else { return }
+        guard authManager?.isLoggedIn ?? false else { return }
         
         do {
             let polls = try await ApiManager.shared.getPollsParticipated(page: participatedPollPage, size: participatedPollSize)
