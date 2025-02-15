@@ -45,7 +45,7 @@ class KakaoAuthManager {
     
     @MainActor
     func kakaoLogout() async -> Bool {
-        
+        print("kakaoLogout")
         if await handleKakaoLogout() {
             isLoggedIn = false
             userName = "유저"
@@ -139,6 +139,7 @@ class KakaoAuthManager {
     func handleKakaoLogout() async -> Bool {
         
         await withCheckedContinuation { continuation in
+            print("handleKakaoLogout(")
             UserApi.shared.logout {(error) in
                 if let error {
                     print(error)

@@ -16,8 +16,16 @@ class AuthManager {
         }
     }
     var justDeletedAccount: Bool = false
-    var jwtToken: String?
-    var providerType: ProviderType = .none
+    var jwtToken: String? {
+        didSet {
+            AppStorageManager.shared.accessToken = jwtToken
+        }
+    }
+    var providerType: ProviderType = .none {
+        didSet {
+            AppStorageManager.shared.providerType = providerType
+        }
+    }
     var favoritePolls: [String] = []
     
     var userData: UserData?
@@ -55,9 +63,20 @@ class AuthManager {
     
     func resetAuth() {
         self.jwtToken = nil
+        deleteRefreshToken()
         self.providerType = .none
         self.favoritePolls.removeAll()
         self.userData = nil
+    }
+    
+    func deleteRefreshToken() {
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                if cookie.name == "refresh_token" {
+                    HTTPCookieStorage.shared.deleteCookie(cookie)
+                }
+            }
+        }
     }
     
     func logout() {

@@ -14,4 +14,6 @@ class AppStorageManager {
     @AppStorage("isNotificationEnabled") var isNotificationEnabled: Bool = true // 앱 내의 설정 화면에서 컨트롤
     @AppStorage("agentId") var agentId: String?
     @AppStorage("saveToNotificationServerSuccess") var saveToNotificationServerSuccess: Bool = false
+    @AppStorage("accessToken") var accessToken: String?
+    @AppStorage("providerType") var providerType: ProviderType = .none
 }
