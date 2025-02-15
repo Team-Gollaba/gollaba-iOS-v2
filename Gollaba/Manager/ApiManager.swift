@@ -396,7 +396,7 @@ class ApiManager {
         if let authManager, authManager.isLoggedIn, let jwtToken = authManager.jwtToken {
             headers["Authorization"] = "Bearer \(jwtToken)"
         }
-        
+                
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let endAtString = dateFormatter.string(from: endAt)

@@ -13,8 +13,10 @@ final class ApiInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {
         var request = urlRequest
         do {
-            let token = try ApiManager.shared.getJwtToken()
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            if ApiManager.shared.authManager?.isLoggedIn ?? false {
+                let token = try ApiManager.shared.getJwtToken()
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
             completion(.success(request))
         } catch {
             Logger.shared.log(String(describing: self), #function, "Failed to get JWT token")
