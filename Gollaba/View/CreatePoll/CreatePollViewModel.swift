@@ -85,12 +85,14 @@ class CreatePollViewModel {
                 pollOptionForParameters.append(pollOptionForParameter)
             }
             
+            
+            
             self.pollHashId = try await ApiManager.shared.createPoll(
                 title: self.titleText,
                 creatorName: self.creatorNameText,
                 responseType: self.responseType,
                 pollType: self.pollType,
-                endAt: self.selectedDate,
+                endAt: removeSecond(self.selectedDate),
                 items: pollOptionForParameters
             )
             
@@ -122,6 +124,12 @@ class CreatePollViewModel {
         self.anonymousOption = .first
         self.countingOption = .first
         self.selectedDate = Date().addingTimeInterval(60 * 60)
+    }
+    
+    func removeSecond(_ date: Date) -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        components.second = 0
+        return Calendar.current.date(from: components) ?? date
     }
     
     func handleError(error: Error) {
