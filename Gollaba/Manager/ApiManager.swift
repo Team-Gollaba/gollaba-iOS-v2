@@ -495,7 +495,7 @@ class ApiManager {
     // 특정 유저가 생성한 투표 전체 조회
     func getPollsCreatedByMe(page: Int = 0, size: Int = 10) async throws -> AllPollData {
         var queryItems: [String] = [
-            "sort=\(SortedBy.createdAt.rawValue),asc"
+            "sort=\(SortedBy.createdAt.rawValue),desc"
         ]
         
         if page != 0 {
