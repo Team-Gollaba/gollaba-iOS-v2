@@ -41,6 +41,7 @@ struct NotificationContentView: View {
             .padding()
         }
         .tint(.black)
+        .disabled(pushNotificationData.notificationId == -1)
     }
     
     private func getPollHashId() -> String {

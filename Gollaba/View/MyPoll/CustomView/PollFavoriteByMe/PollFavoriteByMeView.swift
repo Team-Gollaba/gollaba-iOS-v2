@@ -65,6 +65,7 @@ struct PollFavoriteByMeView: View {
             .padding(10)
         }
         .tint(.black)
+        .disabled(poll.id == "-1")
     }
     
     private func formattedDate(_ date: String) -> String {
