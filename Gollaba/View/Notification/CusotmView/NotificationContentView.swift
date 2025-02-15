@@ -53,5 +53,5 @@ struct NotificationContentView: View {
 }
 
 #Preview {
-    NotificationContentView(pushNotificationData: PushNotificationData(notificationId: 1, userId: 1, agentId: "agentId", eventId: nil, deepLink: "deepLink", title: "title", content: "content"))
+    NotificationContentView(pushNotificationData: PushNotificationData(notificationId: 1, userId: 1, deepLink: "deepLink", title: "title", content: "content"))
 }

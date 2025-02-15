@@ -10,8 +10,6 @@ import Foundation
 struct PushNotificationData: Codable {
     let notificationId: Int
     let userId: Int
-    let agentId: String
-    let eventId: Int?
     let deepLink: String?
     let title: String
     let content: String
@@ -23,8 +21,6 @@ extension PushNotificationData {
             repeating: PushNotificationData(
                 notificationId: -1,
                 userId: -1,
-                agentId: "",
-                eventId: nil,
                 deepLink: nil,
                 title: "titletitletitletitle",
                 content: "contentcontentcontent"

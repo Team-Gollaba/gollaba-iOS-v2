@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(PushNotificationManager.self) private var pushNotificationManager
     @State var viewModel = MainViewModel.shared
+    @State private var goToDetailView: Bool = false
     
     let titleViewHeight: CGFloat = 48
     
@@ -25,20 +27,29 @@ struct MainView: View {
                     .ignoresSafeArea(.keyboard, edges: .bottom)
                 
                 TitleView(goToLogin: $viewModel.goToLogin, height: titleViewHeight)
-                
             }
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()
             }
-            .navigationDestination(
-                isPresented: Binding(
-                    get: { viewModel.pollHashId != nil },
-                    set: { _ in viewModel.pollHashId = nil }
-                )) {
-                    if let pollHashId = viewModel.pollHashId {
-                        PollDetailView(id: pollHashId)
-                    }
+            .navigationDestination(isPresented: $goToDetailView, destination: {
+                if let pollHashId = pushNotificationManager.receivedPollHashId {
+                    PollDetailView(id: pollHashId)
                 }
+            })
+            .onChange(of: pushNotificationManager.receivedPollHashId) { _, newValue in
+                if newValue != nil {
+                    goToDetailView = true
+                }
+            }
+//            .navigationDestination(
+//                isPresented: Binding(
+//                    get: { viewModel.pollHashId != nil },
+//                    set: { _ in viewModel.pollHashId = nil }
+//                )) {
+//                    if let pollHashId = viewModel.pollHashId {
+//                        PollDetailView(id: pollHashId)
+//                    }
+//                }
         }
     }
 }

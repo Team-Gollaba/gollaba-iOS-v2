@@ -16,7 +16,7 @@ import FirebaseMessaging
 @main
 struct GollabaApp: App {
     private var authManager = AuthManager()
-    private var deepLinkManager = DeepLinkManager()
+    private var pushNotificationManager = PushNotificationManager()
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
@@ -33,14 +33,11 @@ struct GollabaApp: App {
             ContentView()
                 .modelContainer(for: [SearchKeyword.self])
                 .environment(authManager)
-                .environment(deepLinkManager)
+                .environment(pushNotificationManager)
                 .onOpenURL(perform: { url in
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {
                         _ = AuthController.handleOpenUrl(url: url)
                     }
-                })
-                .onOpenURL(perform: { url in
-                    deepLinkManager.handleDeepLink(url)
                 })
                 .preferredColorScheme(.light)
                 .onAppear {
@@ -101,6 +98,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         Messaging.messaging().apnsToken = deviceToken
     }
+    
+    
 }
 
 // Cloud Messaging
@@ -157,9 +156,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             Logger.shared.log("AppDelegate", #function, "messageID: \(messageID)")
         }
-        
+        NotificationCenter.default.post(name: .pushNotificationReceived, object: nil, userInfo: userInfo)
         Logger.shared.log("AppDelegate", #function, "userInfo: \(userInfo)")
         
         completionHandler()
     }
+}
+
+extension Notification.Name {
+    static let pushNotificationReceived = Notification.Name("pushNotificationReceived")
 }
