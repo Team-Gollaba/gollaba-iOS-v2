@@ -134,6 +134,15 @@ class CreatePollViewModel {
     
     func handleError(error: Error) {
         self.errorMessage = "데이터를 불러오는 중에 오류가 발생하였습니다."
+        
+        if let apiError = error as? ApiError {
+            switch apiError {
+            case .serverError(let message):
+                self.errorMessage = message
+            default:
+                break
+            }
+        }
         self.showErrorDialog = true
     }
 }

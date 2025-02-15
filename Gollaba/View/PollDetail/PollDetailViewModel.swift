@@ -17,6 +17,10 @@ enum ReportType: String, CaseIterable {
     case none
 }
 
+enum PollError: String, Error {
+    case pollNotFound = "투표를 찾을 수 없습니다."
+}
+
 @Observable
 class PollDetailViewModel {
     //MARK: - Properties
@@ -133,7 +137,7 @@ class PollDetailViewModel {
                 
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
-                handleError(error: nil)
+                handleError(error: PollError.pollNotFound)
             }
         } catch {
             handleError(error: error)
@@ -166,7 +170,7 @@ class PollDetailViewModel {
                 
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
-                handleError(error: nil)
+                handleError(error: PollError.pollNotFound)
             }
         } catch {
             handleError(error: error)
@@ -181,7 +185,7 @@ class PollDetailViewModel {
                 self.votingIdData = try await ApiManager.shared.getVotingIdByPollHashId(pollHashId: poll.id)
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
-                handleError(error: nil)
+                handleError(error: PollError.pollNotFound)
             }
         } catch {
             handleError(error: error)
@@ -196,7 +200,7 @@ class PollDetailViewModel {
                 self.pollVoters = try await ApiManager.shared.getVoters(pollHashId: poll.id)
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
-                handleError(error: nil)
+                handleError(error: PollError.pollNotFound)
             }
         } catch {
             handleError(error: error)
@@ -241,7 +245,7 @@ class PollDetailViewModel {
                 }
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
-                handleError(error: nil)
+                handleError(error: PollError.pollNotFound)
             }
         } catch {
             if let votingError = error as? VotingError, votingError == VotingError.alreadyVoted {
@@ -255,12 +259,10 @@ class PollDetailViewModel {
     func updateVote() async {
         guard let authManager else {
             Logger.shared.log(String(describing: self), #function, "authManager is nil")
-            handleError(error: nil)
             return
         }
         guard let votingIdData else {
             Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
-            handleError(error: nil)
             return
         }
         let pollItemIds: [Int] = getSelectedPollItemId()
@@ -278,7 +280,6 @@ class PollDetailViewModel {
     func cancelVote() async {
         guard let votingIdData else {
             Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
-            handleError(error: nil)
             return
         }
         
@@ -438,12 +439,11 @@ class PollDetailViewModel {
     func setSelectedPollItem() {
         guard let poll else {
             Logger.shared.log(String(describing: self), #function, "poll is nil")
-            handleError(error: nil)
+            handleError(error: PollError.pollNotFound)
             return
         }
         guard let votingIdData else {
             Logger.shared.log(String(describing: self), #function, "votingIdData is nil")
-            handleError(error: nil)
             return
         }
         
@@ -465,8 +465,17 @@ class PollDetailViewModel {
         }
     }
     
-    func handleError(error: Error?) {
+    func handleError(error: Error) {
         self.errorMessage = "데이터를 불러오는 중에 오류가 발생하였습니다."
+        
+        if let apiError = error as? ApiError {
+            switch apiError {
+            case .serverError(let message):
+                self.errorMessage = message
+            default:
+                break
+            }
+        }
         self.showErrorDialog = true
     }
 }

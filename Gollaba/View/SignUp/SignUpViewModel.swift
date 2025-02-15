@@ -171,6 +171,15 @@ class SignUpViewModel: ObservableObject {
     
     func handleError(error: Error) {
         self.alertMessage = "데이터를 불러오는 중에 오류가 발생하였습니다."
+        
+        if let apiError = error as? ApiError {
+            switch apiError {
+            case .serverError(let message):
+                self.alertMessage = message
+            default:
+                break
+            }
+        }
         self.showAlert = true
     }
 }

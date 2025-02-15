@@ -10,12 +10,9 @@ import Alamofire
 
 enum ApiError: Error {
     case invalidResponse
-    case invalidData
     case invalidURL
-    case invalidParameter
-    case invalidRequest
-    case invalidResponseData
-    case invalidResponseStatusCode
+    case serverError(message: String)
+    case networkError(Error)
 }
 
 enum AuthError: String, Error {
@@ -128,7 +125,8 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to create app notification with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -159,7 +157,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to update app notification with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -197,7 +195,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get push notification history with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -224,7 +222,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Faild to send push notification with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -256,7 +254,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to create favorite poll with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -286,7 +284,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to delete favorite poll with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -327,7 +325,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get favorite polls with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -382,7 +380,7 @@ class ApiManager {
                         continuation.resume(returning: value.data)
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get polls with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -450,7 +448,7 @@ class ApiManager {
                     }
                 case .failure(let error):
                     Logger.shared.log(String(describing: self), #function, "Failed to create poll with error: \(error)", .error)
-                    continuation.resume(throwing: error)
+                    continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                 }
             }
         }
@@ -488,7 +486,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get polls favorite by me with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -526,7 +524,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get polls created by me with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -556,7 +554,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get top keywords with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                     
                 }
@@ -579,7 +577,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get top polls with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -601,7 +599,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get trending polls with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -623,7 +621,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get poll with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -650,18 +648,18 @@ class ApiManager {
             "Content-Type": "application/json"
         ]
                 
-        return try await withCheckedThrowingContinuation { contination in
+        return try await withCheckedThrowingContinuation { continuation in
             session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
                 .responseDecodable(of: AllPollResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to get polls participated: \(value)")
-                        contination.resume(returning: value.data)
+                        continuation.resume(returning: value.data)
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get polls participated with error: \(error)", .error)
-                        contination.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -692,7 +690,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to update user name with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -726,7 +724,7 @@ class ApiManager {
                     
                 case .failure(let error):
                     Logger.shared.log(String(describing: self), #function, "Failed to update user profile image with error: \(error)", .error)
-                    continuation.resume(throwing: error)
+                    continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                 }
             }
         }
@@ -753,7 +751,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to delete user profile image with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -787,7 +785,7 @@ class ApiManager {
                         }
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get user(me) with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -814,7 +812,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to delete account with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -861,7 +859,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to sign up with error: \(error)", .error)
-                        continuation.resume(with: .failure(error))
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -882,7 +880,7 @@ class ApiManager {
                         continuation.resume()
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to read poll with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -927,7 +925,7 @@ class ApiManager {
                         }
                         
                         Logger.shared.log(String(describing: self), #function, "Failed to voting with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -964,7 +962,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to voting check: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -998,7 +996,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get voting id with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -1021,11 +1019,11 @@ class ApiManager {
                         case .pollVotersResponseData(let data):
                             continuation.resume(returning: data)
                         default:
-                            continuation.resume(throwing: ApiError.invalidResponseData)
+                            continuation.resume(throwing: ApiError.invalidResponse)
                         }
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to get voters with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -1056,7 +1054,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to update vote with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -1083,7 +1081,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to cancel vote with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -1155,10 +1153,12 @@ class ApiManager {
                             if serverError.status == AuthError.notSignUp.rawValue {
                                 continuation.resume(throwing: AuthError.notSignUp)
                                 return
+                            } else {
+                                continuation.resume(throwing: ApiError.serverError(message: serverError.message))
                             }
                         }
                         Logger.shared.log(String(describing: self), #function, "Failed to login by provider token: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -1203,7 +1203,7 @@ class ApiManager {
                     }
                 case .failure(let error):
                     Logger.shared.log(String(describing: self), #function, "Failed to upload image with error: \(error)", .error)
-                    continuation.resume(throwing: error)
+                    continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                 }
             }
         }
@@ -1234,7 +1234,7 @@ class ApiManager {
                         
                     case .failure(let error):
                         Logger.shared.log(String(describing: self), #function, "Failed to report poll with error: \(error)", .error)
-                        continuation.resume(throwing: error)
+                        continuation.resume(throwing: self.getServerErrorIncludeMessage(data: response.data))
                     }
                 }
         }
@@ -1257,5 +1257,13 @@ class ApiManager {
             throw AuthError.jwtTokenExpired
         }
         return token
+    }
+    
+    func getServerErrorIncludeMessage(data: Data?) -> Error {
+        if let data, let serverError = try? JSONDecoder().decode(DefaultResponse.self, from: data) {
+            return ApiError.serverError(message: serverError.message)
+        } else {
+            return ApiError.serverError(message: "Unknown server error")
+        }
     }
 }
