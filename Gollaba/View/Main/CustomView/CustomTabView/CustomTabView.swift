@@ -16,7 +16,8 @@ enum SelectedTab: Hashable {
 
 struct CustomTabView: View {
     @State private var selectedTab: SelectedTab = .home
-    @State private var isScrollToTop: Bool = false
+    @State private var isHomeViewScrollToTop: Bool = false
+    @State private var isMyPollViewScrollToTop: Bool = false
     @State private var isHideTabBar: Bool = false
     
     @State private var goToSearch: Bool = false
@@ -27,7 +28,7 @@ struct CustomTabView: View {
     var body: some View {
         ZStack (alignment: .bottom) {
             TabView(selection: $selectedTab) {
-                HomeView(scrollToTopTrigger: $isScrollToTop, isHideTapBar: $isHideTabBar, goToSearch: $goToSearch)
+                HomeView(scrollToTopTrigger: $isHomeViewScrollToTop, isHideTapBar: $isHideTabBar, goToSearch: $goToSearch)
                     .tag(SelectedTab.home)
                 
                 SearchView(isHideTabBar: $isHideTabBar)
@@ -36,7 +37,7 @@ struct CustomTabView: View {
                 CreatePollView(isHideTabBar: $isHideTabBar)
                     .tag(SelectedTab.create)
                 
-                MyPollView(isHideTabBar: $isHideTabBar)
+                MyPollView(scrollToTopTrigger: $isMyPollViewScrollToTop, isHideTabBar: $isHideTabBar)
                     .tag(SelectedTab.myPoll)
                 
             }
@@ -49,7 +50,7 @@ struct CustomTabView: View {
                 CustomTabViewButton(
                     action: {
                         if selectedTab == .home {
-                            isScrollToTop = true
+                            isHomeViewScrollToTop = true
                         }
                         selectedTab = .home
                     },
@@ -78,6 +79,9 @@ struct CustomTabView: View {
                 
                 CustomTabViewButton(
                     action: {
+                        if selectedTab == .myPoll {
+                            isMyPollViewScrollToTop = true
+                        }
                         selectedTab = .myPoll
                     },
                     image: Image(systemName: selectedTab == .myPoll ? "person.circle.fill" : "person.circle"),
