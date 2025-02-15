@@ -96,8 +96,9 @@ struct SettingView: View {
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(
-                                RoundedRectangle(cornerRadius: 10)
+                                RoundedRectangle(cornerRadius: 8)
                                     .fill(Color.red)
+                                    .shadow(radius: 5)
                             )
                     }
                 }

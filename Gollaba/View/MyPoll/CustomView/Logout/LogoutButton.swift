@@ -14,16 +14,16 @@ struct LogoutButton: View {
         Button {
             action()
         } label: {
-            HStack (spacing: 20) {
+            HStack (spacing: 16) {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 12, height: 12)
+                    .frame(width: 16, height: 16)
                 
                 Text("로그아웃")
                     .font(.suitBold16)
             }
-            .frame(maxWidth: .infinity)
+            .frame(width: 100)
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 8)
@@ -32,7 +32,7 @@ struct LogoutButton: View {
             )
         }
         .tint(.white)
-        .padding(24)
+        .padding(.vertical, 20)
     }
 }
 
