@@ -48,10 +48,17 @@ struct PollDetailView: View {
                         .skeleton(isActive: viewModel.poll == nil)
                         
                         HStack {
-                            ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl, width: 24, height: 24)
+                            ProfileImageView(imageUrl: viewModel.poll?.creatorProfileUrl, width: 40, height: 40)
                             
-                            Text("\(viewModel.poll?.creatorName ?? "작성자") · \(formattedDate(viewModel.poll?.endAt ?? Date().toString())). 마감")
-                                .font(.suitVariable16)
+                            VStack(alignment:. leading, spacing: 4) {
+                                Text(viewModel.poll?.creatorName ?? "작성자")
+                                    .font(.suitBold16)
+                                    .foregroundStyle(.black)
+                                
+                                Text(formattedDate(viewModel.poll?.endAt ?? ""))
+                                    .font(.suitVariable16)
+                                    .foregroundStyle(.gray)
+                            }
                             
                             Spacer()
                             
@@ -66,8 +73,8 @@ struct PollDetailView: View {
                     }
                     
                     
-                        PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
-                    .skeleton(isActive: viewModel.poll == nil)
+                    PollTypeView(pollType: PollType(rawValue: viewModel.poll?.pollType ?? PollType.named.rawValue) ?? PollType.none, responseType: ResponseType(rawValue: viewModel.poll?.responseType ?? ResponseType.single.rawValue) ?? ResponseType.none)
+                        .skeleton(isActive: viewModel.poll == nil)
                     
                     
                     if viewModel.poll?.pollType == PollType.named.rawValue && !viewModel.isVoted && viewModel.isValidDatePoll && !authManager.isLoggedIn {
@@ -288,13 +295,26 @@ struct PollDetailView: View {
         .refreshable(action: viewModel.loadPoll)
     }
     
-    private func formattedDate(_ date: String) -> String {
-        return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
+    private func formattedDate(_ dateString: String) -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+        
+        guard let date = formatter.date(from: dateString) else { return "" }
+        
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+        let dateYear = calendar.component(.year, from: date)
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+        outputFormatter.dateFormat = (dateYear == currentYear) ? "MM월 dd일 a hh:mm" : "yyyy년 MM월 dd일 a hh:mm"
+        
+        return outputFormatter.string(from: date)
     }
 }
 
 #Preview {
     PollDetailView(id: "1")
         .environment(AuthManager())
-        
+    
 }
