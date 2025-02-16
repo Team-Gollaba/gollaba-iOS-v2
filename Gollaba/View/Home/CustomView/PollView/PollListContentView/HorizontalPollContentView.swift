@@ -49,7 +49,7 @@ struct HorizontalPollContentView: View {
                                 .truncationMode(.tail)
                                 .skeleton(isActive: poll.id == "-1")
                             
-                            Text("조회수 \(poll.readCount)회 · \(poll.totalVotingCount)명 참여")
+                            Text("조회수 \(poll.readCount)회 · \(poll.votedPeopleCount)명 참여")
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                                 .skeleton(isActive: poll.id == "-1")
