@@ -124,6 +124,10 @@ class CreatePollViewModel {
         self.anonymousOption = .first
         self.countingOption = .first
         self.selectedDate = Date().addingTimeInterval(60 * 60)
+        
+        self.selectedItem = Array(repeating: nil, count: 6)
+        self.postImage = Array(repeating: nil, count: 6)
+        self.uiImage = Array(repeating: nil, count: 6)
     }
     
     func removeSecond(_ date: Date) -> Date {
