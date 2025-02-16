@@ -250,9 +250,6 @@ struct MyPollView: View {
                         onPrimaryButton: {
                             Task {
                                 await viewModel.logout()
-                                viewModel.resetPollsCreatedByMe()
-                                viewModel.resetPollsFavoriteByMe()
-                                viewModel.resetPollsParticipated()
                             }
                         }
                     )
@@ -333,6 +330,10 @@ struct MyPollView: View {
         .onChange(of: authManager.isLoggedIn, { _, newValue in
             if !newValue {
                 viewModel.showLogoutedDialog = true
+                viewModel.resetPollsCreatedByMe()
+                viewModel.resetPollsFavoriteByMe()
+                viewModel.resetPollsParticipated()
+                viewModel.selectedTab = .madeByMe
             }
         })
         .dialog(
