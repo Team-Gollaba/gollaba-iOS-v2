@@ -15,27 +15,43 @@ struct NotificationContentView: View {
             PollDetailView(id: getPollHashId())
         } label: {
             HStack (alignment: .top, spacing: 12) {
-                ProfileImageView(width: 60, height: 60)
+                Image(systemName: "checkmark")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 12, height: 12)
+                    .foregroundStyle(.green)
+                    .padding(12)
+                    .background(
+                        Circle()
+                            .fill(.green.opacity(0.1))
+                    )
                     .skeleton(isActive: pushNotificationData.notificationId == -1)
                 
                 VStack (alignment: .leading, spacing: 8) {
                     HStack {
                         Text(pushNotificationData.title)
-                            .font(.suitBold16)
+                            .font(.suitBold20)
                             .lineLimit(1)
                             .truncationMode(.tail)
                         
                         Spacer()
-    //
-    //                    Text(pushNotificationData.content)
-    //                        .font(.suitVariable16)
-    //                        .foregroundStyle(.gray)
                     }
                     .skeleton(isActive: pushNotificationData.notificationId == -1)
                     
                     Text(pushNotificationData.content)
                         .font(.suitVariable16)
                         .skeleton(isActive: pushNotificationData.notificationId == -1)
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12)
+                    
+                    Spacer()
                 }
             }
             .padding()
