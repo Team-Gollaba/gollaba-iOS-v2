@@ -24,9 +24,6 @@ struct NotificationView: View {
                     await viewModel.getPushNotificationList()
                 }
             }
-            .onDisappear {
-                viewModel.resetPage()
-            }
             .onChange(of: viewModel.pushNotificationListRequestAdd) { _, newValue in
                 if newValue {
                     Task {

@@ -22,6 +22,10 @@ struct NotificationList: View {
                             NotificationContentView(pushNotificationData: pushNotificationData)
                         }
                         
+                        if !isEnd {
+                            GollabaLoadingView()
+                        }
+                        
                         Color.clear
                             .frame(height: 0)
                             .id("Bottom")

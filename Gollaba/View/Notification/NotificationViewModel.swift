@@ -25,6 +25,8 @@ class NotificationViewModel {
     
     //MARK: - API
     func getPushNotificationList() async {
+        guard self.pushNotificationData?.items.isEmpty ?? true else { return }
+        
         do {
             self.pushNotificationData = try await ApiManager.shared.getPushNotificationHistory(page: self.pushNotificationListPage, size: self.pushNotificationListSize)
             self.pushNotificationListPage += 1
@@ -42,7 +44,8 @@ class NotificationViewModel {
             self.pushNotificationListPage += 1
             self.pushNotificationData?.items.append(contentsOf: newNotiData.items)
             self.pushNotificationListRequestAdd = false
-            self.pushNotificationListIsEnd = newNotiData.items.isEmpty
+            print("newNotiData.totalCount: \(newNotiData.totalCount), self.pushNotificationData?.items.count: \(self.pushNotificationData?.items.count ?? 0)")
+            self.pushNotificationListIsEnd = newNotiData.totalCount == self.pushNotificationData?.items.count
         } catch {
             handleError(error: error)
         }
@@ -51,6 +54,8 @@ class NotificationViewModel {
     //MARK: - ETC
     func resetPage() {
         self.pushNotificationListPage = 0
+        self.pushNotificationListIsEnd = false
+        self.pushNotificationData = nil
     }
     
     func handleError(error: Error) {

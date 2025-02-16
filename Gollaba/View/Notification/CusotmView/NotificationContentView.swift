@@ -50,6 +50,7 @@ struct NotificationContentView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 12, height: 12)
+                        .opacity(pushNotificationData.notificationId == -1 ? 0 : 1)
                     
                     Spacer()
                 }
