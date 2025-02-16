@@ -157,23 +157,22 @@ class PollDetailViewModel {
         do {
             if let poll {
                 self.isVoted = try await ApiManager.shared.votingCheck(pollHashId: poll.id)
-                
-                if !self.isValidDatePoll {
-                    self.votingButtonState = .ended
-                } else if self.isVoted {
-                    if self.authManager?.isLoggedIn ?? false {
-                        self.votingButtonState = .completed
-                    } else {
-                        self.votingButtonState = .alreadyVoted
-                    }
-                }
-                
             } else {
                 Logger.shared.log(String(describing: self), #function, "poll not found", .error)
                 handleError(error: PollError.pollNotFound)
             }
         } catch {
             handleError(error: error)
+        }
+        
+        if !self.isValidDatePoll {
+            self.votingButtonState = .ended
+        } else if self.isVoted {
+            if self.authManager?.isLoggedIn ?? false {
+                self.votingButtonState = .completed
+            } else {
+                self.votingButtonState = .alreadyVoted
+            }
         }
     }
     

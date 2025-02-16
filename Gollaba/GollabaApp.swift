@@ -47,7 +47,6 @@ struct GollabaApp: App {
                 .onChange(of: scenePhase) { _, newValue in
                     if newValue == .active && authManager.isLoggedIn {
                         Task {
-                            print("checkcheckcheck")
                             await MainViewModel.shared.getUserMe()
                         }
                     }
