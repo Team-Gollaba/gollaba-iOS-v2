@@ -260,10 +260,13 @@ struct MyPollView: View {
                 VStack (spacing: 20) {
                     Spacer()
                     
-                    Text("모든 기능을 이용하려면\n로그인을 해주세요.")
-                        .font(.yangjin32)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 20)
+                    VStack {
+                        Text("모든 기능을 이용하려면")
+                        Text("로그인을 해주세요.")
+                    }
+                    .font(.yangjin32)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 20)
                     
                     InduceLoginContentView(
                         icon: Image(systemName: "chart.bar"),
