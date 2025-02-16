@@ -47,7 +47,7 @@ struct PollFavoriteByMeView: View {
                 }
                 .skeleton(isActive: poll.id == "-1")
                 
-                Text("\(formattedDate(poll.endAt)) 마감 · 조회수 \(poll.readCount)회")
+                Text("\(formattedDate(poll.endAt)) · 조회수 \(poll.readCount)회")
                     .font(.suitVariable16)
                     .foregroundStyle(.gray.opacity(0.7))
                     .skeleton(isActive: poll.id == "-1")
@@ -68,8 +68,21 @@ struct PollFavoriteByMeView: View {
         .disabled(poll.id == "-1")
     }
     
-    private func formattedDate(_ date: String) -> String {
-        return date.split(separator: "T").first?.replacingOccurrences(of: "-", with: ". ") ?? ""
+    private func formattedDate(_ dateString: String) -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+        
+        guard let date = formatter.date(from: dateString) else { return "" }
+        
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+        let dateYear = calendar.component(.year, from: date)
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.locale = Locale(identifier: "ko_KR")
+        outputFormatter.dateFormat = (dateYear == currentYear) ? "MM월 dd일 a hh:mm" : "yyyy년 MM월 dd일 a hh:mm"
+        
+        return outputFormatter.string(from: date)
     }
     
     func setDate(_ dateString: String) -> Date {
