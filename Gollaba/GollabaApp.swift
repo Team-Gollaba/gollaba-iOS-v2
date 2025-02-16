@@ -15,6 +15,7 @@ import FirebaseMessaging
 
 @main
 struct GollabaApp: App {
+    @Environment(\.scenePhase) private var scenePhase
     private var authManager = AuthManager()
     private var pushNotificationManager = PushNotificationManager()
     
@@ -42,6 +43,13 @@ struct GollabaApp: App {
                 .preferredColorScheme(.light)
                 .onAppear {
                     ApiManager.shared.setAuthManager(authManager)
+                }
+                .onChange(of: scenePhase) { _, newValue in
+                    if newValue == .active {
+                        Task {
+                            await MainViewModel.shared.getUserMe()
+                        }
+                    }
                 }
         }
     }

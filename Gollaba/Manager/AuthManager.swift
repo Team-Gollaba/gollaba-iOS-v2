@@ -16,6 +16,7 @@ class AuthManager {
         }
     }
     var justDeletedAccount: Bool = false
+    var sessionExpired: Bool = false
     var jwtToken: String? {
         didSet {
             AppStorageManager.shared.accessToken = jwtToken

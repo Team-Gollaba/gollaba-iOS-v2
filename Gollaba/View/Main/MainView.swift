@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(PushNotificationManager.self) private var pushNotificationManager
+    @Environment(AuthManager.self) private var authManager
     @State var viewModel = MainViewModel.shared
     @State private var goToDetailView: Bool = false
     
@@ -39,6 +40,12 @@ struct MainView: View {
             .onChange(of: pushNotificationManager.receivedPollHashId) { _, newValue in
                 if newValue != nil {
                     goToDetailView = true
+                }
+            }
+            .onAppear {
+                viewModel.authManager = authManager
+                Task {
+                    await viewModel.getUserMe()
                 }
             }
 //            .navigationDestination(

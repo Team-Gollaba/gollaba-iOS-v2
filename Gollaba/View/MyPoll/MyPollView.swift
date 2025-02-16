@@ -343,9 +343,10 @@ struct MyPollView: View {
         .dialog(
             isPresented: $viewModel.showLogoutedDialog,
             title: "My투표",
-            content: Text(authManager.justDeletedAccount ? "회원 탈퇴가 완료되었습니다." : "로그아웃 되었습니다."),
+            content: Text(authManager.justDeletedAccount ? "회원 탈퇴가 완료되었습니다." : authManager.sessionExpired ? "세션이 만료되었습니다." : "로그아웃 되었습니다."),
             onPrimaryButton: {
                 authManager.justDeletedAccount = false
+                authManager.sessionExpired = false
             }
         )
     }

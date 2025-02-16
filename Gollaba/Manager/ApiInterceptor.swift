@@ -19,7 +19,7 @@ final class ApiInterceptor: RequestInterceptor {
             }
             completion(.success(request))
         } catch {
-            Logger.shared.log(String(describing: self), #function, "Failed to get JWT token")
+            Logger.shared.log(String(describing: self), #function, "Failed to get JWT token", .error)
         }
     }
     
@@ -33,9 +33,12 @@ final class ApiInterceptor: RequestInterceptor {
             try ApiManager.shared.refreshToken { result in
                 switch result {
                 case .success(let newToken):
+                    Logger.shared.log(String(describing: self), #function, "Success to refresh token")
                     ApiManager.shared.authManager?.jwtToken = newToken
                     completion(.retry)
                 case .failure(let error):
+                    Logger.shared.log(String(describing: self), #function, "Failed to refresh token: \(error)", .error)
+                    ApiManager.shared.authManager?.sessionExpired = true
                     ApiManager.shared.authManager?.logout()
                     completion(.doNotRetryWithError(error))
                 }
