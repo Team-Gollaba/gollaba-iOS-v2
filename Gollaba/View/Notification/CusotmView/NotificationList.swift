@@ -20,6 +20,11 @@ struct NotificationList: View {
                     VStack {
                         ForEach(pushNotificationList, id: \.notificationId) { pushNotificationData in
                             NotificationContentView(pushNotificationData: pushNotificationData)
+                            
+                            if pushNotificationData.notificationId != pushNotificationList.last?.notificationId {
+                                Divider()
+                                    .padding(.horizontal)
+                            }
                         }
                         
                         if !isEnd {
