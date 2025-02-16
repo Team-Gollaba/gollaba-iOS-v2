@@ -62,21 +62,6 @@ class SearchResultListViewModel {
     }
     
     //MARK: - API
-    func getSearchResult() async {
-        self.isLoading = true
-        
-        do {
-            self.searchResultPollData = try await ApiManager.shared.getPolls(page: self.page, size: self.pageSize, optionGroup: .title, query: self.searchText)
-            self.page += 1
-            
-            self.isEnd = self.searchResultPollData?.items.count == self.searchResultPollData?.totalCount
-        } catch {
-            handleError(error: error)
-        }
-        
-        self.isLoading = false
-    }
-    
     func getSearchResultByFilter() async {
         self.isLoading = true
         

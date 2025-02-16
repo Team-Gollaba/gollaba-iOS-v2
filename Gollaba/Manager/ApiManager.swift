@@ -351,7 +351,7 @@ class ApiManager {
             queryItems.append("size=\(size)")
         }
         if sort != .none {
-            queryItems.append("sort=\(sort.rawValue)")
+            queryItems.append("sort=\(sort.rawValue),desc")
         }
         if pollType != .none {
             queryItems.append("pollType=\(pollType.rawValue)")

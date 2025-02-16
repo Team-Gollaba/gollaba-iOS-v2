@@ -100,7 +100,7 @@ struct SearchResultListView: View {
         .onAppear {
             Task {
                 if viewModel.searchResultPollData?.items.isEmpty ?? true && !viewModel.isEnd {
-                    await viewModel.getSearchResult()
+                    await viewModel.getSearchResultByFilter()
                 }
             }
         }
