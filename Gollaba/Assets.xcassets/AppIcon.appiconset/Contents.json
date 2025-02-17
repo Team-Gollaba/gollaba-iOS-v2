@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "a8624718da7c7fe21c94f7ead1f1d627 (1).png",
+      "filename" : "gollaba.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,6 @@
           "value" : "dark"
         }
       ],
-      "filename" : "a8624718da7c7fe21c94f7ead1f1d627 (1) 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,7 +24,6 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "a8624718da7c7fe21c94f7ead1f1d627 (1) 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

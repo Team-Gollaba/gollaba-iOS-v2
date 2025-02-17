@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Kingfisher
-import PagerTabStripView
 
 struct MyPollView: View {
     @Environment(AuthManager.self) private var authManager

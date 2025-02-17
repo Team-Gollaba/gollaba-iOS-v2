@@ -296,18 +296,15 @@ struct PollDetailView: View {
     }
     
     private func formattedDate(_ dateString: String) -> String {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+        let inputFormatter = DateFormatter()
+        inputFormatter.locale = Locale(identifier: "ko_KR")
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         
-        guard let date = formatter.date(from: dateString) else { return "" }
-        
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: Date())
-        let dateYear = calendar.component(.year, from: date)
+        guard let date = inputFormatter.date(from: dateString) else { return "" }
         
         let outputFormatter = DateFormatter()
         outputFormatter.locale = Locale(identifier: "ko_KR")
-        outputFormatter.dateFormat = (dateYear == currentYear) ? "MM월 dd일 a hh:mm" : "yyyy년 MM월 dd일 a hh:mm"
+        outputFormatter.dateFormat = "yyyy년 MM월 dd일 a hh:mm"
         
         return outputFormatter.string(from: date)
     }
