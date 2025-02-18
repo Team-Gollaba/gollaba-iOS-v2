@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum MyPollSelectedTab: Int {
-    case madeByMe = 0
+    case createdByMe = 0
     case faovirteByMe = 1
     case participated = 2
 }
@@ -46,7 +46,7 @@ class MyPollViewModel {
     private var participatedPollPage: Int = 0
     private let participatedPollSize: Int = 10
     
-    var selectedTab: MyPollSelectedTab = .madeByMe
+    var selectedTab: MyPollSelectedTab = .createdByMe
     
     var madeByMeTabHeight: CGFloat = 0
     var favoriteByMeTabHeight: CGFloat = 0
@@ -182,13 +182,41 @@ class MyPollViewModel {
     
     @Sendable func loadPolls() async {
         do {
-            try await Task.sleep(nanoseconds: 1000_000_000)
-            resetPollsCreatedByMe()
-            resetPollsFavoriteByMe()
-            resetPollsParticipated()
-            await getPollsCreatedByMe()
-            await getPollsFavoriteByMe()
-            await getPollsParticipated()
+            switch selectedTab {
+            case .createdByMe:
+                self.createdByMePollPage = 0
+                
+                let createdByMePolls = try await ApiManager.shared.getPollsCreatedByMe(page: self.createdByMePollPage, size: self.createdByMePollSize)
+                
+                self.createdByMePollPage += 1
+                
+                try await Task.sleep(nanoseconds: 1_000_000_000)
+                
+                self.createdByMePollList = createdByMePolls.items
+                self.createdByMePollIsEnd = self.createdByMePollList.count == createdByMePolls.totalCount
+            case .faovirteByMe:
+                self.favoriteByMePollPage = 0
+                
+                let favoritePolls = try await ApiManager.shared.getPollsFavoriteByMe(page: self.favoriteByMePollPage, size: self.favoriteByMePollSize)
+                
+                self.favoriteByMePollPage += 1
+                
+                try await Task.sleep(nanoseconds: 1_000_000_000)
+                
+                self.favoriteByMePollList = favoritePolls.items
+                self.favoriteByMePollIsEnd = self.favoriteByMePollList.count == favoritePolls.totalCount
+            case .participated:
+                self.participatedPollPage = 0
+                
+                let participatedPolls = try await ApiManager.shared.getPollsParticipated(page: self.participatedPollPage, size: self.participatedPollSize)
+                
+                self.participatedPollPage += 1
+                
+                try await Task.sleep(nanoseconds: 1_000_000_000)
+                
+                self.participatedPollList = participatedPolls.items
+                self.participatedPollIsEnd = self.participatedPollList.count == participatedPolls.totalCount
+            }
         } catch {
             handleError(error: error)
         }
@@ -254,7 +282,7 @@ class MyPollViewModel {
     
     func updateCurrentTabHeight() {
         switch selectedTab {
-        case .madeByMe:
+        case .createdByMe:
             currentTabHeight = madeByMeTabHeight
         case .faovirteByMe:
             currentTabHeight = favoriteByMeTabHeight

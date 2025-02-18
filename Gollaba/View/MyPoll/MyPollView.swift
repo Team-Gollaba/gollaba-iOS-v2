@@ -68,12 +68,12 @@ struct MyPollView: View {
                             
                             HStack {
                                 Button {
-                                    viewModel.selectedTab = .madeByMe
+                                    viewModel.selectedTab = .createdByMe
                                 } label: {
                                     Image(systemName: "pencil")
                                         .resizable()
                                         .frame(width: 20, height: 20)
-                                        .foregroundStyle(viewModel.selectedTab == .madeByMe ? .enrollButton : .gray)
+                                        .foregroundStyle(viewModel.selectedTab == .createdByMe ? .enrollButton : .gray)
                                 }
                                 .tint(.black)
                                 .frame(maxWidth: .infinity)
@@ -114,7 +114,7 @@ struct MyPollView: View {
                                     requestAddPoll: $viewModel.createdByMePollRequestAdd,
                                     isEnd: $viewModel.createdByMePollIsEnd
                                 )
-                                .tag(MyPollSelectedTab.madeByMe)
+                                .tag(MyPollSelectedTab.createdByMe)
                                 .background(GeometryReader { proxy in
                                     Color.clear
                                         .preference(key: MadeByMeTabHeightPreferenceKey.self, value: proxy.size.height) // 크기 추적
@@ -335,7 +335,7 @@ struct MyPollView: View {
                 viewModel.resetPollsCreatedByMe()
                 viewModel.resetPollsFavoriteByMe()
                 viewModel.resetPollsParticipated()
-                viewModel.selectedTab = .madeByMe
+                viewModel.selectedTab = .createdByMe
             }
         })
         .dialog(
