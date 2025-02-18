@@ -89,7 +89,7 @@ class PollDetailViewModel {
         didSet {
             guard let authManager else { return }
             
-            if isVoted && isValidDatePoll && authManager.isLoggedIn {
+            if isVoted && isValidDatePoll && authManager.isLoggedIn && isAnonymousVoted == false {
                 votingButtonState = .completed
             }
         }
@@ -168,7 +168,7 @@ class PollDetailViewModel {
         
         if !self.isValidDatePoll {
             self.votingButtonState = .ended
-        } else if self.isVoted {
+        } else if self.isVoted && !isAnonymousVoted {
             if self.authManager?.isLoggedIn ?? false {
                 self.votingButtonState = .completed
             } else {
@@ -209,9 +209,11 @@ class PollDetailViewModel {
     
     @Sendable func loadPoll() async {
         do {
+            
             try await Task.sleep(nanoseconds: 1_000_000_000)
             await getPoll()
             await votingCheck()
+            
         } catch {
             
         }
