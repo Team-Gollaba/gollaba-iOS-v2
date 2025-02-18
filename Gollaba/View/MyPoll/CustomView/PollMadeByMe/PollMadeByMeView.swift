@@ -77,9 +77,13 @@ struct PollMadeByMeView: View {
         
         guard let date = inputFormatter.date(from: dateString) else { return "" }
         
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+        let dateYear = calendar.component(.year, from: date)
+        
         let outputFormatter = DateFormatter()
         outputFormatter.locale = Locale(identifier: "ko_KR")
-        outputFormatter.dateFormat = "yyyy년 MM월 dd일 a hh:mm"
+        outputFormatter.dateFormat = (dateYear == currentYear) ? "MM월 dd일 a hh:mm" : "yyyy년 MM월 dd일 a hh:mm"
         
         return outputFormatter.string(from: date)
     }
