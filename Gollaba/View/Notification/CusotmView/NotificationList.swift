@@ -13,6 +13,8 @@ struct NotificationList: View {
     @Binding var requestAddNotification: Bool
     @Binding var isEnd: Bool
     
+    var refreshAction: () async -> Void
+    
     var body: some View {
         if !pushNotificationList.isEmpty {
             ScrollView {
@@ -49,6 +51,9 @@ struct NotificationList: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .frame(maxWidth: .infinity)
+            .refreshable {
+                await refreshAction()
+            }
         } else {
             Text("받은 알림이 없습니다.")
                 .font(.suitBold24)
@@ -59,5 +64,5 @@ struct NotificationList: View {
 }
 
 #Preview {
-    NotificationList(pushNotificationList: [], requestAddNotification: .constant(false), isEnd: .constant(false))
+    NotificationList(pushNotificationList: [], requestAddNotification: .constant(false), isEnd: .constant(false), refreshAction: { @Sendable in})
 }

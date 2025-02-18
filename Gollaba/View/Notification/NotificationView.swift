@@ -17,7 +17,10 @@ struct NotificationView: View {
             NotificationList(
                 pushNotificationList: viewModel.pushNotificationData?.items ?? PushNotificationData.tempDataList(),
                 requestAddNotification: $viewModel.pushNotificationListRequestAdd,
-                isEnd: $viewModel.pushNotificationListIsEnd
+                isEnd: $viewModel.pushNotificationListIsEnd,
+                refreshAction: { @Sendable in
+                    await viewModel.refreshNotifications()
+                }
             )
             .onAppear {
                 Task {

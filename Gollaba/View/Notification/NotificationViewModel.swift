@@ -44,8 +44,20 @@ class NotificationViewModel {
             self.pushNotificationListPage += 1
             self.pushNotificationData?.items.append(contentsOf: newNotiData.items)
             self.pushNotificationListRequestAdd = false
-            print("newNotiData.totalCount: \(newNotiData.totalCount), self.pushNotificationData?.items.count: \(self.pushNotificationData?.items.count ?? 0)")
             self.pushNotificationListIsEnd = newNotiData.totalCount == self.pushNotificationData?.items.count
+        } catch {
+            handleError(error: error)
+        }
+    }
+    
+    @Sendable func refreshNotifications() async {
+        do {
+            self.pushNotificationListPage = 0
+            let pushNotificationData = try await ApiManager.shared.getPushNotificationHistory(page: self.pushNotificationListPage, size: self.pushNotificationListSize)
+            self.pushNotificationListPage += 1
+            self.pushNotificationListIsEnd = false
+            
+            self.pushNotificationData = pushNotificationData
         } catch {
             handleError(error: error)
         }
