@@ -11,7 +11,7 @@ import Alamofire
 enum ApiError: Error {
     case invalidResponse
     case invalidURL
-    case serverError(message: String)
+    case serverError(status: String, message: String)
     case networkError(Error)
 }
 
@@ -21,8 +21,10 @@ enum AuthError: String, Error {
     case authManagerIsNil
 }
 
-enum VotingError: Error {
+enum VotingError: String, Error {
     case alreadyVoted
+    case alreadyAnonymousVoting = "ALREADY_ANONYMOUS_VOTING"
+    case votingNotFound = "VOTING_NOT_FOUND"
 }
 
 enum SortedBy: String {
@@ -1154,7 +1156,7 @@ class ApiManager {
                                 continuation.resume(throwing: AuthError.notSignUp)
                                 return
                             } else {
-                                continuation.resume(throwing: ApiError.serverError(message: serverError.message))
+                                continuation.resume(throwing: ApiError.serverError(status: serverError.status, message: serverError.message))
                             }
                         }
                         Logger.shared.log(String(describing: self), #function, "Failed to login by provider token: \(error)", .error)
@@ -1261,9 +1263,9 @@ class ApiManager {
     
     func getServerErrorIncludeMessage(data: Data?) -> Error {
         if let data, let serverError = try? JSONDecoder().decode(DefaultResponse.self, from: data) {
-            return ApiError.serverError(message: serverError.message)
+            return ApiError.serverError(status: serverError.status, message: serverError.message)
         } else {
-            return ApiError.serverError(message: "Unknown server error")
+            return ApiError.serverError(status: "FAILED", message: "Unknown server error")
         }
     }
 }

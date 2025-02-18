@@ -32,6 +32,7 @@ class PollDetailViewModel {
     var isClickedCancelButton: Bool = false
     var isPresentPollVotersView: Bool = false
     var isFavorite: Bool = false
+    var isAnonymousVoted: Bool = false
     var showErrorDialog: Bool = false
     var showReportDialog: Bool = false
     var showCompletedReportToast: Bool = false
@@ -469,7 +470,13 @@ class PollDetailViewModel {
         
         if let apiError = error as? ApiError {
             switch apiError {
-            case .serverError(let message):
+//            case .serverError(let message):
+//                self.errorMessage = message
+            case .serverError(let status, let message):
+                if status == VotingError.alreadyAnonymousVoting.rawValue {
+                    votingButtonState = .alreadyAnonymousVoting
+                    isAnonymousVoted = true
+                }
                 self.errorMessage = message
             default:
                 break

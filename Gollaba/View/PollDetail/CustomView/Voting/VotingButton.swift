@@ -13,12 +13,13 @@ enum VotingButtonState {
     case ended
     case notChanged
     case alreadyVoted
+    case alreadyAnonymousVoting
     case cancel
     
     var icon: Image {
         switch self {
         case .normal, .completed, .notChanged: return Image(systemName: "person.fill.checkmark")
-        case .ended, .alreadyVoted: return Image(systemName: "checkmark")
+        case .ended, .alreadyVoted, .alreadyAnonymousVoting: return Image(systemName: "checkmark")
         case .cancel: return Image(systemName: "xmark")
         }
     }
@@ -29,6 +30,7 @@ enum VotingButtonState {
         case .completed, .notChanged: return "재투표하기"
         case .ended: return "이미 종료된 투표입니다."
         case .alreadyVoted: return "이미 투표하셨습니다."
+        case .alreadyAnonymousVoting: return "비회원으로 투표하셨습니다."
         case .cancel: return "투표 취소"
         }
     }
@@ -36,7 +38,7 @@ enum VotingButtonState {
     var pollColor: Color {
         switch self {
         case .normal, .completed: return .pollButton
-        case .ended, .notChanged, .alreadyVoted: return .pollEndedBackground
+        case .ended, .notChanged, .alreadyVoted, .alreadyAnonymousVoting: return .pollEndedBackground
         case .cancel: return .red
         }
     }
@@ -69,7 +71,7 @@ struct VotingButton: View {
                     .stroke(pollbuttonState.pollColor, lineWidth: 1)
             )
         }
-        .disabled(pollbuttonState == .ended || pollbuttonState == .notChanged)
+        .disabled(pollbuttonState == .ended || pollbuttonState == .notChanged || pollbuttonState == .alreadyAnonymousVoting)
     }
 }
 

@@ -63,7 +63,7 @@ class NotificationViewModel {
         
         if let apiError = error as? ApiError {
             switch apiError {
-            case .serverError(let message):
+            case .serverError(_, let message):
                 self.errorMessage = message
             default:
                 break

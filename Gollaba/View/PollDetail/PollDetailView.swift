@@ -133,7 +133,7 @@ struct PollDetailView: View {
                         }
                         
                         VStack {
-                            if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll {
+                            if authManager.isLoggedIn && viewModel.isVoted && viewModel.isValidDatePoll && !viewModel.isAnonymousVoted {
                                 VotingButton(pollbuttonState: .constant(.cancel)) {
                                     viewModel.isClickedCancelButton = true
                                 }

@@ -196,7 +196,7 @@ class SettingViewModel {
         
         if let apiError = error as? ApiError {
             switch apiError {
-            case .serverError(let message):
+            case .serverError(let status, let message):
                 self.errorMessage = message
             default:
                 break
