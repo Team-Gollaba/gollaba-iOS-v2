@@ -38,8 +38,9 @@ struct NotificationContentView: View {
                     }
                     .skeleton(isActive: pushNotificationData.notificationId == -1)
                     
-                    Text(pushNotificationData.content)
+                    Text(pushNotificationData.content.forceCharWrapping)
                         .font(.suitVariable16)
+                        .multilineTextAlignment(.leading)
                         .skeleton(isActive: pushNotificationData.notificationId == -1)
                 }
                 
