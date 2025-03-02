@@ -13,6 +13,9 @@ struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) private var authManager
     @State private var viewModel = SettingViewModel()
+    var appVersion: String {
+            Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+        }
     
     var body: some View {
         ZStack {
@@ -86,6 +89,23 @@ struct SettingView: View {
                             }
                         }
                     }
+                    
+                    Divider()
+                        .padding(.vertical, 8)
+                    
+                    HStack {
+                        Text("버전")
+                            .font(.suitVariable16)
+                        
+                        Spacer()
+                        
+                        Text(appVersion)
+                            .font(.suitVariable16)
+                            .foregroundStyle(.gray)
+                    }
+                    
+                    Divider()
+                        .padding(.vertical, 8)
                     
                     Button {
                         viewModel.showDeleteAccountDialog = true
