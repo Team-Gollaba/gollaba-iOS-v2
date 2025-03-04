@@ -11,7 +11,6 @@ struct MainView: View {
     @Environment(PushNotificationManager.self) private var pushNotificationManager
     @Environment(AuthManager.self) private var authManager
     @State var viewModel = MainViewModel.shared
-    @State private var goToDetailView: Bool = false
     
     let titleViewHeight: CGFloat = 48
     
@@ -32,15 +31,21 @@ struct MainView: View {
             .navigationDestination(isPresented: $viewModel.goToLogin) {
                 LoginView()
             }
-            .navigationDestination(isPresented: $goToDetailView, destination: {
+            .navigationDestination(isPresented: $viewModel.goToDetailView, destination: {
                 if let pollHashId = pushNotificationManager.receivedPollHashId {
                     PollDetailView(id: pollHashId)
+                } else if let pollHashid = viewModel.pollHashIdFromURL {
+                    
+                    PollDetailView(id: pollHashid)
                 }
             })
             .onChange(of: pushNotificationManager.receivedPollHashId) { _, newValue in
                 if newValue != nil {
-                    goToDetailView = true
+                    viewModel.goToDetailView = true
                 }
+            }
+            .onOpenURL { url in
+                viewModel.handleDeepLink(url)
             }
             .onAppear {
                 viewModel.authManager = authManager
