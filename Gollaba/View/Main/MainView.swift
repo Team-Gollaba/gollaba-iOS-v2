@@ -21,7 +21,6 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             ZStack (alignment: .top) {
-                
                 CustomTabView()
                     .padding(.top, titleViewHeight)
                     .ignoresSafeArea(.keyboard, edges: .bottom)
