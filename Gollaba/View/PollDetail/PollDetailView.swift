@@ -65,7 +65,7 @@ struct PollDetailView: View {
                             Image(systemName: "eye")
                                 .padding(.leading, 12)
                             
-                            Text("\(viewModel.poll?.readCount ?? -1)")
+                            Text("\(viewModel.poll?.readCount ?? -2 + 1)")
                                 .font(.suitVariable16)
                         }
                         .skeleton(isActive: viewModel.poll == nil)
@@ -260,7 +260,6 @@ struct PollDetailView: View {
         })
         .onAppear {
             Task {
-                await viewModel.readPoll()
                 await viewModel.getPoll()
                 await viewModel.votingCheck()
                 await viewModel.getPollVoters()
@@ -268,6 +267,7 @@ struct PollDetailView: View {
                     await viewModel.getVotingId()
                     viewModel.setSelectedPollItem()
                 }
+                await viewModel.readPoll()
             }
             
             if authManager.isLoggedIn && authManager.favoritePolls.contains(viewModel.id) {
