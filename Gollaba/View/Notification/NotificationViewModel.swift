@@ -55,7 +55,7 @@ class NotificationViewModel {
             self.pushNotificationListPage = 0
             let pushNotificationData = try await ApiManager.shared.getPushNotificationHistory(page: self.pushNotificationListPage, size: self.pushNotificationListSize)
             self.pushNotificationListPage += 1
-            self.pushNotificationListIsEnd = false
+            self.pushNotificationListIsEnd = pushNotificationData.totalCount == self.pushNotificationData?.items.count
             
             self.pushNotificationData = pushNotificationData
         } catch {
