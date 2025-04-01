@@ -24,13 +24,15 @@ class MainViewModel {
         }
     }
     
-    func handleDeepLink(_ url: URL) {
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-              let host = url.host else { return }
+    func handleUniversalLink(_ url: URL) {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return }
         
-        if host == "voting", let pollHashId = components.queryItems?.first(where: { $0.name == "pollHashId" })?.value {
+        let pathComponents = components.path.split(separator: "/")
+        
+        if pathComponents.count >= 3, pathComponents[0] == "voting", pathComponents[1] == "pollHashId" {
+            let pollHashId = String(pathComponents[2])
             pollHashIdFromURL = pollHashId
-            print("pollHashIdFromURL: \(pollHashIdFromURL ?? "")")
+            print("🔗 pollHashIdFromURL: \(pollHashIdFromURL ?? "")")
             goToDetailView = true
         }
     }

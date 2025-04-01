@@ -76,6 +76,7 @@ class HomeViewModel {
             let newPolls = try await ApiManager.shared.getTopPolls()
             self.topPolls?.removeAll()
             self.topPolls = newPolls
+            self.topPolls?[0] = PollItem.forScreenShotData2()
         } catch {
             handleError(error: error)
         }

@@ -39,6 +39,11 @@ struct GollabaApp: App {
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {
                         _ = AuthController.handleOpenUrl(url: url)
                     }
+//                    else if url.absoluteString.contains("/voting/pollHashId/") {
+//                        MainViewModel.shared.handleUniversalLink(url)
+//                    } else {
+//                        UIApplication.shared.open(url)
+//                    }
                 })
                 .preferredColorScheme(.light)
                 .onAppear {
@@ -107,7 +112,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Messaging.messaging().apnsToken = deviceToken
     }
     
-    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([any UIUserActivityRestoring]?) -> Void) -> Bool {
+        print("continue userActivity")
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let incomingURL = userActivity.webpageURL {
+            print("✅ Opened from Universal Link: \(incomingURL.absoluteString)")
+            MainViewModel.shared.handleUniversalLink(incomingURL)
+        }
+        return true
+    }
 }
 
 // Cloud Messaging

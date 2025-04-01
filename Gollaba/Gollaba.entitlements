@@ -10,7 +10,7 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:example.com</string>
+		<string>applinks:www.gollaba.app</string>
 	</array>
 </dict>
 </plist>

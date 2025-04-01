@@ -43,9 +43,9 @@ struct MainView: View {
                     viewModel.goToDetailView = true
                 }
             }
-            .onOpenURL { url in
-                viewModel.handleDeepLink(url)
-            }
+//            .onOpenURL { url in
+//                viewModel.handleUniversalLink(url)
+//            }
             .onAppear {
                 viewModel.authManager = authManager
                 Task {

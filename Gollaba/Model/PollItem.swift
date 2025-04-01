@@ -170,9 +170,9 @@ extension PollItem {
             responseType: "SINGLE",
             pollType: "ANONYMOUS",
             endAt: "2025-03-15T12:00:00",
-            readCount: 32,
-            votedPeopleCount: 5,
-            totalVotingCount: 5,
+            readCount: 132,
+            votedPeopleCount: 55,
+            totalVotingCount: 55,
             items: [
                 PollOption(
                     id: 3,

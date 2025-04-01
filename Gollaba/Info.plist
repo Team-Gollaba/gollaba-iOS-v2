@@ -8,11 +8,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Gollaba</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>gollaba</string>
-			</array>
+			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
