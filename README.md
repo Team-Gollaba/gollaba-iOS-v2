@@ -28,7 +28,9 @@
 
 ## 🛠 기술 스택
 
-- **iOS**: Swift, SwiftUI  
+- **언어**: Swift
+- **아키텍처:** MVVM
+- **UI:** SwiftUI  
 - **데이터 관리**: SwiftData  
 - **이미지 로딩**: Kingfisher  
 - **네트워크 통신**: Alamofire  
