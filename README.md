@@ -1,9 +1,5 @@
 # 🗳 Gollaba
 
-[![Swift Version](https://img.shields.io/badge/Swift-5.9-orange?style=flat-square)](https://swift.org)
-[![iOS Version](https://img.shields.io/badge/iOS-17-blue?style=flat-square)](https://developer.apple.com/ios/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
-
 **Gollaba**는 사용자들이 사진 기반 투표를 만들고 공유하며 참여할 수 있는 **직관적이고 간편한 투표 앱**입니다.  
 편리한 UI와 푸시 알림 기능으로 사용자 경험을 극대화했습니다.
 
