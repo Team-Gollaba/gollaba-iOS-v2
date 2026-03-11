@@ -22,11 +22,9 @@ struct GollabaApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     init () {
-        let kakaoNativeAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
-        
-        KakaoSDK.initSDK(appKey: kakaoNativeAppKey as! String)
-        
-        print("kakao native app key: \(kakaoNativeAppKey)")
+        let kakaoNativeAppKey = (Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] as? String) ?? ""
+
+        KakaoSDK.initSDK(appKey: kakaoNativeAppKey)
     }
     
     var body: some Scene {
@@ -113,10 +111,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([any UIUserActivityRestoring]?) -> Void) -> Bool {
-        print("continue userActivity")
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
            let incomingURL = userActivity.webpageURL {
-            print("✅ Opened from Universal Link: \(incomingURL.absoluteString)")
+            Logger.shared.log("AppDelegate", #function, "Opened from Universal Link")
             MainViewModel.shared.handleUniversalLink(incomingURL)
         }
         return true

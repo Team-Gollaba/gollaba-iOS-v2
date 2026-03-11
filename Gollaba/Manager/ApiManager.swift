@@ -184,8 +184,6 @@ class ApiManager {
             "Content-Type": "application/json"
         ]
         
-        print("urlString: \(urlString), headers: \(headers), jwtToken: \(jwtToken)")
-        
         return try await withCheckedThrowingContinuation { continuation in
             session.request(url, method: .get, encoding: URLEncoding.default, headers: headers)
                 .validate(statusCode: 200..<300)
@@ -1134,12 +1132,7 @@ class ApiManager {
                     switch response.result {
                     case .success(let value):
                         Logger.shared.log(String(describing: self), #function, "Success to login by provider token: \(value)")
-                        if let cookies = HTTPCookieStorage.shared.cookies {
-                            for cookie in cookies {
-                                print("쿠키 이름: \(cookie.name), 값: \(cookie.value)")
-                            }
-                        }
-                        
+
                         switch value.data {
                         case .loginResponseData(let data):
                             continuation.resume(returning: data.accessToken)

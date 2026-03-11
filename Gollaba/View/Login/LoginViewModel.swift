@@ -49,13 +49,8 @@ class LoginViewModel {
                 let fullName = appleIDCredential.fullName
                 self.email = appleIDCredential.email ?? ""
                 
-                if let identityToken = appleIDCredential.identityToken, let tokenString = String(data: identityToken, encoding: .utf8) {
-                    Logger.shared.log(String(describing: self), #function, "identityToken: \(tokenString)")
-                }
-                
                 if let authorizationCode = appleIDCredential.authorizationCode, let authCodeString = String(data: authorizationCode, encoding: .utf8) {
                     self.accessToken = authCodeString
-                    Logger.shared.log(String(describing: self), #function, "authorizationCode: \(authCodeString)")
                 }
                 self.authManager?.providerType = .apple
                 self.providerId = userId
@@ -69,7 +64,6 @@ class LoginViewModel {
     func login(providerToken: String, providerType: ProviderType) async -> String? {
         do {
             let jwtToken = try await ApiManager.shared.loginByProviderToken(providerToken: providerToken, providerType: providerType)
-            print("jwtToken: \(jwtToken)")
             return jwtToken
         } catch {
             if let authError = error as? AuthError, authError == .notSignUp {

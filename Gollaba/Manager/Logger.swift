@@ -16,11 +16,10 @@ enum LogLevel: String {
 
 class Logger {
     static let shared = Logger()
-    static var isEnabled: Bool = true
-    
+
     func log(_ className: String, _ functionName: String, _ message: String, _ level: LogLevel = .debug) {
-        guard Logger.isEnabled else { return }
-        
+        #if DEBUG
         print("[\(level.rawValue)] [\(className)] - [\(functionName)] \(message)")
+        #endif
     }
 }
