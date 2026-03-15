@@ -78,14 +78,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 } else if !AppStorageManager.shared.saveToNotificationServerSuccess {
                     if let token = AppStorageManager.shared.agentId {
                         Task {
-                            do {
-                                try await ApiManager.shared.createAppPushNotification(
-                                    agentId: token,
-                                    allowsNotification: granted
-                                )
-                            } catch {
-                                
-                            }
+                            await ApiManager.shared.createAppPushNotification(
+                                agentId: token,
+                                allowsNotification: granted
+                            )
                         }
                     }
                 }
@@ -137,12 +133,10 @@ extension AppDelegate: MessagingDelegate {
         
         if let permissionForNotification = AppStorageManager.shared.permissionForNotification, AppStorageManager.shared.agentId != fcmToken {
             Task {
-                do {
-                    try await ApiManager.shared.createAppPushNotification(
-                        agentId: fcmToken ?? "",
-                        allowsNotification: permissionForNotification
-                    )
-                }
+                await ApiManager.shared.createAppPushNotification(
+                    agentId: fcmToken ?? "",
+                    allowsNotification: permissionForNotification
+                )
             }
         }
         

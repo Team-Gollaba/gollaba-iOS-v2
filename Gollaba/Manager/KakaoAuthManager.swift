@@ -60,36 +60,28 @@ class KakaoAuthManager {
     
     @MainActor
     func handleLoginWithKakaoTalkApp() async -> Bool {
-        await withCheckedContinuation { continuation in
+        await withCheckedContinuation { [weak self] continuation in
             UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
                 if let error {
-                    Logger.shared.log(String(describing: self), #function, "Failed to login with KakaoTalk with error: \(error)", .error)
+                    Logger.shared.log("KakaoAuthManager", #function, "Failed to login with KakaoTalk with error: \(error)", .error)
                     continuation.resume(returning: false)
                 } else {
-                    UserApi.shared.me {(me, error) in
+                    UserApi.shared.me { [weak self] (me, error) in
                         if let error {
-                            Logger.shared.log(String(describing: self), #function, "Failed to get user information with error: \(error)", .error)
+                            Logger.shared.log("KakaoAuthManager", #function, "Failed to get user information with error: \(error)", .error)
                         }
-                        
-                        guard let name = me?.kakaoAccount?.profile?.nickname else {
+
+                        guard let name = me?.kakaoAccount?.profile?.nickname,
+                              let mail = me?.kakaoAccount?.email,
+                              let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
                             return
                         }
-                        
-                        guard let mail = me?.kakaoAccount?.email else {
-                            return
-                        }
-                        
-                        guard let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
-                            return
-                        }
-                        self.userName = name
-                        self.userMail = mail
-                        self.profileImageUrl = profileUrl
+                        self?.userName = name
+                        self?.userMail = mail
+                        self?.profileImageUrl = profileUrl
                     }
-                    
-                    // 성공 시 동작 구현
-                    _ = oauthToken
-                    self.accessToken = oauthToken?.accessToken
+
+                    self?.accessToken = oauthToken?.accessToken
                     continuation.resume(returning: true)
                 }
             }
@@ -98,36 +90,28 @@ class KakaoAuthManager {
     
     @MainActor
     func handleLoginWithKakaoAccount() async -> Bool {
-        await withCheckedContinuation { continuation in
+        await withCheckedContinuation { [weak self] continuation in
             UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error {
-                    Logger.shared.log(String(describing: self), #function, "Failed to login with KakaoAccount with error: \(error)", .error)
+                    Logger.shared.log("KakaoAuthManager", #function, "Failed to login with KakaoAccount with error: \(error)", .error)
                     continuation.resume(returning: false)
                 } else {
-                    UserApi.shared.me {(me, error) in
+                    UserApi.shared.me { [weak self] (me, error) in
                         if let error {
-                            Logger.shared.log(String(describing: self), #function, "Failed to get user information with error: \(error)", .error)
+                            Logger.shared.log("KakaoAuthManager", #function, "Failed to get user information with error: \(error)", .error)
                         }
-                        
-                        guard let name = me?.kakaoAccount?.profile?.nickname else {
+
+                        guard let name = me?.kakaoAccount?.profile?.nickname,
+                              let mail = me?.kakaoAccount?.email,
+                              let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
                             return
                         }
-                        
-                        guard let mail = me?.kakaoAccount?.email else {
-                            return
-                        }
-                        
-                        guard let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
-                            return
-                        }
-                        self.userName = name
-                        self.userMail = mail
-                        self.profileImageUrl = profileUrl
+                        self?.userName = name
+                        self?.userMail = mail
+                        self?.profileImageUrl = profileUrl
                     }
-                    
-                    // 성공 시 동작 구현
-                    _ = oauthToken
-                    self.accessToken = oauthToken?.accessToken
+
+                    self?.accessToken = oauthToken?.accessToken
                     continuation.resume(returning: true)
                 }
             }
