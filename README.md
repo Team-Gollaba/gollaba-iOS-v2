@@ -7,9 +7,21 @@
 
 ## 📱 화면 구성
 
-| 홈 | 투표 상세 | 투표 생성 | 검색 | 마이페이지 |
-|:---:|:---:|:---:|:---:|:---:|
-| 인기/최신 투표 목록 | 투표 참여 및 결과 확인 | 항목별 이미지 첨부 | 실시간 검색 및 필터 | 내가 만든/참여한/좋아요 투표 |
+| 홈 | 검색 | 투표 생성 |
+|:---:|:---:|:---:|
+| <img src="Assets/screenshots/Home.gif" width="200"> | <img src="Assets/screenshots/Search.gif" width="200"> | <img src="Assets/screenshots/CreatePoll.gif" width="200"> |
+
+| 로그인 투표 참여 | 비로그인 투표 참여 | 투표자 목록 |
+|:---:|:---:|:---:|
+| <img src="Assets/screenshots/Loggin_Voting.gif" width="200"> | <img src="Assets/screenshots/NotLoggin_Voting.gif" width="200"> | <img src="Assets/screenshots/VoterList.png" width="200"> |
+
+| 좋아요 / 신고 | 마이페이지 | 프로필 수정 |
+|:---:|:---:|:---:|
+| <img src="Assets/screenshots/Like_Report.gif" width="200"> | <img src="Assets/screenshots/MyPoll.gif" width="200"> | <img src="Assets/screenshots/EditProfile.gif" width="200"> |
+
+| 회원가입 | 푸쉬 알림 수신 | 알림 목록 |
+|:---:|:---:|:---:|
+| <img src="Assets/screenshots/SignUp.gif" width="200"> | <img src="Assets/screenshots/PushNoti.gif" width="200"> | <img src="Assets/screenshots/PushNotiList.gif" width="200"> |
 
 <br>
 
@@ -26,7 +38,6 @@
 | **인증** | OAuth 2.0 (카카오, 애플, 구글, 네이버, 깃허브) |
 | **푸시 알림** | FCM (Firebase Cloud Messaging) |
 | **이미지** | Kingfisher |
-| **딥링크** | Universal Links |
 | **테스트** | XCTest (Unit Test) |
 
 <br>
@@ -224,14 +235,3 @@ func getPollsCreatedByMe(page: Int, size: Int) async -> Result<AllPollData, Netw
 
 <br>
 
-## 🚀 빌드 및 실행
-
-```bash
-# 의존성 설치
-pod install
-
-# 빌드는 반드시 .xcworkspace 사용
-open Gollaba.xcworkspace
-```
-
-> `Gollaba.xcodeproj`로 열면 CocoaPods 의존성(Alamofire, AlertToast)을 찾지 못합니다.
