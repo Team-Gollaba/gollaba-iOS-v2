@@ -22,6 +22,7 @@
 		181B6B9F2A04944C4648CF6D /* PollItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E4166FA2326627D3E7606 /* PollItemView.swift */; };
 		19E5FB5C654212ECB88BC794 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67D1661444A7B45C1043AE8 /* SignUpView.swift */; };
 		1CEF727B182F7D9A3259F523 /* SearchFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C48898B4FFA4883F28CB9 /* SearchFilterButton.swift */; };
+		1D319BD333B3412804184234 /* SearchResultListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4BAE0D3AA411BD648C1D84 /* SearchResultListViewModelTests.swift */; };
 		23CC5AB9C746BDFCE0662856 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76A793B6F1E378D420D9F1 /* TitleView.swift */; };
 		24D183A8C1F13BB95B2787A1 /* MockFavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA48FE7E3356E9C287FA828 /* MockFavoriteUseCase.swift */; };
 		24E0D757380D9D37A68D42C7 /* UserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1889DA5894E6F2E156A2043 /* UserUseCaseTests.swift */; };
@@ -79,14 +80,18 @@
 		5271A21A760CC582D024378D /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF213521EA2C38F95F3C297C /* SearchResultListViewModel.swift */; };
 		5AF54F37997CF7B155C2F6DF /* SearchFilterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DACBFA62795E4DF1278290 /* SearchFilterContentView.swift */; };
 		5B23FE8A1975198F84E721B2 /* PollDetailContentBySingleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF470291089A7DF6D856C1 /* PollDetailContentBySingleGridView.swift */; };
+		5E1D8F2EC82C761B97B74036 /* CreatePollViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF91BBC0E3D18217691BF3 /* CreatePollViewModelTests.swift */; };
+		5F62B653D498B9F8129C8581 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4672E0745B128F9A941D39D1 /* SearchViewModelTests.swift */; };
 		638E24BFB8A674180B13D775 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7ED3AE8AB30C097C4D984 /* AuthRepository.swift */; };
 		670640A98A2B01B1CD18D0D3 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DF28E56C4D85C213748A9 /* NotificationView.swift */; };
 		6965D0F9BA062C598029FB7B /* ChooseTwoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE410A83BABB45C600A03AE /* ChooseTwoOptionsView.swift */; };
 		6B208B89BC3539D91C6AF5FC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC5BE5CB6936EE8C661A08 /* SearchView.swift */; };
+		6BB8662200B01A8F18346777 /* MockPushNotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */; };
 		6F68421A70BEEE2B5FD1264E /* TrendingKeywordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED05FC3AFDFD89B246CDB310 /* TrendingKeywordList.swift */; };
 		6F902FF73426554139C4A81B /* HorizontalPollContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCBC3C41528082B28742958 /* HorizontalPollContentView.swift */; };
 		70044C2886AD592B0CD4B552 /* MockPollRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF234BBBDF20DB773E46858A /* MockPollRepository.swift */; };
 		753A8F6E9510D9801AEBEE88 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFDEA6AAA952452197CDDB /* SignUpViewModel.swift */; };
+		75678B2E210D4DD1B574E273 /* NotificationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E629B08677C590BA64903FE5 /* NotificationViewModelTests.swift */; };
 		7C030DF39608BE9D7911F53F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9572EE0517FB7F903DBF7D0E /* SearchViewModel.swift */; };
 		7DCA26F96A9B9790795F4A41 /* PollMadeByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78DDD2F5F68DB2C3FB66C8 /* PollMadeByMeView.swift */; };
 		814B573122A67B9F848C4B60 /* PollVotersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FDC6DF389218AE6567B27 /* PollVotersView.swift */; };
@@ -165,6 +170,7 @@
 		0B55A36857B35D727EC2963F /* VotingButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VotingButton.swift; sourceTree = "<group>"; };
 		0C78DDD2F5F68DB2C3FB66C8 /* PollMadeByMeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollMadeByMeView.swift; sourceTree = "<group>"; };
 		0D0106A0CD20BD0F42D1C2C6 /* VotingUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VotingUseCase.swift; sourceTree = "<group>"; };
+		0E4BAE0D3AA411BD648C1D84 /* SearchResultListViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModelTests.swift; sourceTree = "<group>"; };
 		0F6EE58E3A3631584D4F3360 /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1034F55C4F08102AE7B5E7D0 /* PollsUseCaseTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollsUseCaseTests.swift; sourceTree = "<group>"; };
 		10CF7D49498266E30A3203B8 /* RecentSearchKeywordList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentSearchKeywordList.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		42BEDF6C1014771A7DCCF35A /* CheckBeforeSignUpView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckBeforeSignUpView.swift; sourceTree = "<group>"; };
 		4362EA3BF863EC98D24FA992 /* VerticalPollList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VerticalPollList.swift; sourceTree = "<group>"; };
 		449B3F507B05788144A75F49 /* PollParticipatedList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollParticipatedList.swift; sourceTree = "<group>"; };
+		4672E0745B128F9A941D39D1 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeByTwoGridView.swift; sourceTree = "<group>"; };
 		492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleOnPressStyle.swift; sourceTree = "<group>"; };
 		4945A26E2CEB6ECC00FF05DC /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -269,6 +276,7 @@
 		BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockUserUseCase.swift; sourceTree = "<group>"; };
 		C0AC47CB9C8CAB54F2E4A606 /* SearchResultListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
 		C3D7ED3AE8AB30C097C4D984 /* AuthRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		C4AF91BBC0E3D18217691BF3 /* CreatePollViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreatePollViewModelTests.swift; sourceTree = "<group>"; };
 		C8BE88CC39CF2243B28189AD /* TimePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		CA13706D33B053A5931512D1 /* PollContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollContentView.swift; sourceTree = "<group>"; };
 		CA91CD79296F56F570C6D5F3 /* MainViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -281,10 +289,12 @@
 		D73CBF201495A6441DABA8F1 /* HomeDividerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
 		DA1E75BCB9312179421A9A25 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA8E519FFA548406B7C427F2 /* ApiManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPushNotificationUseCase.swift; sourceTree = "<group>"; };
 		DE2AA7F5BB23F3588C41E379 /* NotificationViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		DEB3EDF6189C298FC4117022 /* UserRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		E076B78FC48A81D952591425 /* PollContentOptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		E1A3DB31B5BFAAD3DBA3B419 /* SignUpButtonView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignUpButtonView.swift; sourceTree = "<group>"; };
+		E629B08677C590BA64903FE5 /* NotificationViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModelTests.swift; sourceTree = "<group>"; };
 		E6A84CCCC77DC88519519398 /* ReportDialogView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReportDialogView.swift; sourceTree = "<group>"; };
 		E717A8646398726CA6F422D9 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		E889FAF564E4654CCAE10064 /* VotingRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VotingRepository.swift; sourceTree = "<group>"; };
@@ -303,26 +313,36 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		491A17512CEC8C2500C4666F /* CustomView */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = CustomView;
 			sourceTree = "<group>";
 		};
 		495248372CF772E5005EAABD /* Model */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Model;
 			sourceTree = "<group>";
 		};
 		497DDF9D2CF83526008A8534 /* Modifier */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Modifier;
 			sourceTree = "<group>";
 		};
 		49C8A6D62D1569460030D648 /* Entity */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
 		49FEE24D2CEC95A6000991DB /* Manager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Manager;
 			sourceTree = "<group>";
 		};
@@ -429,6 +449,10 @@
 			children = (
 				E717A8646398726CA6F422D9 /* HomeViewModelTests.swift */,
 				8810646E053E8CF802D17FB1 /* MyPollViewModelTests.swift */,
+				E629B08677C590BA64903FE5 /* NotificationViewModelTests.swift */,
+				4672E0745B128F9A941D39D1 /* SearchViewModelTests.swift */,
+				0E4BAE0D3AA411BD648C1D84 /* SearchResultListViewModelTests.swift */,
+				C4AF91BBC0E3D18217691BF3 /* CreatePollViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -466,7 +490,7 @@
 			path = Option;
 			sourceTree = "<group>";
 		};
-		3D555D0893B2F2D1DF92859C = {
+		3D555D0893B2F2D1DF92859C /*  */ = {
 			isa = PBXGroup;
 			children = (
 				B985BB29E033EDA7CDDF66EC /* Users */,
@@ -672,6 +696,7 @@
 				BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */,
 				AF234BBBDF20DB773E46858A /* MockPollRepository.swift */,
 				154BEADCF677D5EC19BA06D6 /* MockUserRepository.swift */,
+				DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -854,7 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				9062FCB7503F985C6C4DBC40 /* CustomView */,
-				3D555D0893B2F2D1DF92859C,
+				3D555D0893B2F2D1DF92859C /*  */,
 				6B1AED475A86D722A65A3C99 /* PollDetailView.swift */,
 				329D35EBF919506F9147F61A /* PollDetailViewModel.swift */,
 			);
@@ -1422,6 +1447,11 @@
 				24E0D757380D9D37A68D42C7 /* UserUseCaseTests.swift in Sources */,
 				FD94FC1F1153227112FC692C /* HomeViewModelTests.swift in Sources */,
 				1220681E14D7D67B3C09DE35 /* MyPollViewModelTests.swift in Sources */,
+				6BB8662200B01A8F18346777 /* MockPushNotificationUseCase.swift in Sources */,
+				75678B2E210D4DD1B574E273 /* NotificationViewModelTests.swift in Sources */,
+				5F62B653D498B9F8129C8581 /* SearchViewModelTests.swift in Sources */,
+				1D319BD333B3412804184234 /* SearchResultListViewModelTests.swift in Sources */,
+				5E1D8F2EC82C761B97B74036 /* CreatePollViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
