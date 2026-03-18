@@ -37,7 +37,7 @@
 | 마이페이지 | 내가 만든/참여한/좋아요한 투표 탭별 조회 |
 | 알림 | FCM 푸쉬 알림 수신 및 알림 내역 조회 |
 | 설정 | 프로필 이미지 변경, 닉네임 수정, 알림 on/off, 회원탈퇴 |
-| 인증 | OAuth 소셜 로그인 (카카오, 애플, 구글, 네이버, 깃허브) |
+| 인증 | OAuth 소셜 로그인 (카카오, 애플) |
 
 <br>
 
@@ -51,7 +51,7 @@
 | 비동기 | async/await, @MainActor |
 | 네트워크 | Alamofire |
 | 로컬 저장소 | SwiftData, Keychain |
-| 인증 | OAuth 2.0 (카카오, 애플, 구글, 네이버, 깃허브) |
+| 인증 | OAuth 2.0 (카카오, 애플) |
 | 푸시 알림 | Firebase Cloud Messaging (FCM) |
 | 이미지 | Kingfisher |
 | 테스트 | XCTest |
@@ -81,30 +81,6 @@ ViewModel이 `UseCaseProtocol`만 참조하고 구현체를 모르기 때문에,
 **JWT 자동 갱신 (ApiInterceptor)**
 
 Alamofire의 `RequestInterceptor`를 구현해 401 응답 시 토큰 갱신 후 원래 요청을 자동 재시도합니다. 갱신 실패 시 세션 만료 처리를 한 곳에서 일관되게 수행합니다. 모든 API 호출 지점에서 토큰 갱신 로직을 반복 작성할 필요가 없습니다.
-
-<br>
-
-## 기술적 의사결정
-
-**Clean Architecture 도입**
-
-초기에는 ViewModel이 `ApiManager`를 직접 호출했습니다. 이 구조에서는 네트워크 없이 ViewModel 로직을 테스트할 수 없고, API 변경 시 ViewModel까지 수정해야 했습니다. UseCase와 Repository 레이어를 프로토콜로 분리해 `MockPollsUseCase`, `MockUserUseCase` 등을 작성하고 네트워크 없이 단위 테스트를 작성할 수 있었습니다.
-
-**Combine 대신 async/await**
-
-투표 목록 로드나 투표 참여처럼 "한 번 요청하고 결과를 받는" 일회성 비동기 작업이 대부분입니다. 지속적인 이벤트 스트림이 필요한 경우가 적어 Combine의 Publisher/Subscriber 패턴보다 async/await가 더 직관적이고 코드가 간결했습니다. `@MainActor`로 UI 업데이트 스레드 안전성을 보장했습니다.
-
-<br>
-
-## 트러블슈팅
-
-**레이어 간 에러 타입 불일치**
-
-초기 구조에서 `ApiError`, `AuthError`, `VotingError` 등 Data 레이어 내부 타입이 Presentation 레이어까지 노출됐습니다. ViewModel에서 `AuthError.notSignUp.rawValue`를 직접 비교하는 코드가 생겨 레이어 분리 원칙이 무너졌습니다. `NetworkError` 하나로 통일하고 `static` 상수로 특수 상태값을 표현해 ViewModel이 Data 레이어 내부 타입을 모르도록 했습니다.
-
-**Alamofire 콜백 → async/await 변환 보일러플레이트**
-
-Alamofire는 클로저 기반 API를 제공하기 때문에 모든 메서드마다 `withCheckedContinuation` 블록을 작성하면 30개 이상의 메서드에서 동일한 패턴이 중복됐습니다. 제네릭 헬퍼 `request<T: Decodable>`를 만들어 공통 로직을 단일 지점으로 수렴시켰습니다. 각 API 메서드는 URL과 파라미터만 구성하고 `Result.map` / `flatMap`으로 응답을 변환하도록 했습니다.
 
 <br>
 
