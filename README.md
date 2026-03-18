@@ -2,7 +2,7 @@
 
 > 사진 기반 투표를 만들고, 공유하고, 참여하는 iOS 앱
 
-![Swift](https://img.shields.io/badge/Swift-5.0-orange) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue) ![Xcode](https://img.shields.io/badge/Xcode-26.0.1-lightgrey)
+![Swift](https://img.shields.io/badge/Swift-6.0-orange) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue) ![Xcode](https://img.shields.io/badge/Xcode-26.0.1-lightgrey) [![App Store](https://img.shields.io/badge/App_Store-0D96F6?logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EA%B3%A8%EB%9D%BC%EB%B0%94/id6742055187)
 
 <br>
 
@@ -54,6 +54,7 @@
 | 인증 | OAuth 2.0 (카카오, 애플) |
 | 푸시 알림 | Firebase Cloud Messaging (FCM) |
 | 이미지 | Kingfisher |
+| DI | Factory |
 | 테스트 | XCTest |
 
 <br>
@@ -63,7 +64,7 @@
 ```
 Presentation
 ├── View (SwiftUI)
-└── ViewModel (@Observable, @MainActor)
+└── ViewModel (@Observable)
 
 Domain
 ├── UseCases (Protocol + 구현체)
