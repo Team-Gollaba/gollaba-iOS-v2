@@ -75,4 +75,7 @@ extension Container {
             pollsUseCase: self.pollsUseCase()
         )}
     }
+    var mainViewModel: Factory<MainViewModel> {
+        self { MainViewModel(userUseCase: self.userUseCase()) }.singleton
+    }
 }

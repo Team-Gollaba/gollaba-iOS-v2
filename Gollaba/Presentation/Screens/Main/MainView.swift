@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Factory
 
 struct MainView: View {
     @Environment(PushNotificationManager.self) private var pushNotificationManager
     @Environment(AuthManager.self) private var authManager
-    @State var viewModel = MainViewModel.shared
+    @State var viewModel = Container.shared.mainViewModel()
     
     let titleViewHeight: CGFloat = 48
     

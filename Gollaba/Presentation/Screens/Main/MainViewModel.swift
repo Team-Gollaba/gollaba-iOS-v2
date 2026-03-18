@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-@MainActor
 @Observable
 class MainViewModel {
     var goToLogin = false
     var goToDetailView: Bool = false
     var pollHashIdFromURL: String? = nil
     var authManager: AuthManager?
-    static let shared = MainViewModel()
 
     private let userUseCase: UserUseCaseProtocol
 

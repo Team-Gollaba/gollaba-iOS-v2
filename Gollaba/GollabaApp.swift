@@ -12,6 +12,7 @@ import KakaoSDKAuth
 import FirebaseCore
 import Firebase
 import FirebaseMessaging
+import Factory
 
 @main
 struct GollabaApp: App {
@@ -50,7 +51,7 @@ struct GollabaApp: App {
                 .onChange(of: scenePhase) { _, newValue in
                     if newValue == .active && authManager.isLoggedIn {
                         Task {
-                            await MainViewModel.shared.getUserMe()
+                            await Container.shared.mainViewModel().getUserMe()
                         }
                     }
                 }
@@ -110,7 +111,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
            let incomingURL = userActivity.webpageURL {
             Logger.shared.log("AppDelegate", #function, "Opened from Universal Link")
-            MainViewModel.shared.handleUniversalLink(incomingURL)
+            Container.shared.mainViewModel().handleUniversalLink(incomingURL)
         }
         return true
     }
