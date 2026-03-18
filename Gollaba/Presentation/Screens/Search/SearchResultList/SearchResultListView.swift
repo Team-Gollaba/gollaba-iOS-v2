@@ -6,6 +6,7 @@
 //
 
 import AlertToast
+import Factory
 import SwiftUI
 
 struct SearchResultListView: View {
@@ -13,7 +14,7 @@ struct SearchResultListView: View {
     @State private var viewModel: SearchResultListViewModel
     
     init(searchText: String) {
-        self.viewModel = SearchResultListViewModel(query: searchText)
+        self.viewModel = Container.shared.searchResultListViewModel(searchText)
     }
     
     var body: some View {

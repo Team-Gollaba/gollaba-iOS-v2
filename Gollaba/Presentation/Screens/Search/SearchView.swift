@@ -6,13 +6,14 @@
 //
 
 import AlertToast
+import Factory
 import SwiftUI
 import SwiftData
 
 struct SearchView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \SearchKeyword.timeStamp, order: .reverse) private var recentKeywords: [SearchKeyword]
-    @State private var viewModel = SearchViewModel()
+    @State private var viewModel = Container.shared.searchViewModel()
     @Binding var isHideTabBar: Bool
     
     var body: some View {

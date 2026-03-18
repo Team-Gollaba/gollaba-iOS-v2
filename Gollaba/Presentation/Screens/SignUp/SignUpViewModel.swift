@@ -18,7 +18,6 @@ enum NickNameError {
     case None
 }
 
-@MainActor
 @Observable
 class SignUpViewModel {
     //MARK: - Properties

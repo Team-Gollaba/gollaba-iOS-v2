@@ -5,12 +5,13 @@
 //  Created by 김견 on 11/8/24.
 //
 
+import Factory
 import SwiftUI
 import Kingfisher
 
 struct MyPollView: View {
     @Environment(AuthManager.self) private var authManager
-    @State private var viewModel = MyPollViewModel()
+    @State private var viewModel = Container.shared.myPollViewModel()
     @Binding var scrollToTopTrigger: Bool
     @Binding var isHideTabBar: Bool
     @State private var titleText: String = ""

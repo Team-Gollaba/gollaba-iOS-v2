@@ -6,6 +6,7 @@
 //
 
 import AlertToast
+import Factory
 import SwiftUI
 import PhotosUI
 import Kingfisher
@@ -13,7 +14,7 @@ import Kingfisher
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) var authManager
-    @State private var viewModel = SignUpViewModel()
+    @State private var viewModel = Container.shared.signUpViewModel()
     
     @State private var accessToken: String = ""
     @State private var email: String = ""

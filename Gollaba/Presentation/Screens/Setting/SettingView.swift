@@ -6,13 +6,14 @@
 //
 
 import AlertToast
+import Factory
 import SwiftUI
 import PhotosUI
 
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(AuthManager.self) private var authManager
-    @State private var viewModel = SettingViewModel()
+    @State private var viewModel = Container.shared.settingViewModel()
     var appVersion: String {
             Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
         }

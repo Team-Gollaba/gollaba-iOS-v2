@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA7F0011AA00F4C000000003 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = FA7F0011AA00F4C000000002 /* Factory */; };
+		FA7F0011AA00F4C000000006 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F0011AA00F4C000000005 /* AppContainer.swift */; };
 		01046CD787E529E0DB704212 /* SearchPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB85E7B7D8010E4A20C8FC81 /* SearchPollView.swift */; };
 		0521F74F9FD88A044ECA8A22 /* PollsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1034F55C4F08102AE7B5E7D0 /* PollsUseCaseTests.swift */; };
 		05FA21FA178E14141DD2AC71 /* PollDetailContentByMultipleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E4756897670F76A5D9D1F9 /* PollDetailContentByMultipleGridView.swift */; };
@@ -289,6 +291,7 @@
 		D73CBF201495A6441DABA8F1 /* HomeDividerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
 		DA1E75BCB9312179421A9A25 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA8E519FFA548406B7C427F2 /* ApiManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		FA7F0011AA00F4C000000005 /* AppContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPushNotificationUseCase.swift; sourceTree = "<group>"; };
 		DE2AA7F5BB23F3588C41E379 /* NotificationViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		DEB3EDF6189C298FC4117022 /* UserRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -360,6 +363,7 @@
 				49C4424A2D59D4AA00DC1DD9 /* PagerTabStripView in Frameworks */,
 				49FEE26A2CF322D5000991DB /* KakaoSDKCommon in Frameworks */,
 				49FEE2682CF322D5000991DB /* KakaoSDKAuth in Frameworks */,
+				FA7F0011AA00F4C000000003 /* Factory in Frameworks */,
 				CEDA9DE9718C1056720DA3A8 /* Pods_Gollaba.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,11 +533,20 @@
 			isa = PBXGroup;
 			children = (
 				24C0D10532155BE67E6BD90C /* Error */,
+				FA7F0011AA00F4C000000004 /* DI */,
 				64AEDF54277F262959BE0549 /* Repository */,
 				998F7C5D7A318100A544C9D4 /* UseCase */,
 				000DF481131070F7041DF5C0 /* Network */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		FA7F0011AA00F4C000000004 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F0011AA00F4C000000005 /* AppContainer.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		473DBFE14D5A4F2956F8397B /* Main */ = {
@@ -1230,6 +1243,7 @@
 				49FEE2662CF322D5000991DB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				49AA4DB72D225C520068102F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				49C442482D59D4AA00DC1DD9 /* XCRemoteSwiftPackageReference "PagerTabstripview" */,
+				FA7F0011AA00F4C000000001 /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 49C5CF752CDE24D2001DD737 /* Products */;
@@ -1431,6 +1445,7 @@
 				97D8E53558A6B14BD54101B4 /* PollDetailViewModel.swift in Sources */,
 				F5F588ECFA12E3187F2DC781 /* VotingRepository.swift in Sources */,
 				39934B67179018EADFE0FC09 /* VotingUseCase.swift in Sources */,
+				FA7F0011AA00F4C000000006 /* AppContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,6 +1777,14 @@
 				minimumVersion = 2.23.0;
 			};
 		};
+		FA7F0011AA00F4C000000001 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1799,6 +1822,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 49FEE2662CF322D5000991DB /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		FA7F0011AA00F4C000000002 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA7F0011AA00F4C000000001 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

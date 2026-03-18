@@ -21,7 +21,6 @@ enum PollError: String, Error {
     case pollNotFound = "투표를 찾을 수 없습니다."
 }
 
-@MainActor
 @Observable
 class PollDetailViewModel {
     //MARK: - Properties

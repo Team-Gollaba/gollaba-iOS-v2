@@ -8,7 +8,6 @@
 import SwiftUI
 import Alamofire
 
-@MainActor
 @Observable
 class HomeViewModel {
     //MARK: - Properties

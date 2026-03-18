@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 @Observable
 class SearchResultListViewModel {
     //MARK: - Properties

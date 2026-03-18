@@ -5,12 +5,13 @@
 //  Created by 김견 on 1/20/25.
 //
 
+import Factory
 import SwiftUI
 
 struct NotificationView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AuthManager.self) private var authManager
-    @State private var viewModel = NotificationViewModel()
+    @State private var viewModel = Container.shared.notificationViewModel()
     
     var body: some View {
         VStack {

@@ -5,13 +5,14 @@
 //  Created by 김견 on 11/13/24.
 //
 
+import Factory
 import SwiftUI
 import AuthenticationServices
 
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AuthManager.self) private var authManager
-    @State private var viewModel = LoginViewModel()
+    @State private var viewModel = Container.shared.loginViewModel()
     
     var body: some View {
         

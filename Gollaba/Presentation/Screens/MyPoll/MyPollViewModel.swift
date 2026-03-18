@@ -13,7 +13,6 @@ enum MyPollSelectedTab: Int {
     case participated = 2
 }
 
-@MainActor
 @Observable
 class MyPollViewModel {
     //MARK: - Properties

@@ -8,7 +8,6 @@
 import SwiftUI
 import PhotosUI
 
-@MainActor
 @Observable
 class CreatePollViewModel {
     //MARK: - Properties

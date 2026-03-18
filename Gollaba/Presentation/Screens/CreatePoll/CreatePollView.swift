@@ -5,11 +5,12 @@
 //  Created by 김견 on 11/8/24.
 //
 
+import Factory
 import SwiftUI
 
 struct CreatePollView: View {
     @Environment(AuthManager.self) private var authManager
-    @State private var viewModel = CreatePollViewModel()
+    @State private var viewModel = Container.shared.createPollViewModel()
     @Binding var isHideTabBar: Bool
     
     var body: some View {

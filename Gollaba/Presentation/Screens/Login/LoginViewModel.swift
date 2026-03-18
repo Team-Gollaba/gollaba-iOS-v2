@@ -8,7 +8,6 @@
 import SwiftUI
 import AuthenticationServices
 
-@MainActor
 @Observable
 class LoginViewModel {
     //MARK: - Properties

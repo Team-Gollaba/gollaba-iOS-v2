@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-@MainActor
 @Observable
 class SearchViewModel {
     //MARK: - Properties

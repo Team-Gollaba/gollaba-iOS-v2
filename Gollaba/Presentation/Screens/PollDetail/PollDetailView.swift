@@ -6,6 +6,7 @@
 //
 
 import AlertToast
+import Factory
 import SwiftUI
 import Kingfisher
 
@@ -15,7 +16,7 @@ struct PollDetailView: View {
     @State private var viewModel: PollDetailViewModel
     
     init(id: String) {
-        self._viewModel = State(wrappedValue: PollDetailViewModel(id: id))
+        self._viewModel = State(wrappedValue: Container.shared.pollDetailViewModel(id))
     }
     
     var body: some View {

@@ -5,10 +5,11 @@
 //  Created by 김견 on 11/8/24.
 //
 
+import Factory
 import SwiftUI
 
 struct HomeView: View {
-    @State private var viewModel = HomeViewModel()
+    @State private var viewModel = Container.shared.homeViewModel()
     @State private var dragStartLocation: CGFloat = 0.0
     @State private var dragEndLocation: CGFloat = 0.0
     @Binding var scrollToTopTrigger: Bool

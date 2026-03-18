@@ -18,7 +18,6 @@ enum ChangeProfileImage {
     case none
 }
 
-@MainActor
 @Observable
 class SettingViewModel {
     //MARK: - Properties
