@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA7F0011AA00F4C000000003 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = FA7F0011AA00F4C000000002 /* Factory */; };
-		FA7F0011AA00F4C000000006 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F0011AA00F4C000000005 /* AppContainer.swift */; };
 		01046CD787E529E0DB704212 /* SearchPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB85E7B7D8010E4A20C8FC81 /* SearchPollView.swift */; };
 		0521F74F9FD88A044ECA8A22 /* PollsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1034F55C4F08102AE7B5E7D0 /* PollsUseCaseTests.swift */; };
 		05FA21FA178E14141DD2AC71 /* PollDetailContentByMultipleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E4756897670F76A5D9D1F9 /* PollDetailContentByMultipleGridView.swift */; };
@@ -151,6 +149,8 @@
 		F5F588ECFA12E3187F2DC781 /* VotingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889FAF564E4654CCAE10064 /* VotingRepository.swift */; };
 		F712836A718FE5B44C2E207D /* PollFavoriteByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E736EB59511F871974E3 /* PollFavoriteByMeView.swift */; };
 		F8876F368E80950C8B7EE42F /* CheckBeforeSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BEDF6C1014771A7DCCF35A /* CheckBeforeSignUpView.swift */; };
+		FA7F0011AA00F4C000000003 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = FA7F0011AA00F4C000000002 /* Factory */; };
+		FA7F0011AA00F4C000000006 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F0011AA00F4C000000005 /* AppContainer.swift */; };
 		FD94FC1F1153227112FC692C /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E717A8646398726CA6F422D9 /* HomeViewModelTests.swift */; };
 		FE3166ADA9D7648AD0D6FFF5 /* MockUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */; };
 /* End PBXBuildFile section */
@@ -261,7 +261,7 @@
 		9A6E2B06621E1BC62D5C1EBE /* Pods-Gollaba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gollaba.debug.xcconfig"; path = "Target Support Files/Pods-Gollaba/Pods-Gollaba.debug.xcconfig"; sourceTree = "<group>"; };
 		9AC2FC9565294121EBDE2648 /* SignUpTextFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignUpTextFieldView.swift; sourceTree = "<group>"; };
 		A1889DA5894E6F2E156A2043 /* UserUseCaseTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserUseCaseTests.swift; sourceTree = "<group>"; };
-		A2AA6BD13C7CB802D6A618EC /* .xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2AA6BD13C7CB802D6A618EC /* GollabaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GollabaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F951D2F7B83206C35E56FC /* AuthUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
 		A3DACBFA62795E4DF1278290 /* SearchFilterContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchFilterContentView.swift; sourceTree = "<group>"; };
 		A71C808CAD9B3D3EC0EA2849 /* PollContentOptionItemView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollContentOptionItemView.swift; sourceTree = "<group>"; };
@@ -291,7 +291,6 @@
 		D73CBF201495A6441DABA8F1 /* HomeDividerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
 		DA1E75BCB9312179421A9A25 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA8E519FFA548406B7C427F2 /* ApiManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
-		FA7F0011AA00F4C000000005 /* AppContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPushNotificationUseCase.swift; sourceTree = "<group>"; };
 		DE2AA7F5BB23F3588C41E379 /* NotificationViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		DEB3EDF6189C298FC4117022 /* UserRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -306,6 +305,7 @@
 		EE422AE77AB99A4D691F5BCA /* PollTypeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollTypeView.swift; sourceTree = "<group>"; };
 		EF160A41B9F934F8543B5B1B /* OAuthLoginButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OAuthLoginButton.swift; sourceTree = "<group>"; };
 		F1B8E0BDC77A7C123067E7F8 /* SpecialSearchContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpecialSearchContentView.swift; sourceTree = "<group>"; };
+		FA7F0011AA00F4C000000005 /* AppContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		FB6D422D7C16ED38689A423F /* ImageDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
 		FB85E7B7D8010E4A20C8FC81 /* SearchPollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchPollView.swift; sourceTree = "<group>"; };
 		FC1EA347304BB090970280BB /* SettingViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -316,36 +316,26 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		491A17512CEC8C2500C4666F /* CustomView */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = CustomView;
 			sourceTree = "<group>";
 		};
 		495248372CF772E5005EAABD /* Model */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Model;
 			sourceTree = "<group>";
 		};
 		497DDF9D2CF83526008A8534 /* Modifier */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Modifier;
 			sourceTree = "<group>";
 		};
 		49C8A6D62D1569460030D648 /* Entity */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
 		49FEE24D2CEC95A6000991DB /* Manager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Manager;
 			sourceTree = "<group>";
 		};
@@ -494,7 +484,7 @@
 			path = Option;
 			sourceTree = "<group>";
 		};
-		3D555D0893B2F2D1DF92859C /*  */ = {
+		3D555D0893B2F2D1DF92859C = {
 			isa = PBXGroup;
 			children = (
 				B985BB29E033EDA7CDDF66EC /* Users */,
@@ -539,14 +529,6 @@
 				000DF481131070F7041DF5C0 /* Network */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		FA7F0011AA00F4C000000004 /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				FA7F0011AA00F4C000000005 /* AppContainer.swift */,
-			);
-			path = DI;
 			sourceTree = "<group>";
 		};
 		473DBFE14D5A4F2956F8397B /* Main */ = {
@@ -659,7 +641,7 @@
 			isa = PBXGroup;
 			children = (
 				49C5CF742CDE24D2001DD737 /* Gollaba.app */,
-				A2AA6BD13C7CB802D6A618EC /* .xctest */,
+				A2AA6BD13C7CB802D6A618EC /* GollabaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -892,7 +874,7 @@
 			isa = PBXGroup;
 			children = (
 				9062FCB7503F985C6C4DBC40 /* CustomView */,
-				3D555D0893B2F2D1DF92859C /*  */,
+				3D555D0893B2F2D1DF92859C,
 				6B1AED475A86D722A65A3C99 /* PollDetailView.swift */,
 				329D35EBF919506F9147F61A /* PollDetailViewModel.swift */,
 			);
@@ -1139,6 +1121,14 @@
 			path = PollView;
 			sourceTree = "<group>";
 		};
+		FA7F0011AA00F4C000000004 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F0011AA00F4C000000005 /* AppContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		FBB48FB8EF0C8A85B5D1F64B /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1176,7 +1166,7 @@
 			);
 			name = GollabaTests;
 			productName = GollabaTests;
-			productReference = A2AA6BD13C7CB802D6A618EC /* .xctest */;
+			productReference = A2AA6BD13C7CB802D6A618EC /* GollabaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		49C5CF732CDE24D2001DD737 /* Gollaba */ = {

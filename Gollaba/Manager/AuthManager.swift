@@ -80,21 +80,19 @@ class AuthManager {
         }
     }
     
-    func logout() {
+    func logout() async {
         switch self.providerType {
         case .kakao:
-            Task {
-                do {
-                    try await kakaoLogout()
-                } catch {
-                    Logger.shared.log(String(describing: self), #function, "Failed to logout", .error)
-                }
+            do {
+                try await kakaoLogout()
+            } catch {
+                Logger.shared.log(String(describing: self), #function, "Failed to logout", .error)
+                resetAuth()
             }
         case .apple:
             self.resetAuth()
         default:
             break
         }
-        
     }
 }

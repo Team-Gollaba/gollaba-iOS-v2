@@ -213,10 +213,12 @@ class PollDetailViewModel {
 
     @Sendable func loadPoll() async {
         do {
+            // 스켈레톤 뷰 표시를 위한 최소 대기
             try await Task.sleep(nanoseconds: 1_000_000_000)
             await getPoll()
             await votingCheck()
         } catch {
+            Logger.shared.log(String(describing: self), #function, "Task cancelled: \(error)", .error)
         }
     }
 

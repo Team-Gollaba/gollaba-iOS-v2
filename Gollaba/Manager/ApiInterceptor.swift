@@ -34,7 +34,7 @@ final class ApiInterceptor: RequestInterceptor {
             case .failure(let error):
                 Logger.shared.log(String(describing: self), #function, "Failed to refresh token: \(error)", .error)
                 ApiManager.shared.authManager?.sessionExpired = true
-                ApiManager.shared.authManager?.logout()
+                Task { await ApiManager.shared.authManager?.logout() }
                 completion(.doNotRetryWithError(error))
             }
         }

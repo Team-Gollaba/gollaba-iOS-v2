@@ -18,6 +18,8 @@ class LoginViewModel {
     //MARK: - Flag
     private(set) var isNotSignUp: Bool = false
     var goToSignUp: Bool = false
+    var showAlert: Bool = false
+    var alertMessage: String = ""
     
     //MARK: - Data
     var accessToken: String = ""
@@ -39,7 +41,9 @@ class LoginViewModel {
         do {
             try await authManager.kakaoLogin()
         } catch {
-            
+            Logger.shared.log(String(describing: self), #function, "Failed to kakao login with error: \(error)", .error)
+            showAlert = true
+            alertMessage = "카카오 로그인에 실패했습니다."
         }
     }
     

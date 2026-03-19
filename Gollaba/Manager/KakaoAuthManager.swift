@@ -74,20 +74,21 @@ class KakaoAuthManager {
                         guard let name = me?.kakaoAccount?.profile?.nickname,
                               let mail = me?.kakaoAccount?.email,
                               let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
+                            continuation.resume(returning: false)
                             return
                         }
                         self?.userName = name
                         self?.userMail = mail
                         self?.profileImageUrl = profileUrl
+                        continuation.resume(returning: true)
                     }
 
                     self?.accessToken = oauthToken?.accessToken
-                    continuation.resume(returning: true)
                 }
             }
         }
     }
-    
+
     @MainActor
     func handleLoginWithKakaoAccount() async -> Bool {
         await withCheckedContinuation { [weak self] continuation in
@@ -104,15 +105,16 @@ class KakaoAuthManager {
                         guard let name = me?.kakaoAccount?.profile?.nickname,
                               let mail = me?.kakaoAccount?.email,
                               let profileUrl = me?.kakaoAccount?.profile?.profileImageUrl else {
+                            continuation.resume(returning: false)
                             return
                         }
                         self?.userName = name
                         self?.userMail = mail
                         self?.profileImageUrl = profileUrl
+                        continuation.resume(returning: true)
                     }
 
                     self?.accessToken = oauthToken?.accessToken
-                    continuation.resume(returning: true)
                 }
             }
         }
