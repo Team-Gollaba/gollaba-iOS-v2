@@ -1,17 +1,11 @@
 //
-//  FavoriteRepository.swift
+//  DefaultFavoriteRepository.swift
 //  Gollaba
 //
 
 import Foundation
 
-protocol FavoriteRepositoryProtocol {
-    func addFavorite(pollHashId: String) async throws
-    func removeFavorite(pollHashId: String) async throws
-    func fetchFavorites() async throws -> [String]
-}
-
-class FavoriteRepositoryImpl: FavoriteRepositoryProtocol {
+class DefaultFavoriteRepository: FavoriteRepository {
     func addFavorite(pollHashId: String) async throws {
         try await ApiManager.shared.createFavoritePoll(pollHashId: pollHashId).get()
     }

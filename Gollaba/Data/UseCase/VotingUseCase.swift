@@ -18,9 +18,9 @@ protocol VotingUseCaseProtocol {
 }
 
 class VotingUseCase: VotingUseCaseProtocol {
-    private let votingRepository: VotingRepositoryProtocol
+    private let votingRepository: VotingRepository
 
-    init(votingRepository: VotingRepositoryProtocol = VotingRepositoryImpl()) {
+    init(votingRepository: VotingRepository = DefaultVotingRepository()) {
         self.votingRepository = votingRepository
     }
 

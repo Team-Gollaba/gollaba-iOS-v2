@@ -1,19 +1,11 @@
 //
-//  UserRepository.swift
+//  DefaultUserRepository.swift
 //  Gollaba
 //
 
 import SwiftUI
 
-protocol UserRepositoryProtocol {
-    func fetchUserMe() async throws -> UserData
-    func updateName(name: String) async throws
-    func updateProfileImage(image: UIImage) async throws
-    func deleteProfileImage() async throws
-    func deleteAccount() async throws
-}
-
-class UserRepositoryImpl: UserRepositoryProtocol {
+class DefaultUserRepository: UserRepository {
     func fetchUserMe() async throws -> UserData {
         return try await ApiManager.shared.getUserMe().get()
     }

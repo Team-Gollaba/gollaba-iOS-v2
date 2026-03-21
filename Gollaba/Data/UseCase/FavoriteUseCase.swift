@@ -12,9 +12,9 @@ protocol FavoriteUseCaseProtocol {
 }
 
 class FavoriteUseCase: FavoriteUseCaseProtocol {
-    private let favoriteRepository: FavoriteRepositoryProtocol
+    private let favoriteRepository: FavoriteRepository
 
-    init(favoriteRepository: FavoriteRepositoryProtocol = FavoriteRepositoryImpl()) {
+    init(favoriteRepository: FavoriteRepository = DefaultFavoriteRepository()) {
         self.favoriteRepository = favoriteRepository
     }
 

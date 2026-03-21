@@ -12,9 +12,9 @@ protocol PushNotificationUseCaseProtocol {
 }
 
 class PushNotificationUseCase: PushNotificationUseCaseProtocol {
-    private let notificationRepository: NotificationRepositoryProtocol
+    private let notificationRepository: NotificationRepository
 
-    init(notificationRepository: NotificationRepositoryProtocol = NotificationRepositoryImpl()) {
+    init(notificationRepository: NotificationRepository = DefaultNotificationRepository()) {
         self.notificationRepository = notificationRepository
     }
 

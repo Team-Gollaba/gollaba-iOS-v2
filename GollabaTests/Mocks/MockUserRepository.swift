@@ -1,7 +1,7 @@
 @testable import Gollaba
 import UIKit
 
-final class MockUserRepository: UserRepositoryProtocol {
+final class MockUserRepository: UserRepository {
     var fetchUserMeResult: Result<UserData, Error> = .success(.mock)
     var updateNameResult: Result<Void, Error> = .success(())
     var updateProfileImageResult: Result<Void, Error> = .success(())

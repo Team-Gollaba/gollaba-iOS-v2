@@ -12,9 +12,9 @@ protocol AuthUseCaseProtocol {
 }
 
 class AuthUseCase: AuthUseCaseProtocol {
-    private let authRepository: AuthRepositoryProtocol
+    private let authRepository: AuthRepository
 
-    init(authRepository: AuthRepositoryProtocol = AuthRepositoryImpl()) {
+    init(authRepository: AuthRepository = DefaultAuthRepository()) {
         self.authRepository = authRepository
     }
 

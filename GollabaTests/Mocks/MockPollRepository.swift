@@ -1,7 +1,7 @@
 @testable import Gollaba
 import Foundation
 
-final class MockPollRepository: PollRepositoryProtocol {
+final class MockPollRepository: PollRepository {
     var fetchAllPollsResult: Result<AllPollData, Error> = .success(.empty)
     var fetchTrendingPollsResult: Result<[PollItem], Error> = .success([])
     var fetchTopPollsResult: Result<[PollItem], Error> = .success([])

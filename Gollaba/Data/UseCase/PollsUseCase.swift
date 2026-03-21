@@ -18,9 +18,9 @@ protocol PollsUseCaseProtocol {
 }
 
 class PollsUseCase: PollsUseCaseProtocol {
-    private let pollRepository: PollRepositoryProtocol
+    private let pollRepository: PollRepository
 
-    init(pollRepository: PollRepositoryProtocol = PollRepositoryImpl()) {
+    init(pollRepository: PollRepository = DefaultPollRepository()) {
         self.pollRepository = pollRepository
     }
 

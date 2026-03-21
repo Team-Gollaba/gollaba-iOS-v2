@@ -15,20 +15,22 @@
 		088A510975A7F72F5C39E8A9 /* VotingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B55A36857B35D727EC2963F /* VotingButton.swift */; };
 		0A176D54A61D1BABB507BC9B /* MyPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEF4F52038B74FF08D8D2D /* MyPollView.swift */; };
 		0A5D804E7D03EA1640DB54E4 /* ReportDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A84CCCC77DC88519519398 /* ReportDialogView.swift */; };
-		109CBE0B526420390A011753 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB3EDF6189C298FC4117022 /* UserRepository.swift */; };
 		1220681E14D7D67B3C09DE35 /* MyPollViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8810646E053E8CF802D17FB1 /* MyPollViewModelTests.swift */; };
 		12C68A442577D1D39D750C1D /* NotificationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093D9A0BFCAB2816D8CFCA7E /* NotificationContentView.swift */; };
+		1430CC40E03935094EA25AB3 /* DefaultPollRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA42F1EA15FFE18FB3AFA5 /* DefaultPollRepository.swift */; };
 		153D38621A23CEBAE4B22F33 /* RequestAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE4370E024B3334F71FADAC /* RequestAddButton.swift */; };
 		181B6B9F2A04944C4648CF6D /* PollItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E4166FA2326627D3E7606 /* PollItemView.swift */; };
 		19E5FB5C654212ECB88BC794 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67D1661444A7B45C1043AE8 /* SignUpView.swift */; };
 		1CEF727B182F7D9A3259F523 /* SearchFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C48898B4FFA4883F28CB9 /* SearchFilterButton.swift */; };
 		1D319BD333B3412804184234 /* SearchResultListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4BAE0D3AA411BD648C1D84 /* SearchResultListViewModelTests.swift */; };
+		21CCEC5232D8FC93BE88041E /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4342158C9AAA17AD80AF0D7 /* UserRepository.swift */; };
+		21F4A943F8CC372F325C23AD /* PollRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D2F1BBE96336CF3DBD1310 /* PollRepository.swift */; };
 		23CC5AB9C746BDFCE0662856 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76A793B6F1E378D420D9F1 /* TitleView.swift */; };
 		24D183A8C1F13BB95B2787A1 /* MockFavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA48FE7E3356E9C287FA828 /* MockFavoriteUseCase.swift */; };
 		24E0D757380D9D37A68D42C7 /* UserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1889DA5894E6F2E156A2043 /* UserUseCaseTests.swift */; };
 		2FE0E7A04D745FAE8D1EF6CC /* PollRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326A05B7F63984249EA93A85 /* PollRankingView.swift */; };
 		2FFCB3C73F02D1FF07316A5C /* PollsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6622BAE4A567345F2B7D76E0 /* PollsUseCase.swift */; };
-		30DA9B469686C9276FB3814C /* PollRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D574198BBAFE2046BBA459 /* PollRepository.swift */; };
+		31AE6F84D060CD4D58F5D1EF /* FavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C64C19299121F3270443F /* FavoriteRepository.swift */; };
 		33C0A774E8051E1647FA1023 /* SignUpTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2FC9565294121EBDE2648 /* SignUpTextFieldView.swift */; };
 		37145076A45F6CADB5666326 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF474F645FEA433E7D2187D /* SearchFilterView.swift */; };
 		381981D83A4AE584B913E4E7 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C23B74517965D4C16D3632 /* LogoutButton.swift */; };
@@ -42,6 +44,7 @@
 		42D535CC146BA1B7AB94E667 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1EA347304BB090970280BB /* SettingViewModel.swift */; };
 		44C19C1C6079A1A68C54E89B /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F951D2F7B83206C35E56FC /* AuthUseCase.swift */; };
 		465A1C2EF90CF4287053BA22 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DE49606FC2680343808BAB /* MainView.swift */; };
+		48D3D14186F1A10B17A2F4CA /* DefaultFavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD929F071E64EE163A33F50D /* DefaultFavoriteRepository.swift */; };
 		491A17152CEB85EF00C4666F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491A17142CEB85EF00C4666F /* Kingfisher */; };
 		491A174C2CEC7EB100C4666F /* ThreeByTwoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491A174B2CEC7EB100C4666F /* ThreeByTwoGridView.swift */; };
 		492ABF0D2D0886FB0051380C /* ScaleOnPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492ABF0C2D0886FB0051380C /* ScaleOnPressStyle.swift */; };
@@ -76,13 +79,14 @@
 		49FEE26C2CF322D5000991DB /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 49FEE26B2CF322D5000991DB /* KakaoSDKUser */; };
 		4C83992E287232AD1823CE45 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E61BCE761A2F93952100C /* UserUseCase.swift */; };
 		4D1CF1CBCD27C8BF78293E2D /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE88CC39CF2243B28189AD /* TimePickerView.swift */; };
+		4EEC5C89041DFDC42B2ED8C1 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD6E1A3FA13CBA54893A366 /* NotificationRepository.swift */; };
 		507769E7DB0A47CB6F036358 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6EE58E3A3631584D4F3360 /* LoginView.swift */; };
 		5271A21A760CC582D024378D /* SearchResultListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF213521EA2C38F95F3C297C /* SearchResultListViewModel.swift */; };
+		52A1ACA1A7A6886953D369CF /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810D7EE6A1B27129D4B9F577 /* DefaultAuthRepository.swift */; };
 		5AF54F37997CF7B155C2F6DF /* SearchFilterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DACBFA62795E4DF1278290 /* SearchFilterContentView.swift */; };
 		5B23FE8A1975198F84E721B2 /* PollDetailContentBySingleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF470291089A7DF6D856C1 /* PollDetailContentBySingleGridView.swift */; };
 		5E1D8F2EC82C761B97B74036 /* CreatePollViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AF91BBC0E3D18217691BF3 /* CreatePollViewModelTests.swift */; };
 		5F62B653D498B9F8129C8581 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4672E0745B128F9A941D39D1 /* SearchViewModelTests.swift */; };
-		638E24BFB8A674180B13D775 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D7ED3AE8AB30C097C4D984 /* AuthRepository.swift */; };
 		670640A98A2B01B1CD18D0D3 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007DF28E56C4D85C213748A9 /* NotificationView.swift */; };
 		6965D0F9BA062C598029FB7B /* ChooseTwoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE410A83BABB45C600A03AE /* ChooseTwoOptionsView.swift */; };
 		6B208B89BC3539D91C6AF5FC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC5BE5CB6936EE8C661A08 /* SearchView.swift */; };
@@ -96,10 +100,10 @@
 		7DCA26F96A9B9790795F4A41 /* PollMadeByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78DDD2F5F68DB2C3FB66C8 /* PollMadeByMeView.swift */; };
 		814B573122A67B9F848C4B60 /* PollVotersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FDC6DF389218AE6567B27 /* PollVotersView.swift */; };
 		82C7C0CB26D9E37CCD28E322 /* SpecialSearchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B8E0BDC77A7C123067E7F8 /* SpecialSearchContentView.swift */; };
-		8301F71E9CE1110097088657 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA035CDC3F52A0E97F9801 /* NotificationRepository.swift */; };
 		87F72A8A19A59AA62B7496F8 /* CreatePollContentGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A55E934802F7033A36D0141 /* CreatePollContentGridView.swift */; };
 		888770D6AD86970FB1976BB9 /* TimerOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6A70923ED209D2C8C98544 /* TimerOptionView.swift */; };
 		8972632D2078E3861A96CB2B /* PollContentOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B78FC48A81D952591425 /* PollContentOptionView.swift */; };
+		8A7210CE56EF52D5BB1CEFAA /* DefaultNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EEE738AC1B491F851E5DDE /* DefaultNotificationRepository.swift */; };
 		8BDF03041D1DC19092FC8D5A /* RecentSearchKeywordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CF7D49498266E30A3203B8 /* RecentSearchKeywordList.swift */; };
 		8FE69BC9E16A4FC57F8AC8D0 /* PollParticipatedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B3F507B05788144A75F49 /* PollParticipatedList.swift */; };
 		902F8A0EC4FF731F6E7C37B0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B917012FB50AAD3B9ABDDFD /* LoginViewModel.swift */; };
@@ -109,7 +113,6 @@
 		9984B40D8F497C25ED33FA50 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1E75BCB9312179421A9A25 /* HomeView.swift */; };
 		A04F9965C87FB609EE5D746B /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A9345763B030470ACD97BF /* ProfileNameView.swift */; };
 		A7607878A6197799DF553230 /* CustomTabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8550A1584072AAEC51CEC14A /* CustomTabViewButton.swift */; };
-		A812424D4816227C96C965AC /* FavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90113A9EF20BC4C198348575 /* FavoriteRepository.swift */; };
 		A88B5B0044319FC944048672 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660B3BE66D242E7BAB83C868 /* CustomTabView.swift */; };
 		AA9226FDDBFE8BF15B818DA1 /* MyPollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A27F957ACEDFE55D3A34E7E /* MyPollViewModel.swift */; };
 		AFCF802ABA1FB4A4079B79D6 /* SelectablePollContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9755A79D0143E2D4601BF8F /* SelectablePollContent.swift */; };
@@ -119,6 +122,7 @@
 		B36CC3F2DA860F985F6FC7D1 /* PollResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0D516A90F1F3BFB66C298 /* PollResultView.swift */; };
 		B3FE07138C19565744DA3BE2 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B976C23A7F1181C81A25D0 /* SettingView.swift */; };
 		B5602048FCCE27B921863281 /* PollTypeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DF9FA43441BB8F5332AF1A /* PollTypeItemView.swift */; };
+		B5B4B16A427976414A00637A /* DefaultUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2B20A724398ACF28FA4A03 /* DefaultUserRepository.swift */; };
 		B6801B8B2669A3197B8A217D /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE11BCC0ED53BEF1D4706EB /* SortingView.swift */; };
 		B93FEF9AB085693D43D75BB2 /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D8ECFC97B830CE1B2F24C /* QuestionButton.swift */; };
 		BCD745837BA873275489B92F /* OptionSelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE4F816ED59E980AFC800 /* OptionSelectButton.swift */; };
@@ -129,6 +133,7 @@
 		C8581D7C31525344262B132B /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2AA7F5BB23F3588C41E379 /* NotificationViewModel.swift */; };
 		C8D999F3D9D40BB57F26188E /* NotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7435DD474F04734039FB6040 /* NotificationList.swift */; };
 		CA381DD959F8CA6627F4E67E /* VerticalPollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4362EA3BF863EC98D24FA992 /* VerticalPollList.swift */; };
+		CD2B9857931BC240F4308DFF /* VotingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D70B796B51CCB8592B265 /* VotingRepository.swift */; };
 		CEDA9DE9718C1056720DA3A8 /* Pods_Gollaba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7BF02B2CDC532B3FC87184 /* Pods_Gollaba.framework */; };
 		D087578F777956A87B558F73 /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6D422D7C16ED38689A423F /* ImageDetailView.swift */; };
 		D0DE9A14ED9E320383312FFF /* CallendarOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2AE12A4A7B1A576F14DFA4 /* CallendarOptionView.swift */; };
@@ -144,13 +149,14 @@
 		EBF633BE20EC8F9625636E64 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AC47CB9C8CAB54F2E4A606 /* SearchResultListView.swift */; };
 		EE972F4FA52046A8D8EF376C /* HorizontalPollList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294EAE7AC237FF9F6784128 /* HorizontalPollList.swift */; };
 		F16098EB1F896C9D89EF64F1 /* CreatePollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444C631ECEFE62BF92241CC /* CreatePollViewModel.swift */; };
+		F1EDEE26C01B5506364B2A2F /* DefaultVotingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D810A153F49845EC1A2A4 /* DefaultVotingRepository.swift */; };
 		F24A362C7007E8C1D85E17BE /* MockPollsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01BCBD67E102C85D2ADE /* MockPollsUseCase.swift */; };
 		F3958A3C7B9847B37ACDE55D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3E8B8F4C96194AFA8F8D5D /* Foundation.framework */; };
-		F5F588ECFA12E3187F2DC781 /* VotingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889FAF564E4654CCAE10064 /* VotingRepository.swift */; };
 		F712836A718FE5B44C2E207D /* PollFavoriteByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69E736EB59511F871974E3 /* PollFavoriteByMeView.swift */; };
 		F8876F368E80950C8B7EE42F /* CheckBeforeSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BEDF6C1014771A7DCCF35A /* CheckBeforeSignUpView.swift */; };
 		FA7F0011AA00F4C000000003 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = FA7F0011AA00F4C000000002 /* Factory */; };
 		FA7F0011AA00F4C000000006 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F0011AA00F4C000000005 /* AppContainer.swift */; };
+		FC0047D1EC155E4765B27DCC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C60358B043F01D1DF553EB /* AuthRepository.swift */; };
 		FD94FC1F1153227112FC692C /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E717A8646398726CA6F422D9 /* HomeViewModelTests.swift */; };
 		FE3166ADA9D7648AD0D6FFF5 /* MockUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */; };
 /* End PBXBuildFile section */
@@ -167,7 +173,6 @@
 
 /* Begin PBXFileReference section */
 		007DF28E56C4D85C213748A9 /* NotificationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		05AA035CDC3F52A0E97F9801 /* NotificationRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
 		093D9A0BFCAB2816D8CFCA7E /* NotificationContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationContentView.swift; sourceTree = "<group>"; };
 		0B55A36857B35D727EC2963F /* VotingButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VotingButton.swift; sourceTree = "<group>"; };
 		0C78DDD2F5F68DB2C3FB66C8 /* PollMadeByMeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollMadeByMeView.swift; sourceTree = "<group>"; };
@@ -181,11 +186,11 @@
 		1A36452FFF2F01476BB5B60F /* NetworkError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		1D76A793B6F1E378D420D9F1 /* TitleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		2A55E934802F7033A36D0141 /* CreatePollContentGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreatePollContentGridView.swift; sourceTree = "<group>"; };
+		2AD6E1A3FA13CBA54893A366 /* NotificationRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
 		2B13165D7E574EBDFAB33805 /* AppleLoginButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppleLoginButton.swift; sourceTree = "<group>"; };
 		2B20E8F2CD0535D86B4CE5AA /* InduceLoginContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InduceLoginContentView.swift; sourceTree = "<group>"; };
 		2B2AE12A4A7B1A576F14DFA4 /* CallendarOptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CallendarOptionView.swift; sourceTree = "<group>"; };
 		2EC92FA1D0AA22C62888ED5D /* EnrollPollButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EnrollPollButton.swift; sourceTree = "<group>"; };
-		31D574198BBAFE2046BBA459 /* PollRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollRepository.swift; sourceTree = "<group>"; };
 		326A05B7F63984249EA93A85 /* PollRankingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollRankingView.swift; sourceTree = "<group>"; };
 		329D35EBF919506F9147F61A /* PollDetailViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollDetailViewModel.swift; sourceTree = "<group>"; };
 		37B976C23A7F1181C81A25D0 /* SettingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -222,9 +227,11 @@
 		49C5CF742CDE24D2001DD737 /* Gollaba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gollaba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C8A6B02D11CCCD0030D648 /* OpenAndCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAndCloseButton.swift; sourceTree = "<group>"; };
 		49C8A6E42D2064120030D648 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		49D2F1BBE96336CF3DBD1310 /* PollRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollRepository.swift; sourceTree = "<group>"; };
 		49D45F822D4D1019000F74A6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FEE26F2CF323EA000991DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4A8D01BCBD67E102C85D2ADE /* MockPollsUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPollsUseCase.swift; sourceTree = "<group>"; };
+		4B4C64C19299121F3270443F /* FavoriteRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoriteRepository.swift; sourceTree = "<group>"; };
 		4BD0D516A90F1F3BFB66C298 /* PollResultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollResultView.swift; sourceTree = "<group>"; };
 		4D1F5A3879887E26C51958C7 /* RecentSearchKeywordView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RecentSearchKeywordView.swift; sourceTree = "<group>"; };
 		5172AF80923C410CE61505AB /* HomeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -250,12 +257,14 @@
 		7A5E61BCE761A2F93952100C /* UserUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		7BCBC3C41528082B28742958 /* HorizontalPollContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HorizontalPollContentView.swift; sourceTree = "<group>"; };
 		7FDC5BE5CB6936EE8C661A08 /* SearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		810D7EE6A1B27129D4B9F577 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		850FDC6DF389218AE6567B27 /* PollVotersView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollVotersView.swift; sourceTree = "<group>"; };
 		8550A1584072AAEC51CEC14A /* CustomTabViewButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomTabViewButton.swift; sourceTree = "<group>"; };
+		87BA42F1EA15FFE18FB3AFA5 /* DefaultPollRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultPollRepository.swift; sourceTree = "<group>"; };
 		8810646E053E8CF802D17FB1 /* MyPollViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyPollViewModelTests.swift; sourceTree = "<group>"; };
 		8B917012FB50AAD3B9ABDDFD /* LoginViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8EE410A83BABB45C600A03AE /* ChooseTwoOptionsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChooseTwoOptionsView.swift; sourceTree = "<group>"; };
-		90113A9EF20BC4C198348575 /* FavoriteRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoriteRepository.swift; sourceTree = "<group>"; };
+		8F1D810A153F49845EC1A2A4 /* DefaultVotingRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultVotingRepository.swift; sourceTree = "<group>"; };
 		9294EAE7AC237FF9F6784128 /* HorizontalPollList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HorizontalPollList.swift; sourceTree = "<group>"; };
 		9572EE0517FB7F903DBF7D0E /* SearchViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		9A6E2B06621E1BC62D5C1EBE /* Pods-Gollaba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gollaba.debug.xcconfig"; path = "Target Support Files/Pods-Gollaba/Pods-Gollaba.debug.xcconfig"; sourceTree = "<group>"; };
@@ -268,16 +277,18 @@
 		A744495B15B4966C75015976 /* CreatePollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreatePollView.swift; sourceTree = "<group>"; };
 		A9755A79D0143E2D4601BF8F /* SelectablePollContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SelectablePollContent.swift; sourceTree = "<group>"; };
 		AB69E736EB59511F871974E3 /* PollFavoriteByMeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollFavoriteByMeView.swift; sourceTree = "<group>"; };
+		AD929F071E64EE163A33F50D /* DefaultFavoriteRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultFavoriteRepository.swift; sourceTree = "<group>"; };
 		ADDF470291089A7DF6D856C1 /* PollDetailContentBySingleGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollDetailContentBySingleGridView.swift; sourceTree = "<group>"; };
 		AF234BBBDF20DB773E46858A /* MockPollRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPollRepository.swift; sourceTree = "<group>"; };
 		AF6A70923ED209D2C8C98544 /* TimerOptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		B1BFDEA6AAA952452197CDDB /* SignUpViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B2C23B74517965D4C16D3632 /* LogoutButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
+		B4342158C9AAA17AD80AF0D7 /* UserRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		B494B174AE67D173B7F9CBF5 /* CalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		B9A98BB5B1EBD6FF9280FC01 /* FavoriteUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
 		BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockUserUseCase.swift; sourceTree = "<group>"; };
+		BC2B20A724398ACF28FA4A03 /* DefaultUserRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultUserRepository.swift; sourceTree = "<group>"; };
 		C0AC47CB9C8CAB54F2E4A606 /* SearchResultListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
-		C3D7ED3AE8AB30C097C4D984 /* AuthRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		C4AF91BBC0E3D18217691BF3 /* CreatePollViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreatePollViewModelTests.swift; sourceTree = "<group>"; };
 		C8BE88CC39CF2243B28189AD /* TimePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		CA13706D33B053A5931512D1 /* PollContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollContentView.swift; sourceTree = "<group>"; };
@@ -286,20 +297,21 @@
 		CE3FE4F816ED59E980AFC800 /* OptionSelectButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OptionSelectButton.swift; sourceTree = "<group>"; };
 		CF213521EA2C38F95F3C297C /* SearchResultListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultListViewModel.swift; sourceTree = "<group>"; };
 		D0DE49606FC2680343808BAB /* MainView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D2EEE738AC1B491F851E5DDE /* DefaultNotificationRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultNotificationRepository.swift; sourceTree = "<group>"; };
+		D49D70B796B51CCB8592B265 /* VotingRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VotingRepository.swift; sourceTree = "<group>"; };
 		D64549BD6A215AA17DFD752C /* PollStateViewRibbonStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollStateViewRibbonStyle.swift; sourceTree = "<group>"; };
 		D67D1661444A7B45C1043AE8 /* SignUpView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		D6C60358B043F01D1DF553EB /* AuthRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		D73CBF201495A6441DABA8F1 /* HomeDividerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
 		DA1E75BCB9312179421A9A25 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA8E519FFA548406B7C427F2 /* ApiManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPushNotificationUseCase.swift; sourceTree = "<group>"; };
 		DE2AA7F5BB23F3588C41E379 /* NotificationViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
-		DEB3EDF6189C298FC4117022 /* UserRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		E076B78FC48A81D952591425 /* PollContentOptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
 		E1A3DB31B5BFAAD3DBA3B419 /* SignUpButtonView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignUpButtonView.swift; sourceTree = "<group>"; };
 		E629B08677C590BA64903FE5 /* NotificationViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModelTests.swift; sourceTree = "<group>"; };
 		E6A84CCCC77DC88519519398 /* ReportDialogView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReportDialogView.swift; sourceTree = "<group>"; };
 		E717A8646398726CA6F422D9 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
-		E889FAF564E4654CCAE10064 /* VotingRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VotingRepository.swift; sourceTree = "<group>"; };
 		ECE4370E024B3334F71FADAC /* RequestAddButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestAddButton.swift; sourceTree = "<group>"; };
 		ED05FC3AFDFD89B246CDB310 /* TrendingKeywordList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TrendingKeywordList.swift; sourceTree = "<group>"; };
 		EE422AE77AB99A4D691F5BCA /* PollTypeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollTypeView.swift; sourceTree = "<group>"; };
@@ -316,26 +328,36 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		491A17512CEC8C2500C4666F /* CustomView */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = CustomView;
 			sourceTree = "<group>";
 		};
 		495248372CF772E5005EAABD /* Model */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Model;
 			sourceTree = "<group>";
 		};
 		497DDF9D2CF83526008A8534 /* Modifier */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Modifier;
 			sourceTree = "<group>";
 		};
 		49C8A6D62D1569460030D648 /* Entity */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
 		49FEE24D2CEC95A6000991DB /* Manager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Manager;
 			sourceTree = "<group>";
 		};
@@ -413,6 +435,20 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		14674D2C6482D967E58AE4C5 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				49D2F1BBE96336CF3DBD1310 /* PollRepository.swift */,
+				B4342158C9AAA17AD80AF0D7 /* UserRepository.swift */,
+				D6C60358B043F01D1DF553EB /* AuthRepository.swift */,
+				4B4C64C19299121F3270443F /* FavoriteRepository.swift */,
+				2AD6E1A3FA13CBA54893A366 /* NotificationRepository.swift */,
+				D49D70B796B51CCB8592B265 /* VotingRepository.swift */,
+			);
+			name = Repository;
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		1FB291F37B22C080356C06B4 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +472,15 @@
 				1A36452FFF2F01476BB5B60F /* NetworkError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		269C4DEEBF113F5844E0F8DF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				14674D2C6482D967E58AE4C5 /* Repository */,
+			);
+			name = Domain;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		2AA466B30AFC7836B392E660 /* ViewModels */ = {
@@ -484,7 +529,7 @@
 			path = Option;
 			sourceTree = "<group>";
 		};
-		3D555D0893B2F2D1DF92859C = {
+		3D555D0893B2F2D1DF92859C /*  */ = {
 			isa = PBXGroup;
 			children = (
 				B985BB29E033EDA7CDDF66EC /* Users */,
@@ -613,6 +658,7 @@
 				49D45F822D4D1019000F74A6 /* LaunchScreen.storyboard */,
 				46D7D8A439C50982DFDBF92D /* Data */,
 				DE4D3EF710727D432CAE34A2 /* Presentation */,
+				269C4DEEBF113F5844E0F8DF /* Domain */,
 			);
 			path = Gollaba;
 			sourceTree = "<group>";
@@ -726,12 +772,12 @@
 		64AEDF54277F262959BE0549 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				31D574198BBAFE2046BBA459 /* PollRepository.swift */,
-				90113A9EF20BC4C198348575 /* FavoriteRepository.swift */,
-				DEB3EDF6189C298FC4117022 /* UserRepository.swift */,
-				C3D7ED3AE8AB30C097C4D984 /* AuthRepository.swift */,
-				05AA035CDC3F52A0E97F9801 /* NotificationRepository.swift */,
-				E889FAF564E4654CCAE10064 /* VotingRepository.swift */,
+				87BA42F1EA15FFE18FB3AFA5 /* DefaultPollRepository.swift */,
+				BC2B20A724398ACF28FA4A03 /* DefaultUserRepository.swift */,
+				810D7EE6A1B27129D4B9F577 /* DefaultAuthRepository.swift */,
+				AD929F071E64EE163A33F50D /* DefaultFavoriteRepository.swift */,
+				D2EEE738AC1B491F851E5DDE /* DefaultNotificationRepository.swift */,
+				8F1D810A153F49845EC1A2A4 /* DefaultVotingRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -874,7 +920,7 @@
 			isa = PBXGroup;
 			children = (
 				9062FCB7503F985C6C4DBC40 /* CustomView */,
-				3D555D0893B2F2D1DF92859C,
+				3D555D0893B2F2D1DF92859C /*  */,
 				6B1AED475A86D722A65A3C99 /* PollDetailView.swift */,
 				329D35EBF919506F9147F61A /* PollDetailViewModel.swift */,
 			);
@@ -1340,11 +1386,6 @@
 				4945A2C62CEB6ECC00FF05DC /* ContentView.swift in Sources */,
 				4945A2C72CEB6ECC00FF05DC /* GollabaApp.swift in Sources */,
 				D58A270CE1E73E2591081F48 /* NetworkError.swift in Sources */,
-				30DA9B469686C9276FB3814C /* PollRepository.swift in Sources */,
-				A812424D4816227C96C965AC /* FavoriteRepository.swift in Sources */,
-				109CBE0B526420390A011753 /* UserRepository.swift in Sources */,
-				638E24BFB8A674180B13D775 /* AuthRepository.swift in Sources */,
-				8301F71E9CE1110097088657 /* NotificationRepository.swift in Sources */,
 				2FFCB3C73F02D1FF07316A5C /* PollsUseCase.swift in Sources */,
 				DBAF16BCCBB0D03EBD223B5E /* FavoriteUseCase.swift in Sources */,
 				B2CD03AD4D72747501333747 /* PushNotificationUseCase.swift in Sources */,
@@ -1433,9 +1474,20 @@
 				902F8A0EC4FF731F6E7C37B0 /* LoginViewModel.swift in Sources */,
 				B29580E0626B2FC388E0EE52 /* PollDetailView.swift in Sources */,
 				97D8E53558A6B14BD54101B4 /* PollDetailViewModel.swift in Sources */,
-				F5F588ECFA12E3187F2DC781 /* VotingRepository.swift in Sources */,
 				39934B67179018EADFE0FC09 /* VotingUseCase.swift in Sources */,
 				FA7F0011AA00F4C000000006 /* AppContainer.swift in Sources */,
+				21F4A943F8CC372F325C23AD /* PollRepository.swift in Sources */,
+				21CCEC5232D8FC93BE88041E /* UserRepository.swift in Sources */,
+				FC0047D1EC155E4765B27DCC /* AuthRepository.swift in Sources */,
+				31AE6F84D060CD4D58F5D1EF /* FavoriteRepository.swift in Sources */,
+				4EEC5C89041DFDC42B2ED8C1 /* NotificationRepository.swift in Sources */,
+				CD2B9857931BC240F4308DFF /* VotingRepository.swift in Sources */,
+				1430CC40E03935094EA25AB3 /* DefaultPollRepository.swift in Sources */,
+				B5B4B16A427976414A00637A /* DefaultUserRepository.swift in Sources */,
+				52A1ACA1A7A6886953D369CF /* DefaultAuthRepository.swift in Sources */,
+				48D3D14186F1A10B17A2F4CA /* DefaultFavoriteRepository.swift in Sources */,
+				8A7210CE56EF52D5BB1CEFAA /* DefaultNotificationRepository.swift in Sources */,
+				F1EDEE26C01B5506364B2A2F /* DefaultVotingRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
