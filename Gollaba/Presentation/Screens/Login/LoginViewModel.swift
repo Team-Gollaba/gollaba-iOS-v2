@@ -11,25 +11,27 @@ import AuthenticationServices
 @Observable
 class LoginViewModel {
     //MARK: - Properties
-    init(authUseCase: AuthUseCaseProtocol) {
-        self.authUseCase = authUseCase
-    }
+    private let authUseCase: AuthUseCaseProtocol
 
     //MARK: - Flag
     private(set) var isNotSignUp: Bool = false
     var goToSignUp: Bool = false
     var showAlert: Bool = false
     var alertMessage: String = ""
-    
+
     //MARK: - Data
     var accessToken: String = ""
     var email: String = ""
     var providerType: ProviderType = .apple
     var providerId: String?
-    
+
     private var authManager: AuthManager?
     private(set) var isAppleLogin: Bool = false
-    private let authUseCase: AuthUseCaseProtocol
+
+    //MARK: - Initialize
+    init(authUseCase: AuthUseCaseProtocol) {
+        self.authUseCase = authUseCase
+    }
     
     //MARK: - Login
     func kakaoLogin() async {
