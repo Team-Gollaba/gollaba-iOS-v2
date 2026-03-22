@@ -50,19 +50,19 @@ class SearchViewModel {
     
     //MARK: - SwiftData
     func saveKeyword(_ keyword: String, context: ModelContext) {
-        let fetchDescriptor = FetchDescriptor<SearchKeyword>()
-        let existingKeyword = try? context.fetch(fetchDescriptor).first(where: { $0.keyword == keyword })
-        
-        if let existingKeyword = existingKeyword {
-            existingKeyword.timeStamp = Date()
-            Logger.shared.log(String(describing: self), #function, "Updated keyword timestamp: \(keyword)")
-        } else {
-            let newKeyword = SearchKeyword(keyword: keyword, timeStamp: Date())
-            context.insert(newKeyword)
-            Logger.shared.log(String(describing: self), #function, "Added new keyword: \(keyword)")
-        }
-        
         do {
+            let fetchDescriptor = FetchDescriptor<SearchKeyword>()
+            let existingKeyword = try context.fetch(fetchDescriptor).first(where: { $0.keyword == keyword })
+
+            if let existingKeyword = existingKeyword {
+                existingKeyword.timeStamp = Date()
+                Logger.shared.log(String(describing: self), #function, "Updated keyword timestamp: \(keyword)")
+            } else {
+                let newKeyword = SearchKeyword(keyword: keyword, timeStamp: Date())
+                context.insert(newKeyword)
+                Logger.shared.log(String(describing: self), #function, "Added new keyword: \(keyword)")
+            }
+
             try context.save()
         } catch {
             Logger.shared.log(String(describing: self), #function, "Failed to save keyword with error: \(error)", .error)
