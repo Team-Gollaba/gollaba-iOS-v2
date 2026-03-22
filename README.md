@@ -119,44 +119,34 @@ Alamofire의 `RequestInterceptor`를 구현해 401 응답 시 토큰 갱신 후 
 
 ```
 Gollaba/
-├── GollabaApp.swift            # @main, Firebase/Kakao 초기화, FCM 설정
+├── GollabaApp.swift
 ├── Presentation/
 │   └── Screens/
 │       ├── Main/               # 탭 네비게이션
-│       ├── Home/               # 인기·오늘의 투표 목록
-│       ├── PollDetail/         # 투표 상세 (참여, 결과, 수정, 철회)
-│       ├── CreatePoll/         # 투표 생성
-│       ├── Search/             # 검색 (검색창, 결과, 필터, 정렬)
-│       ├── MyPoll/             # 마이페이지 (내 투표, 참여, 좋아요, 프로필)
-│       ├── Notification/       # 알림 내역
-│       ├── Setting/            # 설정 (프로필, 알림, 회원탈퇴)
-│       ├── Login/              # OAuth 로그인
-│       └── SignUp/             # 회원가입
+│       ├── Home/
+│       ├── PollDetail/
+│       ├── CreatePoll/
+│       ├── Search/
+│       ├── MyPoll/
+│       ├── Notification/
+│       ├── Setting/
+│       ├── Login/
+│       └── SignUp/
 ├── Domain/
-│   └── Repository/             # Repository 프로토콜 (6개)
+│   └── Repository/             # Repository Protocols
 ├── Data/
-│   ├── Network/
-│   │   └── ApiManager.swift    # Alamofire 네트워크 레이어 (1400+ 줄)
-│   ├── Repository/             # DefaultXxxRepository (6개)
-│   ├── UseCase/                # XxxUseCase 구현체 (6개)
-│   ├── DI/
-│   │   └── AppContainer.swift  # Factory DI 컨테이너
+│   ├── Network/                # ApiManager (Alamofire)
+│   ├── Repository/             # DefaultXxxRepository
+│   ├── UseCase/                # XxxUseCase
+│   ├── DI/                     # AppContainer (Factory)
 │   └── Error/
-│       └── NetworkError.swift  # 통일 에러 타입
-├── Manager/
-│   ├── AuthManager.swift       # JWT 토큰, 로그인 상태 (@Observable)
-│   ├── ApiInterceptor.swift    # JWT 자동 갱신 (RequestInterceptor)
-│   ├── KeychainManager.swift
-│   ├── KakaoAuthManager.swift
-│   └── PushNotificationManager.swift
-├── Model/                      # 데이터 모델
+├── Manager/                    # Auth, Interceptor, Keychain 등
+├── Model/
 ├── Entity/
-│   ├── ValidationConstants.swift   # 닉네임 유효성 검사, 정규식
-│   └── SearchKeyword.swift         # SwiftData 기반 최근 검색어
-├── CustomView/                 # 재사용 UI 컴포넌트 (11개)
-├── Modifier/                   # SwiftUI 커스텀 수정자
-├── Common/                     # 공통 유틸리티
-└── Extension/                  # Swift 확장
+├── CustomView/
+├── Modifier/
+├── Common/
+└── Extension/
 ```
 
 <br>
