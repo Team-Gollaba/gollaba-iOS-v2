@@ -3,6 +3,8 @@
 //  Gollaba
 //
 
+import Foundation
+
 enum ValidationConstants {
     static let forbiddenNicknameWords = [
         "씨발", "좆", "개새끼", "병신", "미친놈", "엿", "썅", "엿같은", "시발", "썩을", "멍청이", "바보", "븅신", "좃같은", "엿먹어",
@@ -15,4 +17,19 @@ enum ValidationConstants {
     ]
 
     static let specialCharRegex = "[^\\p{L}\\p{N}]"
+
+    static func validateNickname(_ nickname: String, currentName: String? = nil) -> NickNameError {
+        if nickname.isEmpty { return .Empty }
+        if nickname.count < 2 || nickname.count > 10 { return .Length }
+        if nickname.contains(" ") { return .ContainsBlank }
+        if let currentName, currentName == nickname { return .Duplicate }
+        if let regex = try? NSRegularExpression(pattern: specialCharRegex, options: []) {
+            let range = NSRange(location: 0, length: nickname.utf16.count)
+            if regex.firstMatch(in: nickname, options: [], range: range) != nil { return .SpecialCharacter }
+        }
+        for forbiddenWord in forbiddenNicknameWords {
+            if nickname.contains(forbiddenWord) { return .ContainsForbiddenCharacter }
+        }
+        return .None
+    }
 }

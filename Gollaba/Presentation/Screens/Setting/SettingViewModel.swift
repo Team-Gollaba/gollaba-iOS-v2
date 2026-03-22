@@ -148,41 +148,11 @@ class SettingViewModel {
     }
 
     func isValidNickname() -> Bool {
-        let forbiddenWords = ValidationConstants.forbiddenNicknameWords
-        let specialCharRegex = ValidationConstants.specialCharRegex
-
-        if nickName.isEmpty {
-            nicknameError = .Empty
+        let error = ValidationConstants.validateNickname(nickName, currentName: authManager?.userData?.name)
+        if error != .None {
+            nicknameError = error
             showInValidToast = true
             return false
-        } else if nickName.count < 2 || nickName.count > 10 {
-            nicknameError = .Length
-            showInValidToast = true
-            return false
-        } else if nickName.contains(" ") {
-            nicknameError = .ContainsBlank
-            showInValidToast = true
-            return false
-        } else if let authManager, authManager.userData?.name == nickName {
-            nicknameError = .Duplicate
-            showInValidToast = true
-            return false
-        } else if let regex = try? NSRegularExpression(pattern: specialCharRegex, options: []) {
-            let range = NSRange(location: 0, length: nickName.utf16.count)
-            let matchFound = regex.firstMatch(in: nickName, options: [], range: range) != nil
-            if matchFound {
-                nicknameError = .SpecialCharacter
-                showInValidToast = true
-                return false
-            }
-        }
-
-        for forbiddenWord in forbiddenWords {
-            if nickName.contains(forbiddenWord) {
-                nicknameError = .ContainsForbiddenCharacter
-                showInValidToast = true
-                return false
-            }
         }
         return true
     }
