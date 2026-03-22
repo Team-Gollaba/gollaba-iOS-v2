@@ -33,23 +33,23 @@ struct HomeView: View {
                         
                         HorizontalPollList(
                             title: "🗓️ 오늘의 투표",
-                            pollList: viewModel.trendingPolls == nil ? PollItem.tempDataList() : viewModel.trendingPolls!,
+                            pollList: viewModel.trendingPolls ?? PollItem.tempDataList(),
                             isScrollToLeading: $viewModel.isScrollToTop
                         )
-                        
+
                         HomeDividerView()
-                        
+
                         HorizontalPollList(
                             title: "🏆 인기 투표",
-                            pollList: viewModel.topPolls == nil ? PollItem.tempDataList() : viewModel.topPolls!,
+                            pollList: viewModel.topPolls ?? PollItem.tempDataList(),
                             isScrollToLeading: $viewModel.isScrollToTop
                         )
-                        
+
                         HomeDividerView()
-                        
+
                         VerticalPollList(
                             title: "📝 전체 투표",
-                            pollList: viewModel.allPolls == nil ? [PollItem.mockData()] : viewModel.allPolls!.items,
+                            pollList: viewModel.allPolls?.items ?? [PollItem.mockData()],
                             requestAddPoll: $viewModel.requestAddPoll,
                             isEnd: $viewModel.isAllPollsEnd
                         )
