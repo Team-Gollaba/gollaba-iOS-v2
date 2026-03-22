@@ -1,8 +1,10 @@
-# 🗳 Gollaba
+# Gollaba
 
-> 사진 기반 투표를 만들고, 공유하고, 참여하는 iOS 앱
+> 사진 기반 투표를 만들고, 공유하고, 참여하는 iOS 소셜 투표 앱
 
-![Swift](https://img.shields.io/badge/Swift-6.0-orange) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue) ![Xcode](https://img.shields.io/badge/Xcode-26.0.1-lightgrey) [![App Store](https://img.shields.io/badge/App_Store-0D96F6?logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EA%B3%A8%EB%9D%BC%EB%B0%94/id6742055187)
+![Swift](https://img.shields.io/badge/Swift-6.0-orange) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue) ![Xcode](https://img.shields.io/badge/Xcode-26.0+-lightgrey)
+
+[![App Store](https://img.shields.io/badge/App_Store-Download-0D96F6?logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EA%B3%A8%EB%9D%BC%EB%B0%94/id6742055187)
 
 <br>
 
@@ -35,7 +37,7 @@
 | 투표 생성 | 항목별 이미지 첨부, 단일/복수 응답, 기명/익명 설정 |
 | 검색 | 키워드 검색, 인기 검색어, 최근 검색어, 필터·정렬 |
 | 마이페이지 | 내가 만든/참여한/좋아요한 투표 탭별 조회 |
-| 알림 | FCM 푸쉬 알림 수신 및 알림 내역 조회 |
+| 알림 | FCM 푸시 알림 수신 및 알림 내역 조회 |
 | 설정 | 프로필 이미지 변경, 닉네임 수정, 알림 on/off, 회원탈퇴 |
 | 인증 | OAuth 소셜 로그인 (카카오, 애플) |
 
@@ -48,40 +50,68 @@
 | 언어 | Swift |
 | UI | SwiftUI |
 | 아키텍처 | MVVM + Clean Architecture |
-| 비동기 | async/await, @MainActor |
+| 상태 관리 | @Observable |
+| 비동기 | async/await |
 | 네트워크 | Alamofire |
 | 로컬 저장소 | SwiftData, Keychain |
+| 의존성 주입 | Factory (SPM) |
 | 인증 | OAuth 2.0 (카카오, 애플) |
 | 푸시 알림 | Firebase Cloud Messaging (FCM) |
 | 이미지 | Kingfisher |
-| DI | Factory |
 | 테스트 | XCTest |
+| UI 라이브러리 | AlertToast (CocoaPods) |
 
 <br>
 
 ## 아키텍처
 
-```
-Presentation
-├── View (SwiftUI)
-└── ViewModel (@Observable)
+```mermaid
+%%{init: {'theme': 'neutral'}}%%
+graph TB
+    classDef pres fill:#bfdbfe,stroke:#3b82f6,color:#1e3a5f
+    classDef dom  fill:#bbf7d0,stroke:#16a34a,color:#14532d
+    classDef dat  fill:#fed7aa,stroke:#ea580c,color:#7c2d12
 
-Domain
-├── UseCases (Protocol + 구현체)
-└── Repository Protocols
+    subgraph Presentation["📱 Presentation Layer"]
+        View["Views\n(SwiftUI)"]
+        VM["ViewModels\n(@Observable)"]
+        DI["DI Container\n(AppContainer / Factory)"]
+        View --> VM
+        DI -.->|의존성 주입| View
+    end
 
-Data
-├── Repositories (구현체)
-└── Network (ApiManager, ApiInterceptor)
+    subgraph Domain["🏛️ Domain Layer (순수 Swift)"]
+        UseCase["UseCases\n(Polls · User · Favorite\nVoting · Auth · PushNotification)"]
+        RepoProtocol["Repository Protocols\n(PollRepository\nUserRepository 등)"]
+        UseCase --> RepoProtocol
+    end
+
+    subgraph Data["🗄️ Data Layer"]
+        Repo["Repositories\n(DefaultPollRepository\nDefaultUserRepository 등)"]
+        Network["ApiManager\n(Alamofire)"]
+        Repo --> Network
+    end
+
+    VM -->|"UseCase Protocol 호출\nResult<T, NetworkError>"| UseCase
+    Repo -->|"Protocol 구현"| RepoProtocol
+
+    class View,VM,DI pres
+    class UseCase,RepoProtocol dom
+    class Repo,Network dat
 ```
 
 **Clean Architecture**
 
 ViewModel이 `UseCaseProtocol`만 참조하고 구현체를 모르기 때문에, 테스트 시 Mock 객체로 교체할 수 있습니다. UseCase도 `RepositoryProtocol`만 참조해 네트워크·로컬 저장소 구현이 바뀌어도 비즈니스 로직에 영향이 없습니다.
 
+**RxSwift + async/await 혼용 전략**
+- ViewModel: `@Observable` 사용 (`@MainActor` 없음)
+- async 함수는 View의 `.task {}` / `Task {}` 에서 호출
+- UseCase: `Result<T, NetworkError>` 반환, ViewModel은 `handleError(error: NetworkError)`로 처리
+
 **JWT 자동 갱신 (ApiInterceptor)**
 
-Alamofire의 `RequestInterceptor`를 구현해 401 응답 시 토큰 갱신 후 원래 요청을 자동 재시도합니다. 갱신 실패 시 세션 만료 처리를 한 곳에서 일관되게 수행합니다. 모든 API 호출 지점에서 토큰 갱신 로직을 반복 작성할 필요가 없습니다.
+Alamofire의 `RequestInterceptor`를 구현해 401 응답 시 토큰 갱신 후 원래 요청을 자동 재시도합니다. 모든 API 호출 지점에서 토큰 갱신 로직을 반복 작성할 필요가 없습니다.
 
 <br>
 
@@ -89,26 +119,52 @@ Alamofire의 `RequestInterceptor`를 구현해 401 응답 시 토큰 갱신 후 
 
 ```
 Gollaba/
+├── GollabaApp.swift            # @main, Firebase/Kakao 초기화, FCM 설정
 ├── Presentation/
 │   └── Screens/
-│       ├── Home/           # 홈 (인기 투표, 오늘의 투표)
-│       ├── PollDetail/     # 투표 상세 (참여, 결과, 수정, 철회)
-│       ├── CreatePoll/     # 투표 생성
-│       ├── Search/         # 검색 및 결과 목록
-│       ├── MyPoll/         # 마이페이지
-│       ├── Notification/   # 알림 내역
-│       ├── Setting/        # 설정
-│       ├── Login/          # OAuth 로그인
-│       └── SignUp/         # 회원가입
+│       ├── Main/               # 탭 네비게이션
+│       ├── Home/               # 인기·오늘의 투표 목록
+│       ├── PollDetail/         # 투표 상세 (참여, 결과, 수정, 철회)
+│       ├── CreatePoll/         # 투표 생성
+│       ├── Search/             # 검색 (검색창, 결과, 필터, 정렬)
+│       ├── MyPoll/             # 마이페이지 (내 투표, 참여, 좋아요, 프로필)
+│       ├── Notification/       # 알림 내역
+│       ├── Setting/            # 설정 (프로필, 알림, 회원탈퇴)
+│       ├── Login/              # OAuth 로그인
+│       └── SignUp/             # 회원가입
+├── Domain/
+│   └── Repository/             # Repository 프로토콜 (6개)
 ├── Data/
 │   ├── Network/
-│   │   └── ApiManager.swift    # Alamofire 네트워크 레이어
-│   ├── UseCase/                # 비즈니스 로직 (Protocol + 구현체)
-│   ├── Repository/             # 데이터 접근 추상화 (Protocol + 구현체)
+│   │   └── ApiManager.swift    # Alamofire 네트워크 레이어 (1400+ 줄)
+│   ├── Repository/             # DefaultXxxRepository (6개)
+│   ├── UseCase/                # XxxUseCase 구현체 (6개)
+│   ├── DI/
+│   │   └── AppContainer.swift  # Factory DI 컨테이너
 │   └── Error/
-│       └── NetworkError.swift  # 에러 타입 통일
-└── Manager/
-    ├── ApiInterceptor.swift    # JWT 자동 갱신
-    ├── AuthManager.swift       # 인증 상태 관리
-    └── KeychainManager.swift   # 토큰 보안 저장
+│       └── NetworkError.swift  # 통일 에러 타입
+├── Manager/
+│   ├── AuthManager.swift       # JWT 토큰, 로그인 상태 (@Observable)
+│   ├── ApiInterceptor.swift    # JWT 자동 갱신 (RequestInterceptor)
+│   ├── KeychainManager.swift
+│   ├── KakaoAuthManager.swift
+│   └── PushNotificationManager.swift
+├── Model/                      # 데이터 모델
+├── Entity/
+│   ├── ValidationConstants.swift   # 닉네임 유효성 검사, 정규식
+│   └── SearchKeyword.swift         # SwiftData 기반 최근 검색어
+├── CustomView/                 # 재사용 UI 컴포넌트 (11개)
+├── Modifier/                   # SwiftUI 커스텀 수정자
+├── Common/                     # 공통 유틸리티
+└── Extension/                  # Swift 확장
 ```
+
+<br>
+
+## 테스트 구조
+
+- `GollabaTests/Mocks/` — `MockPollsUseCase`, `MockFavoriteUseCase`, `MockUserUseCase`, `MockPollRepository`, `MockUserRepository`
+- `GollabaTests/UseCases/` — UseCase 단위 테스트
+- `GollabaTests/ViewModels/` — ViewModel 단위 테스트
+
+Mock은 프로토콜 기반(`XxxUseCaseProtocol`)으로 작성. 네트워크 없이 ViewModel 로직 검증.
