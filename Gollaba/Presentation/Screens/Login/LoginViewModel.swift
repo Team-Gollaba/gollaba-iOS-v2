@@ -11,7 +11,7 @@ import AuthenticationServices
 @Observable
 class LoginViewModel {
     //MARK: - Properties
-    init(authUseCase: AuthUseCaseProtocol = AuthUseCase()) {
+    init(authUseCase: AuthUseCaseProtocol) {
         self.authUseCase = authUseCase
     }
 

@@ -124,7 +124,7 @@ class PollDetailViewModel {
     private let favoriteUseCase: FavoriteUseCaseProtocol
 
     //MARK: - Initialization
-    init(id: String, votingUseCase: VotingUseCaseProtocol = VotingUseCase(), favoriteUseCase: FavoriteUseCaseProtocol = FavoriteUseCase()) {
+    init(id: String, votingUseCase: VotingUseCaseProtocol, favoriteUseCase: FavoriteUseCaseProtocol) {
         self.id = id
         self.votingUseCase = votingUseCase
         self.favoriteUseCase = favoriteUseCase

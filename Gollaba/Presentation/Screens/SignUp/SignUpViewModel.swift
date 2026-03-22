@@ -49,7 +49,7 @@ class SignUpViewModel {
     private(set) var nicknameError: NickNameError = .None
 
     //MARK: - Initialize
-    init(authUseCase: AuthUseCaseProtocol = AuthUseCase()) {
+    init(authUseCase: AuthUseCaseProtocol) {
         self.authUseCase = authUseCase
     }
 

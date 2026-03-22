@@ -58,7 +58,7 @@ class SearchResultListViewModel {
     private(set) var errorMessage: String = ""
     
     //MARK: - Initialization
-    init(query: String, pollsUseCase: PollsUseCaseProtocol = PollsUseCase()) {
+    init(query: String, pollsUseCase: PollsUseCaseProtocol) {
         self.searchText = query
         self.pollsUseCase = pollsUseCase
     }

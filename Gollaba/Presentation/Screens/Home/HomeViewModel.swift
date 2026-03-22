@@ -32,7 +32,7 @@ class HomeViewModel {
     private(set) var errorMessage: String = ""
     
     //MARK: - Initialize
-    init(pollsUseCase: PollsUseCaseProtocol = PollsUseCase()) {
+    init(pollsUseCase: PollsUseCaseProtocol) {
         self.pollsUseCase = pollsUseCase
     }
     

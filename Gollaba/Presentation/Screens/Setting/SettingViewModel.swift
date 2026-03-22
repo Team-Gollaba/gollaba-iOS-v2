@@ -54,8 +54,8 @@ class SettingViewModel {
 
     //MARK: - Initialize
     init(
-        pushNotificationUseCase: PushNotificationUseCaseProtocol = PushNotificationUseCase(),
-        userUseCase: UserUseCaseProtocol = UserUseCase()
+        pushNotificationUseCase: PushNotificationUseCaseProtocol,
+        userUseCase: UserUseCaseProtocol
     ) {
         self.pushNotificationUseCase = pushNotificationUseCase
         self.userUseCase = userUseCase

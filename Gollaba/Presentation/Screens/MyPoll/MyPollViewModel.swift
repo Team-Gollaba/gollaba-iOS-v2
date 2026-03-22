@@ -71,7 +71,7 @@ class MyPollViewModel {
     private(set) var errorMessage: String = ""
     
     //MARK: - Initialize
-    init(pollsUseCase: PollsUseCaseProtocol = PollsUseCase(), favoriteUseCase: FavoriteUseCaseProtocol = FavoriteUseCase(), pushNotificationUseCase: PushNotificationUseCaseProtocol = PushNotificationUseCase(), userUseCase: UserUseCaseProtocol = UserUseCase()) {
+    init(pollsUseCase: PollsUseCaseProtocol, favoriteUseCase: FavoriteUseCaseProtocol, pushNotificationUseCase: PushNotificationUseCaseProtocol, userUseCase: UserUseCaseProtocol) {
         self.pollsUseCase = pollsUseCase
         self.favoriteUseCase = favoriteUseCase
         self.pushNotificationUseCase = pushNotificationUseCase

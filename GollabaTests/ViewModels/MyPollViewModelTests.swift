@@ -7,15 +7,18 @@ final class MyPollViewModelTests: XCTestCase {
     private var mockPollsUseCase: MockPollsUseCase!
     private var mockFavoriteUseCase: MockFavoriteUseCase!
     private var mockUserUseCase: MockUserUseCase!
+    private var mockPushNotificationUseCase: MockPushNotificationUseCase!
 
     override func setUp() {
         super.setUp()
         mockPollsUseCase = MockPollsUseCase()
         mockFavoriteUseCase = MockFavoriteUseCase()
         mockUserUseCase = MockUserUseCase()
+        mockPushNotificationUseCase = MockPushNotificationUseCase()
         sut = MyPollViewModel(
             pollsUseCase: mockPollsUseCase,
             favoriteUseCase: mockFavoriteUseCase,
+            pushNotificationUseCase: mockPushNotificationUseCase,
             userUseCase: mockUserUseCase
         )
     }

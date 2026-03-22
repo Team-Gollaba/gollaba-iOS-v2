@@ -25,7 +25,7 @@ class NotificationViewModel {
     private(set) var errorMessage: String = ""
     
     //MARK: - Initialize
-    init(pushNotificationUseCase: PushNotificationUseCaseProtocol = PushNotificationUseCase()) {
+    init(pushNotificationUseCase: PushNotificationUseCaseProtocol) {
         self.pushNotificationUseCase = pushNotificationUseCase
     }
     

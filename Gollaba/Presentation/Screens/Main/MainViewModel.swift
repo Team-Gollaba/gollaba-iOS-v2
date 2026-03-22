@@ -16,7 +16,7 @@ class MainViewModel {
 
     private let userUseCase: UserUseCaseProtocol
 
-    init(userUseCase: UserUseCaseProtocol = UserUseCase()) {
+    init(userUseCase: UserUseCaseProtocol) {
         self.userUseCase = userUseCase
     }
 
