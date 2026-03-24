@@ -477,7 +477,9 @@
 		269C4DEEBF113F5844E0F8DF /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				24C0D10532155BE67E6BD90C /* Error */,
 				14674D2C6482D967E58AE4C5 /* Repository */,
+				998F7C5D7A318100A544C9D4 /* UseCase */,
 			);
 			name = Domain;
 			path = Domain;
@@ -567,10 +569,8 @@
 		46D7D8A439C50982DFDBF92D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				24C0D10532155BE67E6BD90C /* Error */,
 				FA7F0011AA00F4C000000004 /* DI */,
 				64AEDF54277F262959BE0549 /* Repository */,
-				998F7C5D7A318100A544C9D4 /* UseCase */,
 				000DF481131070F7041DF5C0 /* Network */,
 			);
 			path = Data;
