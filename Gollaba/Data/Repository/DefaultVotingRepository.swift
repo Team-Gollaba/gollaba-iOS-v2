@@ -6,39 +6,45 @@
 import Foundation
 
 class DefaultVotingRepository: VotingRepository {
+    private let apiManager: any ApiManagerProtocol
+
+    init(apiManager: any ApiManagerProtocol = ApiManager.shared) {
+        self.apiManager = apiManager
+    }
+
     func fetchPoll(pollHashId: String) async throws -> PollItem {
-        return try await ApiManager.shared.getPoll(pollHashId: pollHashId).get()
+        return try await apiManager.getPoll(pollHashId: pollHashId).get()
     }
 
     func markPollRead(pollHashId: String) async throws {
-        try await ApiManager.shared.readPoll(pollHashId: pollHashId).get()
+        try await apiManager.readPoll(pollHashId: pollHashId).get()
     }
 
     func checkVoting(pollHashId: String) async throws -> Bool {
-        return try await ApiManager.shared.votingCheck(pollHashId: pollHashId).get()
+        return try await apiManager.votingCheck(pollHashId: pollHashId).get()
     }
 
     func fetchVotingId(pollHashId: String) async throws -> VotingIdResponseData {
-        return try await ApiManager.shared.getVotingIdByPollHashId(pollHashId: pollHashId).get()
+        return try await apiManager.getVotingIdByPollHashId(pollHashId: pollHashId).get()
     }
 
     func fetchVoters(pollHashId: String) async throws -> [PollVotersResponseData] {
-        return try await ApiManager.shared.getVoters(pollHashId: pollHashId).get()
+        return try await apiManager.getVoters(pollHashId: pollHashId).get()
     }
 
     func vote(pollHashId: String, pollItemIds: [Int], voterName: String?) async throws {
-        try await ApiManager.shared.voting(pollHashId: pollHashId, pollItemIds: pollItemIds, voterName: voterName).get()
+        try await apiManager.voting(pollHashId: pollHashId, pollItemIds: pollItemIds, voterName: voterName).get()
     }
 
     func updateVote(votingId: Int, voterName: String, pollItemIds: [Int]) async throws {
-        try await ApiManager.shared.updateVote(votingId: votingId, voterName: voterName, pollItemIds: pollItemIds).get()
+        try await apiManager.updateVote(votingId: votingId, voterName: voterName, pollItemIds: pollItemIds).get()
     }
 
     func cancelVote(votingId: Int) async throws {
-        try await ApiManager.shared.cancelVote(votingId: votingId).get()
+        try await apiManager.cancelVote(votingId: votingId).get()
     }
 
     func reportPoll(pollHashId: String, content: String, reportType: ReportType) async throws {
-        try await ApiManager.shared.reportPoll(pollHashId: pollHashId, content: content, reportType: reportType).get()
+        try await apiManager.reportPoll(pollHashId: pollHashId, content: content, reportType: reportType).get()
     }
 }

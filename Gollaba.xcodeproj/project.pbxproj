@@ -12,6 +12,7 @@
 		05FA21FA178E14141DD2AC71 /* PollDetailContentByMultipleGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E4756897670F76A5D9D1F9 /* PollDetailContentByMultipleGridView.swift */; };
 		07EB8B58102E6863372F09ED /* HomeDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73CBF201495A6441DABA8F1 /* HomeDividerView.swift */; };
 		0881C3734DE8FC1A98DDDCC5 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E519FFA548406B7C427F2 /* ApiManager.swift */; };
+		FA81C3734DE8FC1A98DDDCC6 /* ApiManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E519FFA548406B7C427F3 /* ApiManagerProtocol.swift */; };
 		088A510975A7F72F5C39E8A9 /* VotingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B55A36857B35D727EC2963F /* VotingButton.swift */; };
 		0A176D54A61D1BABB507BC9B /* MyPollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEF4F52038B74FF08D8D2D /* MyPollView.swift */; };
 		0A5D804E7D03EA1640DB54E4 /* ReportDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A84CCCC77DC88519519398 /* ReportDialogView.swift */; };
@@ -305,6 +306,7 @@
 		D73CBF201495A6441DABA8F1 /* HomeDividerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeDividerView.swift; sourceTree = "<group>"; };
 		DA1E75BCB9312179421A9A25 /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA8E519FFA548406B7C427F2 /* ApiManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		FA8E519FFA548406B7C427F3 /* ApiManagerProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApiManagerProtocol.swift; sourceTree = "<group>"; };
 		DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPushNotificationUseCase.swift; sourceTree = "<group>"; };
 		DE2AA7F5BB23F3588C41E379 /* NotificationViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		E076B78FC48A81D952591425 /* PollContentOptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollContentOptionView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				DA8E519FFA548406B7C427F2 /* ApiManager.swift */,
+				FA8E519FFA548406B7C427F3 /* ApiManagerProtocol.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1392,6 +1395,7 @@
 				4C83992E287232AD1823CE45 /* UserUseCase.swift in Sources */,
 				44C19C1C6079A1A68C54E89B /* AuthUseCase.swift in Sources */,
 				0881C3734DE8FC1A98DDDCC5 /* ApiManager.swift in Sources */,
+				FA81C3734DE8FC1A98DDDCC6 /* ApiManagerProtocol.swift in Sources */,
 				A88B5B0044319FC944048672 /* CustomTabView.swift in Sources */,
 				A7607878A6197799DF553230 /* CustomTabViewButton.swift in Sources */,
 				23CC5AB9C746BDFCE0662856 /* TitleView.swift in Sources */,

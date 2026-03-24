@@ -80,7 +80,7 @@ enum ProviderType: String {
     case none = ""
 }
 
-class ApiManager: @unchecked Sendable {
+class ApiManager: ApiManagerProtocol, @unchecked Sendable {
     static let shared = ApiManager()
     let baseURL: String = "https://api.gollaba.app/v2/"
 
@@ -95,7 +95,7 @@ class ApiManager: @unchecked Sendable {
         return Session(configuration: configuration, interceptor: ApiInterceptor())
     }()
 
-    private init() {}
+    init() {}
 
     func setAuthManager(_ authManager: AuthManager) {
         self.authManager = authManager
