@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 
 @Observable
 class SearchResultListViewModel {
     //MARK: - Properties
     private let pollsUseCase: PollsUseCaseProtocol
+    private let searchTextSubject: CurrentValueSubject<String, Never>
+    private var cancellables = Set<AnyCancellable>()
     
     //MARK: - Flag
     var isFilterOpen: Bool = false
@@ -25,7 +28,9 @@ class SearchResultListViewModel {
     var isLoading: Bool = false
     
     //MARK: - Data
-    var searchText: String
+    var searchText: String {
+        didSet { searchTextSubject.send(searchText) }
+    }
     var searchFocused: Bool = false
     
     // 기명/익명 여부를 다루는 변수
@@ -61,8 +66,25 @@ class SearchResultListViewModel {
     init(query: String, pollsUseCase: PollsUseCaseProtocol) {
         self.searchText = query
         self.pollsUseCase = pollsUseCase
+        self.searchTextSubject = CurrentValueSubject(query)
+        setupSearchPipeline()
     }
     
+    //MARK: - Setup
+    private func setupSearchPipeline() {
+        searchTextSubject
+            .dropFirst()
+            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .filter { !$0.isEmpty }
+            .sink { [weak self] _ in
+                Task { [weak self] in
+                    await self?.getSearchResultByFilter()
+                }
+            }
+            .store(in: &cancellables)
+    }
+
     //MARK: - API
     func getSearchResultByFilter() async {
         self.isLoading = true
