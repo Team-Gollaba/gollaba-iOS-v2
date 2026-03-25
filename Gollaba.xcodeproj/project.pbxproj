@@ -287,6 +287,10 @@
 		AD929F071E64EE163A33F50D /* DefaultFavoriteRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultFavoriteRepository.swift; sourceTree = "<group>"; };
 		ADDF470291089A7DF6D856C1 /* PollDetailContentBySingleGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollDetailContentBySingleGridView.swift; sourceTree = "<group>"; };
 		AF234BBBDF20DB773E46858A /* MockPollRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockPollRepository.swift; sourceTree = "<group>"; };
+		BB001002BB001002BB001002 /* MockApiManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockApiManager.swift; sourceTree = "<group>"; };
+		BB001003BB001003BB001003 /* DefaultPollRepositoryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultPollRepositoryTests.swift; sourceTree = "<group>"; };
+		BB001004BB001004BB001004 /* DefaultUserRepositoryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultUserRepositoryTests.swift; sourceTree = "<group>"; };
+		BB001005BB001005BB001005 /* DefaultVotingRepositoryTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultVotingRepositoryTests.swift; sourceTree = "<group>"; };
 		AF6A70923ED209D2C8C98544 /* TimerOptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimerOptionView.swift; sourceTree = "<group>"; };
 		B1BFDEA6AAA952452197CDDB /* SignUpViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B2C23B74517965D4C16D3632 /* LogoutButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
@@ -756,8 +760,19 @@
 				AA001002AA001002AA001002 /* MockVotingUseCase.swift */,
 				154BEADCF677D5EC19BA06D6 /* MockUserRepository.swift */,
 				DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */,
+				BB001002BB001002BB001002 /* MockApiManager.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		BB001001BB001001BB001001 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				BB001003BB001003BB001003 /* DefaultPollRepositoryTests.swift */,
+				BB001004BB001004BB001004 /* DefaultUserRepositoryTests.swift */,
+				BB001005BB001005BB001005 /* DefaultVotingRepositoryTests.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		5CAAD986EC260D01F9032BEC /* Enroll */ = {
@@ -900,6 +915,7 @@
 				56F79323A4123F4A6066B6C3 /* Mocks */,
 				46D3024D48BA536F7287E42A /* UseCases */,
 				2AA466B30AFC7836B392E660 /* ViewModels */,
+				BB001001BB001001BB001001 /* Repositories */,
 			);
 			path = GollabaTests;
 			sourceTree = "<group>";
@@ -1533,6 +1549,10 @@
 				AA001001AA001001AA001001 /* MockVotingUseCase.swift in Sources */,
 				AA001003AA001003AA001003 /* SettingViewModelTests.swift in Sources */,
 				AA001005AA001005AA001005 /* PollDetailViewModelTests.swift in Sources */,
+				BB001006BB001006BB001006 /* MockApiManager.swift in Sources */,
+				BB001007BB001007BB001007 /* DefaultPollRepositoryTests.swift in Sources */,
+				BB001008BB001008BB001008 /* DefaultUserRepositoryTests.swift in Sources */,
+				BB001009BB001009BB001009 /* DefaultVotingRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
