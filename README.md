@@ -63,44 +63,6 @@
 
 <br>
 
-## 아키텍처
-
-```mermaid
-%%{init: {'theme': 'neutral'}}%%
-graph TB
-    classDef pres fill:#bfdbfe,stroke:#3b82f6,color:#1e3a5f
-    classDef dom  fill:#bbf7d0,stroke:#16a34a,color:#14532d
-    classDef dat  fill:#fed7aa,stroke:#ea580c,color:#7c2d12
-
-    subgraph Presentation["📱 Presentation Layer"]
-        View["Views\n(SwiftUI)"]
-        VM["ViewModels\n(@Observable)"]
-        DI["DI Container\n(AppContainer / Factory)"]
-        View --> VM
-        DI -.->|의존성 주입| View
-    end
-
-    subgraph Domain["🏛️ Domain Layer (순수 Swift)"]
-        UseCase["UseCases\n(Polls · User · Favorite\nVoting · Auth · PushNotification)"]
-        RepoProtocol["Repository Protocols\n(PollRepository\nUserRepository 등)"]
-        UseCase --> RepoProtocol
-    end
-
-    subgraph Data["🗄️ Data Layer"]
-        Repo["Repositories\n(DefaultPollRepository\nDefaultUserRepository 등)"]
-        Network["ApiManager\n(Alamofire)"]
-        Repo --> Network
-    end
-
-    VM -->|"UseCase Protocol 호출\nResult<T, NetworkError>"| UseCase
-    Repo -->|"Protocol 구현"| RepoProtocol
-
-    class View,VM,DI pres
-    class UseCase,RepoProtocol dom
-    class Repo,Network dat
-```
-
-<br>
 
 ## 프로젝트 구조
 
