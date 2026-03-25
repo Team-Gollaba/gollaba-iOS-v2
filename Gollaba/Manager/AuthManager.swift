@@ -35,7 +35,9 @@ class AuthManager {
         get {
             switch providerType {
             case .kakao:
-                return kakaoAuthManager.profileImageUrl
+                guard let url = kakaoAuthManager.profileImageUrl else { return nil }
+                let httpsString = url.absoluteString.replacingOccurrences(of: "http://", with: "https://")
+                return URL(string: httpsString)
                 
             default:
                 return nil

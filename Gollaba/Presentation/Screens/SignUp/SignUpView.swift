@@ -53,16 +53,11 @@ struct SignUpView: View {
                             .frame(maxWidth: .infinity, maxHeight: 400)
                             .clipped()
                     } else if let profileImageUrl = authManager.profileImageUrl {
-                        AsyncImage(url: profileImageUrl)
+                        KFImage(profileImageUrl)
+                            .resizable()
                             .scaledToFill()
                             .frame(maxWidth: .infinity, maxHeight: 400)
                             .clipped()
-                        
-//                        KFImage(profileImageUrl)
-//                            .resizable()
-//                            .scaledToFill()
-//                            .frame(maxWidth: .infinity, maxHeight: 400)
-//                            .clipped()
                     } else {
                         Image(systemName: "photo.badge.plus")
                             .resizable()
