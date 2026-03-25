@@ -1,4 +1,5 @@
 @testable import Gollaba
+import UIKit
 import XCTest
 
 @MainActor
@@ -137,6 +138,37 @@ final class CreatePollViewModelTests: XCTestCase {
     func test_responseType_복수이면_MULTIPLE() {
         sut.countingOption = .second
         XCTAssertEqual(sut.responseType, "MULTIPLE")
+    }
+
+    // MARK: - updatePostImage
+
+    func test_updatePostImage_이미지설정시_uiImage_업데이트됨() {
+        // given
+        let image = UIImage()
+
+        // when
+        sut.updatePostImage(index: 0, image: image)
+
+        // then
+        XCTAssertEqual(sut.uiImage[0], image)
+        XCTAssertNotNil(sut.postImage[0])
+    }
+
+    func test_updatePostImage_nil전달시_해당인덱스_nil됨() {
+        // given
+        sut.updatePostImage(index: 1, image: UIImage())
+
+        // when
+        sut.updatePostImage(index: 1, image: nil)
+
+        // then
+        XCTAssertNil(sut.uiImage[1])
+        XCTAssertNil(sut.postImage[1])
+    }
+
+    func test_showPHPicker_초기값은_6개_false() {
+        XCTAssertEqual(sut.showPHPicker.count, 6)
+        XCTAssertTrue(sut.showPHPicker.allSatisfy { !$0 })
     }
 
     // MARK: - contentReset

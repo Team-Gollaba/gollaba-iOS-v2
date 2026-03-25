@@ -10,6 +10,7 @@ final class MockUserUseCase: UserUseCaseProtocol {
 
     var getUserMeCallCount = 0
     var updateUserNameCallCount = 0
+    var updateUserProfileImageCallCount = 0
     var lastUpdatedName: String?
 
     func getUserMe() async -> Result<UserData, NetworkError> {
@@ -24,6 +25,7 @@ final class MockUserUseCase: UserUseCaseProtocol {
     }
 
     func updateUserProfileImage(image: UIImage) async -> Result<Void, NetworkError> {
+        updateUserProfileImageCallCount += 1
         return updateProfileImageResult
     }
 

@@ -162,6 +162,9 @@
 		FC0047D1EC155E4765B27DCC /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C60358B043F01D1DF553EB /* AuthRepository.swift */; };
 		FD94FC1F1153227112FC692C /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E717A8646398726CA6F422D9 /* HomeViewModelTests.swift */; };
 		FE3166ADA9D7648AD0D6FFF5 /* MockUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */; };
+		AA001001AA001001AA001001 /* MockVotingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA001002AA001002AA001002 /* MockVotingUseCase.swift */; };
+		AA001003AA001003AA001003 /* SettingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA001004AA001004AA001004 /* SettingViewModelTests.swift */; };
+		AA001005AA001005AA001005 /* PollDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA001006AA001006AA001006 /* PollDetailViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +332,9 @@
 		FC1EA347304BB090970280BB /* SettingViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		FD24353A156A87676EC58F53 /* Pods-Gollaba.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gollaba.release.xcconfig"; path = "Target Support Files/Pods-Gollaba/Pods-Gollaba.release.xcconfig"; sourceTree = "<group>"; };
 		FEA48FE7E3356E9C287FA828 /* MockFavoriteUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockFavoriteUseCase.swift; sourceTree = "<group>"; };
+		AA001002AA001002AA001002 /* MockVotingUseCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockVotingUseCase.swift; sourceTree = "<group>"; };
+		AA001004AA001004AA001004 /* SettingViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingViewModelTests.swift; sourceTree = "<group>"; };
+		AA001006AA001006AA001006 /* PollDetailViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollDetailViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -501,6 +507,8 @@
 				4672E0745B128F9A941D39D1 /* SearchViewModelTests.swift */,
 				0E4BAE0D3AA411BD648C1D84 /* SearchResultListViewModelTests.swift */,
 				C4AF91BBC0E3D18217691BF3 /* CreatePollViewModelTests.swift */,
+				AA001004AA001004AA001004 /* SettingViewModelTests.swift */,
+				AA001006AA001006AA001006 /* PollDetailViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -745,6 +753,7 @@
 				FEA48FE7E3356E9C287FA828 /* MockFavoriteUseCase.swift */,
 				BC0CC429C3E586579CD7934E /* MockUserUseCase.swift */,
 				AF234BBBDF20DB773E46858A /* MockPollRepository.swift */,
+				AA001002AA001002AA001002 /* MockVotingUseCase.swift */,
 				154BEADCF677D5EC19BA06D6 /* MockUserRepository.swift */,
 				DB1AA55A446E85BBB3A6F70F /* MockPushNotificationUseCase.swift */,
 			);
@@ -1521,6 +1530,9 @@
 				5F62B653D498B9F8129C8581 /* SearchViewModelTests.swift in Sources */,
 				1D319BD333B3412804184234 /* SearchResultListViewModelTests.swift in Sources */,
 				5E1D8F2EC82C761B97B74036 /* CreatePollViewModelTests.swift in Sources */,
+				AA001001AA001001AA001001 /* MockVotingUseCase.swift in Sources */,
+				AA001003AA001003AA001003 /* SettingViewModelTests.swift in Sources */,
+				AA001005AA001005AA001005 /* PollDetailViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
