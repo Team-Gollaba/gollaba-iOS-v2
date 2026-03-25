@@ -100,3 +100,38 @@ graph TB
     class Repo,Network dat
 ```
 
+<br>
+
+## 프로젝트 구조
+
+```
+Gollaba/
+├── GollabaApp.swift
+├── Presentation/
+│   └── Screens/
+│       ├── Main/               # 탭 네비게이션
+│       ├── Home/
+│       ├── PollDetail/
+│       ├── CreatePoll/
+│       ├── Search/
+│       ├── MyPoll/
+│       ├── Notification/
+│       ├── Setting/
+│       ├── Login/
+│       └── SignUp/
+├── Domain/
+│   ├── UseCase/                # XxxUseCase + Protocol
+│   ├── Repository/             # Repository Protocols
+│   └── Error/                  # NetworkError
+├── Data/
+│   ├── Network/                # ApiManager (Alamofire)
+│   ├── Repository/             # DefaultXxxRepository
+│   └── DI/                     # AppContainer (Factory)
+├── Manager/                    # Auth, Interceptor, Keychain 등
+├── Model/
+├── Entity/
+├── Common/
+├── CustomView/
+├── Modifier/
+└── Extension/
+```
