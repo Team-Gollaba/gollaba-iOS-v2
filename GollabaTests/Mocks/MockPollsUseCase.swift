@@ -17,6 +17,7 @@ final class MockPollsUseCase: PollsUseCaseProtocol {
     var getPollsCallCount = 0
     var getTrendingPollsCallCount = 0
     var getTopPollsCallCount = 0
+    var getFilteredPollsCallCount = 0
 
     func getPolls(page: Int, size: Int) async -> Result<AllPollData, NetworkError> {
         getPollsCallCount += 1
@@ -46,6 +47,7 @@ final class MockPollsUseCase: PollsUseCaseProtocol {
     }
 
     func getPolls(page: Int, size: Int, sort: SortedBy, pollType: PollType, optionGroup: OptionGroup, query: String?, isActive: IsActive) async -> Result<AllPollData, NetworkError> {
+        getFilteredPollsCallCount += 1
         return getFilteredPollsResult
     }
 

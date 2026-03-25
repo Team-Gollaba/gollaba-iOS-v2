@@ -95,6 +95,51 @@ final class SearchResultListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.searchResultPollData?.items.count, 4)
     }
 
+    // MARK: - debounce 자동 검색
+
+    func test_searchText_변경시_debounce후_자동검색_호출됨() async {
+        // given
+        mockUseCase.getFilteredPollsResult = .success(.empty)
+        let beforeCount = mockUseCase.getFilteredPollsCallCount
+
+        // when
+        sut.searchText = "새검색어"
+        try? await Task.sleep(nanoseconds: 600_000_000)
+
+        // then
+        XCTAssertGreaterThan(mockUseCase.getFilteredPollsCallCount, beforeCount)
+    }
+
+    func test_searchText_빠르게_변경시_debounce로_한번만_호출됨() async {
+        // given
+        mockUseCase.getFilteredPollsResult = .success(.empty)
+        let beforeCount = mockUseCase.getFilteredPollsCallCount
+
+        // when - 0.1초 간격으로 여러 번 변경
+        sut.searchText = "첫번째"
+        try? await Task.sleep(nanoseconds: 100_000_000)
+        sut.searchText = "두번째"
+        try? await Task.sleep(nanoseconds: 100_000_000)
+        sut.searchText = "세번째"
+        try? await Task.sleep(nanoseconds: 800_000_000)
+
+        // then - debounce로 인해 1회만 호출됨
+        XCTAssertEqual(mockUseCase.getFilteredPollsCallCount, beforeCount + 1)
+    }
+
+    func test_searchText_빈문자열이면_자동검색_호출안됨() async {
+        // given
+        mockUseCase.getFilteredPollsResult = .success(.empty)
+        let beforeCount = mockUseCase.getFilteredPollsCallCount
+
+        // when
+        sut.searchText = ""
+        try? await Task.sleep(nanoseconds: 600_000_000)
+
+        // then - filter { !$0.isEmpty } 로 인해 호출되지 않음
+        XCTAssertEqual(mockUseCase.getFilteredPollsCallCount, beforeCount)
+    }
+
     // MARK: - isValidSearchText
 
     func test_isValidSearchText_빈문자열이면_false_및_toast_표시() {
