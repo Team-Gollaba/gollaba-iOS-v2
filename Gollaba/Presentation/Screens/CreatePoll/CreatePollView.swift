@@ -52,7 +52,7 @@ struct CreatePollView: View {
                             )
                         }
                         
-                        CreatePollContentGridView(pollItemName: $viewModel.pollItemName, selectedItem: $viewModel.selectedItem)
+                        CreatePollContentGridView(pollItemName: $viewModel.pollItemName)
                             .environment(viewModel)
                         
                         

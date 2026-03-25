@@ -8,7 +8,6 @@
 import AlertToast
 import Factory
 import SwiftUI
-import PhotosUI
 
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
@@ -156,20 +155,13 @@ struct SettingView: View {
                                 }
                                 .tint(.black)
                             }
-                            PhotosPicker(selection: $viewModel.selectedItem) {
+                            Button {
+                                viewModel.showSetProfileImageDialog = false
+                                viewModel.showPHPicker = true
+                            } label: {
                                 Text("앨범에서 사진 선택")
                                     .font(.suitVariable16)
                                     .foregroundStyle(.black)
-                            }
-                            .onChange(of: viewModel.selectedItem) { _, newValue in
-                                if newValue != nil {
-                                    Task {
-                                        await viewModel.convertImage(item: newValue)
-                                        viewModel.changeProfileImage = .toPhotoLibrary
-                                        viewModel.showSetProfileImageDialog = false
-                                        viewModel.showQuestionToChangeProfileImageDialog = true
-                                    }
-                                }
                             }
                             
                             if authManager.userData?.profileImageUrl != nil {
@@ -298,6 +290,10 @@ struct SettingView: View {
             viewModel.showSetProfileImageDialog = false
             viewModel.showSetNicknameDialog = false
         }
+        .sheet(isPresented: $viewModel.showPHPicker) {
+            PHPickerRepresentable(selectedImage: $viewModel.profileImage)
+                .ignoresSafeArea()
+        }
         .onChange(of: authManager.jwtToken, { _, newValue in
             if newValue == nil {
                 dismiss()
@@ -332,13 +328,9 @@ struct SettingView: View {
                     Task {
                         await viewModel.deleteProfileImage()
                         await viewModel.getUser()
-                        viewModel.selectedItem = nil
                     }
                 case .toPhotoLibrary:
-                    Task {
-                        await viewModel.updateProfileImage()
-                        await viewModel.getUser()
-                    }
+                    break
                 case .none:
                     break
                 }

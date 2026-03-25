@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 enum ProfileImageError: Error {
     case imageNil
@@ -32,15 +31,23 @@ class SettingViewModel {
     var showSuccessUpdateUserNameToast: Bool = false
     var showDeleteAccountDialog: Bool = false
     var showQuestionToChangeProfileImageDialog: Bool = false
+    var showPHPicker: Bool = false
 
     //MARK: - AppStorageData
     var isNotificationOn: Bool = AppStorageManager.shared.isNotificationEnabled
     var appStorageManager: AppStorageManager = AppStorageManager.shared
 
     //MARK: - Data
-    var selectedItem: PhotosPickerItem?
-    var postImage: Image?
-    var uiImage: UIImage?
+    var profileImage: UIImage? {
+        didSet {
+            if profileImage != nil {
+                Task {
+                    await updateProfileImage()
+                    await getUser()
+                }
+            }
+        }
+    }
 
     var nickName: String = ""
     var nickNameFocused: Bool = false
@@ -77,13 +84,13 @@ class SettingViewModel {
     }
 
     func updateProfileImage() async {
-        guard let uiImage = self.uiImage else {
+        guard let profileImage = self.profileImage else {
             self.errorMessage = "이미지를 선택해주세요."
             self.showErrorDialog = true
             return
         }
 
-        let result = await userUseCase.updateUserProfileImage(image: uiImage)
+        let result = await userUseCase.updateUserProfileImage(image: profileImage)
         if case .failure(let error) = result {
             handleError(error: error)
         }
@@ -133,13 +140,6 @@ class SettingViewModel {
         if case .failure(let error) = result {
             handleError(error: error)
         }
-    }
-
-    //MARK: - Image
-    func convertImage(item: PhotosPickerItem?) async {
-        guard let imageSelection = await ImageManager.convertImage(item: item) else { return }
-        self.postImage = imageSelection.image
-        self.uiImage = imageSelection.uiImage
     }
 
     //MARK: - ETC

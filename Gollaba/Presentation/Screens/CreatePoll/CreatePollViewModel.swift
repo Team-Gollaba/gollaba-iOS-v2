@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 @Observable
 class CreatePollViewModel {
@@ -58,7 +57,7 @@ class CreatePollViewModel {
     var isPollItemFocused: Bool = false
     
     //MARK: - Photos
-    var selectedItem: [PhotosPickerItem?] = Array(repeating: nil, count: 6)
+    var showPHPicker: [Bool] = Array(repeating: false, count: 6)
     var postImage: [Image?] = Array(repeating: nil, count: 6)
     var uiImage: [UIImage?] = Array(repeating: nil, count: 6)
     
@@ -72,12 +71,15 @@ class CreatePollViewModel {
     }
     
     //MARK: - Image
-    func convertImage(item: PhotosPickerItem?, index: Int) async {
-        guard let imageSelection = await ImageManager.convertImage(item: item) else { return }
-        self.postImage[index] = imageSelection.image
-        self.uiImage[index] = imageSelection.uiImage
+    func updatePostImage(index: Int, image: UIImage?) {
+        self.uiImage[index] = image
+        if let image {
+            self.postImage[index] = Image(uiImage: image)
+        } else {
+            self.postImage[index] = nil
+        }
     }
-    
+
     //MARK: - API
     func createPoll() async {
         self.isLoading = true
@@ -131,7 +133,7 @@ class CreatePollViewModel {
         self.countingOption = .first
         self.selectedDate = Date().addingTimeInterval(60 * 60)
         
-        self.selectedItem = Array(repeating: nil, count: 6)
+        self.showPHPicker = Array(repeating: false, count: 6)
         self.postImage = Array(repeating: nil, count: 6)
         self.uiImage = Array(repeating: nil, count: 6)
     }

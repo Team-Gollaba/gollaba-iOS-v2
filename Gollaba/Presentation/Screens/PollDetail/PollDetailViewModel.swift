@@ -36,6 +36,7 @@ class PollDetailViewModel {
     var showErrorDialog: Bool = false
     var showReportDialog: Bool = false
     var showCompletedReportToast: Bool = false
+    var showShareSheet: Bool = false
 
     //MARK: - Poll Data
     let id: String

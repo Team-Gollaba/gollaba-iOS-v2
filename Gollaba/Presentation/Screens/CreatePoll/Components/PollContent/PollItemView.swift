@@ -6,11 +6,9 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 struct CreatePollItemView: View {
     @Binding var pollItemName: String
-    @Binding var selectedItem: [PhotosPickerItem?]
     @Environment(CreatePollViewModel.self) var createPollViewModel
     @FocusState private var focus: Bool
     var isCreateModel: Bool
@@ -28,18 +26,9 @@ struct CreatePollItemView: View {
             VStack (spacing: 0) {
                 
                 let currentPostImage = createPollViewModel.postImage[itemNumber - 1]
-                PhotosPicker(selection: Binding(
-                    get: { selectedItem[itemNumber - 1] },
-                    set: { newValue in
-                        selectedItem[itemNumber - 1] = newValue
-                        Task {
-                            await createPollViewModel.convertImage(item: newValue, index: itemNumber - 1)
-                        }
-                    }
-                )
-
-                ) {
-
+                Button {
+                    createPollViewModel.showPHPicker[itemNumber - 1] = true
+                } label: {
                     if let image = currentPostImage {
                         image
                             .resizable()
@@ -50,12 +39,11 @@ struct CreatePollItemView: View {
                             .onAppear {
                                 isShowImageDeleteButton = true
                             }
-                        
-                    } else { // 장착 전
+                    } else {
                         VStack {
                             Text("이미지 첨부하기 +")
                                 .font(.suitBold12)
-                            
+
                             Text("클릭 후 이미지를 첨부하세요.")
                                 .font(.suitVariable12)
                                 .multilineTextAlignment(.center)
@@ -70,6 +58,16 @@ struct CreatePollItemView: View {
                             isShowImageDeleteButton = false
                         }
                     }
+                }
+                .sheet(isPresented: Binding(
+                    get: { createPollViewModel.showPHPicker[itemNumber - 1] },
+                    set: { createPollViewModel.showPHPicker[itemNumber - 1] = $0 }
+                )) {
+                    PHPickerRepresentable(selectedImage: Binding(
+                        get: { createPollViewModel.uiImage[itemNumber - 1] },
+                        set: { createPollViewModel.updatePostImage(index: itemNumber - 1, image: $0) }
+                    ))
+                    .ignoresSafeArea()
                 }
                 
                 
@@ -196,7 +194,7 @@ struct CreatePollItemView: View {
                         
                         Button {
                             if createPollViewModel.postImage[itemNumber - 1] != nil {
-                                createPollViewModel.postImage[itemNumber - 1] = nil
+                                createPollViewModel.updatePostImage(index: itemNumber - 1, image: nil)
                             }
                         } label: {
                             Image(systemName: "trash")

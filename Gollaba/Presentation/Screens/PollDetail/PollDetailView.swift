@@ -205,6 +205,14 @@ struct PollDetailView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    viewModel.showShareSheet = true
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
                     withAnimation {
                         viewModel.showReportDialog = true
                     }
@@ -217,6 +225,19 @@ struct PollDetailView: View {
                     }
                     .foregroundColor(.red)
                 }
+            }
+        }
+        .sheet(isPresented: $viewModel.showShareSheet) {
+            if let poll = viewModel.poll {
+                ActivityViewRepresentable(
+                    activityItems: [
+                        "투표에 참여해보세요: \(poll.title)",
+                        URL(string: "https://gollaba.app/polls/\(viewModel.id)")!
+                    ],
+                    applicationActivities: nil,
+                    excludedActivityTypes: [.assignToContact, .addToReadingList]
+                )
+                .presentationDetents([.medium])
             }
         }
         .dialog(
