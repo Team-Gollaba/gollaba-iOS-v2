@@ -51,7 +51,7 @@
 | UI | SwiftUI |
 | 아키텍처 | MVVM + Clean Architecture |
 | 상태 관리 | @Observable |
-| 비동기 | async/await |
+| 비동기 | async/await, Combine |
 | 네트워크 | Alamofire |
 | 로컬 저장소 | SwiftData, Keychain |
 | 의존성 주입 | Factory (SPM) |
