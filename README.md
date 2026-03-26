@@ -2,7 +2,7 @@
 
 > 사진 기반 투표를 만들고, 공유하고, 참여하는 iOS 소셜 투표 앱
 
-![Swift](https://img.shields.io/badge/Swift-6.2-orange) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue) ![Xcode](https://img.shields.io/badge/Xcode-26.0+-lightgrey)
+![Swift](https://img.shields.io/badge/Swift-5.0-orange) ![iOS](https://img.shields.io/badge/iOS-18.0+-blue) ![Xcode](https://img.shields.io/badge/Xcode-26.0+-lightgrey)
 
 [![App Store](https://img.shields.io/badge/App_Store-Download-0D96F6?logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EA%B3%A8%EB%9D%BC%EB%B0%94/id6742055187)
 
