@@ -101,7 +101,7 @@ class HomeViewModel {
         let topPollsResult = await pollsUseCase.getTopPolls()
 
         // 스켈레톤 뷰 최소 노출 시간 보장
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        do { try await Task.sleep(nanoseconds: 1_000_000_000) } catch { return }
         
         switch allPollsResult {
         case .success(let allPollData):

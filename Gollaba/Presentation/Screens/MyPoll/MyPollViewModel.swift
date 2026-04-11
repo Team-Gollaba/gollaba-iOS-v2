@@ -211,7 +211,7 @@ class MyPollViewModel {
             let result = await pollsUseCase.getPollsCreatedByMe(page: self.createdByMePollPage, size: self.createdByMePollSize)
             
             // 스켈레톤 뷰 최소 노출 시간 보장
-            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            do { try await Task.sleep(nanoseconds: 1_000_000_000) } catch { return }
             
             switch result {
             case .success(let allPollData):
@@ -229,7 +229,7 @@ class MyPollViewModel {
             let result = await pollsUseCase.getPollsFavoriteByMe(page: self.favoriteByMePollPage, size: self.favoriteByMePollSize)
             
             // 스켈레톤 뷰 최소 노출 시간 보장
-            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            do { try await Task.sleep(nanoseconds: 1_000_000_000) } catch { return }
             
             switch result {
             case .success(let allPollData):
@@ -247,7 +247,7 @@ class MyPollViewModel {
             let result = await pollsUseCase.getPollsParticipated(page: self.participatedPollPage, size: self.participatedPollSize)
             
             // 스켈레톤 뷰 최소 노출 시간 보장
-            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            do { try await Task.sleep(nanoseconds: 1_000_000_000) } catch { return }
             
             switch result {
             case .success(let allPollData):
