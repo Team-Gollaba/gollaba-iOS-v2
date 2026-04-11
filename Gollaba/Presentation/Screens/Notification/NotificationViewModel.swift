@@ -42,7 +42,7 @@ class NotificationViewModel {
         
         switch result {
         case .success(let pushNotificationDatas):
-            if isRefresh {
+            if isRefresh || pushNotificationData == nil {
                 pushNotificationData = pushNotificationDatas
             } else {
                 pushNotificationData?.items.append(contentsOf: pushNotificationDatas.items)
