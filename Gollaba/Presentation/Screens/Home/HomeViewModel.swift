@@ -74,7 +74,6 @@ class HomeViewModel {
         
         switch result {
         case .success(let trendingPolls):
-            self.trendingPolls?.removeAll()
             self.trendingPolls = trendingPolls
         case .failure(let error):
             handleError(error: error)
@@ -88,7 +87,6 @@ class HomeViewModel {
         
         switch result {
         case .success(let topPolls):
-            self.topPolls?.removeAll()
             self.topPolls = topPolls
         case .failure(let error):
             handleError(error: error)
