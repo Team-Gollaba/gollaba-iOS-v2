@@ -45,8 +45,11 @@ class PollDetailViewModel {
     var selectedSinglePoll: Int? = nil {
         didSet {
             if self.votingButtonState == .ended { return }
-            guard let selectedSinglePoll = self.selectedSinglePoll else { return }
-            let selectedItemIds = self.poll?.items[selectedSinglePoll - 1].id ?? 0
+            guard let selectedSinglePoll = self.selectedSinglePoll,
+                  let items = self.poll?.items,
+                  selectedSinglePoll > 0,
+                  selectedSinglePoll <= items.count else { return }
+            let selectedItemIds = items[selectedSinglePoll - 1].id
 
             if let votingIdData = self.votingIdData {
                 if votingIdData.votedItemIds.contains(selectedItemIds) {
